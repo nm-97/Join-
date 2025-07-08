@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    max-width: 1920px;
+}
+
+.mainContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+.mainContent img {
+    width: 274px;
+    height: 334.07px;
+}
