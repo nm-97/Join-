@@ -179,5 +179,73 @@
         </div>
       </div>
     </div>
-  </body>
+
+    <div class="overlay hidden" id="taskOverlay">
+        <div class="taskDetailModal">
+            <div class="modalHeader">
+                <span class="modalLabel">User Story</span>
+                <button class="closeButton" id="closeOverlay"><img src="./assets/img/board/close.svg" alt="close"></button>
+            </div>
+            
+            <h2 class="modalTitle">Kochwelt Page & Recipe Recommender</h2>
+            
+            <p class="modalDescription">Build start page with recipe recommendation.</p>
+            
+            <div class="detailRow">
+                <span class="detailLabel">Due date:</span>
+                <span class="detailValue">10/05/2023</span>
+            </div>
+            
+            <div class="detailRow">
+                <span class="detailLabel">Priority:</span>
+                <span class="detailValue">
+                    Medium <img src="./assets/img/board/medium.svg" alt="medium">
+                </span>
+            </div>
+            
+            <div class="detailRow">
+                <span class="detailLabel">Assigned To:</span>
+            </div>
+            <div class="assignedUsers">
+                <div class="assignedUser">
+                    <div class="userAvatar" style="background-color: #4ecdc4;">EM</div>
+                    <span>Emmanuel Mauer</span>
+                </div>
+                <div class="assignedUser">
+                    <div class="userAvatar" style="background-color: #7b68ee;">MB</div>
+                    <span>Marcel Bauer</span>
+                </div>
+                <div class="assignedUser">
+                    <div class="userAvatar" style="background-color: #0038ff;">AM</div>
+                    <span>Anton Mayer</span>
+                </div>
+            </div>
+            
+            <div class="subtasksSection">
+                <h3 class="subtasksTitle">Subtasks</h3>
+                <div class="subtasksList">
+                    <div class="subtaskItem">
+                        <div class="checkbox checked" id="subtask1"></div>
+                        <img src="./assets/img/board/checked button.svg" alt="">
+                        <span>Implement Recipe Recommendation</span>
+                    </div>
+                    <div class="subtaskItem">
+                        <div class="checkbox" id="subtask2"></div>
+                        <img src="./assets/img/board/check button.svg" alt="">
+                        <span>Start Page Layout</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modalActions">
+                <button class="modalButton" id="deleteTask"><img src="./assets/img/board/delete.svg" alt="delete">Delete</button>
+                <hr>
+                <button class="modalButton editButton">
+                    <img src="./assets/img/board/edit.svg" alt="edit">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
 </html>
