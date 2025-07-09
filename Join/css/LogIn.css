@@ -4,8 +4,33 @@
     padding: 0;
 }
 
+html,
 body {
     height: 100vh;
+    min-height: 100vh;
+    width: 100vw;
+    min-width: 100vw;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    /* Ensures the body always fills the viewport and disables scrollbars */
+}
+
+main {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 0;
+    overflow: hidden;
 }
 
 header {
@@ -49,28 +74,89 @@ header img {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    padding: 20px;
+    padding: 48px 115px 48px 115px;
+    gap: 32px;
 }
 
 .LogInMainContainer h2 {
     font-weight: 700;
     font-size: 68px;
     font-style: bold;
+    border-bottom: 3px solid #29ABE2;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.btnPosition {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 24px 15px 24px;
+}
+
+.LogInbtn,
+.guestLogInButton {
+    padding: 15px 24px 15px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 21px;
+}
+
+
+
+.LogInbtn {
+    background-color: #2A3647;
+    color: #FFFFFF;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+input {
+    width: 422px;
+    height: 48px;
+    padding: 0 20px;
+    border: 1px solid #A8A8A8;
+    border-radius: 10px;
+
+}
+
+.inputIcon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+
+.inputIcon input {
+    padding-right: 48px;
+}
+
+.inputIcon img {
+    position: absolute;
+    right: 16px;
+    width: 16px;
+    height: 21px;
+    pointer-events: none;
 }
 
 footer {
+    flex-shrink: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
+    width: 100vw;
 
-    p {
+    a {
         font-size: 16px;
         font-weight: 400;
         line-height: 120%;
         color: #A8A8A8;
         margin: 0 10px;
     }
-
-
 }
