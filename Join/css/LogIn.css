@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+body {
+    height: 100vh;
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -13,6 +17,8 @@ header {
 header img {
     width: 100.03px;
     height: 121.97px;
+    margin-top: 80px;
+    margin-left: 77px;
 }
 
 .SignUpbtn {
@@ -20,16 +26,22 @@ header img {
     align-items: center;
     margin-top: 67px;
     gap: 36px;
+    margin-right: 122px;
 }
 
 .SignUpbtn p {
-    font-size: 16px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 120%;
     margin: 0;
 }
 
 .SignUpbtn button {
     background-color: #2A3647;
     color: #FFFFFF;
+    padding: 15px 16px 15px 16px;
+    border-radius: 8px;
+
 }
 
 .LogInMainContainer {
@@ -41,79 +53,24 @@ header img {
     padding: 20px;
 }
 
-.LogInMainContainer h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
+.LogInMainContainer h2 {
+    font-weight: 700;
+    font-size: 68px;
+    font-style: bold;
 }
 
-.LogInMainContainer form {
+footer {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 300px;
-}
-
-.LogInMainContainer form label {
-    font-size: 16px;
-}
-
-.LogInMainContainer form input {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-#LogInbtn {
-    background-color: #2A3647;
-    color: #FFFFFF;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-}
-
-#LogInbtn:hover {
-    background-color: #1F2633;
-}
-
-#guestLogInButton {
-    background-color: #FFFFFF;
-    color: #2A3647;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-}
-
-#guestLogInButton:hover {
-    background-color: #F0F0F0;
-}
-
-.inputIcon {
-    display: flex;
+    justify-content: center;
     align-items: center;
-    position: relative;
-}
 
-.inputIcon img {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    pointer-events: none;
-}
+    p {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 120%;
+        color: #A8A8A8;
+        margin: 0 10px;
+    }
 
-.inputIcon input {
-    padding-left: 40px;
-    height: 40px;
-    font-size: 16px;
-    width: 100%;
-}
 
-.btnposition {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
