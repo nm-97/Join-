@@ -1,17 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/board.css" />
-  </head>
-  <body>
-    <div class="pageWrapper">
-      <div class="sidebar">
-        <div class="logo">
-          <img class="joinLogo" src="../assets/img/Capa 1.png" alt="" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/board.css" />
+</head>
+
+<body>
+  <div class="pageWrapper">
+    <div class="sidebar">
+      <div class="logo">
+        <img class="joinLogo" src="../assets/img/Capa 1.png" alt="" />
+      </div>
+
+      <div class="navigation">
+        <div onclick="location.href='../html/summaryUser.html'" class="navItem active">
+          <span class="navIcon iconDashboard"></span>
+          <img src="../assets/img/sidebar/summary.svg" alt="">
+          <span>Summary</span>
         </div>
+        <div onclick="location.href='../html/addTask.html'" class="navItem">
+          <span class="navIcon iconTask"></span>
+          <img src="../assets/img/sidebar/addtask.svg" alt="">
+          <span>Add Task</span>
+        </div>
+        <div onclick="location.href='../html/board.html'" class="navItem">
+          <span class="navIcon iconBoard"></span>
+          <img src="../assets/img/sidebar/board.svg" alt="">
+          <span>Board</span>
+        </div>
+        <div onclick="location.href='../html/contacts.html'" class="navItem">
+          <span class="navIcon iconContacts"></span>
+          <img src="../assets/img/sidebar/contact.svg" alt="">
+          <span>Contacts</span>
+        </div>
+      </div>
 
         <div class="navigation">
           <div class="navItem">
