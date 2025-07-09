@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/board.css" />
+  </head>
+  <body>
+    <div class="pageWrapper">
+      <div class="sidebar">
+        <div class="logo">
+          <img class="joinLogo" src="../assets/img/Capa 1.png" alt="" />
+        </div>
+
+        <div class="navigation">
+          <div class="navItem">
+            <span class="navIcon iconDashboard"></span>
+            <img src="../assets/img/sidebar/summary.svg" alt="" />
+            <span>Summary</span>
+          </div>
+          <div class="navItem">
+            <span class="navIcon iconTask"></span>
+            <img src="../assets/img/sidebar/addtask.svg" alt="" />
+            <span>Add Task</span>
+          </div>
+          <div class="navItem activ">
+            <span class="navIcon iconBoard"></span>
+            <img src="../assets/img/sidebar/board.svg" alt="" />
+            <span>Board</span>
+          </div>
+          <div class="navItem">
+            <span class="navIcon iconContacts"></span>
+            <img src="../assets/img/sidebar/contact.svg" alt="" />
+            <span>Contacts</span>
+          </div>
+        </div>
+
+        <div class="footerLinks">
+          <div class="footerLink">Privacy Policy</div>
+          <div class="footerLink">Legal notice</div>
+        </div>
+      </div>
+
+      <div class="mainContainer">
+        <div class="header">
+          <div class="headerTitle">Kanban Project Management Tool</div>
+          <div class="headerActions">
+            <div><img src="../assets/img/sidebar/help.svg" alt="" /></div>
+            <div class="userAvatar">SM</div>
+          </div>
+        </div>
+
+        <div class="mainContent">
+          <div class="boardHeader">
+            <h1 class="boardTitle">Board</h1>
+            <div class="boardActions">
+              <div class="searchContainer">
+                <input
+                  type="text"
+                  class="searchInput"
+                  placeholder="Find Task"
+                  id="searchInput"
+                />
+                <button class="searchButton" id="searchButton">🔍</button>
+              </div>
+              <button class="addTaskButton" id="addTaskButton">
+                Add task +
+              </button>
+            </div>
+          </div>
+
+          <div class="boardContainer">
+            <div class="boardColumn">
+              <div class="columnHeader">
+                <h2 class="columnTitle">To do</h2>
+                <span class="addIcon">+</span>
+              </div>
+              <div class="columnContent">
+                <div class="emptyState">No tasks To do</div>
+              </div>
+            </div>
+
+            <div class="boardColumn">
+              <div class="columnHeader">
+                <h2 class="columnTitle">In progress</h2>
+                <span class="addIcon">+</span>
+              </div>
+              <div class="columnContent">
+                <div class="taskCard">
+                  <span class="taskLabel userStory">User Story</span>
+                  <h3 class="taskTitle">Kochwelt Page & Recipe Recommender</h3>
+                  <p class="taskDescription">
+                    Build start page with recipe recommendation...
+                  </p>
+                  <div class="taskFooter">
+                    <div class="progressBar">
+                      <div class="progressFill" style="width: 50%"></div>
+                    </div>
+                    <span class="subtaskInfo">1/2 Subtasks</span>
+                    <div class="taskAssignees">
+                      <span class="assignee" style="background-color: #ff6b35">AX</span>
+                      <span class="assignee" style="background-color: #4ecdc4">EM</span>
+                      <span class="assignee" style="background-color: #7b68ee">MB</span>
+                    </div>
+                    <img src="./assets/img/board/medium.svg" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="boardColumn">
+              <div class="columnHeader">
+                <h2 class="columnTitle">Await feedback</h2>
+                <span class="addIcon">+</span>
+              </div>
+              <div class="columnContent">
+                <div class="taskCard">
+                  <span class="taskLabel technicalTask">Technical Task</span>
+                  <h3 class="taskTitle">HTML Base Template Creation</h3>
+                  <p class="taskDescription">
+                    Create reusable HTML base templates...
+                  </p>
+                  <div class="taskFooter">
+                    <div class="taskAssignees">
+                      <span class="assignee" style="background-color: #ff69b4">JD</span>
+                      <span class="assignee" style="background-color: #00ced1">BZ</span>
+                      <span class="assignee" style="background-color: #9370db">AS</span>
+                    </div>
+                    <img src="./assets/img/board/low.svg" alt="">
+                  </div>
+                </div>
+
+                <div class="taskCard">
+                  <span class="taskLabel userStory">User Story</span>
+                  <h3 class="taskTitle">Daily Kochwelt Recipe</h3>
+                  <p class="taskDescription">
+                    Implement daily recipe and portion calculator...
+                  </p>
+                  <div class="taskFooter">
+                    <div class="taskAssignees">
+                      <span class="assignee" style="background-color: #ffa500">EF</span>
+                      <span class="assignee" style="background-color: #dc143c">AS</span>
+                      <span class="assignee" style="background-color: #ff1493">TW</span>
+                    </div>
+                    <img src="./assets/img/board/low.svg" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="boardColumn">
+              <div class="columnHeader">
+                <h2 class="columnTitle">Done</h2>
+                <span class="addIcon">+</span>
+              </div>
+              <div class="columnContent">
+                <div class="taskCard">
+                  <span class="taskLabel technicalTask">Technical Task</span>
+                  <h3 class="taskTitle">CSS Architecture Planning</h3>
+                  <p class="taskDescription">
+                    Define CSS naming conventions and structure...
+                  </p>
+                  <div class="taskFooter">
+                    <div class="progressBar">
+                      <div class="progressFill" style="width: 100%"></div>
+                    </div>
+                    <span class="subtaskInfo">2/2 Subtasks</span>
+                    <div class="taskAssignees">
+                      <span class="assignee" style="background-color: #00bfff">SM</span>
+                      <span class="assignee" style="background-color: #8a2be2">BZ</span>
+                    </div>
+                    <img src="./assets/img/board/urgent.svg" alt="urgent">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay hidden" id="taskOverlay">
+        <div class="taskDetailModal">
+            <div class="modalHeader">
+                <span class="modalLabel">User Story</span>
+                <button class="closeButton" id="closeOverlay"><img src="./assets/img/board/close.svg" alt="close"></button>
+            </div>
+            
+            <h2 class="modalTitle">Kochwelt Page & Recipe Recommender</h2>
+            
+            <p class="modalDescription">Build start page with recipe recommendation.</p>
+            
+            <div class="detailRow">
+                <span class="detailLabel">Due date:</span>
+                <span class="detailValue">10/05/2023</span>
+            </div>
+            
+            <div class="detailRow">
+                <span class="detailLabel">Priority:</span>
+                <span class="detailValue">
+                    Medium <img src="./assets/img/board/medium.svg" alt="medium">
+                </span>
+            </div>
+            
+            <div class="detailRow">
+                <span class="detailLabel">Assigned To:</span>
+            </div>
+            <div class="assignedUsers">
+                <div class="assignedUser">
+                    <div class="userAvatar" style="background-color: #4ecdc4;">EM</div>
+                    <span>Emmanuel Mauer</span>
+                </div>
+                <div class="assignedUser">
+                    <div class="userAvatar" style="background-color: #7b68ee;">MB</div>
+                    <span>Marcel Bauer</span>
+                </div>
+                <div class="assignedUser">
+                    <div class="userAvatar" style="background-color: #0038ff;">AM</div>
+                    <span>Anton Mayer</span>
+                </div>
+            </div>
+            
+            <div class="subtasksSection">
+                <h3 class="subtasksTitle">Subtasks</h3>
+                <div class="subtasksList">
+                    <div class="subtaskItem">
+                        <div class="checkbox checked" id="subtask1"></div>
+                        <img src="./assets/img/board/checked button.svg" alt="">
+                        <span>Implement Recipe Recommendation</span>
+                    </div>
+                    <div class="subtaskItem">
+                        <div class="checkbox" id="subtask2"></div>
+                        <img src="./assets/img/board/check button.svg" alt="">
+                        <span>Start Page Layout</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modalActions">
+                <button class="modalButton" id="deleteTask"><img src="./assets/img/board/delete.svg" alt="delete">Delete</button>
+                <hr>
+                <button class="modalButton editButton">
+                    <img src="./assets/img/board/edit.svg" alt="edit">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
