@@ -127,7 +127,6 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
-    margin-bottom: 50px;
 }
 .pageTitle{
     font-size: 64px;
@@ -225,6 +224,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-left: 100px;
 }
 .welcomeText {
     font-size: 47px;
