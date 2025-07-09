@@ -1,51 +1,62 @@
-body,
-html {
-    height: 100vh;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* CSS Variables for better maintainability */
+:root {
+    --primary-color: #2a3647;
+    --secondary-color: #29abe2;
+    --background-white: #ffffff;
+    --text-dark: #000000;
+    --border-light: #d1d1d1;
+    --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-modal: 0 8px 32px rgba(0, 0, 0, 0.12);
+    --border-radius: 10px;
+    --border-radius-large: 24px;
+    --gap-small: 8px;
+    --gap-medium: 16px;
+    --gap-large: 24px;
+    --gap-xlarge: 40px;
 }
 
-.pageWrapper {
-    height: 100vh;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: row;
-}
-
+/* Layout */
+.pageWrapper,
 .mainContainer {
     height: 100vh;
     min-height: 100vh;
     display: flex;
+}
+
+.pageWrapper {
+    flex-direction: row;
+}
+
+.mainContainer {
     flex-direction: column;
 }
 
 .contactsMainContent {
     width: 400px;
-    height: 1188px;
-    opacity: 1;
     padding: 32px 24px;
-    box-sizing: border-box;
-    background-color: #ffffff;
+    background-color: var(--background-white);
     position: relative;
-    /* Overlay kann absolut darin positioniert werden */
+
 }
 
 .addContactButton {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    background-color: #2a3647;
-    color: #ffffff;
-    border-radius: 10px;
+    gap: var(--gap-small);
+    background-color: var(--primary-color);
+    color: var(--background-white);
+    border: none;
+    border-radius: var(--border-radius);
     width: 352px;
     height: 56px;
-    padding-bottom: 12px;
-    padding-top: 12px;
+    padding: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
 
+.addContactButton:hover {
+    background-color: #1a2233;
 }
 
 .addContactButton img {
@@ -57,55 +68,46 @@ html {
     font-weight: 700;
     font-size: 21px;
     line-height: 120%;
-    letter-spacing: 0%;
 }
 
 .pageHeader {
     width: 569px;
     height: 73px;
-    opacity: 1;
     display: flex;
     align-items: center;
     gap: 30px;
     margin-top: 206px;
-
 }
 
 .pageHeader h1 {
     font-weight: 700;
     font-size: 61px;
     line-height: 120%;
-    letter-spacing: 0%;
-    color: #000000;
+    color: var(--text-dark);
 }
 
 .pageHeader span {
     font-weight: 400;
     font-size: 27px;
     line-height: 120%;
-    letter-spacing: 0%;
-    color: #2a3647;
+    color: var(--primary-color);
 }
 
 .contactsHeaderDivider {
     width: 0px;
     height: 59px;
-    border: 3px solid #29abe2;
-    opacity: 1;
-
+    border: 3px solid var(--secondary-color);
 }
 
-/* Overlay für Add Contact: jetzt nur im Content-Bereich, nicht mehr global */
+
 .addContactOverlay {
     position: absolute;
     top: 90px;
-    /* Abstand unterhalb der H1, ggf. anpassen */
     left: 0;
     width: 100%;
     min-height: 500px;
     height: auto;
     background: rgba(0, 0, 0, 0.12);
-    /* dezenter Overlay-Hintergrund */
     display: none;
     align-items: center;
     justify-content: center;
@@ -118,10 +120,9 @@ html {
 
 .addContactModal {
     display: flex;
-    flex-direction: row;
-    background: #fff;
-    border-radius: 24px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    background: var(--background-white);
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--shadow-modal);
     width: 900px;
     max-width: 95vw;
     min-height: 500px;
@@ -129,16 +130,16 @@ html {
 }
 
 .addContactModalLeft {
-    background: #2a3647;
-    color: #fff;
+    background: var(--primary-color);
+    color: var(--background-white);
     width: 340px;
-    padding: 48px 32px 48px 32px;
+    padding: 48px 32px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    border-top-left-radius: 24px;
-    border-bottom-left-radius: 24px;
+    border-top-left-radius: var(--border-radius-large);
+    border-bottom-left-radius: var(--border-radius-large);
 }
 
 .addContactLogo {
@@ -149,41 +150,41 @@ html {
 .addContactTitle {
     font-size: 48px;
     font-weight: 700;
-    margin: 0 0 16px 0;
+    margin: 0 0 var(--gap-medium) 0;
 }
 
 .addContactSubtitle {
     font-size: 21px;
     font-weight: 400;
-    margin-bottom: 16px;
+    margin-bottom: var(--gap-medium);
 }
 
 .addContactUnderline {
     width: 60px;
     height: 3px;
-    background: #29abe2;
+    background: var(--secondary-color);
     border-radius: 2px;
-    margin-top: 8px;
+    margin-top: var(--gap-small);
 }
 
 .addContactModalRight {
     flex: 1;
-    padding: 48px 40px 48px 40px;
+    padding: 48px 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-    background: #fff;
+    background: var(--background-white);
 }
 
 .addContactClose {
     position: absolute;
-    top: 24px;
-    right: 24px;
+    top: var(--gap-large);
+    right: var(--gap-large);
     background: none;
     border: none;
     font-size: 32px;
-    color: #2a3647;
+    color: var(--primary-color);
     cursor: pointer;
 }
 
@@ -208,7 +209,7 @@ html {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: var(--gap-large);
     align-items: center;
 }
 
@@ -219,43 +220,42 @@ html {
 
 .addContactInputWrapper input {
     width: 100%;
-    padding: 16px 48px 16px 16px;
-    border: 1.5px solid #d1d1d1;
-    border-radius: 10px;
+    padding: var(--gap-medium) 48px var(--gap-medium) var(--gap-medium);
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--border-radius);
     font-size: 18px;
     outline: none;
-    background: #fff;
+    background: var(--background-white);
 }
 
 .addContactInputWrapper .inputIcon {
     position: absolute;
-    right: 16px;
+    right: var(--gap-medium);
     top: 50%;
     transform: translateY(-50%);
-    width: 24px;
-    height: 24px;
+    width: var(--gap-large);
+    height: var(--gap-large);
     opacity: 0.7;
 }
 
 .addContactBtnRow {
     display: flex;
-    flex-direction: row;
-    gap: 16px;
+    gap: var(--gap-medium);
     width: 100%;
     justify-content: flex-end;
-    margin-top: 16px;
+    margin-top: var(--gap-medium);
 }
 
 .addContactCancelBtn {
-    background: #fff;
-    color: #2a3647;
-    border: 1.5px solid #2a3647;
-    border-radius: 10px;
+    background: var(--background-white);
+    color: var(--primary-color);
+    border: 1.5px solid var(--primary-color);
+    border-radius: var(--border-radius);
     font-size: 18px;
     font-weight: 400;
-    padding: 12px 24px;
+    padding: 12px var(--gap-large);
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s ease;
 }
 
 .addContactCancelBtn:hover {
@@ -263,18 +263,18 @@ html {
 }
 
 .addContactCreateBtn {
-    background: #2a3647;
-    color: #fff;
+    background: var(--primary-color);
+    color: var(--background-white);
     border: none;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
     font-size: 18px;
     font-weight: 700;
-    padding: 12px 24px;
+    padding: 12px var(--gap-large);
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
-    transition: background 0.2s;
+    gap: var(--gap-small);
+    transition: background 0.2s ease;
 }
 
 .addContactCreateBtn span {
@@ -286,13 +286,18 @@ html {
     background: #1a2233;
 }
 
+.contactsContentWrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--gap-xlarge);
+}
+
 .contactsList {
     max-height: 600px;
-    /* oder gewünschte Höhe, z.B. 60vh */
     overflow-y: auto;
-    background: #fff;
+    background: var(--background-white);
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--shadow-light);
     margin-top: 32px;
-    padding: 0 8px 8px 0;
+    padding: 0 var(--gap-small) var(--gap-small) 0;
 }
