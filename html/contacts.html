@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/contacts.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/summaryUser.css">
+    <title>Contacts</title>
+</head>
+
+<body>
+    <div class="pageWrapper">
+        <div class="sidebar">
+            <div class="logo">
+                <img class="joinLogo" src="../assets/img/Capa 1.png" alt="">
+            </div>
+
+            <div class="navigation">
+                <div onclick="location.href='../html/summaryUser.html'" class="navItem active">
+                    <span class="navIcon iconDashboard"></span>
+                    <img src="../assets/img/sidebar/summary.svg" alt="">
+                    <span>Summary</span>
+                </div>
+                <div onclick="location.href='../html/addTask.html'" class="navItem">
+                    <span class="navIcon iconTask"></span>
+                    <img src="../assets/img/sidebar/addtask.svg" alt="">
+                    <span>Add Task</span>
+                </div>
+                <div onclick="location.href='../html/board.html'" class="navItem">
+                    <span class="navIcon iconBoard"></span>
+                    <img src="../assets/img/sidebar/board.svg" alt="">
+                    <span>Board</span>
+                </div>
+                <div onclick="location.href='../html/contacts.html'" class="navItem">
+                    <span class="navIcon iconContacts"></span>
+                    <img src="../assets/img/sidebar/contact.svg" alt="">
+                    <span>Contacts</span>
+                </div>
+            </div>
+
+            <div class="footerLinks">
+                <div class="footerLink">Privacy Policy</div>
+                <div class="footerLink">Legal notice</div>
+            </div>
+        </div>
+        <div class="mainContainer">
+            <div class="header">
+                <div class="headerTitle">Kanban Project Management Tool</div>
+                <div class="headerActions">
+                    <div><img src="../assets/img/sidebar/help.svg" alt=""></div>
+                    <div class="userAvatar">SM</div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: row; align-items: flex-start; gap: 40px;">
+                <div class="contactsMainContent">
+                    <button class="addContactButton">
+                        <span class="addContactText">Add new Contact</span>
+                        <img src="../assets/contacts/person_add.png" alt="">
+                    </button>
+
+                    <div class="contactsList">
+
+                    </div>
+                </div>
+                <div class="pageHeader">
+                    <h1 class="contactsH1">Contacts</h1>
+                    <div class="contactsHeaderDivider"></div>
+                    <span>Better with a team</span>
+                </div>
+
+                <div id="addContactOverlay" class="addContactOverlay" style="display: none;">
+                    <div class="addContactModal">
+                        <div class="addContactModalLeft">
+                            <img class="addContactLogo" src="../assets/img/Capa 1.png" alt="Join Logo">
+                            <h2 class="addContactTitle">Add contact</h2>
+                            <p class="addContactSubtitle">Tasks are better with a team!</p>
+                            <div class="addContactUnderline"></div>
+                        </div>
+                        <div class="addContactModalRight">
+                            <button class="addContactClose"
+                                onclick="document.getElementById('addContactOverlay').style.display='none'">&times;</button>
+                            <div class="addContactAvatar">
+                                <img src="../assets/contacts/person_add.png" alt="Avatar">
+                            </div>
+                            <form class="addContactForm">
+                                <div class="addContactInputWrapper">
+                                    <input type="text" placeholder="Name" required>
+                                    <img src="../assets/contacts/person_add.png" class="inputIcon" alt="">
+                                </div>
+                                <div class="addContactInputWrapper">
+                                    <input type="email" placeholder="Email" required>
+                                    <img src="../assets/priority/mail.png" class="inputIcon" alt="">
+                                </div>
+                                <div class="addContactInputWrapper">
+                                    <input type="tel" placeholder="Phone" required>
+                                    <img src="../assets/priority/lock.png" class="inputIcon" alt="">
+                                </div>
+                                <div class="addContactBtnRow">
+                                    <button type="button" class="addContactCancelBtn"
+                                        onclick="document.getElementById('addContactOverlay').style.display='none'">Cancel</button>
+                                    <button type="submit" class="addContactCreateBtn">Create contact
+                                        <span>&#10003;</span></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+    </script>
+</body>
+
+</html>

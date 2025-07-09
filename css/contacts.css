@@ -1,0 +1,298 @@
+body,
+html {
+    height: 100vh;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.pageWrapper {
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.mainContainer {
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.contactsMainContent {
+    width: 400px;
+    height: 1188px;
+    opacity: 1;
+    padding: 32px 24px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    position: relative;
+    /* Overlay kann absolut darin positioniert werden */
+}
+
+.addContactButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #2a3647;
+    color: #ffffff;
+    border-radius: 10px;
+    width: 352px;
+    height: 56px;
+    padding-bottom: 12px;
+    padding-top: 12px;
+
+}
+
+.addContactButton img {
+    width: 32px;
+    height: 32px;
+}
+
+.addContactButton span {
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 120%;
+    letter-spacing: 0%;
+}
+
+.pageHeader {
+    width: 569px;
+    height: 73px;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 206px;
+
+}
+
+.pageHeader h1 {
+    font-weight: 700;
+    font-size: 61px;
+    line-height: 120%;
+    letter-spacing: 0%;
+    color: #000000;
+}
+
+.pageHeader span {
+    font-weight: 400;
+    font-size: 27px;
+    line-height: 120%;
+    letter-spacing: 0%;
+    color: #2a3647;
+}
+
+.contactsHeaderDivider {
+    width: 0px;
+    height: 59px;
+    border: 3px solid #29abe2;
+    opacity: 1;
+
+}
+
+/* Overlay für Add Contact: jetzt nur im Content-Bereich, nicht mehr global */
+.addContactOverlay {
+    position: absolute;
+    top: 90px;
+    /* Abstand unterhalb der H1, ggf. anpassen */
+    left: 0;
+    width: 100%;
+    min-height: 500px;
+    height: auto;
+    background: rgba(0, 0, 0, 0.12);
+    /* dezenter Overlay-Hintergrund */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.addContactOverlay[style*="display: flex"] {
+    display: flex !important;
+}
+
+.addContactModal {
+    display: flex;
+    flex-direction: row;
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    width: 900px;
+    max-width: 95vw;
+    min-height: 500px;
+    overflow: hidden;
+}
+
+.addContactModalLeft {
+    background: #2a3647;
+    color: #fff;
+    width: 340px;
+    padding: 48px 32px 48px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+}
+
+.addContactLogo {
+    width: 56px;
+    margin-bottom: 32px;
+}
+
+.addContactTitle {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+}
+
+.addContactSubtitle {
+    font-size: 21px;
+    font-weight: 400;
+    margin-bottom: 16px;
+}
+
+.addContactUnderline {
+    width: 60px;
+    height: 3px;
+    background: #29abe2;
+    border-radius: 2px;
+    margin-top: 8px;
+}
+
+.addContactModalRight {
+    flex: 1;
+    padding: 48px 40px 48px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    background: #fff;
+}
+
+.addContactClose {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #2a3647;
+    cursor: pointer;
+}
+
+.addContactAvatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: #ececec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+.addContactAvatar img {
+    width: 48px;
+    height: 48px;
+    opacity: 0.7;
+}
+
+.addContactForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+}
+
+.addContactInputWrapper {
+    width: 100%;
+    position: relative;
+}
+
+.addContactInputWrapper input {
+    width: 100%;
+    padding: 16px 48px 16px 16px;
+    border: 1.5px solid #d1d1d1;
+    border-radius: 10px;
+    font-size: 18px;
+    outline: none;
+    background: #fff;
+}
+
+.addContactInputWrapper .inputIcon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    opacity: 0.7;
+}
+
+.addContactBtnRow {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
+
+.addContactCancelBtn {
+    background: #fff;
+    color: #2a3647;
+    border: 1.5px solid #2a3647;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.addContactCancelBtn:hover {
+    background: #f0f0f0;
+}
+
+.addContactCreateBtn {
+    background: #2a3647;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 12px 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s;
+}
+
+.addContactCreateBtn span {
+    font-size: 20px;
+    margin-left: 4px;
+}
+
+.addContactCreateBtn:hover {
+    background: #1a2233;
+}
+
+.contactsList {
+    max-height: 600px;
+    /* oder gewünschte Höhe, z.B. 60vh */
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    margin-top: 32px;
+    padding: 0 8px 8px 0;
+}
