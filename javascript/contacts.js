@@ -5,10 +5,16 @@ function showAddContactOverlay() {
   overlay.style.display = "flex"; //
 }
 function showEditContactOverlay() {
-  let overlay = getEEditContactOverlay("floatingContactOverlay");
+  let overlay = getEditContactOverlay("floatingContactOverlay");
   overlay.classList.remove("hide");
   overlay.classList.add("overlay");
   overlay.style.display = "flex";
+}
+
+function showContactDetails() {
+  const overlay = document.getElementById("floatingContactOverlay");
+  overlay.innerHTML = getFloatingContact();
+  overlay.style.display = "block";
 }
 
 function closeOverlay() {
@@ -18,6 +24,14 @@ function closeOverlay() {
   if (modal) modal.innerHTML = "";
 }
 
-function renderOverlay(params) {
+function renderAddContactOverlay(params) {
   showAddContactOverlay();
+}
+
+function renderEditContactOverlay(params) {
+  showFloatingContact();
+}
+
+function renderEditContactOverlay(params) {
+  showEditContactOverlay();
 }
