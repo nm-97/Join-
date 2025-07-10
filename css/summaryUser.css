@@ -172,8 +172,46 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 13px;
     width: 335px;
+    height: 168px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    background-color: #2a3647;
+    transform: translate(8px, -10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+
+.card:hover .cardValue {
+    color: white;
+}
+
+.card:hover .cardLabel {
+    color: white;
+}
+
+.card:hover .dateTitle {
+    color: white;
+}
+
+.card:hover .dateSubtitle {
+    color: white;
+}
+.card:hover .cardMainContent .cardIcon svg {
+   fill: #ffffff !important;
+}
+
+.card:hover .cardMainContent .cardIcon svg * {
+   fill: #ffffff !important;
+}
+
+.card:hover .cardMainContent .cardIcon img {
+    filter: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.2);
+    transition: filter 0.2s;
 }
 .combinedCard {
     flex: 1;
@@ -211,6 +249,12 @@ body {
     margin: 0 40px;
 }
 .cardIcon {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    margin-right: 16px;
+}
+.urgentCardIcon {
     display: flex;
     align-items: center;
     height: 60px;
