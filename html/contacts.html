@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/summaryUser.css">
     <link rel="stylesheet" href="../css/contactOverlays.css">
+    <script src="../javascript/template.js"></script>
+    <script src="../javascript/contacts.js"></script>
     <title>Contacts</title>
 </head>
 
@@ -56,8 +58,7 @@
             </div>
             <div class="contactsContentWrapper">
                 <div class="contactsMainContent">
-                    <button class="addContactButton"
-                        onclick="document.getElementById('editContactOverlay').style.display='flex'">
+                    <button class="addContactButton" onclick="showAddContactOverlay()">
                         <span class="addContactText">Add new Contact</span>
                         <img src="../assets/contacts/person_add.svg" alt="">
                     </button>
@@ -72,94 +73,17 @@
                     <span>Better with a team</span>
                 </div>
 
-                <!-- <div id="addContactOverlay" class="addContactOverlay">
+                <div id="addContactOverlay" class="addContactOverlay">
                     <div class="addContactModal">
-                        <div class="addContactModalLeft">
-                            <img class="addContactLogo" src="../assets/img/Capa 1.png" alt="Join Logo">
-                            <h2 class="addContactTitle">Add contact</h2>
-                            <p class="addContactSubtitle">Tasks are better with a team!</p>
-                            <div class="addContactUnderline"></div>
-                        </div>
-                        <div class="addContactModalRight">
-                            <button class="addContactClose">
-                                <img src="../assets/contacts/Close.svg" alt="">
-                            </button>
-                            <div class="addContactFormAvatarPosition">
-                                <div class="addContactAvatar">
-                                    <img src="../assets/contacts/person.svg" alt="Avatar">
-                                </div>
-                                <form class="addContactForm">
-                                    <div class="addContactInputWrapper">
-                                        <input type="text" placeholder="Name" required>
-                                        <img src="../assets/contacts/person.svg" class="inputIcon" alt="">
-                                    </div>
-                                    <div class="addContactInputWrapper">
-                                        <input type="email" placeholder="Email" required>
-                                        <img src="../assets/contacts/mail.svg" class="inputIcon" alt="">
-                                    </div>
-                                    <div class="addContactInputWrapper">
-                                        <input type="tel" placeholder="Phone" required>
-                                        <img src="../assets/contacts/call.svg" class="inputIcon" alt="">
-                                    </div>
-                                    <div class="addContactBtnRow">
-                                        <button type="button" class="addContactCancelBtn">Cancel
-                                            <img src="../assets/contacts/Close.svg" alt=""></button>
-                                        <button type="submit" class="addContactCreateBtn">Create contact
-                                            <img src="../assets/priority/check.svg" alt=""></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
 
-            <div id="editContactOverlay" class="editContactOverlay">
-                <div class="editContactModal">
-                    <div class="editContactModalLeft">
-                        <img class="editContactLogo" src="../assets/img/Capa 1.png" alt="Join Logo">
-                        <h2 class="editContactTitle">Edit contact</h2>
-                        <div class="editContactUnderline"></div>
                     </div>
-                    <div class="editContactModalRight">
-                        <button class="editContactClose"
-                            onclick="document.getElementById('editContactOverlay').style.display='none'">
-                            <img src="../assets/contacts/Close.svg" alt="">
-                        </button>
-                        <div class="addContactFormAvatarPosition">
-                            <div class="editContactAvatar">
-                                <img src="../assets/contacts/person.svg" alt="Avatar">
-                            </div>
-                            <form class="editContactForm">
-                                <div class="editContactInputWrapper">
-                                    <input type="text" placeholder="Name" required>
-                                    <img src="../assets/contacts/person.svg" class="inputIcon" alt="">
-                                </div>
-                                <div class="editContactInputWrapper">
-                                    <input type="email" placeholder="Email" required>
-                                    <img src="../assets/contacts/mail.svg" class="inputIcon" alt="">
-                                </div>
-                                <div class="editContactInputWrapper">
-                                    <input type="tel" placeholder="Phone" required>
-                                    <img src="../assets/contacts/call.svg" class="inputIcon" alt="">
-                                </div>
-                                <div class="editContactBtnRow">
-                                    <button type="button" class="editContactDeleteBtn">Cancel
-                                        <img src="../assets/contacts/Close.svg" alt=""></button>
-                                    <button type="submit" class="editContactSaveBtn">Save
-                                        <img src="../assets/priority/check.svg" alt=""></button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                </div>
+
+                <div id="editContactOverlay" class="editContactOverlay">
+
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    <script>
 
-    </script>
 </body>
-
-</html>
