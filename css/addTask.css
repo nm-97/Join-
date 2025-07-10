@@ -27,12 +27,10 @@
     max-width: 1920px;
     width: 100vw;
     margin: 0 auto;
-
 }
 
 .pageWrapper {
     flex-direction: row;
-
 }
 
 .mainContainer {
@@ -52,13 +50,10 @@
     margin-left: 60px;
 }
 
-
 .addTaskFormsWrapper form {
-    flex: 1;
     display: flex;
     flex-direction: column;
     gap: var(--gap-medium);
-    width: 440px;
 }
 
 .addTaskFormsDivider {
@@ -86,6 +81,12 @@
     font-size: 18px;
 }
 
+.requiredStarText {
+    font-size: 14px;
+    margin-left: 240px;
+    text-align: center;
+}
+
 /* Form Controls */
 input,
 textarea,
@@ -94,7 +95,6 @@ select {
     border: 1px solid var(--border-light);
     border-radius: var(--border-radius);
     width: 420px;
-    outline: none;
     font-size: 16px;
 }
 
@@ -110,12 +110,6 @@ label {
 
 .taskPriorityLabel {
     font-size: 20px;
-}
-
-.requiredStarText {
-    font-size: 14px;
-    margin-left: 240px;
-    text-align: center;
 }
 
 .inputIcon {
@@ -139,7 +133,6 @@ label {
 }
 
 #taskDescription {
-
     height: 120px;
     border-radius: var(--border-radius-large);
     border: 1px solid var(--border-light);
@@ -191,21 +184,20 @@ label {
 .cancelTaskBtn {
     display: inline-flex;
     align-items: center;
+    gap: var(--gap-small);
     font-size: 20px;
     font-weight: 700;
     padding: var(--gap-medium) var(--gap-large);
     border-radius: var(--border-radius-large);
     border: none;
     cursor: pointer;
-
-
+    height: 56px;
 }
 
 .addTaskBtn {
     background: var(--primary-color);
     color: var(--white);
-
-    gap: var(--gap-medium);
+    width: 183px;
 }
 
 .cancelTaskBtn {
@@ -213,7 +205,6 @@ label {
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
     width: 110px;
-    gap: var(--gap-small);
 }
 
 .addTaskBtn img,
@@ -224,15 +215,12 @@ label {
 
 .formActions {
     display: flex;
-    justify-content: space-between;
     align-items: flex-end;
     position: fixed;
     bottom: 60px;
     left: 0;
     right: 0;
     padding-left: 60px;
-    width: 100%;
-    box-sizing: border-box;
 }
 
 .formButtons {
