@@ -57,7 +57,7 @@
             <div class="contactsContentWrapper">
                 <div class="contactsMainContent">
                     <button class="addContactButton"
-                        onclick="document.getElementById('addContactOverlay').style.display='flex'">
+                        onclick="document.getElementById('editContactOverlay').style.display='flex'">
                         <span class="addContactText">Add new Contact</span>
                         <img src="../assets/contacts/person_add.svg" alt="">
                     </button>
@@ -72,7 +72,7 @@
                     <span>Better with a team</span>
                 </div>
 
-                <div id="addContactOverlay" class="addContactOverlay">
+                <!-- <div id="addContactOverlay" class="addContactOverlay">
                     <div class="addContactModal">
                         <div class="addContactModalLeft">
                             <img class="addContactLogo" src="../assets/img/Capa 1.png" alt="Join Logo">
@@ -111,10 +111,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
-            <div id="editContactOverlay" class="editContactOverlay" style="display: none;">
+            <div id="editContactOverlay" class="editContactOverlay">
                 <div class="editContactModal">
                     <div class="editContactModalLeft">
                         <img class="editContactLogo" src="../assets/img/Capa 1.png" alt="Join Logo">
@@ -123,29 +123,34 @@
                     </div>
                     <div class="editContactModalRight">
                         <button class="editContactClose"
-                            onclick="document.getElementById('editContactOverlay').style.display='none'">&times;</button>
-                        <div class="editContactAvatar">
-                            <div class="contactInitials">AM</div>
+                            onclick="document.getElementById('editContactOverlay').style.display='none'">
+                            <img src="../assets/contacts/Close.svg" alt="">
+                        </button>
+                        <div class="addContactFormAvatarPosition">
+                            <div class="editContactAvatar">
+                                <img src="../assets/contacts/person.svg" alt="Avatar">
+                            </div>
+                            <form class="editContactForm">
+                                <div class="editContactInputWrapper">
+                                    <input type="text" placeholder="Name" required>
+                                    <img src="../assets/contacts/person.svg" class="inputIcon" alt="">
+                                </div>
+                                <div class="editContactInputWrapper">
+                                    <input type="email" placeholder="Email" required>
+                                    <img src="../assets/contacts/mail.svg" class="inputIcon" alt="">
+                                </div>
+                                <div class="editContactInputWrapper">
+                                    <input type="tel" placeholder="Phone" required>
+                                    <img src="../assets/contacts/call.svg" class="inputIcon" alt="">
+                                </div>
+                                <div class="editContactBtnRow">
+                                    <button type="button" class="editContactDeleteBtn">Cancel
+                                        <img src="../assets/contacts/Close.svg" alt=""></button>
+                                    <button type="submit" class="editContactSaveBtn">Save
+                                        <img src="../assets/priority/check.svg" alt=""></button>
+                                </div>
+                            </form>
                         </div>
-                        <form class="editContactForm">
-                            <div class="editContactInputWrapper">
-                                <input type="text" placeholder="Name" value="Anton Mayer" required>
-                                <img src="../assets/contacts/person_add.png" class="inputIcon" alt="">
-                            </div>
-                            <div class="editContactInputWrapper">
-                                <input type="email" placeholder="Email" value="antom@gmail.com" required>
-                                <img src="../assets/priority/mail.png" class="inputIcon" alt="">
-                            </div>
-                            <div class="editContactInputWrapper">
-                                <input type="tel" placeholder="Phone" value="+49 1111 111 11 1" required>
-                                <img src="../assets/priority/call.png" class="inputIcon" alt="">
-                            </div>
-                            <div class="editContactBtnRow">
-                                <button type="button" class="editContactDeleteBtn">Delete</button>
-                                <button type="submit" class="editContactSaveBtn">Save
-                                    <span>&#10003;</span></button>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
