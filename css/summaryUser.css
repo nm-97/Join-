@@ -126,7 +126,8 @@ body {
     margin-bottom: 30px;
 }
 .cardRowsWrapper {
-    width: 100%;
+    width: 560px;
+    height: 562px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -177,8 +178,7 @@ body {
 .combinedCard {
     flex: 1;
     padding: 40px 60px;
-    max-width: 700px;
-    min-width: 700px;
+    max-width: 560px;
 }
 .cardContent {
     display: flex;
@@ -239,8 +239,8 @@ body {
 .largeCard {
     padding: 60px 40px;
     flex: 1;
-    width: 220px;
-    height: 220px;
+    width: 168px;
+    height: 168px;
     display: flex;
     flex-direction: column;
     align-items: center;
