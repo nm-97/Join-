@@ -40,20 +40,20 @@
 .addTaskFormsWrapper {
     display: flex;
     gap: var(--gap-xlarge);
-    width: 100%;
+    margin: 60px;
 }
 
 .addTaskH1 {
     font-weight: 700;
     font-size: 61px;
+    margin-top: 60px;
+    margin-left: 60px;
 }
 
 .addTaskFormsWrapper form {
-    flex: 1;
     display: flex;
     flex-direction: column;
     gap: var(--gap-medium);
-    width: 440px;
 }
 
 .addTaskFormsDivider {
@@ -81,6 +81,12 @@
     font-size: 18px;
 }
 
+.requiredStarText {
+    font-size: 14px;
+    margin-left: 240px;
+    text-align: center;
+}
+
 /* Form Controls */
 input,
 textarea,
@@ -88,8 +94,7 @@ select {
     padding: 12px 21px;
     border: 1px solid var(--border-light);
     border-radius: var(--border-radius);
-    width: 100%;
-    outline: none;
+    width: 420px;
     font-size: 16px;
 }
 
@@ -105,11 +110,6 @@ label {
 
 .taskPriorityLabel {
     font-size: 20px;
-}
-
-.requiredStarText {
-    color: var(--text-gray);
-    font-size: 14px;
 }
 
 .inputIcon {
@@ -133,7 +133,6 @@ label {
 }
 
 #taskDescription {
-    width: 440px;
     height: 120px;
     border-radius: var(--border-radius-large);
     border: 1px solid var(--border-light);
@@ -192,7 +191,6 @@ label {
     border-radius: var(--border-radius-large);
     border: none;
     cursor: pointer;
-    transition: background 0.2s;
     height: 56px;
 }
 
@@ -200,7 +198,6 @@ label {
     background: var(--primary-color);
     color: var(--white);
     width: 183px;
-    gap: var(--gap-medium);
 }
 
 .cancelTaskBtn {
@@ -208,7 +205,6 @@ label {
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
     width: 110px;
-    gap: var(--gap-small);
 }
 
 .addTaskBtn img,
@@ -219,8 +215,18 @@ label {
 
 .formActions {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: var(--gap-medium) 0 var(--gap-xlarge) 0;
-    padding-left: 8.5rem;
+    align-items: flex-end;
+    position: fixed;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    padding-left: 60px;
+}
+
+.formButtons {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    justify-content: flex-end;
+    margin-right: 60px;
 }
