@@ -123,30 +123,6 @@ body {
     padding: 40px;
     overflow-y: auto;
 }
-.pageHeader{
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-.pageTitle{
-    font-size: 64px;
-    font-weight: 700;
-    margin: 0;
-}
-.pageSubtitle{
-    font-size: 27px;
-    color: black;
-    padding-left: 30px;
-    border-left: 3px solid #3498db;
-}
-.privacyCardBg {
-    background: white;
-    border-radius: 36px;
-    box-shadow: 0 4px 32px rgba(0,0,0,0.08);
-    padding: 32px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin: 0 auto;
+.legalNoticeContent {
+  padding: 48px 40px 40px 40px;
 }
