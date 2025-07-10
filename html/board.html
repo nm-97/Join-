@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>Board</title>
   <link rel="stylesheet" href="../css/board.css" />
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -15,7 +16,7 @@
       </div>
 
       <div class="navigation">
-        <div onclick="location.href='../html/summaryUser.html'" class="navItem active">
+        <div onclick="location.href='../html/summaryUser.html'" class="navItem">
           <span class="navIcon iconDashboard"></span>
           <img src="../assets/img/sidebar/summary.svg" alt="">
           <span>Summary</span>
@@ -25,7 +26,7 @@
           <img src="../assets/img/sidebar/addtask.svg" alt="">
           <span>Add Task</span>
         </div>
-        <div onclick="location.href='../html/board.html'" class="navItem">
+        <div onclick="location.href='../html/board.html'" class="navItem active">
           <span class="navIcon iconBoard"></span>
           <img src="../assets/img/sidebar/board.svg" alt="">
           <span>Board</span>
@@ -38,8 +39,8 @@
       </div>
 
         <div class="footerLinks">
-          <div class="footerLink">Privacy Policy</div>
-          <div class="footerLink">Legal notice</div>
+          <a class="footerLink" href="./privacyPolicy.html">Privacy Policy</a>
+          <a class="footerLink" href="./legalNotice.html">Legal Notice</a>
         </div>
       </div>
 
@@ -63,10 +64,11 @@
                   placeholder="Find Task"
                   id="searchInput"
                 />
+                <div class="searchDivider"></div>
                 <button class="searchButton" id="searchButton"><img src="../assets/img/board/search.svg" alt=""></button>
               </div>
-              <button class="addTaskButton" id="addTaskButton">
-                Add task +
+              <button class="addTaskButton" id="addTaskButton">Add Task
+                <img src="../assets/img/board/addtask.svg" alt="add task">
               </button>
             </div>
           </div>
@@ -153,7 +155,6 @@
             <div class="boardColumn">
               <div class="columnHeader">
                 <h2 class="columnTitle">Done</h2>
-                  <img src="../assets/img/board/plus.svg" alt="">
               </div>
               <div class="columnContent">
                 <div class="taskCard">
