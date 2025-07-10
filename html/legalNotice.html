@@ -1,73 +1,96 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/legalnotice.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>Legal Notice</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impressum</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 20px;
-            background: #f6f6f6;
-            color: #222;
-        }
+  <body>
+    <div class="pageWrapper">
+      <div class="sidebar">
+        <div class="logo">
+          <img class="joinLogo" src="../assets/img/Capa 1.png" alt="" />
+        </div>
 
-        h1 {
-            font-size: 2em;
-            margin-bottom: 1em;
-            color: #444;
-        }
+        <div class="navigation">
+          <div
+            onclick="location.href='../html/summaryUser.html'"
+            class="navItem active"
+          >
+            <span class="navIcon iconDashboard"></span>
+            <img src="../assets/img/sidebar/summary.svg" alt="" />
+            <span>Summary</span>
+          </div>
+          <div onclick="location.href='../html/addTask.html'" class="navItem">
+            <span class="navIcon iconTask"></span>
+            <img src="../assets/img/sidebar/addtask.svg" alt="" />
+            <span>Add Task</span>
+          </div>
+          <div onclick="location.href='../html/board.html'" class="navItem">
+            <span class="navIcon iconBoard"></span>
+            <img src="../assets/img/sidebar/board.svg" alt="" />
+            <span>Board</span>
+          </div>
+          <div onclick="location.href='../html/contacts.html'" class="navItem">
+            <span class="navIcon iconContacts"></span>
+            <img src="../assets/img/sidebar/contact.svg" alt="" />
+            <span>Contacts</span>
+          </div>
+        </div>
 
-        .impressum-section {
-            margin-bottom: 1.5em;
-        }
+        <div class="footerLinks">
+          <div class="footerLink">Privacy Policy</div>
+          <div class="footerLink">Legal notice</div>
+        </div>
+      </div>
 
-        address {
-            font-style: normal;
-            line-height: 1.6;
-        }
+      <div class="mainContainer">
+        <div class="header">
+          <div class="headerTitle">Kanban Project Management Tool</div>
+          <div class="headerActions">
+            <div><img src="../assets/img/sidebar/help.svg" alt="" /></div>
+            <div class="userAvatar">SM</div>
+          </div>
+        </div>
 
-        .notice {
-            font-size: 0.96em;
-            color: #666;
-            margin-top: 1em;
-        }
-    </style>
-</head>
+        <div class="legalNoticeContent">
+          <h1>Impressum (Legal Notice)</h1>
 
-<body>
-    <h1>Impressum (Legal Notice)</h1>
+          <div>
+            <strong>Angaben gemäß § 5 TMG</strong><br /><br />
+            <address>
+              Nico Merz<br />
+              Münchener Str. 36<br />
+              82110 Germering<br />
+              Deutschland<br /><br />
+              Max Leyh<br />
+              St. Martin Straße 103<br />
+              74564 Crailsheim<br />
+              Baden-Württemberg<br />
+              Deutschland<br /><br />
+              E-Mail: <a href="mailto:deine@email.de">deine@email.de</a>
+            </address>
+          </div>
 
-    <div class="impressum-section">
-        <strong>Angaben gemäß § 5 TMG</strong><br><br>
-        <address>
-            Nico Merz<br>
-            Münchener Str. 36<br>
-            82110 Germering<br>
-            Deutschland<br><br>
-            Max Leyh<br>
-            St. Martin Straße 103<br>
-            74564 Crailsheim<br>
-            Baden-Württemberg<br>
-            Deutschland<br><br>
-            E-Mail: <a href="mailto:deine@email.de">deine@email.de</a>
-        </address>
+          <div>
+            <strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong
+            ><br />
+            Nico Merz und Max Leyh<br />
+            Adressen wie oben
+          </div>
+
+          <div>
+            <strong>Haftungshinweis:</strong><br />
+            Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine
+            Haftung für die Inhalte externer Links.<br />
+            Für den Inhalt der verlinkten Seiten sind ausschließlich deren
+            Betreiber verantwortlich.
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="impressum-section">
-        <strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong><br>
-        Nico Merz und Max Leyh<br>
-        Adressen wie oben
-    </div>
-
-    <div class="impressum-section notice">
-        <strong>Haftungshinweis:</strong><br>
-        Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links.
-        Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
-    </div>
-</body>
-
+  </body>
 </html>

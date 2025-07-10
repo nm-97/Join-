@@ -123,6 +123,71 @@ body {
     padding: 40px;
     overflow-y: auto;
 }
-.legalNoticeContent {
+.pageHeader{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.pageTitle{
+    font-size: 64px;
+    font-weight: 700;
+    margin: 0;
+}
+.pageSubtitle{
+    font-size: 27px;
+    color: black;
+    padding-left: 30px;
+    border-left: 3px solid #3498db;
+}
+.privacyContentCentered {
+  margin: 48px auto 32px auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
   padding: 48px 40px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.privacyTitle {
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin-bottom: 32px;
+  letter-spacing: -1px;
+  text-align: left;
+}
+.privacyHeading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  margin-top: 32px;
+  text-align: left;
+  width: 100%;
+}
+.privacyParagraph {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  width: 100%;
+  text-align: left;
+}
+.privacyStand {
+  font-size: 0.98rem;
+  margin-bottom: 24px;
+}
+.privacyIndex {
+  padding-left: 24px;
+  margin-bottom: 32px;
+  width: 100%;
+  text-align: left;
+}
+.privacyIndex li {
+  margin-bottom: 8px;
+}
+.privacyIndexLink {
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.privacyIndexLink:hover {
+  text-decoration: underline;
 }
