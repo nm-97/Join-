@@ -57,13 +57,6 @@ body {
     background-color: #34495e;
     color: white;
 }
-.navIcon {
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 .footerLinks {
     padding: 30px;
 }
@@ -82,6 +75,7 @@ body {
 .header {
     background-color: white;
     padding: 20px 40px;
+    padding-left: 64px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -89,23 +83,12 @@ body {
 }
 .headerTitle {
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 400;
 }
 .headerActions {
     display: flex;
     align-items: center;
     gap: 20px;
-}
-.helpIcon {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background-color: #e0e0e0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: #666;
 }
 .userAvatar {
     width: 40px;
@@ -117,16 +100,30 @@ body {
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    border: 1px solid black;
 }
 .mainContent {
     flex: 1;
-    padding: 40px;
+    padding: 62px;
     overflow-y: auto;
+        display: flex;
+    gap: 60px;
 }
 .pageHeader{
     display: flex;
     align-items: center;
     gap: 20px;
+}
+.pageHeaderWrapper {
+    width: 100%;
+    margin-bottom: 30px;
+}
+.cardRowsWrapper {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 .pageTitle{
     font-size: 64px;
@@ -146,6 +143,7 @@ body {
     flex-direction: column;
     gap: 30px;
     max-height: 560px;
+    flex: 1;
 }
 .cardRow {
     display: flex;
@@ -166,19 +164,32 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 13px;
     width: 335px;
 }
 .combinedCard {
     flex: 1;
     padding: 40px 60px;
     max-width: 700px;
+    min-width: 700px;
 }
 .cardContent {
     display: flex;
     align-items: center;
     justify-content: space-around;
     width: 100%;
+}
+.cardMainContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.cardValueLabelGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
 }
 .urgentSection, .dateSection {
     display: flex;
@@ -194,17 +205,20 @@ body {
 }
 .cardIcon {
     display: flex;
+    align-items: center;
     height: 60px;
+    margin-right: 16px;
 }
 .cardValue {
     font-size: 64px;
     font-weight: 600;
     line-height: 1;
+    text-align: right;
 }
 .cardLabel {
     color: #21295c;
     font-size: 21px;
-    text-align: center;
+    text-align: right;
 }
 .dateTitle {
     font-size: 21px;
@@ -218,13 +232,21 @@ body {
 .largeCard {
     padding: 60px 40px;
     flex: 1;
+    width: 220px;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .welcomeSection {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 100px;
+    margin-left: 0;
+    margin-bottom: 350px;
+    min-width: 340px;
 }
 .welcomeText {
     font-size: 47px;
