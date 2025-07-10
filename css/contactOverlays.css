@@ -286,7 +286,6 @@
 }
 
 .contactsList {
-    max-height: 600px;
     overflow-y: auto;
     background: var(--background-white);
     border-radius: 12px;
