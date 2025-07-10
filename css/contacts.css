@@ -3,6 +3,7 @@
     --primary-color: #2a3647;
     --secondary-color: #29abe2;
     --background-white: #ffffff;
+    --background-light-gray: #f8f9fa;
     --text-dark: #000000;
     --border-light: #d1d1d1;
     --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -29,14 +30,33 @@
 
 .mainContainer {
     flex-direction: column;
+    flex: 1;
+}
+
+.contactsContentWrapper {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    background-color: var(--background-light-gray);
+    overflow-y: auto;
 }
 
 .contactsMainContent {
     width: 400px;
     padding: 32px 24px;
     background-color: var(--background-white);
-    position: relative;
+    border-right: 1px solid var(--border-light);
+}
 
+.contactsRightPanel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 32px 24px;
+}
+
+.pageHeader {
+    margin-bottom: 24px;
 }
 
 .addContactButton {
@@ -48,11 +68,13 @@
     color: var(--background-white);
     border: none;
     border-radius: var(--border-radius);
-    width: 352px;
+    width: 100%;
+    max-width: 352px;
     height: 56px;
     padding: 12px;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    margin-bottom: 24px;
 }
 
 .addContactButton:hover {
@@ -76,7 +98,7 @@
     display: flex;
     align-items: center;
     gap: 30px;
-    margin-top: 206px;
+    margin-bottom: 24px;
 }
 
 .pageHeader h1 {

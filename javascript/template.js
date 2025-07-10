@@ -83,3 +83,33 @@ function getEditContactOverlay(params) {
                 </div>
             </div>`;
 }
+
+function getFloatingContact(params) {
+  return `<div class="floatingContactMainContent">
+                        <div class="floatingContactCard">
+                            <div class="floatingContactHeader">
+                                <div class="floatingContactAvatar">AM</div>
+                                <div class="floatingContactName">
+                                    <span>Anton Mayer</span>
+                                    <div class="floatingContactActions">
+                                        <button onclick="showEditContactOverlay()" class="editBtn"><img
+                                                src="../assets/contacts/edit.svg" alt="">
+                                            Edit</button>
+                                        <button class="deleteBtn"><img src="../assets/contacts/delete.svg" alt="">
+                                            Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="floatingContactInfo">
+                                <div class="floatingContactInfoLabel">
+                                    <p> Contact Information </p>
+                                </div>
+                                <div class="floatingContactInfoDetails"><span>Email</span><br><a
+                                        href="mailto:antom@gmail.com">antom@gmail.com</a>
+                                    <span>Phone</span><br>
+                                    <p>+49 1111 11 111 1</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+}

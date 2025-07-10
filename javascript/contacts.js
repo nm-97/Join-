@@ -5,7 +5,7 @@ function showAddContactOverlay() {
   overlay.style.display = "flex"; //
 }
 function showEditContactOverlay() {
-  let overlay = getEEditContactOverlay();
+  let overlay = getEEditContactOverlay("floatingContactOverlay");
   overlay.classList.remove("hide");
   overlay.classList.add("overlay");
   overlay.style.display = "flex";
