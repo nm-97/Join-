@@ -113,7 +113,7 @@ body {
     flex: 1;
     padding: 62px;
     overflow-y: auto;
-        display: flex;
+    display: flex;
     gap: 60px;
 }
 .pageHeader{
