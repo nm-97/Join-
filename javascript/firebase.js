@@ -6,9 +6,6 @@ const firebaseUrl =
 async function fetchAllContacts() {
   const response = await fetch(`${firebaseUrl}contacts.json`);
   const data = await response.json();
-
-  if (!data) return [];
-
   const contacts = [];
   const keys = Object.keys(data);
   for (let i = 0; i < keys.length; i++) {
@@ -17,6 +14,12 @@ async function fetchAllContacts() {
     contacts.push(contact);
   }
   return contacts;
+}
+
+async function fetchContactById(contactId) {
+  const response = await fetch(`${firebaseUrl}contacts/${contactId}.json`);
+  const data = await response.json();
+  return mapApiContactToTemplate({ id: contactId, ...data });
 }
 
 function mapApiContactToTemplate(data) {

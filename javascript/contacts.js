@@ -18,9 +18,10 @@ async function showContactSideBar() {
   overlay.style.display = "block";
 }
 
-function showFloatingContact() {
+async function showFloatingContact(contactId) {
+  const contact = await fetchContactById(contactId);
   const overlay = document.getElementById("floatingContactOverlay");
-  overlay.innerHTML = getFloatingContact();
+  overlay.innerHTML = getFloatingContact(contact);
   overlay.style.display = "block";
 }
 
@@ -45,12 +46,10 @@ function renderContactsList(contacts) {
   if (!contacts || contacts.length === 0) {
     return "<p>Keine Kontakte vorhanden</p>";
   }
-
   let html = "";
   for (let i = 0; i < contacts.length; i++) {
     html += getContactTemplate(contacts[i]);
   }
-
   return html;
 }
 
