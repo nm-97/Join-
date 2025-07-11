@@ -3,14 +3,20 @@
 const firebaseUrl =
   "https://joinda1312-default-rtdb.europe-west1.firebasedatabase.app/";
 
-async function fetchContactById(id) {
-  const response = await fetch(`${firebaseUrl}contacts/${id}.json`);
+async function fetchAllContacts() {
+  const response = await fetch(`${firebaseUrl}contacts.json`);
   const data = await response.json();
-  return mapApiContactToTemplate(data);
-}
 
-async function fetchAllContacts(ids) {
-  return await Promise.all(ids.map((id) => fetchContactById(id)));
+  if (!data) return [];
+
+  const contacts = [];
+  const keys = Object.keys(data);
+  for (let i = 0; i < keys.length; i++) {
+    const id = keys[i];
+    const contact = mapApiContactToTemplate({ id, ...data[id] });
+    contacts.push(contact);
+  }
+  return contacts;
 }
 
 function mapApiContactToTemplate(data) {
@@ -26,4 +32,15 @@ function mapApiContactToTemplate(data) {
 function capitalizeFirstLetter(string) {
   if (!string) return "";
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
+
+function groupContactsByLetter(contacts) {
+  const groupedContacts = {};
+  for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
+    const firstLetter = contact.name.charAt(0).toUpperCase();
+    if (!groupedContacts[firstLetter]) groupedContacts[firstLetter] = [];
+    groupedContacts[firstLetter].push(contact);
+  }
+  return groupedContacts;
 }
