@@ -142,7 +142,7 @@ body {
   height: 158px;
 }
 
-.menu-item {
+.menuItem {
   color: #CDCDCD;
   font-size: 16px;
   cursor: pointer;
@@ -150,16 +150,16 @@ body {
   padding: 8px 16px;
 }
 
-.menu-item:hover {
+.menuItem:hover {
   color: #ffffff;
   background-color: #354967;
   transform: translateY(-1px);
 }
 
-.menu-item:first-child {
+.menuItem:first-child {
   margin-top: 0;
 }
 
-.menu-item:last-child {
+.menuItem:last-child {
   margin-bottom: 0;
 }
