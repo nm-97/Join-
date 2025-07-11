@@ -1,25 +1,13 @@
-/* CSS Variables */
-:root {
-    --primary-color: #2A3647;
-    --secondary-color: #29ABE2;
-    --background-gray: #f6f7f8;
-    --text-gray: #A8A8A8;
-    --white: #FFFFFF;
-    --border-gray: #A8A8A8;
-    --border-radius: 8px;
-    --border-radius-large: 10px;
-    --border-radius-xl: 30px;
-    --gap-small: 10px;
-    --gap-medium: 16px;
-    --gap-large: 20px;
-    --gap-xl: 32px;
-    --gap-xxl: 36px;
-}
-
 * {
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
+
+    padding.SignUpbtn button {
+        background-color: #2A3647;
+        color: #FFFFFF;
+        padding: 15px 16px;
+        border-radius: 8px;
+    }
 }
 
 html,
@@ -38,7 +26,7 @@ body {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-    background: var(--background-gray);
+    background: #f6f7f8;
 }
 
 main {
@@ -68,7 +56,7 @@ header img {
     display: flex;
     align-items: center;
     margin-top: 67px;
-    gap: var(--gap-xxl);
+    gap: 36px;
     margin-right: 122px;
 }
 
@@ -79,20 +67,13 @@ header img {
     margin: 0;
 }
 
-.SignUpbtn button {
-    background-color: var(--primary-color);
-    color: var(--white);
-    padding: 15px var(--gap-medium);
-    border-radius: var(--border-radius);
-}
-
 .LogInMainContainer {
-    width: 652px;
-    height: 449px;
-    border-radius: var(--border-radius-xl);
+    width: 598px;
+    height: 630px;
+    border-radius: 30px;
     padding: 48px 115px;
-    gap: var(--gap-large);
-    background-color: var(--white);
+    gap: 20px;
+    background-color: #FFFFFF;
     opacity: 1;
     position: relative;
 }
@@ -111,43 +92,44 @@ header img {
     content: '';
     display: block;
     width: 120px;
-    border-bottom: 3px solid var(--secondary-color);
-    margin-top: var(--gap-medium);
+    border-bottom: 3px solid #29ABE2;
+    margin-top: 16px;
 }
 
 .btnPosition {
     display: flex;
     justify-content: center;
-    gap: var(--gap-small);
-    padding: 15px var(--gap-large);
+    gap: 10px;
+    padding: 15px 20px;
 }
 
+.SignUpbtn,
 .LogInbtn,
 .guestLogInButton {
-    padding: 15px var(--gap-large);
-    border-radius: var(--border-radius);
+    padding: 15px 20px;
+    border-radius: 8px;
     font-weight: 700;
     font-size: 21px;
     border: none;
 }
 
 .LogInbtn {
-    background-color: var(--primary-color);
-    color: var(--white);
+    background-color: #2A3647;
+    color: #FFFFFF;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    gap: var(--gap-large);
+    gap: 20px;
 }
 
 input {
     width: 422px;
     height: 48px;
-    padding: 0 var(--gap-large);
-    border: 1px solid var(--border-gray);
-    border-radius: var(--border-radius-large);
+    padding: 0 20px;
+    border: 1px solid #A8A8A8;
+    border-radius: 10px;
 }
 
 .inputIcon {
@@ -163,7 +145,7 @@ input {
 
 .inputIcon img {
     position: absolute;
-    right: var(--gap-medium);
+    right: 16px;
     width: 16px;
     height: 21px;
     pointer-events: none;
@@ -174,14 +156,20 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: var(--gap-large);
+    margin-bottom: 20px;
     width: 100vw;
 }
 
 footer a {
-    font-size: var(--gap-medium);
+    font-size: 16px;
     font-weight: 400;
     line-height: 120%;
-    color: var(--text-gray);
-    margin: 0 var(--gap-small);
+    color: #A8A8A8;
+    margin: 0 10px;
+}
+
+.backBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
 }
