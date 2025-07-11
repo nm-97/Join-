@@ -14,15 +14,18 @@
 
     <header>
         <img src="../assets/icons/joinlogo_black.png" alt="join_logo">
-        <div class="SignUpbtn">
-            <p>Not a Join user?</p>
-            <button>Sign Up</button>
-        </div>
+
     </header>
 
     <main>
         <form class="LogInMainContainer">
-            <h2>Log in</h2>
+            <h2>Sign Up</h2>
+            <button class="backBtn" onclick="window.history.back();"><img src="../assets/icons/login/Vector.svg"
+                    alt=""></button>
+            <div class="LogInInput inputIcon">
+                <input type="Name" id="name" name="name" placeholder="Name" required>
+                <img src="../assets/icons/contacts/person.svg" alt="user">
+            </div>
             <div class="LogInInput inputIcon">
                 <input type="email" id="email" name="email" placeholder="Email" required>
                 <img src="../assets/icons/login/mail.png" alt="mail">
@@ -31,9 +34,14 @@
                 <input type="password" id="password" name="password" placeholder="Password" required>
                 <img src="../assets/icons/login/lock.png" alt="lock">
             </div>
+            <div class="LogInInput inputIcon">
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password"
+                    required>
+                <img src="../assets/icons/login/lock.png" alt="lock">
+            </div>
             <div class="btnPosition">
-                <button class="LogInbtn" #logInButton>Log In</button>
-                <button class="guestLogInButton" #guestLogInButton>Guest Log in</button>
+                <button class="SignUpbtn" #SignUpButton>Sign Up</button>
+
             </div>
         </form>
     </main>
