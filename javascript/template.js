@@ -84,9 +84,11 @@ function getFloatingContact(params) {
   return `<div class="floatingContactMainContent">
                         <div class="floatingContactCard">
                             <div class="floatingContactHeader">
-                                <div class="floatingContactAvatar">AM</div>
+                                <div class="floatingContactAvatar">${name.charAt(
+                                  0
+                                )}</div>
                                 <div class="floatingContactName">
-                                    <span>Anton Mayer</span>
+                                    <span>${name}</span>
                                     <div class="floatingContactActions">
                                         <button onclick="showEditContactOverlay()" class="editBtn"><img
                                                 src="../assets/contacts/edit.svg" alt="">
@@ -100,10 +102,10 @@ function getFloatingContact(params) {
                                 <div class="floatingContactInfoLabel">
                                     <p> Contact Information </p>
                                 </div>
-                                <div class="floatingContactInfoDetails"><span>Email</span><br><a
-                                        href="mailto:antom@gmail.com">antom@gmail.com</a>
+                                <div class="floatingContactInfoDetails"><span>${email}</span><br><a
+                                        href="mailto:${email}">${email}</a>
                                     <span>Phone</span><br>
-                                    <p>+49 1111 11 111 1</p>
+                                    <p>${phone}</p>
                                 </div>
                             </div>
                         </div>
@@ -114,10 +116,12 @@ function getContactTemplate(params) {
   return `<div class="contactsSection">
             <div class="contactsSectionHeader">A</div>
             <div class="contactItem" onclick="showFloatingContact()">
-                <div class="contactAvatar" style="background-color: #FF8A00;">AM</div>
+                <div class="contactAvatar" style="background-color: #FF8A00;">${name.charAt(
+                  0
+                )}</div>
                 <div class="contactInfo">
-                    <div class="contactName">Marcel Bauer</div>
-                    <div class="contactEmail">mbauer@gmail.com</div>
+                    <div class="contactName">${name}</div>
+                    <div class="contactEmail">${email}</div>
                 </div>
             </div>
         </div>`;
