@@ -22,7 +22,6 @@
 /* Layout */
 .pageWrapper,
 .mainContainer {
-    height: 100vh;
     display: flex;
     max-width: 1920px;
     width: 100vw;
@@ -30,11 +29,14 @@
 }
 
 .pageWrapper {
+    height: 100vh;
     flex-direction: row;
 }
 
 .mainContainer {
+    flex: 1;
     flex-direction: column;
+    position: relative;
 }
 
 .addTaskFormsWrapper {
@@ -83,7 +85,6 @@
 
 .requiredStarText {
     font-size: 14px;
-    margin-left: 240px;
     text-align: center;
 }
 
@@ -215,12 +216,14 @@ label {
 
 .formActions {
     display: flex;
+    justify-content: space-between;
     align-items: flex-end;
-    position: fixed;
-    bottom: 60px;
+    width: 100%;
+    position: absolute;
     left: 0;
-    right: 0;
-    padding-left: 60px;
+    bottom: 0;
+    padding: 0 40px 40px 40px;
+    box-sizing: border-box;
 }
 
 .formButtons {
@@ -228,5 +231,4 @@ label {
     gap: 16px;
     width: 100%;
     justify-content: flex-end;
-    margin-right: 60px;
 }
