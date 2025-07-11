@@ -89,11 +89,6 @@
     }
 }
 
-.editBtn:hover,
-.deleteBtn:hover {
-    background-color: #f0f0f0;
-}
-
 .floatingContactInfo {
     gap: 59px;
     margin-top: 50px;

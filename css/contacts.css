@@ -1,4 +1,3 @@
-/* CSS Variables for better maintainability */
 :root {
     --primary-color: #2a3647;
     --secondary-color: #29abe2;
@@ -157,11 +156,7 @@
     margin-bottom: var(--gap-small);
 }
 
-.contactItem:hover {
-    background-color: #f0f0f0;
-    padding-left: var(--gap-small);
-    padding-right: var(--gap-small);
-}
+
 
 .contactItem.selected {
     background-color: var(--primary-color);
