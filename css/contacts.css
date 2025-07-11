@@ -15,7 +15,6 @@
     --gap-xlarge: 40px;
 }
 
-/* Layout */
 .pageWrapper,
 .mainContainer {
     height: 100vh;
@@ -125,7 +124,6 @@
     border: 3px solid var(--secondary-color);
 }
 
-/* Contact List Styles */
 .contactsList {
     flex: 1;
     overflow: hidden;
@@ -155,8 +153,6 @@
     transition: background-color 0.2s ease;
     margin-bottom: var(--gap-small);
 }
-
-
 
 .contactItem.selected {
     background-color: var(--primary-color);

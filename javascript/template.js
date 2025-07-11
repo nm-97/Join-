@@ -113,3 +113,16 @@ function getFloatingContact(params) {
                         </div>
                     </div>`;
 }
+
+function getContactTemplate(params) {
+  return `<div class="contactsSection">
+            <div class="contactsSectionHeader">A</div>
+            <div class="contactItem" onclick="showContactDetails(event)">
+                <div class="contactAvatar" style="background-color: #FF8A00;">AM</div>
+                <div class="contactInfo">
+                    <div class="contactName">Marcel Bauer</div>
+                    <div class="contactEmail">mbauer@gmail.com</div>
+                </div>
+            </div>
+        </div>`;
+}
