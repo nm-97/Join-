@@ -49,7 +49,7 @@ function getEditContactOverlay(params) {
                     </div>
                     <div class="editContactModalRight">
                         <button class="editContactClose" onclick="closeEditContactOverlay()">
-                            <img src="../assets/contacts/Close.svg" alt="">
+                            <img src="../assets/icons/shared/Close.svg" alt="">
                         </button>
                         <div class="addContactFormAvatarPosition">
                             <div class="editContactAvatar">
