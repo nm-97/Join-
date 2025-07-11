@@ -1,4 +1,3 @@
-/* CSS Variables for better maintainability */
 :root {
     --primary-color: #2a3647;
     --secondary-color: #29abe2;
@@ -16,7 +15,6 @@
     --gap-xlarge: 40px;
 }
 
-/* Layout */
 .pageWrapper,
 .mainContainer {
     height: 100vh;
@@ -126,7 +124,6 @@
     border: 3px solid var(--secondary-color);
 }
 
-/* Contact List Styles */
 .contactsList {
     flex: 1;
     overflow: hidden;
@@ -155,12 +152,6 @@
     border-radius: var(--border-radius);
     transition: background-color 0.2s ease;
     margin-bottom: var(--gap-small);
-}
-
-.contactItem:hover {
-    background-color: #f0f0f0;
-    padding-left: var(--gap-small);
-    padding-right: var(--gap-small);
 }
 
 .contactItem.selected {
