@@ -41,17 +41,14 @@ function getAddContactOverlay(params) {
 }
 
 function getEditContactOverlay(params) {
-  return `
-    <div id="editContactOverlay" class="editContactOverlay">
-                <div class="editContactModal">
+  return `<div class="editContactModal">
                     <div class="editContactModalLeft">
                         <img class="editContactLogo" src="../assets/img/Capa 1.png" alt="Join Logo">
                         <h2 class="editContactTitle">Edit contact</h2>
                         <div class="editContactUnderline"></div>
                     </div>
                     <div class="editContactModalRight">
-                        <button class="editContactClose"
-                            onclick="document.getElementById('editContactOverlay').style.display='none'">
+                        <button class="editContactClose" onclick="closeEditContactOverlay()">
                             <img src="../assets/contacts/Close.svg" alt="">
                         </button>
                         <div class="addContactFormAvatarPosition">
@@ -72,7 +69,7 @@ function getEditContactOverlay(params) {
                                     <img src="../assets/contacts/call.svg" class="inputIcon" alt="">
                                 </div>
                                 <div class="editContactBtnRow">
-                                    <button type="button" class="editContactDeleteBtn">Cancel
+                                    <button type="button" class="editContactDeleteBtn" onclick="closeEditContactOverlay()">Cancel
                                         <img src="../assets/contacts/Close.svg" alt=""></button>
                                     <button type="submit" class="editContactSaveBtn">Save
                                         <img src="../assets/priority/check.svg" alt=""></button>
@@ -80,8 +77,7 @@ function getEditContactOverlay(params) {
                             </form>
                         </div>
                     </div>
-                </div>
-            </div>`;
+                </div>`;
 }
 
 function getFloatingContact(params) {
@@ -117,7 +113,7 @@ function getFloatingContact(params) {
 function getContactTemplate(params) {
   return `<div class="contactsSection">
             <div class="contactsSectionHeader">A</div>
-            <div class="contactItem" onclick="showContactDetails(event)">
+            <div class="contactItem" onclick="showFloatingContact()">
                 <div class="contactAvatar" style="background-color: #FF8A00;">AM</div>
                 <div class="contactInfo">
                     <div class="contactName">Marcel Bauer</div>
