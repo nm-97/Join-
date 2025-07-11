@@ -17,21 +17,21 @@ function getAddContactOverlay(params) {
                                 <div class="addContactAvatar">
                                     <img src="../assets/icons/contacts/person.svg" alt="Avatar">
                                 </div>
-                                <form class="addContactForm">
+                                <form class="addContactForm" onsubmit="createContact(event)">
                                     <div class="addContactInputWrapper">
-                                        <input type="text" placeholder="Name" required>
+                                        <input type="text" name="name" placeholder="Name" required>
                                         <img src="../assets/icons/contacts/person.svg" class="inputIcon" alt="">
                                     </div>
                                     <div class="addContactInputWrapper">
-                                        <input type="email" placeholder="Email" required>
+                                        <input type="email" name="email" placeholder="Email" required>
                                         <img src="../assets/icons/contacts/mail.svg" class="inputIcon" alt="">
                                     </div>
                                     <div class="addContactInputWrapper">
-                                        <input type="tel" placeholder="Phone" required>
+                                        <input type="tel" name="phone" placeholder="Phone" required>
                                         <img src="../assets/icons/contacts/call.svg" class="inputIcon" alt="">
                                     </div>
                                     <div class="addContactBtnRow">
-                                        <button type="button" class="addContactCancelBtn" onclick="closeAddContactOverlay()">Cancel
+                                        <button type="button" class="addContactCancelBtn" onclick="closeOverlay()">Cancel
                                             <img src="../assets/icons/shared/close.svg" alt=""></button>
                                         <button type="submit" class="addContactCreateBtn">Create contact
                                             <img src="../assets/icons/add task/check.svg" alt=""></button>
@@ -85,6 +85,7 @@ function getEditContactOverlay(params) {
 function getFloatingContact(contact) {
   const initials = contact.name.charAt(0).toUpperCase();
   const color = getAvatarColor(contact.name);
+
   return `<div class="floatingContactMainContent">
     <div class="floatingContactCard">
       <div class="floatingContactHeader">
@@ -96,7 +97,7 @@ function getFloatingContact(contact) {
               <img src="../assets/icons/shared/edit.svg" alt="">
               Edit
             </button>
-            <button class="deleteBtn">
+            <button onclick="deleteContact('${contact.id}')" class="deleteBtn">
               <img src="../assets/icons/shared/delete.svg" alt="">
               Delete
             </button>
@@ -133,4 +134,14 @@ function getContactTemplate(contact) {
 function getAvatarColor(name) {
   const colors = ["#FF8A00", "#9327FF", "#29ABE2", "#FF5EB3", "#6E52FF"];
   return colors[name.charCodeAt(0) % colors.length];
+}
+
+function getSuccessMessageTemplate(params) {
+  return `
+    <div class="successMessage" id="successMessage">
+      <div class="successMessageContent">
+        <img src="../assets/icons/shared/check.svg" class="successIcon" alt="Success">
+        <span class="successText">${params.message}</span>
+      </div>
+    </div>`;
 }

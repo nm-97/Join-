@@ -65,3 +65,31 @@ function groupContactsByLetter(contacts) {
   }
   return groupedContacts;
 }
+
+async function createContact(event) {
+  event.preventDefault();
+  const form = event.target;
+  const formData = new FormData(form);
+  const contactData = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    phone: formData.get("phone"),
+  };
+  const newContactId = await addContactToFirebase(contactData);
+  showSuccessMessage("Kontakt erfolgreich hinzugefügt!");
+  closeOverlay();
+  await refreshContactsSidebar();
+}
+
+async function refreshContactsSidebar() {
+  const contacts = await fetchAllContacts();
+  const overlay = document.getElementById("contactsList");
+  overlay.innerHTML = renderContactsList(contacts);
+}
+
+async function deleteContact(contactId) {
+  await deleteContactFromFirebase(contactId);
+  showSuccessMessage("Contact erfolgreich gelöscht!");
+  document.getElementById("floatingContactOverlay").style.display = "none";
+  await refreshContactsSidebar();
+}

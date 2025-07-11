@@ -47,3 +47,37 @@ function groupContactsByLetter(contacts) {
   }
   return groupedContacts;
 }
+
+async function addContactToFirebase(contactData) {
+  const response = await fetch(`${firebaseUrl}contacts.json`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(contactData),
+  });
+  const result = await response.json();
+  return result.name;
+}
+
+function renderSuccessMessage(message) {
+  const successHTML = getSuccessMessageTemplate({ message });
+  document.body.insertAdjacentHTML("beforeend", successHTML);
+}
+
+function showSuccessMessage(message) {
+  const existingMessage = document.getElementById("successMessage");
+  if (existingMessage) {
+    existingMessage.remove();
+  }
+  renderSuccessMessage(message);
+  const toast = document.getElementById("successMessage");
+  toast.style.display = "block";
+}
+
+async function deleteContactFromFirebase(contactId) {
+  const response = await fetch(`${firebaseUrl}contacts/${contactId}.json`, {
+    method: "DELETE",
+  });
+  return true;
+}
