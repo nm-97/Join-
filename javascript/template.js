@@ -49,7 +49,7 @@ function getEditContactOverlay(params) {
                     </div>
                     <div class="editContactModalRight">
                         <button class="editContactClose" onclick="closeEditContactOverlay()">
-                            <img src="../assets/contacts/Close.svg" alt="">
+                            <img src="../assets/icons/shared/Close.svg" alt="">
                         </button>
                         <div class="addContactFormAvatarPosition">
                             <div class="editContactAvatar">
@@ -80,45 +80,55 @@ function getEditContactOverlay(params) {
                 </div>`;
 }
 
-function getFloatingContact(params) {
+function getFloatingContact(contact) {
+  const initials = contact.name.charAt(0).toUpperCase();
+  const color = getAvatarColor(contact.name);
   return `<div class="floatingContactMainContent">
-                        <div class="floatingContactCard">
-                            <div class="floatingContactHeader">
-                                <div class="floatingContactAvatar">AM</div>
-                                <div class="floatingContactName">
-                                    <span>Anton Mayer</span>
-                                    <div class="floatingContactActions">
-                                        <button onclick="showEditContactOverlay()" class="editBtn"><img
-                                                src="../assets/icons/shared/edit.svg" alt="">
-                                            Edit</button>
-                                        <button class="deleteBtn"><img src="../assets/icons/shared/delete.svg" alt="">
-                                            Delete</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="floatingContactInfo">
-                                <div class="floatingContactInfoLabel">
-                                    <p> Contact Information </p>
-                                </div>
-                                <div class="floatingContactInfoDetails"><span>Email</span><br><a
-                                        href="mailto:antom@gmail.com">antom@gmail.com</a>
-                                    <span>Phone</span><br>
-                                    <p>+49 1111 11 111 1</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`;
+    <div class="floatingContactCard">
+      <div class="floatingContactHeader">
+        <div class="floatingContactAvatar" style="background-color: ${color};">${initials}</div>
+        <div class="floatingContactName">
+          <span>${contact.name}</span>
+          <div class="floatingContactActions">
+            <button onclick="showEditContactOverlay('${contact.id}')" class="editBtn">
+              <img src="../assets/icons/shared/edit.svg" alt="">
+              Edit
+            </button>
+            <button class="deleteBtn">
+              <img src="../assets/icons/shared/delete.svg" alt="">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="floatingContactInfo">
+        <div class="floatingContactInfoLabel">
+          <p>Contact Information</p>
+        </div>
+        <div class="floatingContactInfoDetails">
+          <span>Email</span><br>
+          <a href="mailto:${contact.email}">${contact.email}</a><br><br>
+          <span>Phone</span><br>
+          <p>${contact.phone}</p>
+        </div>
+      </div>
+    </div>
+  </div>`;
 }
 
-function getContactTemplate(params) {
-  return `<div class="contactsSection">
-            <div class="contactsSectionHeader">A</div>
-            <div class="contactItem" onclick="showFloatingContact()">
-                <div class="contactAvatar" style="background-color: #FF8A00;">AM</div>
-                <div class="contactInfo">
-                    <div class="contactName">Marcel Bauer</div>
-                    <div class="contactEmail">mbauer@gmail.com</div>
-                </div>
-            </div>
-        </div>`;
+function getContactTemplate(contact) {
+  const initials = contact.name.charAt(0).toUpperCase();
+  const color = getAvatarColor(contact.name);
+  return `<div class="contactItem" onclick="showFloatingContact('${contact.id}')">
+    <div class="contactAvatar" style="background-color: ${color};">${initials}</div>
+    <div class="contactInfo">
+      <div class="contactName">${contact.name}</div>
+      <div class="contactEmail">${contact.email}</div>
+    </div>
+  </div>`;
+}
+
+function getAvatarColor(name) {
+  const colors = ["#FF8A00", "#9327FF", "#29ABE2", "#FF5EB3", "#6E52FF"];
+  return colors[name.charCodeAt(0) % colors.length];
 }

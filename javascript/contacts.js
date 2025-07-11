@@ -11,15 +11,17 @@ function showEditContactOverlay() {
   overlay.style.display = "flex";
 }
 
-function showContactSideBar() {
+async function showContactSideBar() {
+  const contacts = await fetchAllContacts();
   const overlay = document.getElementById("contactsList");
-  overlay.innerHTML = getContactTemplate();
+  overlay.innerHTML = renderContactsList(contacts);
   overlay.style.display = "block";
 }
 
-function showFloatingContact() {
+async function showFloatingContact(contactId) {
+  const contact = await fetchContactById(contactId);
   const overlay = document.getElementById("floatingContactOverlay");
-  overlay.innerHTML = getFloatingContact();
+  overlay.innerHTML = getFloatingContact(contact);
   overlay.style.display = "block";
 }
 
@@ -39,3 +41,25 @@ function closeEditContactOverlay() {
 document.addEventListener("DOMContentLoaded", function () {
   showContactSideBar();
 });
+
+function renderContactsList(contacts) {
+  if (!contacts || contacts.length === 0) {
+    return "<p>Keine Kontakte vorhanden</p>";
+  }
+  let html = "";
+  for (let i = 0; i < contacts.length; i++) {
+    html += getContactTemplate(contacts[i]);
+  }
+  return html;
+}
+
+function groupContactsByLetter(contacts) {
+  const groupedContacts = {};
+  for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
+    const firstLetter = contact.name.charAt(0).toUpperCase();
+    if (!groupedContacts[firstLetter]) groupedContacts[firstLetter] = [];
+    groupedContacts[firstLetter].push(contact);
+  }
+  return groupedContacts;
+}
