@@ -1,25 +1,12 @@
-/* CSS Variables for floating contact styles */
-:root {
-    --primary-color: #2a3647;
-    --secondary-color: #29abe2;
-    --background-white: #ffffff;
-    --text-dark: #000000;
-    --border-light: #d1d1d1;
-    --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.06);
-    --border-radius: 10px;
-}
-
-/* Floating Contact Main Container */
 .floatingContactMainContent {
     flex: 1;
     background-color: #f8f9fa;
-    border-radius: var(--border-radius);
+    border-radius: 10px;
     padding: 24px;
 }
 
-/* Floating Contact Styles */
 .floatingContactCard {
-    border-radius: var(--border-radius);
+    border-radius: 10px;
     padding: 24px;
     max-width: 600px;
 }
@@ -56,14 +43,12 @@
     height: 120px;
 }
 
-.floatingContactName {
-    span {
-        font-size: 47px;
-        font-weight: 500;
-        color: var(--text-dark);
-        display: block;
-        gap: 5px;
-    }
+.floatingContactName span {
+    font-size: 47px;
+    font-weight: 500;
+    color: #000000;
+    display: block;
+    gap: 5px;
 }
 
 .floatingContactActions {
@@ -82,17 +67,17 @@
     border: none;
     cursor: pointer;
     font-size: 16px;
+}
 
-    img {
-        width: 24px;
-        height: 24px;
-    }
+.editBtn img,
+.deleteBtn img {
+    width: 24px;
+    height: 24px;
 }
 
 .floatingContactInfo {
     gap: 59px;
     margin-top: 50px;
-
 }
 
 .floatingContactInfoLabel {
@@ -109,23 +94,22 @@
 .floatingContactInfoDetails {
     display: flex;
     flex-direction: column;
+}
 
-    a {
-        font-size: 16px;
-        text-decoration: none;
-    }
+.floatingContactInfoDetails a {
+    font-size: 16px;
+    text-decoration: none;
+}
 
-    span {
-        font-size: 16px;
-        font-weight: 700;
-        margin-top: 20px;
-    }
+.floatingContactInfoDetails span {
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 20px;
+}
 
-    p {
-        font-size: 16px;
-        font-weight: 400;
-        color: var(--text-dark);
-        margin-top: 8px;
-    }
-
+.floatingContactInfoDetails p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #000000;
+    margin-top: 8px;
 }

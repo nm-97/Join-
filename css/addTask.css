@@ -1,23 +1,4 @@
-/* CSS Variables */
-:root {
-    --primary-color: #2A3647;
-    --secondary-color: #FFA800;
-    --background-gray: #F6F7F8;
-    --border-light: #D1D1D1;
-    --text-gray: #A8A8A8;
-    --red: #FF0000;
-    --white: #FFFFFF;
-    --shadow: 0px 0px 4px 0px #0000001A;
-    --border-radius: 8px;
-    --border-radius-large: 10px;
-    --gap-small: 8px;
-    --gap-medium: 16px;
-    --gap-large: 24px;
-    --gap-xlarge: 32px;
-    --icon-small: 16px;
-    --icon-medium: 20px;
-    --icon-large: 24px;
-}
+/* Direct Color Values - No CSS Variables */
 
 /* Layout */
 .pageWrapper,
@@ -41,7 +22,7 @@
 
 .addTaskFormsWrapper {
     display: flex;
-    gap: var(--gap-xlarge);
+    gap: 32px;
     margin: 60px;
 }
 
@@ -55,31 +36,31 @@
 .addTaskFormsWrapper form {
     display: flex;
     flex-direction: column;
-    gap: var(--gap-medium);
+    gap: 16px;
 }
 
 .addTaskFormsDivider {
     width: 1px;
     height: 424px;
-    background: var(--border-light);
-    margin: 0 var(--gap-large);
+    background: #D1D1D1;
+    margin: 0 24px;
     align-self: stretch;
 }
 
 .formGroup {
     display: flex;
     flex-direction: column;
-    gap: var(--gap-small);
+    gap: 8px;
 }
 
 .taskPriorityGroup {
     display: flex;
-    gap: var(--gap-small);
+    gap: 8px;
     align-items: center;
 }
 
 .requiredStar {
-    color: var(--red);
+    color: #FF0000;
     font-size: 18px;
 }
 
@@ -93,15 +74,15 @@ input,
 textarea,
 select {
     padding: 12px 21px;
-    border: 1px solid var(--border-light);
-    border-radius: var(--border-radius);
+    border: 1px solid #D1D1D1;
+    border-radius: 8px;
     width: 420px;
     font-size: 16px;
 }
 
 input::placeholder,
 textarea::placeholder {
-    color: var(--border-light);
+    color: #D1D1D1;
     font-size: 20px;
 }
 
@@ -127,17 +108,17 @@ label {
 
 .inputIcon img {
     position: absolute;
-    right: var(--gap-medium);
-    width: var(--icon-large);
-    height: var(--icon-large);
+    right: 16px;
+    width: 24px;
+    height: 24px;
     pointer-events: none;
 }
 
 #taskDescription {
     height: 120px;
-    border-radius: var(--border-radius-large);
-    border: 1px solid var(--border-light);
-    padding: 18px var(--gap-medium);
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    padding: 18px 16px;
     font-size: 16px;
     resize: none;
     margin-bottom: 10px;
@@ -148,36 +129,41 @@ label {
 .taskPriorityBtnOrange {
     width: 136px;
     height: 56px;
-    border-radius: var(--border-radius-large);
-    padding: var(--gap-medium) 10px;
-    gap: var(--gap-small);
+    border-radius: 10px;
+    padding: 16px 10px;
+    gap: 8px;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     flex-direction: row-reverse;
-    box-shadow: var(--shadow);
+    box-shadow: 0px 0px 4px 0px #0000001A;
     font-size: 20px;
 }
 
 .taskPriorityBtn {
-    background: var(--white);
+    background: #FFFFFF;
 }
 
 .taskPriorityBtnOrange {
-    background: var(--secondary-color);
+    background: #FFA800;
+
+}
+
+.taskPriorityBtnOrange img {
+    filter: brightness(0) invert(1);
 }
 
 .taskPriorityBtn img,
 .taskPriorityBtnOrange img {
-    width: var(--icon-medium);
+    width: 20px;
     height: auto;
 }
 
 .taskPriorityBtn span,
 .taskPriorityBtnOrange span {
-    margin-right: var(--gap-small);
+    margin-right: 8px;
 }
 
 /* Action Buttons */
@@ -185,32 +171,32 @@ label {
 .cancelTaskBtn {
     display: inline-flex;
     align-items: center;
-    gap: var(--gap-small);
+    gap: 8px;
     font-size: 20px;
     font-weight: 700;
-    padding: var(--gap-medium) var(--gap-large);
-    border-radius: var(--border-radius-large);
+    padding: 16px 24px;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
     height: 56px;
 }
 
 .addTaskBtn {
-    background: var(--primary-color);
-    color: var(--white);
-    width: 183px;
+    background: #2A3647;
+    color: #FFFFFF;
+    /* width: 183px; */
 }
 
 .cancelTaskBtn {
-    background: var(--background-gray);
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
+    background: #F6F7F8;
+    color: #2A3647;
+    border: 1px solid #2A3647;
     width: 110px;
 }
 
 .addTaskBtn img,
 .cancelTaskBtn img {
-    width: var(--icon-small);
+    width: 16px;
     height: auto;
 }
 
