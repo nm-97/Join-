@@ -1,3 +1,5 @@
+"use strict";
+
 function getAddContactOverlay(params) {
   return `
          <div class="addContactModal">

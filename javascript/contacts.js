@@ -1,3 +1,5 @@
+"use strict";
+
 function showAddContactOverlay() {
   const overlay = document.getElementById("addContactOverlay");
   const modal = overlay.querySelector(".addContactModal");
