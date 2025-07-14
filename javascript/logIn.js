@@ -9,3 +9,4 @@ function addUser() {
   });
   window.location.href = "../html/index.html";
 }
+

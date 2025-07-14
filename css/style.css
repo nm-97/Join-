@@ -161,6 +161,8 @@ body {
 .menuItem:hover {
   color: #ffffff;
   background-color: #354967;
+  transform: translateY(-1px);
+  text-decoration: none;
 }
 
 .menuItem:first-child {
