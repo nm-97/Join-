@@ -123,6 +123,7 @@ body {
     justify-content: center;
     font-weight: bold;
     border: 1px solid black;
+    cursor: pointer;
 }
 /* Avatar Overlay */
 
@@ -139,7 +140,11 @@ body {
   transform: none;
   z-index: 1000;
   width: 150px;
-  height: 158px;
+  height: 158px;;
+}
+
+.none{
+    display: none;
 }
 
 .menuItem {
@@ -148,6 +153,9 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
   padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
 }
 
 .menuItem:hover {

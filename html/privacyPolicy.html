@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
     <link rel="stylesheet" href="../css/summaryUser.css">
     <link rel="stylesheet" href="../css/style.css">
+    <script src="../javascript/ui.js" defer></script>
     <title>Summary</title>
 </head>
 
@@ -51,11 +52,11 @@
                 <div class="headerTitle">Kanban Project Management Tool</div>
                 <div class="headerActions">
                     <div><img src="../assets/icons/summary and sideboard/help.svg" alt=""></div>
-                    <div class="userAvatar">SM</div>
-                        <div class="dropdown">
-                        <div class="menu-item">Legal Notice</div>
-                        <div class="menu-item">Privacy Policy</div>
-                        <div class="menu-item">Log out</div>
+                    <div class="userAvatar" onclick="toggleUserMenu()">SM</div>
+                        <div class="dropdown none" id="usermenu">
+                        <a class="menuItem" href="./legalNotice.html">Legal Notice</a>
+                        <a class="menuItem" href="./privacyPolicy.html">Privacy Policy</a>
+                        <a class="menuItem" href="./LogIn.html">Log out</a>
                     </div>
                 </div>
             </div>
