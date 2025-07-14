@@ -3,23 +3,18 @@
 const firebaseUrl =
   "https://joinda1312-default-rtdb.europe-west1.firebasedatabase.app/";
 
-function getCurrentUser(params) {
-  const currentUser = sessionStorage.getItem("currentUser")
-  if (currentUser) {
-    return JSON.parse(currentUser);
-
-  } else {
-    return {type: "guest"};
-}
+function getCurrentUser() {
+  const currentUser = sessionStorage.getItem("currentUser");
+  return currentUser ? JSON.parse(currentUser) : {type: "guest"};
 }
 
-function setUserPath(params) {
-  const user = getCurrentUser();
-  let userPath;
-  if (user.type === "guest") {
-    userPath = "guest";
-  } else {
-    userPath = user.registered; 
+async function initializeUserData() {
+  await showContactSideBar();
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  if (window.location.pathname.includes("contacts.html")) {
+    initializeUserData();
   }
-  return userPath; 
-}
+});
+

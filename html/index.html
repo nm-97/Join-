@@ -7,7 +7,8 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
     <link rel="stylesheet" href="../css/LogIn.css">
     <link rel="stylesheet" href="../css/style.css">
-    <script src="../javascript/script.js"></script>
+    <script src="../javascript/firebase.js"></script>
+    <script src="../javascript/logIn.js"></script>
     <title>Join</title>
 </head>
 
@@ -22,7 +23,7 @@
         </div>
     </header>
 
-    <main>
+    <main id="LogInMain">
         <form class="LogInMainContainer">
             <h2>Log in</h2>
             <div class="LogInInput inputIcon">
@@ -35,7 +36,7 @@
             </div>
             <div class="btnPosition">
                 <button class="LogInbtn" #logInButton>Log In</button>
-                <button class="guestLogInButton" #guestLogInButton>Guest Log in</button>
+                <button class="guestLogInButton" onclick="setGuestLogin()" #guestLogInButton>Guest Log in</button>
             </div>
         </form>
     </main>
