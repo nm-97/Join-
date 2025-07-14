@@ -146,6 +146,8 @@ function getSuccessMessageTemplate(params) {
     </div>`;
 }
 
+
+
 function getBoardTemplate(tasks = []) {
   return `
       <div class="boardColumn">
