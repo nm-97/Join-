@@ -153,7 +153,6 @@ body {
 .menuItem:hover {
   color: #ffffff;
   background-color: #354967;
-  transform: translateY(-1px);
 }
 
 .menuItem:first-child {
@@ -163,3 +162,4 @@ body {
 .menuItem:last-child {
   margin-bottom: 0;
 }
+
