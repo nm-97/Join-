@@ -1,3 +1,13 @@
+const renderContactsList = (contacts) => 
+  contacts.map(contact => getContactTemplate(contact)).join("");
+
+const getContactFormData = (event) => ({
+  name: new FormData(event.target).get("name"),
+  email: new FormData(event.target).get("email"),
+  phone: new FormData(event.target).get("phone"),
+});
+
+
 async function fetchContacts() {
   const response = await fetch(`${firebaseUrl}user /guest /contacts.json`);
   const data = await response.json();
@@ -80,15 +90,6 @@ async function addContactToFirebase(contactData) {
   const result = await response.json();
   return result.name;
 }
-
-const renderContactsList = (contacts) => 
-  contacts.map(contact => getContactTemplate(contact)).join("");
-
-const getContactFormData = (event) => ({
-  name: new FormData(event.target).get("name"),
-  email: new FormData(event.target).get("email"),
-  phone: new FormData(event.target).get("phone"),
-});
 
 async function createContact(event) {
   event.preventDefault();

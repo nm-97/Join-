@@ -138,7 +138,11 @@ function getAvatarColor(name) {
 
 function getSuccessContactMessageTemplate(params) {
   return `
-<div id="addContactSuccess" class="ntfcenter  ntfmask">Contact Finished</div>`;
+<div id="addContactSuccess" class="ntfcenter  ntfmask">Contact successfully created</div>`;
 }
     
+function getSuccessSignUpMessageTempalte(params) {
+ return `
+<div id="addContactSuccess" class="ntfcenter  ntfmask">You Signed Up succesfully</div>`;
+} 
 
