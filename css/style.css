@@ -173,3 +173,30 @@ body {
   margin-bottom: 0;
 }
 
+.ntfmask{
+  width: 256px;
+  height: 75px;
+  background-color: #2b3647;
+  border-radius: 20px;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+}
+
+.ntfbottom {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ntfUpRight{
+    position: fixed;
+    top: 30px;
+    right: 30px;
+}

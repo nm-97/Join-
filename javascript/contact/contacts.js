@@ -66,6 +66,16 @@ const postContactData = async (contactData) => {
   });
 };
 
+function renderSuccessMessage() {
+  document.body.insertAdjacentHTML('beforeend', getSuccessContactMessageTemplate());
+
+  setTimeout(() => {
+    const toast = document.getElementById('addContactSuccess');
+    if (toast) toast.remove();
+  }, 3000);
+}
+
+
 async function addContactToFirebase(contactData) {
   const response = await postContactData(contactData);
   const result = await response.json();
@@ -83,11 +93,13 @@ const getContactFormData = (event) => ({
 
 async function createContact(event) {
   event.preventDefault();
-  
   const contactData = getContactFormData(event);
   await addContactToFirebase(contactData);
   closeOverlay();
   await refreshContactsSidebar();
+      setTimeout(() => {
+    renderSuccessMessage();
+  }, 500);
 }
 
 const refreshContactsSidebar = async () => {

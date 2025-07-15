@@ -46,12 +46,12 @@ function closeFloatingOverlay() {
   overlay.innerHTML = "";
 }
 
-// function showSuccessMessage(message) {
-//   const existingMessage = document.getElementById("successMessage");
-//   if (existingMessage) {
-//     existingMessage.remove();
-//   }
-//   renderSuccessMessage(message);
-//   const toast = document.getElementById("successMessage");
-//   toast.style.display = "block";
-// }
+function showSuccessMessage(message) {
+  const existingMessage = document.getElementById("successMessage");
+  if (existingMessage) {
+    existingMessage.remove();
+  }
+  renderSuccessMessage(message);
+  const toast = document.getElementById("successMessage");
+  toast.style.display = "block";
+}

@@ -138,15 +138,9 @@ function getAvatarColor(name) {
 
 function getSuccessContactMessageTemplate(params) {
   return `
-<div class="ntfUpRight ntfMask">Contact Finished</div>`;
+<div id="addContactSuccess" class="ntfUpRight ntfMask">Contact succesfully created</div>`;
 }
     
-        
-//         function noContactsTemplate() {
-//   return ``;
-// }
-
-
 function getBoardTemplate(tasks = []) {
   return `
       <div class="boardColumn">
