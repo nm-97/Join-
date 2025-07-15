@@ -1,5 +1,18 @@
 "use strict";
 
+function getContactWithSeparator(contact, showSeparator = false) {
+  let separatorHTML = '';
+  if (showSeparator) {
+    const letter = contact.name.charAt(0).toUpperCase();
+    separatorHTML = `
+    <div class="alphabetSeparator">
+      <div class="alphabetLetter">${letter}</div>
+    </div>`;
+  }
+  
+  return separatorHTML + getContactTemplate(contact);
+}
+
 function getAddContactOverlay(params) {
   return `
          <div class="addContactModal">
@@ -122,6 +135,7 @@ function getFloatingContact(contact) {
 function getContactTemplate(contact) {
   const initials = contact.name.charAt(0).toUpperCase();
   const color = getAvatarColor(contact.name);
+  
   return `<div class="contactItem" onclick="showFloatingContact('${contact.id}')">
     <div class="contactAvatar" style="background-color: ${color};">${initials}</div>
     <div class="contactInfo">

@@ -1,5 +1,16 @@
-const renderContactsList = (contacts) => 
-  contacts.map(contact => getContactTemplate(contact)).join("");
+const renderContactsList = (contacts) => {
+  const sortedContacts = contacts.sort((a, b) => a.name.localeCompare(b.name));
+  const groupedContacts = groupContactsByLetter(sortedContacts);
+  
+  return Object.keys(groupedContacts)
+    .sort()
+    .map(letter => {
+      const contactsInGroup = groupedContacts[letter];
+      return contactsInGroup.map((contact, index) => 
+        getContactWithSeparator(contact, index === 0)
+      ).join("");
+    }).join("");
+};
 
 const getContactFormData = (event) => ({
   name: new FormData(event.target).get("name"),

@@ -47,11 +47,11 @@ header img {
 }
 
 .LogInMainContainer {
-    width: 652px;
-    height: 449px;
+    width: 598px;
+    height: 630px;
     border-radius: 30px;
     padding: 48px 115px;
-    gap: 36px;
+    gap: 20px;
     background-color: #FFFFFF;
     opacity: 1;
     position: relative;
@@ -151,7 +151,7 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 35px;
+    gap: 10px;
     padding: 15px 20px;
     
 }
@@ -180,23 +180,17 @@ input {
     border-radius: 8px;
     font-weight: 700;
     font-size: 21px;
+    border: none;
     cursor: pointer;
-    background-color: #FFFFFF;
 }
 
 .SignUpbtn:hover,
-.LogInbtn:hover{
-    background-color: #2a3647;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-    color: #e5e5e5;
-    filter: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.2);
-    transition: filter 0.2s;
-}
-
+.LogInbtn:hover,
 .guestLogInButton:hover {
     background-color: #2a3647;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
     color: #e5e5e5;
+    filter: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.2);
     transition: filter 0.2s;
 }
 
