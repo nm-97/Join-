@@ -12,11 +12,6 @@
     display: none;
 }
 
-.addContactOverlay[style*="display: flex"],
-.editContactOverlay[style*="display: flex"] {
-    display: flex !important;
-}
-
 .addContactModal,
 .editContactModal {
     display: flex;
@@ -26,37 +21,19 @@
     max-width: 90vw;
     max-height: 90vh;
     overflow: hidden;
-}
-
-.addContactModal {
-    height: 592px;
-    width: 1212px;
-}
-
-.editContactModal {
     height: 592px;
     width: 1212px;
 }
 
 .addContactModalLeft,
 .editContactModalLeft {
+    width: 467px;
+    padding: 66px 48px;
     background: #2a3647;
     color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.addContactModalLeft {
-    width: 467px;
-    padding: 66px 48px;
-    border-top-left-radius: 24px;
-    border-bottom-left-radius: 24px;
-}
-
-.editContactModalLeft {
-    width: 467px;
-    padding: 66px 48px;
     border-top-left-radius: 16px;
     border-bottom-left-radius: 16px;
 }
@@ -74,12 +51,6 @@
     margin: 12px 0 16px 0;
 }
 
-.addContactSubtitle {
-    font-size: 27px;
-    font-weight: 400;
-    margin-bottom: 16px;
-}
-
 .addContactUnderline,
 .editContactUnderline {
     width: 90px;
@@ -94,49 +65,27 @@
     position: relative;
     background: #ffffff;
     display: flex;
-}
-
-.addContactModalRight {
     padding: 64px;
     border-top-right-radius: 16px;
     border-bottom-right-radius: 16px;
 }
-
-.editContactModalRight {
-    padding: 64px;
-    border-top-right-radius: 16px;
-    border-bottom-right-radius: 16px;
-}
-
 
 .addContactClose,
 .editContactClose {
     position: absolute;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #2a3647;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.addContactClose,
-.editContactClose {
     top: 24px;
     right: 24px;
     width: 32px;
     height: 32px;
+    background: none;
+    border: none;
     border-radius: 50%;
-    font-size: 32px;
+    cursor: pointer;
     color: #2a3647;
-}
-
-.addContactFormAvatarPosition {
+    font-size: 32px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 32px;
+    justify-content: center;
 }
 
 .addContactAvatar,
@@ -144,15 +93,11 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
+    background: #D1D1D1;
+    margin-bottom: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.addContactAvatar,
-.editContactAvatar {
-    background: #D1D1D1;
-    margin-bottom: 32px;
 }
 
 .addContactAvatar img,
@@ -165,13 +110,9 @@
 
 .addContactForm,
 .editContactForm {
+    width: 422px;
     display: flex;
     flex-direction: column;
-}
-
-.addContactForm,
-.editContactForm {
-    width: 422px;
     gap: 32px;
 }
 
@@ -211,7 +152,6 @@
     gap: 24px;
     width: 364px;
     height: 57px;
-    justify-content: flex-start;
     margin-top: 16px;
 }
 
@@ -253,19 +193,4 @@
 .addContactCreateBtn:hover,
 .editContactSaveBtn:hover {
     background: #1a2233;
-}
-
-.contactsContentWrapper {
-    display: flex;
-    align-items: flex-start;
-    gap: 40px;
-}
-
-.contactsList {
-    overflow-y: auto;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    margin-top: 32px;
-    padding: 0 8px 8px 0;
 }

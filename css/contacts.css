@@ -21,6 +21,8 @@
     background-color: #f8f9fa;
     overflow: hidden;
     height: 100%;
+    align-items: flex-start;
+    gap: 40px;
 }
 
 .contactsMainContent {
@@ -42,43 +44,8 @@
 }
 
 .pageHeader {
-    margin-bottom: 24px;
-}
-
-.addContactButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background-color: #2a3647;
-    color: #ffffff;
-    border: none;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 352px;
-    height: 56px;
-    padding: 12px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    margin-bottom: 24px;
-}
-
-.addContactButton:hover {
-    background-color: #1a2233;
-}
-
-.addContactButton img {
-    width: 32px;
-    height: 32px;
-}
-
-.addContactButton span {
-    font-weight: 700;
-    font-size: 21px;
-    line-height: 120%;
-}
-
-.pageHeader {
+    position: fixed;
+    top: 133px;
     width: 569px;
     height: 73px;
     display: flex;
@@ -107,10 +74,45 @@
     border: 3px solid #29abe2;
 }
 
+.addContactButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #2a3647;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 352px;
+    height: 56px;
+    padding: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-bottom: 16px;
+}
+
+.addContactButton:hover {
+    background-color: #1a2233;
+}
+
+.addContactButton img {
+    width: 32px;
+    height: 32px;
+}
+
+.addContactButton span {
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 120%;
+}
+
 .contactsList {
     flex: 1;
-    overflow: hidden;
     height: 100%;
+    overflow-y: hidden;
+    border-radius: 10px;
+    padding: 0 8px 8px 0;
 }
 
 .contactsSection {
@@ -129,12 +131,12 @@
 .contactItem {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 8px 0;
+    justify-content: center;
+    gap: 35px;
+    padding: 15px 24px;
     cursor: pointer;
     border-radius: 10px;
     transition: background-color 0.2s ease;
-    margin-bottom: 8px;
 }
 
 .contactItem.selected {
@@ -163,7 +165,8 @@
 
 .contactInfo {
     flex: 1;
-    min-width: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .contactName {
@@ -176,6 +179,31 @@
 
 .contactEmail {
     font-size: 16px;
-    color: #29abe2;
-    line-height: 1.2;
+    color: #007CEE;
+    font-weight: 400;
+}
+
+.alphabetSeparator {
+    padding: 8px 0;
+    margin-bottom: 8px;
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+}
+
+.alphabetLetter {
+    font-size: 20px;
+    font-weight: 400;
+    color: #000000;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    margin-left: 39px;
+}
+
+.alphabetSeparator::after {
+    content: '';
+    display: block;
+    width: 352px;
+    height: 1px;
+    background-color: #d1d1d1;
 }

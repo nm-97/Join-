@@ -1,49 +1,68 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
-    <link rel="stylesheet" href="../css/LogIn.css">
-    <link rel="stylesheet" href="../css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
+    <link rel="stylesheet" href="../css/LogIn.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <script src="../javascript/firebase.js"></script>
     <title>Join</title>
-</head>
+  </head>
 
-<body class="fontStyle">
-
+  <body class="fontStyle">
     <header>
-        <a href="../html/index.html"><img src="../assets/icons/joinlogo_black.png" alt="join_logo"></a>
+      <a href="../html/index.html"
+        ><img src="../assets/icons/joinlogo_black.png" alt="join_logo"
+      /></a>
 
-        <div class="SignUpbtnPosition">
-            <p>Not a Join user?</p>
-            <button class="SignUpbtn" ><a href="../html/signUp.html">Sign Up</a></button>
-        </div>
+      <div class="SignUpbtnPosition">
+        <p>Not a Join user?</p>
+        <button class="SignUpbtn">
+          <a href="../html/signUp.html">Sign Up</a>
+        </button>
+      </div>
     </header>
 
     <main id="LogInMain">
-        <form class="LogInMainContainer">
-            <h2>Log in</h2>
-            <div class="LogInInput inputIcon">
-                <input type="email" id="email" name="email" placeholder="Email" required>
-                <img src="../assets/icons/login/mail.png" alt="mail">
-            </div>
-            <div class="LogInInput inputIcon">
-                <input type="password" id="password" name="password" placeholder="Password" required>
-                <img src="../assets/icons/login/lock.png" alt="lock">
-            </div>
-            <div class="btnPosition">
-                <button class="LogInbtn" #logInButton>Log In</button>
-                <button class="guestLogInButton" onclick="setGuestLogin()" #guestLogInButton>Guest Log in</button>
-            </div>
-        </form>
+      <form class="LogInMainContainer">
+        <h2>Log in</h2>
+        <div class="LogInInput inputIcon">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+            required
+          />
+          <img src="../assets/icons/login/mail.png" alt="mail" />
+        </div>
+        <div class="LogInInput inputIcon">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          <img src="../assets/icons/login/lock.png" alt="lock" />
+        </div>
+        <div class="btnPosition">
+          <button class="LogInbtn" #logInButton>Log In</button>
+          <button
+            class="guestLogInButton"
+            onclick="setGuestLogin()"
+            #guestLogInButton
+          >
+            Guest Log in
+          </button>
+        </div>
+      </form>
     </main>
 
     <footer>
-        <a href="../html/privacyPolicy.html">Privacy Policy</a>
-        <a href="../html/legalNotice.html">Legal Notice</a>
+      <a href="../html/privacyPolicy.html">Privacy Policy</a>
+      <a href="../html/legalNotice.html">Legal Notice</a>
     </footer>
-</body>
-
+  </body>
 </html>
