@@ -97,7 +97,7 @@ function getFloatingContact(contact) {
               <img src="../assets/icons/shared/edit.svg" alt="">
               Edit
             </button>
-            <button onclick="deleteContact('${contact.id}')" class="deleteBtn">
+            <button onclick="deleteContactFromFirebase('${contact.id}')" class="deleteBtn">
               <img src="../assets/icons/shared/delete.svg" alt="">
               Delete
             </button>
@@ -134,14 +134,4 @@ function getContactTemplate(contact) {
 function getAvatarColor(name) {
   const colors = ["#FF8A00", "#9327FF", "#29ABE2", "#FF5EB3", "#6E52FF"];
   return colors[name.charCodeAt(0) % colors.length];
-}
-
-function getSuccessMessageTemplate(params) {
-  return `
-    <div class="successMessage" id="successMessage">
-      <div class="successMessageContent">
-        <img src="../assets/icons/shared/check.svg" class="successIcon" alt="Success">
-        <span class="successText">${params.message}</span>
-      </div>
-    </div>`;
 }
