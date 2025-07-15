@@ -98,3 +98,51 @@ document.addEventListener("DOMContentLoaded", function() {
     initializeBoard();
   }
 });
+
+async function fetchAllContacts() {
+  const response = await fetch(`${firebaseUrl}user /guest /contacts.json`);
+  const data = await response.json();
+  
+  if (!data) return [];
+  
+  const contacts = [];
+  const keys = Object.keys(data);
+  for (let i = 0; i < keys.length; i++) {
+    const id = keys[i];
+    const contact = { id, ...data[id] };
+    contacts.push(contact);
+  }
+  return contacts;
+}
+
+async function addTaskToFirebase(taskData) {
+  const response = await fetch(`${firebaseUrl}user /guest /task.json`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(taskData),
+  });
+  
+  const result = await response.json();
+  return result.name;
+}
+
+async function deleteTaskFromFirebase(taskId) {
+  const response = await fetch(`${firebaseUrl}user /guest /task/${taskId}.json`, {
+    method: "DELETE",
+  });
+  return true;
+}
+
+async function updateTaskInFirebase(taskId, taskData) {
+  const response = await fetch(`${firebaseUrl}user /guest /task/${taskId}.json`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(taskData),
+  });
+  
+  return true;
+}
