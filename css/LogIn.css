@@ -4,14 +4,6 @@
     padding: 0;
 }
 
-.SignUpbtnPosition button a {
-    background-color: #2A3647;
-    color: #FFFFFF;
-    padding: 15px 16px;
-    border-radius: 8px;
-    text-decoration: none;
-}
-
 html,
 body {
     height: 100vh;
@@ -54,49 +46,6 @@ header img {
     margin-left: 77px;
 }
 
-.SignUpbtnPosition {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 36px;
-
-}
-
-.checkboxContainer {
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    font-weight: 400;
-    color: #A8A8A8;
-    margin-top: 20px;
-    margin-left: 90px;
-
-    a {
-        color: #29ABE2;
-        text-decoration: none;
-    }
-
-}
-
-.checkbox {
-    width: 16px;
-    height: 16px;
-    border-radius: 4px;
-    border: 1px solid #2A3647;
-    border-radius: 2px;
-    cursor: pointer;
-    margin-right: 8px;
-}
-
-
-
-.SignUpbtn p {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 120%;
-    margin: 0;
-}
-
 .LogInMainContainer {
     width: 598px;
     height: 630px;
@@ -106,6 +55,10 @@ header img {
     background-color: #FFFFFF;
     opacity: 1;
     position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .LogInMainContainer h2 {
@@ -126,125 +79,6 @@ header img {
     margin-top: 16px;
 }
 
-.btnPosition {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding: 15px 20px;
-    margin-top: 20px;
-}
-
-.SignUpbtn {
-    padding: 15px 16px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 16px;
-    border: none;
-    background-color: #2A3647;
-    color: #FFFFFF;
-    margin-right: 122px;
-}
-
-
-.LogInbtn,
-.guestLogInButton {
-    padding: 15px 20px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 21px;
-    border: none;
-}
-
-.LogInbtn {
-    background-color: #2A3647;
-    color: #FFFFFF;
-}
-
-
-.SignUpbtn:hover,
-.LogInbtn:hover {
-  background-color: #2a3647;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-}
-
-.SignUpbtn:hover,
-.LogInbtn:hover {
-  
-  
-    color: #e5e5e5;
-}
-
-.SignUpbtn:hover,
-.LogInbtn:hover {
-  color: #e5e5e5;
-}
-
-.SignUpbtn:hover,
-.LogInbtn:hover {
-  color: #e5e5e5;
-}
-
-.SignUpbtn:hover,
-.LogInbtn:hover
- {
-  color: #e5e5e5;
-}
-
-.SignUpbtn:hover,
-.LogInbtn:hover
-  {
-  fill: #e5e5e5 !important;
-}
-
-.SignUpbtn:hover,
-.LogInbtn:hover
- {
-  fill: #e5e5e5 !important;
-}
-
-.SignUpbtn:hover,
-.LogInbtn:hover {
-filter: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.2);
-  transition: filter 0.2s;
-}
-
-.guestLogInButton:hover {
-  background-color: #2a3647;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-}
-
-.guestLogInButton:hover {
-  color: #e5e5e5;
-}
-
-.guestLogInButton:hover {
-  color: #e5e5e5;
-}
-.guestLogInButton:hover {
-  color: #e5e5e5;
-}
-
-.guestLogInButton:hover
- {
-  color: #e5e5e5;
-}
-
-.guestLogInButton:hover
-  {
-  fill: #ffffff !important;
-}
-
-.guestLogInButton:hover
- {
-  fill: #ffffff !important;
-}
-
-.Sign.guestLogInButton:hover {
-filter: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.2);
-  transition: filter 0.2s;
-}
-
 form {
     display: flex;
     flex-direction: column;
@@ -254,20 +88,19 @@ form {
 input {
     width: 422px;
     height: 48px;
-    padding: 0 20px;
-    border: 1px solid #A8A8A8;
+    border: 1px solid #D1D1D1;
     border-radius: 10px;
+    font-size: 20px;
+    color: #D1D1D1;
+    font-weight: 400;    
+    padding: 0 70px 0 20px; 
 }
 
 .inputIcon {
     position: relative;
     display: flex;
     align-items: center;
-    width: fit-content;
-}
-
-.inputIcon input {
-    padding-right: 48px;
+    padding-left: 10px;
 }
 
 .inputIcon img {
@@ -278,21 +111,97 @@ input {
     pointer-events: none;
 }
 
-footer {
-    flex-shrink: 0;
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 400;
+    color: #A8A8A8;
+}
+
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 400;
+    color: #A8A8A8;
+    margin-top: 20px;
+}
+
+.checkboxContainer a {
+    color: #29ABE2;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+
+}
+
+.checkbox {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 2px solid #2A3647;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.btnPosition,
+.SignUpbtnPosition {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
-    width: 100vw;
+    gap: 10px;
+    padding: 15px 20px;
+    margin-top: 20px;
 }
 
-footer a {
+.SignUpbtnPosition {
+    gap: 36px;
+}
+
+.SignUpbtn,
+.LogInbtn {
+    padding: 15px 24px;
+    border-radius: 8px;
+    font-weight: 700;
     font-size: 16px;
-    font-weight: 400;
-    line-height: 120%;
-    color: #A8A8A8;
-    margin: 0 10px;
+    border: none;
+    background-color: #2A3647;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.LogInbtn {
+    padding: 15px 20px;
+    font-size: 21px;
+}
+
+.guestLogInButton {
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 21px;
+    border: none;
+    cursor: pointer;
+}
+
+.SignUpbtn:hover,
+.LogInbtn:hover,
+.guestLogInButton:hover {
+    background-color: #2a3647;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    color: #e5e5e5;
+    filter: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.2);
+    transition: filter 0.2s;
+}
+
+.SignUpbtnPosition button a {
+    background-color: #2A3647;
+    color: #FFFFFF;
+    padding: 15px 24px;
+    border-radius: 8px;
+    text-decoration: none;
 }
 
 .backBtn {
@@ -318,4 +227,23 @@ footer a {
 .backBtn img {
     width: 24px;
     height: 24px;
+}
+
+footer {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100vw;
+}
+
+footer a {
+    gap: 8px;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 120%;
+    color: #A8A8A8;
+    text-decoration: none;
 }

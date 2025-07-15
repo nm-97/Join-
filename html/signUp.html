@@ -22,7 +22,7 @@
     <main>
         <form class="LogInMainContainer" onsubmit="createUser(event)">
             <h2>Sign Up</h2>
-            <button class="backBtn";"><a href="../html/index.html"></a><img src="../assets/icons/login/Vector.svg"
+            <button class="backBtn"><a href="../html/index.html"></a><img src="../assets/icons/login/Vector.svg"
                     alt=""></button>
             <div class="LogInInput inputIcon">
                 <input type="Name" id="name" name="name" placeholder="Name" required>
@@ -37,13 +37,17 @@
                 <img src="../assets/icons/login/lock.png" alt="lock">
             </div>
             <div class="LogInInput inputIcon">
+              <div class="checkboxLabel">
                 <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password"
                     required>
-                <img src="../assets/icons/login/lock.png" alt="lock">
+             </div>
+                    <img src="../assets/icons/login/lock.png" alt="lock">
             </div>
             <div class="checkboxContainer">
+              <div class="checkboxLabel">
                 <input class="checkbox" type="checkbox" id="termsCheckbox" required>
                 <label for="termsCheckbox">I accept the <a href="../html/privacyPolicy.html">Privacy Policy</a></label>
+            </div>
             </div>
             <div class="btnPosition">
                 <button type="submit" class="SignUpbtn" id="SignUpButton">Sign Up</button>
