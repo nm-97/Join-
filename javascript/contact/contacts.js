@@ -1,3 +1,13 @@
+const renderContactsList = (contacts) => 
+  contacts.map(contact => getContactTemplate(contact)).join("");
+
+const getContactFormData = (event) => ({
+  name: new FormData(event.target).get("name"),
+  email: new FormData(event.target).get("email"),
+  phone: new FormData(event.target).get("phone"),
+});
+
+
 async function fetchContacts() {
   const response = await fetch(`${firebaseUrl}user /guest /contacts.json`);
   const data = await response.json();
@@ -72,24 +82,14 @@ function renderSuccessMessage() {
   setTimeout(() => {
     const toast = document.getElementById('addContactSuccess');
     if (toast) toast.remove();
-  }, 3000);
+  }, 2000);
 }
-
 
 async function addContactToFirebase(contactData) {
   const response = await postContactData(contactData);
   const result = await response.json();
   return result.name;
 }
-
-const renderContactsList = (contacts) => 
-  contacts.map(contact => getContactTemplate(contact)).join("");
-
-const getContactFormData = (event) => ({
-  name: new FormData(event.target).get("name"),
-  email: new FormData(event.target).get("email"),
-  phone: new FormData(event.target).get("phone"),
-});
 
 async function createContact(event) {
   event.preventDefault();
@@ -107,3 +107,26 @@ const refreshContactsSidebar = async () => {
   const overlay = document.getElementById("contactsList");
   overlay.innerHTML = renderContactsList(contacts);
 };
+
+const pushContactData = async (contactId, contactData) => {
+  return await fetch(`${firebaseUrl}user /guest /contacts/${contactId}.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(contactData),
+  });
+};
+
+async function updateContactInFirebase(contactId, contactData) {
+  const response = await pushContactData(contactId, contactData);
+  return await response.json();
+}
+
+async function updateContact(event, contactId) {
+  event.preventDefault();
+  const contactData = getContactFormData(event);
+  await updateContactInFirebase(contactId, contactData);
+  closeEditContactOverlay();
+  await refreshContactsList();
+  await refreshContactsSidebar();
+  await showFloatingContact(contactId);
+}

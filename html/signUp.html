@@ -7,6 +7,9 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
     <link rel="stylesheet" href="../css/LogIn.css">
     <link rel="stylesheet" href="../css/style.css">
+    <script src="../javascript/firebase.js"></script>
+    <script src="../javascript/signUp.js"></script>
+    <script src="../javascript/template.js"></script>
     <title>Join</title>
 </head>
 
@@ -17,7 +20,7 @@
     </header>
 
     <main>
-        <form class="LogInMainContainer">
+        <form class="LogInMainContainer" onsubmit="createUser(event)">
             <h2>Sign Up</h2>
             <button class="backBtn";"><a href="../html/index.html"></a><img src="../assets/icons/login/Vector.svg"
                     alt=""></button>
@@ -43,7 +46,7 @@
                 <label for="termsCheckbox">I accept the <a href="../html/privacyPolicy.html">Privacy Policy</a></label>
             </div>
             <div class="btnPosition">
-                <button class="SignUpbtn" id="SignUpButton">Sign Up</button>
+                <button type="submit" class="SignUpbtn" id="SignUpButton">Sign Up</button>
             </div>
         </form>
     </main>

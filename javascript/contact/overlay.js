@@ -5,9 +5,10 @@ function showAddContactOverlay() {
   overlay.style.display = "flex";
 }
 
-function showEditContactOverlay() {
+async function showEditContactOverlay(contactId) {
+  const contact = await fetchContactById(contactId);
   const overlay = document.getElementById("editContactOverlay");
-  overlay.innerHTML = getEditContactOverlay();
+  overlay.innerHTML = getEditContactOverlay(contact);
   overlay.style.display = "flex";
 }
 
@@ -24,6 +25,16 @@ async function showFloatingContact(contactId) {
   overlay.innerHTML = getFloatingContact(contact);
   overlay.classList.remove("hide"); 
   overlay.style.display = "block";
+}
+
+function showSuccessMessage(message) {
+  const existingMessage = document.getElementById("successMessage");
+  if (existingMessage) {
+    existingMessage.remove();
+  }
+  renderSuccessMessage(message);
+  const toast = document.getElementById("successMessage");
+  toast.style.display = "block";
 }
 
 function closeOverlay() {
@@ -44,14 +55,4 @@ function closeFloatingOverlay() {
   overlay.style.display = "none";
   overlay.classList.add("hide"); 
   overlay.innerHTML = "";
-}
-
-function showSuccessMessage(message) {
-  const existingMessage = document.getElementById("successMessage");
-  if (existingMessage) {
-    existingMessage.remove();
-  }
-  renderSuccessMessage(message);
-  const toast = document.getElementById("successMessage");
-  toast.style.display = "block";
 }
