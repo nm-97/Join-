@@ -34,10 +34,3 @@ function showSuccessMessage(message) {
   const toast = document.getElementById("successMessage");
   toast.style.display = "block";
 }
-
-async function deleteContactFromFirebase(contactId) {
-  const response = await fetch(`${firebaseUrl}contacts/${contactId}.json`, {
-    method: "DELETE",
-  });
-  return true;
-}

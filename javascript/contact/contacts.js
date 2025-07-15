@@ -72,9 +72,8 @@ function renderSuccessMessage() {
   setTimeout(() => {
     const toast = document.getElementById('addContactSuccess');
     if (toast) toast.remove();
-  }, 3000);
+  }, 2000);
 }
-
 
 async function addContactToFirebase(contactData) {
   const response = await postContactData(contactData);
@@ -107,3 +106,26 @@ const refreshContactsSidebar = async () => {
   const overlay = document.getElementById("contactsList");
   overlay.innerHTML = renderContactsList(contacts);
 };
+
+const pushContactData = async (contactId, contactData) => {
+  return await fetch(`${firebaseUrl}user /guest /contacts/${contactId}.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(contactData),
+  });
+};
+
+async function updateContactInFirebase(contactId, contactData) {
+  const response = await pushContactData(contactId, contactData);
+  return await response.json();
+}
+
+async function updateContact(event, contactId) {
+  event.preventDefault();
+  const contactData = getContactFormData(event);
+  await updateContactInFirebase(contactId, contactData);
+  closeEditContactOverlay();
+  await refreshContactsList();
+  await refreshContactsSidebar();
+  await showFloatingContact(contactId);
+}

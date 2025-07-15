@@ -42,7 +42,7 @@ function getAddContactOverlay(params) {
                     </div>`;
 }
 
-function getEditContactOverlay(params) {
+function getEditContactOverlay(contact) {
   return `<div class="editContactModal">
                     <div class="editContactModalLeft">
                         <img class="editContactLogo" src="../assets/icons/joinlogo.svg" alt="Join Logo">
@@ -57,21 +57,21 @@ function getEditContactOverlay(params) {
                             <div class="editContactAvatar">
                                 <img src="../assets/icons/contacts/person.svg" alt="Avatar">
                             </div>
-                            <form class="editContactForm">
+                            <form class="editContactForm" onsubmit="updateContact(event, '${contact.id}')">
                                 <div class="editContactInputWrapper">
-                                    <input type="text" placeholder="Name" required>
+                                    <input type="text" name="name" placeholder="Name" value="${contact.name}" required>
                                     <img src="../assets/icons/contacts/person.svg" class="inputIcon" alt="">
                                 </div>
                                 <div class="editContactInputWrapper">
-                                    <input type="email" placeholder="Email" required>
+                                    <input type="email" name="email" placeholder="Email" value="${contact.email}" required>
                                     <img src="../assets/icons/contacts/mail.svg" class="inputIcon" alt="">
                                 </div>
                                 <div class="editContactInputWrapper">
-                                    <input type="tel" placeholder="Phone" required>
+                                    <input type="tel" name="phone" placeholder="Phone" value="${contact.phone}" required>
                                     <img src="../assets/icons/contacts/call.svg" class="inputIcon" alt="">
                                 </div>
                                 <div class="editContactBtnRow">
-                                    <button type="button" class="editContactDeleteBtn">Cancel
+                                    <button type="button" class="editContactDeleteBtn" onclick="closeEditContactOverlay()">Cancel
                                         <img src="../assets/contacts/Close.svg" alt=""></button>
                                     <button type="submit" class="editContactSaveBtn">Save
                                         <img src="../assets/icons/add task/check.svg" alt=""></button>
@@ -138,7 +138,7 @@ function getAvatarColor(name) {
 
 function getSuccessContactMessageTemplate(params) {
   return `
-<div class="ntfUpRight ntfMask">Contact Finished</div>`;
+<div id="addContactSuccess" class="ntfcenter  ntfmask">Contact Finished</div>`;
 }
     
 
