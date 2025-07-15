@@ -198,9 +198,20 @@ body {
 }
 .taskFooter {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 10px;
   position: relative;
+}
+.taskFooterTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.taskFooterBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 .progressBar {
   flex: 1;
@@ -222,7 +233,6 @@ body {
 .taskAssignees {
   display: flex;
   gap: 0;
-  margin-left: auto;
 }
 
 .assignee {
@@ -550,7 +560,6 @@ body {
   display: flex;
   justify-content: flex-end;
   gap: 15px;
-  margin-top: 50px;
   padding-top: 30px;
 }
 
