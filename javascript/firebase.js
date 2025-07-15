@@ -25,13 +25,19 @@ function setGuestLogin() {
   window.location.href = "../html/summaryUser.html"; 
 }
 
-function addUser() {
-  let email = document.getElementById("email");
-  let password = document.getElementById("password");
-  user.push({
-    email: email.value,
-    password: password.value,
-    type: "registered"
+function showSuccessMessage(message) {
+  const existingMessage = document.getElementById("successMessage");
+  if (existingMessage) {
+    existingMessage.remove();
+  }
+  renderSuccessMessage(message);
+  const toast = document.getElementById("successMessage");
+  toast.style.display = "block";
+}
+
+async function deleteContactFromFirebase(contactId) {
+  const response = await fetch(`${firebaseUrl}contacts/${contactId}.json`, {
+    method: "DELETE",
   });
-  window.location.href = "../html/index.html";
+  return true;
 }
