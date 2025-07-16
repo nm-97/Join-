@@ -579,3 +579,253 @@ hr {
   background-color: #000;
   margin: 20px 0;
 }
+
+/* overlay add task */
+.overlayAddTask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.overlayContent {
+  background-color: #f5f5f7;
+  border-radius: 30px;
+  width: 90%;
+  max-width: 1100px;
+  height: 65vh;
+  position: relative;
+  overflow-y: auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: #666;
+  padding: 5px;
+  z-index: 1001;
+}
+
+.addTaskH1 {
+  font-weight: 700;
+  font-size: 61px;
+  margin-top: 60px;
+  margin-left: 60px;
+}
+
+.addTaskFormsWrapper {
+  display: flex;
+  gap: 32px;
+  margin: 60px;
+}
+
+.addTaskFormsWrapper form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.addTaskFormsDivider {
+  width: 1px;
+  height: 424px;
+  background: #d1d1d1;
+  margin: 0 24px;
+  align-self: stretch;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.taskPriorityGroup {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.requiredStar {
+  color: #ff0000;
+  font-size: 18px;
+}
+
+.requiredStarText {
+  font-size: 14px;
+  text-align: center;
+}
+
+input,
+textarea,
+select {
+  padding: 12px 21px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  width: 420px;
+  font-size: 16px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #d1d1d1;
+  font-size: 20px;
+}
+
+label {
+  font-size: 20px;
+}
+
+.taskPriorityLabel {
+  font-size: 20px;
+}
+
+.inputIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.inputIcon input {
+  width: 100%;
+  padding-right: 44px;
+}
+
+.inputIcon img {
+  position: absolute;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+#taskDescription {
+  height: 120px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  padding: 18px 16px;
+  font-size: 16px;
+  resize: none;
+  margin-bottom: 10px;
+}
+
+/* Priority Buttons */
+.taskPriorityBtn,
+.taskPriorityBtnOrange {
+  width: 136px;
+  height: 56px;
+  border-radius: 10px;
+  padding: 16px 10px;
+  gap: 8px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-direction: row-reverse;
+  box-shadow: 0px 0px 4px 0px #0000001a;
+  font-size: 20px;
+}
+
+.taskPriorityBtn {
+  background: #ffffff;
+}
+
+.taskPriorityBtnOrange {
+  background: #ffa800;
+}
+
+.taskPriorityBtnOrange img {
+  filter: brightness(0) invert(1);
+}
+
+.taskPriorityBtn img,
+.taskPriorityBtnOrange img {
+  width: 20px;
+  height: auto;
+}
+
+.taskPriorityBtn span,
+.taskPriorityBtnOrange span {
+  margin-right: 8px;
+}
+
+/* Action Buttons */
+.addTaskBtn,
+.cancelTaskBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  height: 56px;
+}
+
+.addTaskBtn {
+  background: #2a3647;
+  color: #ffffff;
+}
+
+.cancelTaskBtn {
+  background: #f6f7f8;
+  color: #2a3647;
+  border: 1px solid #2a3647;
+  width: 110px;
+}
+
+.addTaskBtn img,
+.cancelTaskBtn img {
+  width: 16px;
+  height: auto;
+}
+
+.formActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0 40px 40px 40px;
+  box-sizing: border-box;
+}
+
+.formButtons {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+/* Demo Button */
+.demoBtn {
+  padding: 15px 30px;
+  background-color: #2a3647;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.demoBtn:hover {
+  background-color: #1e2936;
+}
