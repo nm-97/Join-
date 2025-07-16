@@ -394,3 +394,7 @@ function formatDate(dateString) {
   const date = new Date(dateString);
   return date.toLocaleDateString('de-DE');
 }
+
+function getLoadingScreenTemplate() {
+  return `<img src="../assets/icons/joinlogo_black.png" alt="Loading Logo" class="loadingLogo">`;
+}
