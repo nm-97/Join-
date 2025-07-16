@@ -6,7 +6,6 @@
 
 body {
     background-color: rgb(229, 229, 229); 
-    
 }
 
 .pageWrapperLogIn {
@@ -20,38 +19,55 @@ body {
     flex-direction: column;
 }
 
+.logoPageHeader {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px 30px;
+}
+
+.SignUpbtnPosition {
+    margin-left: auto; 
+}
+
+.logoPageHeader {
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+    padding: 20px 30px;
+
+}
+
+.SignUpbtnPosition {
+    margin-left: auto; 
+}
+
+.hide {
+    opacity: 0;
+    display: none;
+}
+
 .mainContent {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
-
-.mainContent img {
-    width: 274px;
-    height: 334.07px;
-    transform: translate(-50%, -50%);
-    animation: logo-fly 900ms forwards;
-    animation-delay: 1s; */
-    }
     
     #loadingScreen {
     position: absolute;
     left: 50%;
     top: 50%; 
     inset: 0;
-    background: rgb(229, 229, 229);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     z-index: 9999;
+    animation: logo-fly 1600ms ease-in-out forwards;
+    margin-top: 80px;
+    margin-left: 77px;
 }
 
 #loadingScreen.hidden {
     display: none;
 }
-
-
 
 @keyframes logo-fly {
     0% {
@@ -71,12 +87,3 @@ body {
     }
 }
 
-/* @keyframes myAnim {
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 1;
-    }
-} */
