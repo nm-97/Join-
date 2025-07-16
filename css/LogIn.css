@@ -156,8 +156,6 @@ input {
     
 }
 
-
-
 .SignUpbtn,
 .LogInbtn {
     padding: 15px 24px;
@@ -199,7 +197,6 @@ input {
     color: #e5e5e5;
     transition: filter 0.2s;
 }
-
 
 .SignUpbtnPosition button a {
     background-color: #2A3647;

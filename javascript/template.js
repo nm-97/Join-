@@ -395,4 +395,3 @@ function formatDate(dateString) {
   return date.toLocaleDateString('de-DE');
 }
 
-}
