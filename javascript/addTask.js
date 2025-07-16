@@ -8,28 +8,42 @@ function initializeAddTask() {
 }
 
 function setupPriorityButtons() {
-  const priorityButtons = document.querySelectorAll('.taskPriorityBtn, .taskPriorityBtnOrange');
+  const urgentBtn = document.getElementById('urgentBtn');
+  const mediumBtn = document.getElementById('mediumBtn');
+  const lowBtn = document.getElementById('lowBtn');
   
-  for (let i = 0; i < priorityButtons.length; i++) {
-    const button = priorityButtons[i];
-    button.onclick = function() {
-      clearPrioritySelection();
-      button.classList.add('selected');
-      selectedPriority = button.querySelector('span').textContent;
-    };
-  }
+  urgentBtn.onclick = function() {
+    clearPrioritySelection();
+    urgentBtn.classList.add('selected');
+    selectedPriority = 'Urgent';
+  };
+  
+  mediumBtn.onclick = function() {
+    clearPrioritySelection();
+    mediumBtn.classList.add('selected');
+    selectedPriority = 'Medium';
+  };
+  
+  lowBtn.onclick = function() {
+    clearPrioritySelection();
+    lowBtn.classList.add('selected');
+    selectedPriority = 'Low';
+  };
 }
 
 function clearPrioritySelection() {
-  const priorityButtons = document.querySelectorAll('.taskPriorityBtn, .taskPriorityBtnOrange');
-  for (let i = 0; i < priorityButtons.length; i++) {
-    priorityButtons[i].classList.remove('selected');
-  }
+  const urgentBtn = document.getElementById('urgentBtn');
+  const mediumBtn = document.getElementById('mediumBtn');
+  const lowBtn = document.getElementById('lowBtn');
+  
+  urgentBtn.classList.remove('selected');
+  mediumBtn.classList.remove('selected');
+  lowBtn.classList.remove('selected');
 }
 
 function setupFormSubmission() {
-  const createButton = document.querySelector('.addTaskBtn');
-  const clearButton = document.querySelector('.cancelTaskBtn');
+  const createButton = document.getElementById('createTaskBtn');
+  const clearButton = document.getElementById('clearTaskBtn');
   
   createButton.onclick = createTask;
   clearButton.onclick = clearForm;
@@ -113,7 +127,7 @@ function validateTaskData(taskData) {
 }
 
 function showTaskCreatedNotification() {
-  const notification = document.querySelector('.ntfbottom');
+  const notification = document.getElementById('taskNotification');
   notification.style.display = 'block';
   
   setTimeout(() => {

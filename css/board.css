@@ -52,6 +52,8 @@ body {
 .boardHeader {
   align-items: center;
   margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
 }
 .boardTitle {
   font-size: 61px;
@@ -233,6 +235,10 @@ body {
 .taskAssignees {
   display: flex;
   gap: 0;
+}
+
+.columnHeader img{
+  cursor: pointer;
 }
 
 .assignee {

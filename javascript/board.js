@@ -44,3 +44,18 @@ function closeEditTaskOverlay() {
   overlay.style.display = "none";
   overlay.innerHTML = "";
 }
+function showAddTaskOverlay() {
+  const overlay = document.getElementById("addTaskOverlay");
+  overlay.innerHTML = getAddTaskOverlay();
+  overlay.style.display = "flex";
+}
+
+function closeOverlay() {
+  const overlay = document.getElementById("addTaskOverlay");
+  overlay.style.display = "none";
+  overlay.innerHTML = "";
+}
+
+function addTaskToColumn(status) {
+  showAddTaskOverlay();
+}
