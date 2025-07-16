@@ -395,3 +395,86 @@ function formatDate(dateString) {
   return date.toLocaleDateString('de-DE');
 }
 
+function getAddTaskOverlay(params = {}) {
+  return `
+        <div class="overlayContent">
+            <button class="closeBtn" onclick="closeOverlay()">&times;</button>
+            
+            <h1 class="addTaskH1">Add Task</h1>
+            
+            <div class="addTaskFormsWrapper">
+                <form>
+                    <div class="formGroup">
+                        <label for="taskTitle">Title <span class="requiredStar">*</span></label>
+                        <input type="text" placeholder="Enter a title" id="taskTitle" name="taskTitle" required>
+                    </div>
+                    <div class="formGroup">
+                        <label for="taskDescription">Description <span class="requiredStar">*</span></label>
+                        <textarea id="taskDescription" placeholder="Enter a description" name="taskDescription" required></textarea>
+                    </div>
+                    <div class="formGroup">
+                        <label for="taskDueDate">Due Date <span class="requiredStar">*</span></label>
+                        <div class="inputIcon">
+                            <input placeholder="dd/mm/yyyy" id="taskDueDate" name="taskDueDate" required>
+                            <img src="../assets/icons/add task/event.svg" alt="">
+                        </div>
+                    </div>
+                </form>
+                
+                <div class="addTaskFormsDivider"></div>
+                
+                <form>
+                    <div class="formGroup">
+                        <label for="taskPriority" class="taskPriorityLabel">Task Priority</label>
+                        <div class="taskPriorityGroup">
+                            <button type="button" class="taskPriorityBtn" id="urgentBtn">
+                                <img src="../assets/icons/shared/urgent.svg" alt="">
+                                <span>Urgent</span>
+                            </button>
+                            <button type="button" class="taskPriorityBtnOrange" id="mediumBtn">
+                                <img src="../assets/icons/shared/medium.svg" alt="">
+                                <span>Medium</span>
+                            </button>
+                            <button type="button" class="taskPriorityBtn" id="lowBtn">
+                                <img src="../assets/icons/shared/low.svg" alt="">
+                                <span>Low</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="formGroup">
+                        <label for="taskAssignee">Assigned to <span class="requiredStar">*</span></label>
+                        <select id="taskAssignee" name="taskAssignee" required>
+                            <option value="" disabled selected hidden>Select contacts to assign</option>
+                        </select>
+                    </div>
+                    <div class="formGroup">
+                        <label for="taskStatus">Category <span class="requiredStar">*</span></label>
+                        <select id="taskStatus" name="taskStatus" required>
+                            <option value="" disabled selected hidden>Select task category</option>
+                            <option value="todo">To Do</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="await-feedback">Await Feedback</option>
+                            <option value="done">Done</option>
+                        </select>
+                    </div>
+                    <div class="formGroup">
+                        <label for="Subtask">Subtask</label>
+                        <input type="text" placeholder="Add new subtask" id="taskSubtask" name="taskSubtask">
+                    </div>
+                    <div class="formActions">
+                        <span class="requiredStarText">*This field is required</span>
+                        <div class="formButtons">
+                            <button type="button" class="cancelTaskBtn" id="clearTaskBtn">
+                                Clear
+                                <img src="../assets/icons/shared/close.svg" alt="cancel icon">
+                            </button>
+                            <button type="button" class="addTaskBtn" id="createTaskBtn">
+                                Create Task
+                                <img src="../assets/icons/add task/check.svg" alt="check icon">
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>`;
+}
