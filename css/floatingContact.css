@@ -1,14 +1,13 @@
 .floatingContactMainContent {
-    flex: 1;
+  margin-top: 70px;
     background-color: #f8f9fa;
     border-radius: 10px;
-    padding: 24px;
-    margin-top: 50px;
+  
+
 }
 
 .floatingContactCard {
     border-radius: 10px;
-    padding: 24px;
     max-width: 600px;
 }
 
@@ -37,9 +36,10 @@
     align-items: center;
     justify-content: center;
     color: white;
+    border: 3px solid #ffffff; 
     font-size: 47px;
-    font-weight: 700;
-    border-radius: 50%;
+    font-weight: 500;
+    border-radius: 70px;
     width: 120px;
     height: 120px;
 }
@@ -50,6 +50,10 @@
     color: #000000;
     display: block;
     gap: 5px;
+}
+
+.floatingContactName  {
+gap: 8px;
 }
 
 .floatingContactActions {
@@ -63,7 +67,7 @@
 .deleteBtn {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 13px;
     background: none;
     border: none;
     cursor: pointer;
@@ -78,14 +82,14 @@
 
 .floatingContactInfo {
     gap: 59px;
-    margin-top: 50px;
+    margin-top: 59px;
 }
 
 .floatingContactInfoLabel {
     font-size: 20px;
     font-weight: 400;
     gap: 22px;
-    margin-bottom: 50px;
+    margin-bottom: 59px;
 }
 
 .floatingContactInfo>div {
@@ -100,6 +104,7 @@
 .floatingContactInfoDetails a {
     font-size: 16px;
     text-decoration: none;
+    color: #007CEE;
 }
 
 .floatingContactInfoDetails span {
@@ -113,4 +118,36 @@
     font-weight: 400;
     color: #000000;
     margin-top: 8px;
+}
+
+@keyframes overlayMoveFromRight {
+
+	0% {
+		opacity: 0;
+		transform: translateX(250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+.editContactOverlay {
+    animation: overlayMoveFromRight 0.2s ease-in-out;
+}
+
+@keyframes editContactOverlayClose {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(250px);
+    }
+}
+
+.editContactOverlay.closing {
+    animation: editContactOverlayClose 0.2s ease-in-out forwards;
 }

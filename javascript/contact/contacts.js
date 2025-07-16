@@ -141,3 +141,8 @@ async function updateContact(event, contactId) {
   await refreshContactsSidebar();
   await showFloatingContact(contactId);
 }
+
+function selectContactItem(id) {
+  document.querySelectorAll('.contactItem').forEach(item => item.classList.remove('selected'));
+  document.getElementById(id).classList.add('selected');
+}

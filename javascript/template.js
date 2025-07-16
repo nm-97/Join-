@@ -135,8 +135,8 @@ function getFloatingContact(contact) {
 function getContactTemplate(contact) {
   const initials = contact.name.charAt(0).toUpperCase();
   const color = getAvatarColor(contact.name);
-  
-  return `<div class="contactItem" onclick="showFloatingContact('${contact.id}')">
+
+  return `<div class="contactItem" onclick="showFloatingContact('${contact.id}'); selectContactItem('${contact.id}');" id="${contact.id}" data-id="${contact.id}">
     <div class="contactAvatar" style="background-color: ${color};">${initials}</div>
     <div class="contactInfo">
       <div class="contactName">${contact.name}</div>
