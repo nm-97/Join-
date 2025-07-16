@@ -35,13 +35,6 @@ function showSuccessMessage(message) {
   toast.style.display = "block";
 }
 
-async function deleteContactFromFirebase(contactId) {
-  const response = await fetch(`${firebaseUrl}contacts/${contactId}.json`, {
-    method: "DELETE",
-  });
-  return true;
-}
-
 async function fetchAllTasks() {
   let response = await fetch(`${firebaseUrl}user/guest /task.json`);
   let data = await response.json();

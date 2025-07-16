@@ -136,19 +136,36 @@
     padding: 15px 24px;
     cursor: pointer;
     border-radius: 10px;
-    transition: background-color 0.2s ease;
+
 }
 
-.contactItem.selected {
+.contactItem:hover .contactName,
+.contactItem:hover  {
+    color: #ffffff;
+}
+
+.contactItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  filter:   brightness(1.0) contrast(1.0);
+    background-color: #2a3647;
+    transition: color 0.2s ease;
+    color: #ffffff;
+}
+
+.contactItem.selected  {
     background-color: #2a3647;
     color: #ffffff;
-    padding-left: 8px;
-    padding-right: 8px;
 }
 
-.contactItem.selected .contactEmail {
+.contactItem.selected .contactName {
     color: #ffffff;
 }
+
+.contactItem.selected .contactAvatar {
+    border: 2px solid #ffffff; 
+}
+
 
 .contactAvatar {
     width: 42px;

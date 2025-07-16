@@ -45,9 +45,13 @@ function closeOverlay() {
 }
 
 function closeEditContactOverlay() {
-  const overlay = document.getElementById("editContactOverlay");
-  overlay.style.display = "none";
-  overlay.innerHTML = "";
+    const overlay = document.querySelector('.editContactOverlay');
+    if (overlay) {
+        overlay.classList.add('closing');
+        setTimeout(() => {
+            overlay.remove();
+        }, 200); 
+    }
 }
 
 function closeFloatingOverlay() {
