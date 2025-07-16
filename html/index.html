@@ -6,63 +6,71 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
     <link rel="stylesheet" href="../css/LogIn.css" />
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/LogoPage.css" />
+    <script src="../javascript/template.js" defer></script>
+    <script src="../javascript/loadingscreen.js" defer></script>
     <script src="../javascript/firebase.js"></script>
     <title>Join</title>
   </head>
 
   <body class="fontStyle">
-    <header>
-      <a href="../html/index.html"
-        ><img src="../assets/icons/joinlogo_black.png" alt="join_logo"
-      /></a>
+    <div class="pageWrapperLogIn">
+      <header>
+        <a href="../html/index.html"
+          ><img
+            id="loadingScreen"
+            src="../assets/icons/joinlogo_black.png"
+            alt="join_logo"
+        /></a>
 
-      <div class="SignUpbtnPosition">
-        <p>Not a Join user?</p>
-        <button class="SignUpbtn">
-          <a href="../html/signUp.html">Sign Up</a>
-        </button>
-      </div>
-    </header>
-
-    <main id="LogInMain">
-      <form class="LogInMainContainer">
-        <h2>Log in</h2>
-        <div class="LogInInput inputIcon">
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email"
-            required
-          />
-          <img src="../assets/icons/login/mail.png" alt="mail" />
-        </div>
-        <div class="LogInInput inputIcon">
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password"
-            required
-          />
-          <img src="../assets/icons/login/lock.png" alt="lock" />
-        </div>
-        <div class="btnPosition">
-          <button class="LogInbtn" #logInButton>Log In</button>
-          <button
-            class="guestLogInButton"
-            onclick="setGuestLogin()"
-            #guestLogInButton
-          >
-            Guest Log in
+        <div class="SignUpbtnPosition">
+          <p>Not a Join user?</p>
+          <button class="SignUpbtn">
+            <a href="../html/signUp.html">Sign Up</a>
           </button>
         </div>
-      </form>
-    </main>
+      </header>
 
-    <footer>
-      <a href="../html/privacyPolicy.html">Privacy Policy</a>
-      <a href="../html/legalNotice.html">Legal Notice</a>
-    </footer>
+      <main id="LogInMain">
+        <form class="LogInMainContainer">
+          <h2>Log in</h2>
+          <div class="LogInInput inputIcon">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email"
+              required
+            />
+            <img src="../assets/icons/login/mail.png" alt="mail" />
+          </div>
+          <div class="LogInInput inputIcon">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+            <img src="../assets/icons/login/lock.png" alt="lock" />
+          </div>
+          <div class="btnPosition">
+            <button class="LogInbtn" #logInButton>Log In</button>
+            <button
+              class="guestLogInButton"
+              onclick="setGuestLogin()"
+              #guestLogInButton
+            >
+              Guest Log in
+            </button>
+          </div>
+        </form>
+      </main>
+
+      <footer>
+        <a href="../html/privacyPolicy.html">Privacy Policy</a>
+        <a href="../html/legalNotice.html">Legal Notice</a>
+      </footer>
+    </div>
   </body>
 </html>
