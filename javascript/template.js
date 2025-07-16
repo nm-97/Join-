@@ -394,6 +394,7 @@ function formatDate(dateString) {
   const date = new Date(dateString);
   return date.toLocaleDateString('de-DE');
 }
+
 function getAddTaskOverlay(params = {}) {
   return `
         <div class="overlayContent">
@@ -426,15 +427,15 @@ function getAddTaskOverlay(params = {}) {
                     <div class="formGroup">
                         <label for="taskPriority" class="taskPriorityLabel">Task Priority</label>
                         <div class="taskPriorityGroup">
-                            <button type="button" class="taskPriorityBtn">
+                            <button type="button" class="taskPriorityBtn" id="urgentBtn">
                                 <img src="../assets/icons/shared/urgent.svg" alt="">
                                 <span>Urgent</span>
                             </button>
-                            <button type="button" class="taskPriorityBtnOrange">
+                            <button type="button" class="taskPriorityBtnOrange" id="mediumBtn">
                                 <img src="../assets/icons/shared/medium.svg" alt="">
                                 <span>Medium</span>
                             </button>
-                            <button type="button" class="taskPriorityBtn">
+                            <button type="button" class="taskPriorityBtn" id="lowBtn">
                                 <img src="../assets/icons/shared/low.svg" alt="">
                                 <span>Low</span>
                             </button>
@@ -444,9 +445,6 @@ function getAddTaskOverlay(params = {}) {
                         <label for="taskAssignee">Assigned to <span class="requiredStar">*</span></label>
                         <select id="taskAssignee" name="taskAssignee" required>
                             <option value="" disabled selected hidden>Select contacts to assign</option>
-                            <option value="user1">User 1</option>
-                            <option value="user2">User 2</option>
-                            <option value="user3">User 3</option>
                         </select>
                     </div>
                     <div class="formGroup">
@@ -461,16 +459,16 @@ function getAddTaskOverlay(params = {}) {
                     </div>
                     <div class="formGroup">
                         <label for="Subtask">Subtask</label>
-                        <input type="text" placeholder="Add new subtask" id="taskSubtask" name="taskSubtask" multiple>
+                        <input type="text" placeholder="Add new subtask" id="taskSubtask" name="taskSubtask">
                     </div>
                     <div class="formActions">
                         <span class="requiredStarText">*This field is required</span>
                         <div class="formButtons">
-                            <button type="button" class="cancelTaskBtn">
+                            <button type="button" class="cancelTaskBtn" id="clearTaskBtn">
                                 Clear
                                 <img src="../assets/icons/shared/close.svg" alt="cancel icon">
                             </button>
-                            <button type="button" class="addTaskBtn">
+                            <button type="button" class="addTaskBtn" id="createTaskBtn">
                                 Create Task
                                 <img src="../assets/icons/add task/check.svg" alt="check icon">
                             </button>

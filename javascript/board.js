@@ -44,10 +44,40 @@ function closeEditTaskOverlay() {
   overlay.style.display = "none";
   overlay.innerHTML = "";
 }
+
 function showAddTaskOverlay() {
   const overlay = document.getElementById("addTaskOverlay");
   overlay.innerHTML = getAddTaskOverlay();
   overlay.style.display = "flex";
+
+  initializeOverlayAddTask();
+}
+
+function initializeOverlayAddTask() {
+  setupPriorityButtons();
+  setupOverlayFormSubmission();
+  loadContacts();
+}
+
+function setupOverlayFormSubmission() {
+  const createButton = document.getElementById('createTaskBtn');
+  const clearButton = document.getElementById('clearTaskBtn');
+  
+  createButton.onclick = createOverlayTask;
+  clearButton.onclick = clearForm;
+}
+
+async function createOverlayTask() {
+  const taskData = getFormData();
+  
+  if (!validateTaskData(taskData)) {
+    return;
+  }
+  
+  await addTaskToFirebase(taskData);
+  clearForm();
+  closeOverlay();
+  await refreshBoard();
 }
 
 function closeOverlay() {
