@@ -238,10 +238,10 @@ async function updateTaskInFirebase(taskId, taskData) {
 }
 
 function changeColorBasedOnPriority(priority) {
-  const colors = {
-    "Urgent": "#FF0000",
-    "Medium": "#FFA500",
-    "Low": "#008000"
+  const classes = {
+    "Urgent": "taskPriorityBtnUrgentSelected",
+    "Medium": "taskPriorityBtnMediumSelected", 
+    "Low": "taskPriorityBtnLowSelected"
   };
-  return colors[priority] || "#000000"; 
+  return classes[priority] || ""; 
 }
