@@ -1,4 +1,4 @@
-function closeOverlay() {
+function closeAddContactOverlay() {
   const overlay = document.getElementById("addContactOverlay");
   overlay.style.display = "none";
   const modal = overlay.querySelector(".addContactModal");
@@ -17,7 +17,7 @@ function showSuccessMessage(message) {
   if (existingMessage) {
     existingMessage.remove();
   }
-  renderSuccessMessage(message);
+  renderContactSuccessMessage(message);
   const toast = document.getElementById("successMessage");
   toast.style.display = "block";
 }

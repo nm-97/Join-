@@ -23,7 +23,7 @@ function getAddContactOverlay(params) {
                             <div class="addContactUnderline"></div>
                         </div>
                         <div class="addContactModalRight">
-                            <button class="addContactClose" onclick="closeOverlay()">
+                            <button class="addContactClose" onclick="closeAddContactOverlay()">
                                 <img src="../assets/icons/shared/close.svg" alt="">
                             </button>
                             <div class="addContactFormAvatarPosition">
@@ -44,7 +44,7 @@ function getAddContactOverlay(params) {
                                         <img src="../assets/icons/contacts/call.svg" class="inputIcon" alt="">
                                     </div>
                                     <div class="addContactBtnRow">
-                                        <button type="button" class="addContactCancelBtn" onclick="closeOverlay()">Cancel
+                                        <button type="button" class="addContactCancelBtn" onclick="closeAddContactOverlay()">Cancel
                                             <img src="../assets/icons/shared/close.svg" alt=""></button>
                                         <button type="submit" class="addContactCreateBtn">Create contact
                                             <img src="../assets/icons/add task/check.svg" alt=""></button>
@@ -398,7 +398,7 @@ function formatDate(dateString) {
 function getAddTaskOverlay(params = {}) {
   return `
         <div class="overlayContent">
-            <button class="closeBtn" onclick="closeOverlay()">&times;</button>
+            <button class="closeBtn" onclick="closeAddTaskOverlay()">&times;</button>
             
             <h1 class="addTaskH1">Add Task</h1>
             

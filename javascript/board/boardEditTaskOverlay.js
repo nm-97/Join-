@@ -5,12 +5,6 @@ function showEditTaskOverlay(task) {
   overlay.style.display = "flex";
 }
 
-// function showEditTaskOverlay(task) {
-//   const overlay = document.getElementById("editTaskOverlay");
-//   overlay.innerHTML = getEditTaskOverlay(task);
-//   overlay.style.display = "flex";
-// }
-
 function closeEditTaskOverlay() {
   const overlay = document.getElementById("editTaskOverlay");
   overlay.classList.add("hidden");

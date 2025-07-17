@@ -8,15 +8,10 @@ function initializeAddTask() {
 }
 
 function setupPriorityButtons() {
-  console.log('setupPriorityButtons wird aufgerufen');
   const urgentBtn = document.getElementById('urgentBtn');
   const mediumBtn = document.getElementById('mediumBtn');
   const lowBtn = document.getElementById('lowBtn');
-  
-  console.log('Buttons gefunden:', urgentBtn, mediumBtn, lowBtn);
-  
-  if (!urgentBtn || !mediumBtn || !lowBtn) {
-    console.error('Buttons nicht gefunden!');
+    if (!urgentBtn || !mediumBtn || !lowBtn) {
     return;
   }
   
@@ -68,14 +63,22 @@ function clearPrioritySelection() {
 function setupFormSubmission() {
   const createButton = document.getElementById('createTaskBtn');
   const clearButton = document.getElementById('clearTaskBtn');
+  
+  if (!createButton || !clearButton) {
+    console.error('Form buttons nicht gefunden:', createButton, clearButton);
+    return;
+  }
+  
   createButton.onclick = createTask;
   clearButton.onclick = clearForm;
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  setTimeout(() => {
-    initializeAddTask(); 
-  }, 100);
+  if (window.location.pathname.includes("addTask.html")) {
+    setTimeout(() => {
+      initializeAddTask(); 
+    }, 200);
+  }
 });
 
 async function loadContacts() {
@@ -165,27 +168,16 @@ function clearForm() {
   selectedPriority = "Medium";
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  if (window.location.pathname.includes("addTask.html")) {
-    initializeAddTask();
-  }
-});
-
 async function updateTask(event, taskId) {
   event.preventDefault();
   const taskData = getFormData();          
   if (!validateTaskData(taskData)) {       
     return;
   }
-  await updateTaskInFirebase(taskData, taskId);
+  await updateTaskInFirebase(taskId, taskData);
   closeEditTaskOverlay();
   await refreshBoard();
   showTaskUpdatedNotification();           
-}
-
-async function updateTaskInFirebase(taskData, taskId) {
-  const response = await pushTaskData(taskData, taskId);
-  return await response.json();
 }
 
 const pushTaskData = async (taskData, taskId) => {

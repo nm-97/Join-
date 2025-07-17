@@ -103,7 +103,7 @@ const postContactData = async (contactData) => {
   });
 };
 
-function renderSuccessMessage() {
+function renderContactSuccessMessage() {
   document.body.insertAdjacentHTML('beforeend', getSuccessContactMessageTemplate());
 
   setTimeout(() => {
@@ -122,10 +122,10 @@ async function createContact(event) {
   event.preventDefault();
   const contactData = getContactFormData(event);
   await addContactToFirebase(contactData);
-  closeOverlay();
+  closeAddContactOverlay();
   await refreshContactsSidebar();
       setTimeout(() => {
-    renderSuccessMessage();
+    renderContactSuccessMessage();
   }, 500);
 }
 

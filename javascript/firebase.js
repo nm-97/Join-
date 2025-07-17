@@ -36,7 +36,7 @@ async function createUser(event) {
     const UserData = getUserFormData(event);
     await addUserToFirebase(UserData);
     setTimeout(() => {
-        renderSuccessMessage();
+        renderSignUpSuccessMessage();
     }, 500);
 }
 
@@ -54,7 +54,7 @@ async function addUserToFirebase(UserData) {
   return result.name;
 }
 
-function renderSuccessMessage() {
+function renderSignUpSuccessMessage() {
   document.body.insertAdjacentHTML('beforeend', getSuccessSignUpMessageTempalte());
 
   setTimeout(() => {
