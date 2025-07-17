@@ -1,0 +1,165 @@
+/* Saubere Formatierung für Legal-Seiten ohne Farben */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  background-color: #e5e5e5;
+  min-height: 100vh;
+  color: #333;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+  background: #f6F7F8;
+}
+
+.contentWrapper {
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px;
+  line-height: 1.6;
+}
+
+/* Titel-Styling */
+.pageTitle {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #333;
+  padding-bottom: 16px;
+  text-align: left;
+}
+
+/* Überschriften */
+.pageHeading, h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-top: 48px;
+  margin-bottom: 20px;
+  color: #333;
+  padding-left: 0;
+}
+
+h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  color: #444;
+}
+
+/* Paragraphen */
+.pageParagraph, p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  text-align: left;
+  color: #555;
+}
+
+/* Listen */
+.pageList, ul {
+  padding-left: 28px;
+  margin-bottom: 20px;
+}
+
+.pageList li, ul li {
+  margin-bottom: 12px;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Links */
+a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #555;
+  text-decoration: underline;
+}
+
+.privacyIndexLink {
+  font-weight: 500;
+}
+
+/* Inhaltsverzeichnis-Styling */
+.pageList:first-of-type {
+  padding: 24px 28px;
+  margin: 32px 0;
+}
+
+/* Adress-Styling */
+address {
+  font-style: normal;
+  line-height: 1.7;
+  margin-bottom: 24px;
+  font-size: 16px;
+  padding: 0;
+  text-align: left;
+}
+
+/* Hervorgehobene Bereiche */
+strong {
+  color: #333;
+  font-weight: 600;
+}
+
+/* Stand-Angabe */
+.privacyStand {
+  font-style: italic;
+  color: #777;
+  margin-bottom: 32px;
+  text-align: left;
+  border-top: 1px solid #eee;
+  padding-top: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 20px;
+  }
+  
+  .contentWrapper {
+    padding: 20px;
+    margin: 0;
+  }
+  
+  .pageTitle {
+    font-size: 36px;
+  }
+  
+  .pageHeading, h2 {
+    font-size: 24px;
+    margin-top: 32px;
+  }
+  
+  h3 {
+    font-size: 20px;
+  }
+}
+
+/* Verbesserter Kontrast für bessere Lesbarkeit */
+.contentWrapper p,
+.contentWrapper li {
+  color: #444;
+}
+
+/* Spezieller Stil für Haftungshinweise und wichtige Bereiche */
+div > strong {
+  display: block;
+  margin-top: 32px;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
