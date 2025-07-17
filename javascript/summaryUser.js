@@ -105,4 +105,39 @@ document.addEventListener('DOMContentLoaded', async () => {
     await showCountInSummary();
 });
 
+function showLocalTimeFormUser() {
+    const hour = new Date().getHours();
+    
+    let greeting;
+    if (hour < 8) greeting = "Good evening,";
+    else if (hour < 12) greeting = "Good morning,";
+    else if (hour < 18) greeting = "Good afternoon,";
+    else greeting = "Good evening,";
+    const welcomeElement = document.getElementById('welcomeText');
+    if (welcomeElement) {
+        welcomeElement.textContent = greeting;
+    }
+    return greeting;
+}
 
+document.addEventListener('DOMContentLoaded', async () => {
+    await showCountInSummary();
+    showLocalTimeFormUser();
+    await getUserName(); 
+});
+
+async function getUserName() {
+    const user = await getCurrentUser();
+    let displayName = "User"; 
+    if (user.type === 'guest') {
+        displayName = "Guest";
+    }
+    else if (user.type === 'registered') {
+        displayName = user.name || "User";
+    }
+    const userNameElement = document.getElementById('userName');
+    if (userNameElement) {
+        userNameElement.textContent = displayName;
+    }
+    return displayName;
+}
