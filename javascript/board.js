@@ -89,3 +89,9 @@ function closeOverlay() {
 function addTaskToColumn(status) {
   showAddTaskOverlay();
 }
+
+function showEditTaskOverlay(task) {
+  const overlay = document.getElementById("editTaskOverlay");
+  overlay.innerHTML = getEditTaskOverlay(task);
+  overlay.style.display = "flex";
+}
