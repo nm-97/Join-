@@ -101,7 +101,6 @@ async function createTask() {
   showTaskCreatedNotification();
   clearForm();
 }
-
 function getFormData() {
   return {
     title: document.getElementById('taskTitle').value,
@@ -109,16 +108,21 @@ function getFormData() {
     dueDate: document.getElementById('taskDueDate').value,
     taskPriority: selectedPriority,
     assignedTo: document.getElementById('taskAssignee').value,
-    Category: mapCategoryToFirebase(document.getElementById('taskStatus').value)
+    Category: mapCategoryToFirebase(document.getElementById('taskStatus').value),
+    Status: 'toDo'  
   };
 }
-
-function mapCategoryToFirebase(category) {
-  const categoryMap = {
-    'technicalTask': 'Technical Task',
-    'userStory': 'User Story',
+function mapApiTaskToTemplate(data) {
+  return {
+    id: data.id || null,
+    Category: data.Category || "Technical Task",
+    Status: data.Status || "toDo",                
+    assignedTo: data.assignedTo || "",
+    description: data.description || "",
+    dueDate: data.dueDate || "",
+    taskPriority: data.taskPriority || "Medium",
+    title: data.title || "Untitled Task"
   };
-  return categoryMap[category] || 'toDo';
 }
 
 function validateTaskData(taskData) {

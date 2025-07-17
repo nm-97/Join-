@@ -181,10 +181,10 @@ function getBoardTemplate(tasks = []) {
       <div class="boardColumn">
         <div class="columnHeader">
           <h2 class="columnTitle">Await feedback</h2>
-          <img src="../assets/icons/board/plus.svg" alt="" onclick="addTaskToColumn('Urgent')">
+          <img src="../assets/icons/board/plus.svg" alt="" onclick="addTaskToColumn('awaitFeedback')">
         </div>
         <div class="columnContent">
-          ${renderTasksForColumn(tasks, 'awaitingFeedback')}
+          ${renderTasksForColumn(tasks, 'awaitFeedback')}
         </div>
       </div>
 
@@ -286,9 +286,9 @@ function renderSubtasks(subtasks, taskId) {
   }
   return html;
 }
+ffunction renderTasksForColumn(tasks, status) {
 
-function renderTasksForColumn(tasks, status) {
-  const filteredTasks = tasks.filter(task => task.Category === status);
+  const filteredTasks = tasks.filter(task => task.Status === status);
   
   if (filteredTasks.length === 0) {
     return getEmptyStateTemplate(status);
