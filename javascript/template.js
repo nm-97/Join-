@@ -184,7 +184,7 @@ function getBoardTemplate(tasks = []) {
           <img src="../assets/icons/board/plus.svg" alt="" onclick="addTaskToColumn('Urgent')">
         </div>
         <div class="columnContent">
-          ${renderTasksForColumn(tasks, 'Urgent')}
+          ${renderTasksForColumn(tasks, 'awaitingFeedback')}
         </div>
       </div>
 

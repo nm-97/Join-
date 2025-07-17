@@ -1,149 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
-    <link rel="stylesheet" href="../css/summaryUser.css">
-    <link rel="stylesheet" href="../css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
+    <link rel="stylesheet" href="../css/summaryUser.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <script src="../javascript/ui.js" defer></script>
+    <script src="../javascript/summaryUser.js"></script>
     <script src="../javascript/firebase.js" defer></script>
     <title>Summary</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="pageWrapper">
-        <div class="sidebar">
-            <div class="logo">
-                <img class="joinLogo" src="../assets/icons/joinlogo.svg" alt="">
-            </div>
-
-            <div class="navigation">
-                <div onclick="location.href='../html/summaryUser.html'" class="navItem active">
-                    <span class="navIcon iconDashboard"></span>
-                    <img src="../assets/icons/summary and sideboard/summary.svg" alt="">
-                    <span>Summary</span>
-                </div>
-                <div onclick="location.href='../html/addTask.html'" class="navItem">
-                    <span class="navIcon iconTask"></span>
-                    <img src="../assets/icons/summary and sideboard/addtask.svg" alt="">
-                    <span>Add Task</span>
-                </div>
-                <div onclick="location.href='../html/board.html'" class="navItem">
-                    <span class="navIcon iconBoard"></span>
-                    <img src="../assets/icons/summary and sideboard/board.svg" alt="">
-                    <span>Board</span>
-                </div>
-                <div onclick="location.href='../html/contacts.html'" class="navItem">
-                    <span class="navIcon iconContacts"></span>
-                    <img src="../assets/icons/summary and sideboard/contact.svg" alt="">
-                    <span>Contacts</span>
-                </div>
-            </div>
-
-            <div class="footerLinks">
-                <a class="footerLink" href="./privacyPolicy.html">Privacy Policy</a>
-                <a class="footerLink" href="./legalNotice.html">Legal Notice</a>
-            </div>
+      <div class="sidebar">
+        <div class="logo">
+          <img class="joinLogo" src="../assets/icons/joinlogo.svg" alt="" />
         </div>
 
-        <div class="mainContainer">
-            <div class="header">
-                <div class="headerTitle">Kanban Project Management Tool</div>
-                <div class="headerActions">
-                    <div><img src="../assets/icons/summary and sideboard/help.svg" alt=""></div>
-                    <div class="userAvatar" onclick="toggleUserMenu()">SM</div>
-                        <div class="dropdown none" id="usermenu">
-                        <a class="menuItem" href="./legalNotice.html">Legal Notice</a>
-                        <a class="menuItem" href="./privacyPolicy.html">Privacy Policy</a>
-                        <a class="menuItem" href="./LogIn.html">Log out</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mainContent">
-                <div class="cardSection">
-                    <div class="pageHeaderWrapper">
-                        <div class="pageHeader">
-                            <h1 class="pageTitle">Join 360</h1>
-                            <div class="pageSubtitle">Key Matrics at a Glance</div>
-                        </div>
-                    </div>
-                    <div class="cardRowsWrapper">
-                        <div class="cardRow topRow">
-                            <div class="card">
-                                <div class="cardMainContent">
-                                    <div class="cardIcon">
-                                        <img src="../assets/icons/summary and sideboard/pencil.svg" alt="">
-                                    </div>
-                                    <div class="cardValueLabelGroup">
-                                        <div class="cardValue">1</div>
-                                        <div class="cardLabel">To-do</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <div class="cardMainContent">
-                                    <div class="cardIcon">
-                                        <img src="../assets/icons/summary and sideboard/check.svg" alt="">
-                                    </div>
-                                    <div class="cardValueLabelGroup">
-                                        <div class="cardValue">1</div>
-                                        <div class="cardLabel">Done</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="cardRow">
-                            <div class="card combinedCard">
-                                <div class="cardContent">
-                                    <div class="urgentSection">
-                                        <div class="cardMainContent">
-                                            <div class="urgentCardIcon">
-                                                <img src="../assets/icons/summary and sideboard/urgent.svg" alt="">
-                                            </div>
-                                            <div class="cardValueLabelGroup">
-                                                <div class="cardValue">1</div>
-                                                <div class="cardLabel">Urgent</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="divider"></div>
-                                    <div class="dateSection">
-                                        <div class="dateTitle">October 16, 2022</div>
-                                        <div class="dateSubtitle">Upcoming Deadline</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="cardRow bottomRow">
-                            <div class="card largeCard">
-                                <div class="cardValue">5</div>
-                                <div class="cardLabel">Tasks in<br>Board</div>
-                            </div>
-
-                            <div class="card largeCard">
-                                <div class="cardValue">2</div>
-                                <div class="cardLabel">Tasks in<br>Progress</div>
-                            </div>
-
-                            <div class="card largeCard">
-                                <div class="cardValue">2</div>
-                                <div class="cardLabel">Awaiting<br>Feedback</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="welcomeSection welcomeSectionSplit">
-                    <div class="welcomeText">Good morning,</div>
-                    <div class="userName">Sofia Müller</div>
-                </div>
-            </div>
+        <div class="navigation">
+          <div
+            onclick="location.href='../html/summaryUser.html'"
+            class="navItem active"
+          >
+            <span class="navIcon iconDashboard"></span>
+            <img
+              src="../assets/icons/summary and sideboard/summary.svg"
+              alt=""
+            />
+            <span>Summary</span>
+          </div>
+          <div onclick="location.href='../html/addTask.html'" class="navItem">
+            <span class="navIcon iconTask"></span>
+            <img
+              src="../assets/icons/summary and sideboard/addtask.svg"
+              alt=""
+            />
+            <span>Add Task</span>
+          </div>
+          <div onclick="location.href='../html/board.html'" class="navItem">
+            <span class="navIcon iconBoard"></span>
+            <img src="../assets/icons/summary and sideboard/board.svg" alt="" />
+            <span>Board</span>
+          </div>
+          <div onclick="location.href='../html/contacts.html'" class="navItem">
+            <span class="navIcon iconContacts"></span>
+            <img
+              src="../assets/icons/summary and sideboard/contact.svg"
+              alt=""
+            />
+            <span>Contacts</span>
+          </div>
         </div>
+
+        <div class="footerLinks">
+          <a class="footerLink" href="./privacyPolicy.html">Privacy Policy</a>
+          <a class="footerLink" href="./legalNotice.html">Legal Notice</a>
+        </div>
+      </div>
+
+      <div class="mainContainer">
+        <div class="header">
+          <div class="headerTitle">Kanban Project Management Tool</div>
+          <div class="headerActions">
+            <div>
+              <img
+                src="../assets/icons/summary and sideboard/help.svg"
+                alt=""
+              />
+            </div>
+            <div class="userAvatar" onclick="toggleUserMenu()">SM</div>
+            <div class="dropdown none" id="usermenu">
+              <a class="menuItem" href="./legalNotice.html">Legal Notice</a>
+              <a class="menuItem" href="./privacyPolicy.html">Privacy Policy</a>
+              <a class="menuItem" href="./LogIn.html">Log out</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mainContent">
+          <div class="cardSection">
+            <div class="pageHeaderWrapper">
+              <div class="pageHeader">
+                <h1 class="pageTitle">Join 360</h1>
+                <div class="pageSubtitle">Key Matrics at a Glance</div>
+              </div>
+            </div>
+            <div class="cardRowsWrapper">
+              <div class="cardRow topRow">
+                <div class="card">
+                  <div class="cardMainContent">
+                    <div class="cardIcon">
+                      <img
+                        src="../assets/icons/summary and sideboard/pencil.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div class="cardValueLabelGroup">
+                      <div class="cardValue" id="todoCounter">1</div>
+                      <div class="cardLabel">To Do</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="cardMainContent">
+                    <div class="cardIcon">
+                      <img
+                        src="../assets/icons/summary and sideboard/check.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div class="cardValueLabelGroup">
+                      <div class="cardValue" id="doneCounter"></div>
+                      <div class="cardLabel">Done</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cardRow">
+                <div class="card combinedCard">
+                  <div class="cardContent">
+                    <div class="urgentSection">
+                      <div class="cardMainContent">
+                        <div class="urgentCardIcon">
+                          <img
+                            src="../assets/icons/summary and sideboard/urgent.svg"
+                            alt=""
+                          />
+                        </div>
+                        <div class="cardValueLabelGroup">
+                          <div class="cardValue" id="highPriorityCounter"></div>
+                          <div class="cardLabel"></div>
+                          <div
+                            class="cardValue"
+                            id="mediumPriorityCounter"
+                          ></div>
+                          <div class="cardLabel"></div>
+                          <div class="cardValue" id="lowPriorityCounter"></div>
+                          <div class="cardLabel"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="dateSection">
+                      <div class="dateTitle" id="dueDateCounter"></div>
+                      <div class="dateSubtitle">Upcoming Deadline</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cardRow bottomRow">
+                <div class="card largeCard">
+                  <div class="cardValue" id="boardCounter">5</div>
+                  <div class="cardLabel">Tasks in<br />Board</div>
+                </div>
+
+                <div class="card largeCard">
+                  <div class="cardValue" id="inProgressCounter"></div>
+                  <div class="cardLabel">Tasks in<br />Progress</div>
+                </div>
+
+                <div class="card largeCard">
+                  <div class="cardValue" id="awaitFeedbackCounter"></div>
+                  <div class="cardLabel">Awaiting<br />Feedback</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="welcomeSection welcomeSectionSplit">
+            <div class="welcomeText">Good morning,</div>
+            <div class="userName">Sofia Müller</div>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
