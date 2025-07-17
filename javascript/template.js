@@ -491,18 +491,18 @@ function getEditTaskOverlay(task) {
         
         <div class="editFormGroup">
           <label class="editLabel">Title</label>
-          <input type="text" id="editTaskTitle" class="editInput">
+          <input type="text" id="editTaskTitle" placeholder="Title" class="editInput">
         </div>
         
         <div class="editFormGroup">
           <label class="editLabel">Description</label>
-          <textarea id="editTaskDescription" class="editTextarea"></textarea>
+          <textarea id="editTaskDescription" placeholder="Description" class="editTextarea"></textarea>
         </div>
         
         <div class="editFormGroup">
           <label class="editLabel">Due date</label>
           <div class="editInputIcon">
-            <input type="text" id="editTaskDueDate" class="editInput">
+            <input type="date" id="editTaskDueDate" placeholder"Due Date" class="editInput">
             <img src="../assets/icons/add task/event.svg" class="editDateIcon">
           </div>
         </div>
@@ -527,7 +527,7 @@ function getEditTaskOverlay(task) {
         
         <div class="editFormGroup">
           <label class="editLabel">Assigned to</label>
-          <select id="editTaskAssignee" class="editInput">
+          <select placeholder="Choose the Contact" id="editTaskAssignee" class="editInput">
             <option value="" disabled hidden>Select contacts to assign</option>
           </select>
           <div class="assignedUsers">
