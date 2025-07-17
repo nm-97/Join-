@@ -107,7 +107,6 @@ label {
   margin-bottom: 10px;
 }
 
-/* Priority Buttons */
 .taskPriorityBtn,
 .taskPriorityBtnOrange {
   width: 136px;
@@ -129,10 +128,6 @@ label {
   background: #ffffff;
 }
 
-.taskPriorityBtnOrange {
-  background: #ffa800;
-}
-
 .taskPriorityBtnOrange img {
   filter: brightness(0) invert(1);
 }
@@ -148,7 +143,6 @@ label {
   margin-right: 8px;
 }
 
-/* Action Buttons */
 .addTaskBtn,
 .cancelTaskBtn {
   display: inline-flex;
@@ -166,7 +160,6 @@ label {
 .addTaskBtn {
   background: #2a3647;
   color: #ffffff;
-  /* width: 183px; */
 }
 
 .cancelTaskBtn {
@@ -200,3 +193,4 @@ label {
   width: 100%;
   justify-content: flex-end;
 }
+

@@ -15,18 +15,22 @@ function setupPriorityButtons() {
   urgentBtn.onclick = function() {
     clearPrioritySelection();
     urgentBtn.classList.add('selected');
+    urgentBtn.style.backgroundColor = changeColorBasedOnPriority('Urgent');
+    urgentBtn.style.color = 'white';
     selectedPriority = 'Urgent';
   };
-  
   mediumBtn.onclick = function() {
     clearPrioritySelection();
     mediumBtn.classList.add('selected');
+    mediumBtn.style.backgroundColor = changeColorBasedOnPriority('Medium');
+    mediumBtn.style.color = 'white';
     selectedPriority = 'Medium';
   };
-  
   lowBtn.onclick = function() {
     clearPrioritySelection();
     lowBtn.classList.add('selected');
+    lowBtn.style.backgroundColor = changeColorBasedOnPriority('Low');
+    lowBtn.style.color = 'white';
     selectedPriority = 'Low';
   };
 }
@@ -39,12 +43,18 @@ function clearPrioritySelection() {
   urgentBtn.classList.remove('selected');
   mediumBtn.classList.remove('selected');
   lowBtn.classList.remove('selected');
+
+  urgentBtn.style.backgroundColor = '';
+  mediumBtn.style.backgroundColor = '';
+  lowBtn.style.backgroundColor = '';
+  urgentBtn.style.color = '';
+  mediumBtn.style.color = '';
+  lowBtn.style.color = '';
 }
 
 function setupFormSubmission() {
   const createButton = document.getElementById('createTaskBtn');
   const clearButton = document.getElementById('clearTaskBtn');
-  
   createButton.onclick = createTask;
   clearButton.onclick = clearForm;
 }
@@ -52,9 +62,7 @@ function setupFormSubmission() {
 async function loadContacts() {
   const contacts = await fetchAllContacts();
   const assigneeSelect = document.getElementById('taskAssignee');
-  
   assigneeSelect.innerHTML = '<option value="" disabled selected hidden>Select contacts to assign</option>';
-  
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
     const option = document.createElement('option');
@@ -66,11 +74,9 @@ async function loadContacts() {
 
 async function createTask() {
   const taskData = getFormData();
-  
   if (!validateTaskData(taskData)) {
     return;
   }
-  
   await addTaskToFirebase(taskData);
   showTaskCreatedNotification();
   clearForm();
@@ -174,14 +180,11 @@ const pushTaskData = async (taskData, taskId) => {
 async function fetchAllTasks() {
   let response = await fetch(`${firebaseUrl}user/guest /task.json`);
   let data = await response.json();
-  
   if (!data) {
     response = await fetch(`${firebaseUrl}user /guest /task.json`);
     data = await response.json();
   }
-  
   if (!data) return [];
-  
   const tasks = [];
   const keys = Object.keys(data);
   for (let i = 0; i < keys.length; i++) {
@@ -212,10 +215,10 @@ async function addTaskToFirebase(taskData) {
     },
     body: JSON.stringify(taskData),
   });
-  
   const result = await response.json();
   return result.name;
 }
+
 async function deleteTaskFromFirebase(taskId) {
   const response = await fetch(`${firebaseUrl}user /guest /task/${taskId}.json`, {
     method: "DELETE",
@@ -231,6 +234,14 @@ async function updateTaskInFirebase(taskId, taskData) {
     },
     body: JSON.stringify(taskData),
   });
-  
   return true;
+}
+
+function changeColorBasedOnPriority(priority) {
+  const colors = {
+    "Urgent": "#FF0000",
+    "Medium": "#FFA500",
+    "Low": "#008000"
+  };
+  return colors[priority] || "#000000"; 
 }
