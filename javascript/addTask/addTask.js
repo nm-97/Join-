@@ -16,10 +16,8 @@ function setupPriorityButtons() {
   }
   
   urgentBtn.addEventListener('click', function() {
-    console.log('Urgent Button geklickt');
     clearPrioritySelection();
     const priorityClass = changeColorBasedOnPriority('Urgent'); 
-    console.log('Füge Klasse hinzu:', priorityClass);
     urgentBtn.classList.add(priorityClass); 
     selectedPriority = 'Urgent';
   });
@@ -117,10 +115,8 @@ function getFormData() {
 
 function mapCategoryToFirebase(category) {
   const categoryMap = {
-    'todo': 'toDo',
-    'in-progress': 'inProgress',
-    'await-feedback': 'awaitFeedback',
-    'done': 'done'
+    'technicalTask': 'Technical Task',
+    'userStory': 'User Story',
   };
   return categoryMap[category] || 'toDo';
 }
@@ -186,6 +182,7 @@ const pushTaskData = async (taskData, taskId) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(taskData),
   });
+  console.log('Task updated successfully:', taskId);
 };
 
 async function fetchAllTasks() {

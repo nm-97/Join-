@@ -354,20 +354,16 @@ function getTaskCardTemplate(task) {
 
 function getCategoryLabel(category) {
   const categoryMap = {
-    'toDo': 'Technical Task',
-    'inProgress': 'User Story', 
-    'Urgent': 'User Story',
-    'done': 'Technical Task'
+    'technicalTask': 'Technical Task',
+    'UserStory': 'User Story', 
   };
   return categoryMap[category] || 'Technical Task';
 }
 
 function getCategoryClass(category) {
   const classMap = {
-    'toDo': 'technicalTask',
-    'inProgress': 'userStory',
-    'Urgent': 'userStory', 
-    'done': 'technicalTask'
+    'technicalTask': 'Technical Task',
+    'UserStory': 'User Story', 
   };
   return classMap[category] || 'technicalTask';
 }
@@ -451,10 +447,9 @@ function getAddTaskOverlay(params = {}) {
                         <label for="taskStatus">Category <span class="requiredStar">*</span></label>
                         <select id="taskStatus" name="taskStatus" required>
                             <option value="" disabled selected hidden>Select task category</option>
-                            <option value="todo">To Do</option>
-                            <option value="in-progress">In Progress</option>
-                            <option value="await-feedback">Await Feedback</option>
-                            <option value="done">Done</option>
+                            <option value="todo">User Story</option>
+                            <option value="in-progress">Technical Task</option>
+                            
                         </select>
                     </div>
                     <div class="formGroup">
