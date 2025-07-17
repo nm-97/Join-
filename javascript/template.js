@@ -530,11 +530,12 @@ function getEditTaskOverlay(task) {
           <select id="editTaskAssignee" class="editInput">
             <option value="" disabled hidden>Select contacts to assign</option>
           </select>
-          <div class="editAvatarGroup">
-            <div class="editAvatar editAvatar1">EM</div>
-            <div class="editAvatar editAvatar2">MB</div>
-            <div class="editAvatar editAvatar3">AM</div>
+          <div class="assignedUsers">
+            <div class="assignedUser">
+            <div class="userAvatar" style="background-color: ${assignedPersonColor};">${assignedPersonInitials}</div>
+            <span>${task.assignedTo || 'Not assigned'}</span>
           </div>
+        </div>
         </div>
         
         <div class="editFormGroup editFormGroupLast">
