@@ -478,3 +478,89 @@ function getAddTaskOverlay(params = {}) {
             </div>
         </div>`;
 }
+
+function getEditTaskOverlay(task) {
+  return `
+    <div class="overlay">
+      <div class="taskDetailModal">
+        <div class="modalHeader">
+          <button class="closeButton" onclick="closeEditTaskOverlay()">
+            <img src="../assets/icons/shared/close.svg" alt="close">
+          </button>
+        </div>
+        
+        <div class="editFormGroup">
+          <label class="editLabel">Title</label>
+          <input type="text" id="editTaskTitle" class="editInput">
+        </div>
+        
+        <div class="editFormGroup">
+          <label class="editLabel">Description</label>
+          <textarea id="editTaskDescription" class="editTextarea"></textarea>
+        </div>
+        
+        <div class="editFormGroup">
+          <label class="editLabel">Due date</label>
+          <div class="editInputIcon">
+            <input type="text" id="editTaskDueDate" class="editInput">
+            <img src="../assets/icons/add task/event.svg" class="editDateIcon">
+          </div>
+        </div>
+        
+        <div class="formGroup">
+          <label for="taskPriority" class="taskPriorityLabel">Task Priority</label>
+            <div class="taskPriorityGroup">
+                <button type="button" class="taskPriorityBtn" id="urgentBtn">
+                <img src="../assets/icons/shared/urgent.svg" alt="">
+                <span>Urgent</span>
+                </button>
+              <button type="button" class="taskPriorityBtnOrange" id="mediumBtn">
+                <img src="../assets/icons/shared/medium.svg" alt="">
+                <span>Medium</span>
+              </button>
+              <button type="button" class="taskPriorityBtn" id="lowBtn">
+                <img src="../assets/icons/shared/low.svg" alt="">
+                <span>Low</span>
+              </button>
+            </div>
+        </div>
+        
+        <div class="editFormGroup">
+          <label class="editLabel">Assigned to</label>
+          <select id="editTaskAssignee" class="editInput">
+            <option value="" disabled hidden>Select contacts to assign</option>
+          </select>
+          <div class="editAvatarGroup">
+            <div class="editAvatar editAvatar1">EM</div>
+            <div class="editAvatar editAvatar2">MB</div>
+            <div class="editAvatar editAvatar3">AM</div>
+          </div>
+        </div>
+        
+        <div class="editFormGroup editFormGroupLast">
+          <label class="editLabel">Subtasks</label>
+          <div class="editSubtaskInput">
+            <input type="text" id="editTaskSubtask" placeholder="Add new subtask" class="editInput">
+            <span class="editSubtaskAdd">+</span>
+          </div>
+          <div class="editSubtaskList">
+            <div class="editSubtaskItem">
+              <span class="editSubtaskBullet"></span>
+              <span>Implement Recipe Recommendation</span>
+            </div>
+            <div class="editSubtaskItem">
+              <span class="editSubtaskBullet"></span>
+              <span>Start Page Layout</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="editButtonContainer">
+          <button class="editOkBtn" id="editSaveBtn">
+            Ok
+            <img src="../assets/icons/add task/check.svg">
+          </button>
+        </div>
+      </div>
+    </div>`;
+}

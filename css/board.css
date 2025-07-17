@@ -835,3 +835,175 @@ label {
 .demoBtn:hover {
   background-color: #1e2936;
 }
+
+.editFormGroup {
+  margin-bottom: 25px;
+}
+
+.editFormGroupLast {
+  margin-bottom: 40px;
+}
+
+.editLabel {
+  font-size: 21px;
+  color: #42526e;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.editInput {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.editTextarea {
+  width: 100%;
+  height: 80px;
+  padding: 12px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  font-size: 16px;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.editInputIcon {
+  position: relative;
+}
+
+.editDateIcon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+}
+
+.editPriorityGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.editPriorityBtn {
+  width: 120px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #d1d1d1;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.editPrioritySelected {
+  background: #ffa800;
+  color: white;
+  border: none;
+}
+
+.editPrioritySelected img {
+  filter: brightness(0) invert(1);
+}
+
+.editPriorityBtn img {
+  width: 16px;
+  height: 16px;
+}
+
+.editAvatarGroup {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.editAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.editAvatar1 {
+  background-color: #1FD7C1;
+}
+
+.editAvatar2 {
+  background-color: #9327FF;
+}
+
+.editAvatar3 {
+  background-color: #0038FF;
+}
+
+.editSubtaskInput {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.editSubtaskAdd {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #42526e;
+  cursor: pointer;
+}
+
+.editSubtaskList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.editSubtaskItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+}
+
+.editSubtaskBullet {
+  width: 4px;
+  height: 4px;
+  background-color: #42526e;
+  border-radius: 50%;
+}
+
+.editButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.editOkBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #2a3647;
+  color: #ffffff;
+}
+
+.editOkBtn img {
+  width: 16px;
+  height: auto;
+  filter: brightness(0) invert(1);
+}
