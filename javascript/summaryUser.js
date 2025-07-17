@@ -19,7 +19,7 @@ async function countInTasksInBoard() {
         task.Category === 'await-feedback'
     );
     return boardTasks.length;
-}
+} 
 
 async function countTaskProgress() {
     let category = await fetchAllTasks();
@@ -74,12 +74,8 @@ function formatDate(dateString) {
 async function filterforPriority() {
     let allTasks = await fetchAllTasks();
     let highPriorityTasks = allTasks.filter(task => task.taskPriority === 'High');
-    let mediumPriorityTasks = allTasks.filter(task => task.taskPriority === 'Medium');
-    let lowPriorityTasks = allTasks.filter(task => task.taskPriority === 'Low');
     return {
         high: highPriorityTasks,
-        medium: mediumPriorityTasks,
-        low: lowPriorityTasks
     };
 }
 
@@ -88,8 +84,6 @@ async function showPriorityforDueDate() {
     document.getElementById('dueDateCounter').textContent = dueDateResult.nextDeadline;
     let priorityTasks = await filterforPriority();
     document.getElementById('highPriorityCounter').textContent = priorityTasks.high.length;
-    document.getElementById('mediumPriorityCounter').textContent = priorityTasks.medium.length; 
-    document.getElementById('lowPriorityCounter').textContent = priorityTasks.low.length;
 }
 
 async function showCountInSummary() {

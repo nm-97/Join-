@@ -478,3 +478,4 @@ function getAddTaskOverlay(params = {}) {
             </div>
         </div>`;
 }
+
