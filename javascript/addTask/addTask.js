@@ -8,31 +8,44 @@ function initializeAddTask() {
 }
 
 function setupPriorityButtons() {
+  console.log('setupPriorityButtons wird aufgerufen');
   const urgentBtn = document.getElementById('urgentBtn');
   const mediumBtn = document.getElementById('mediumBtn');
   const lowBtn = document.getElementById('lowBtn');
   
-  urgentBtn.onclick = function() {
+  console.log('Buttons gefunden:', urgentBtn, mediumBtn, lowBtn);
+  
+  if (!urgentBtn || !mediumBtn || !lowBtn) {
+    console.error('Buttons nicht gefunden!');
+    return;
+  }
+  
+  urgentBtn.addEventListener('click', function() {
+    console.log('Urgent Button geklickt');
     clearPrioritySelection();
-    urgentBtn.classList.add('selected');
-    urgentBtn.style.backgroundColor = changeColorBasedOnPriority('Urgent');
-    urgentBtn.style.color = 'white';
+    const priorityClass = changeColorBasedOnPriority('Urgent'); 
+    console.log('Füge Klasse hinzu:', priorityClass);
+    urgentBtn.classList.add(priorityClass); 
     selectedPriority = 'Urgent';
-  };
-  mediumBtn.onclick = function() {
+  });
+  
+  mediumBtn.addEventListener('click', function() {
+    console.log('Medium Button geklickt');
     clearPrioritySelection();
-    mediumBtn.classList.add('selected');
-    mediumBtn.style.backgroundColor = changeColorBasedOnPriority('Medium');
-    mediumBtn.style.color = 'white';
+    const priorityClass = changeColorBasedOnPriority('Medium'); 
+    console.log('Füge Klasse hinzu:', priorityClass);
+    mediumBtn.classList.add(priorityClass); 
     selectedPriority = 'Medium';
-  };
-  lowBtn.onclick = function() {
+  });
+  
+  lowBtn.addEventListener('click', function() {
+    console.log('Low Button geklickt');
     clearPrioritySelection();
-    lowBtn.classList.add('selected');
-    lowBtn.style.backgroundColor = changeColorBasedOnPriority('Low');
-    lowBtn.style.color = 'white';
+    const priorityClass = changeColorBasedOnPriority('Low'); 
+    console.log('Füge Klasse hinzu:', priorityClass);
+    lowBtn.classList.add(priorityClass);
     selectedPriority = 'Low';
-  };
+  });
 }
 
 function clearPrioritySelection() {
@@ -40,9 +53,10 @@ function clearPrioritySelection() {
   const mediumBtn = document.getElementById('mediumBtn');
   const lowBtn = document.getElementById('lowBtn');
   
-  urgentBtn.classList.remove('selected');
-  mediumBtn.classList.remove('selected');
-  lowBtn.classList.remove('selected');
+  
+  urgentBtn.classList.remove('taskPriorityBtnUrgentSelected', 'taskPriorityBtnMediumSelected', 'taskPriorityBtnLowSelected', 'selected');
+  mediumBtn.classList.remove('taskPriorityBtnUrgentSelected', 'taskPriorityBtnMediumSelected', 'taskPriorityBtnLowSelected', 'selected');
+  lowBtn.classList.remove('taskPriorityBtnUrgentSelected', 'taskPriorityBtnMediumSelected', 'taskPriorityBtnLowSelected', 'selected');
 
   urgentBtn.style.backgroundColor = '';
   mediumBtn.style.backgroundColor = '';
@@ -51,13 +65,18 @@ function clearPrioritySelection() {
   mediumBtn.style.color = '';
   lowBtn.style.color = '';
 }
-
 function setupFormSubmission() {
   const createButton = document.getElementById('createTaskBtn');
   const clearButton = document.getElementById('clearTaskBtn');
   createButton.onclick = createTask;
   clearButton.onclick = clearForm;
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  setTimeout(() => {
+    initializeAddTask(); 
+  }, 100);
+});
 
 async function loadContacts() {
   const contacts = await fetchAllContacts();

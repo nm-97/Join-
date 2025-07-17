@@ -133,7 +133,7 @@ label {
 }
 
 .taskPriorityBtnOrange img {
-  filter: brightness(0) invert(1);
+  filter: hue-rotate(20deg) saturate(2) brightness(0.8);
 }
 
 .taskPriorityBtn img,
@@ -198,20 +198,33 @@ label {
   justify-content: flex-end;
 }
 
-.taskPriorityBtnUrgentSelected {
+.taskPriorityBtn.taskPriorityBtnUrgentSelected {
   background-color: #FF3D00 !important;
   color: white !important;
   border: 2px solid #FF3D00 !important;
 }
 
-.taskPriorityBtnMediumSelected {
+.taskPriorityBtn.taskPriorityBtnMediumSelected,
+.taskPriorityBtnOrange.taskPriorityBtnMediumSelected {
   background-color: #FF9500 !important;
   color: white !important;
   border: 2px solid #FF9500 !important;
 }
 
-.taskPriorityBtnLowSelected {
+.taskPriorityBtn.taskPriorityBtnLowSelected {
   background-color: #7AE229 !important;
   color: white !important;
   border: 2px solid #7AE229 !important;
+}
+
+.taskPriorityBtn.taskPriorityBtnUrgentSelected img,
+.taskPriorityBtn.taskPriorityBtnMediumSelected img,
+.taskPriorityBtnOrange.taskPriorityBtnMediumSelected img,
+.taskPriorityBtn.taskPriorityBtnLowSelected img {
+  filter: brightness(0) invert(1) !important;
+}
+
+.taskPriorityBtn,
+.taskPriorityBtnOrange {
+  transition: all 0.3s ease;
 }
