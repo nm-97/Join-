@@ -62,7 +62,6 @@ body {
   flex-direction: column;
   gap: 30px;
   max-height: 560px;
-  max-width: 597px;
   flex: 1;
 }
 
@@ -217,9 +216,8 @@ body {
   flex-direction: column;
   justify-content: center;
   margin-left: 0;
-  min-width: 340px;
   margin-bottom: 350px;
-  margin-top: 281.5px;
+  min-width: 340px;
 }
 
 .welcomeText {
