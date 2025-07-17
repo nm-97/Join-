@@ -25,117 +25,40 @@ function setGuestLogin() {
   window.location.href = "../html/summaryUser.html"; 
 }
 
-function showSuccessMessage(message) {
-  const existingMessage = document.getElementById("successMessage");
-  if (existingMessage) {
-    existingMessage.remove();
-  }
-  renderSuccessMessage(message);
-  const toast = document.getElementById("successMessage");
-  toast.style.display = "block";
-}
-
-async function fetchAllTasks() {
-  let response = await fetch(`${firebaseUrl}user/guest /task.json`);
-  let data = await response.json();
-  
-  if (!data) {
-    response = await fetch(`${firebaseUrl}user /guest /task.json`);
-    data = await response.json();
-  }
-  
-  if (!data) return [];
-  
-  const tasks = [];
-  const keys = Object.keys(data);
-  for (let i = 0; i < keys.length; i++) {
-    const id = keys[i];
-    const task = mapApiTaskToTemplate({ id, ...data[id] });
-    tasks.push(task);
-  }
-  return tasks;
-}
-
-function mapApiTaskToTemplate(data) {
-  return {
-    id: data.id || null,
-    Category: data.Category || "toDo",
-    assignedTo: data.assignedTo || "",
-    description: data.description || "",
-    dueDate: data.dueDate || "",
-    taskPriority: data.taskPriority || "Medium",
-    title: data.title || "Untitled Task"
-  };
-}
-
-async function fetchTaskById(taskId) {
-  let response = await fetch(`${firebaseUrl}user/guest /task/${taskId}.json`);
-  let data = await response.json();
-  
-  if (!data) {
-    response = await fetch(`${firebaseUrl}user /guest /task/${taskId}.json`);
-    data = await response.json();
-  }
-  
-  return mapApiTaskToTemplate({ id: taskId, ...data });
-}
-
-async function initializeBoard() {
-  const tasks = await fetchAllTasks();
-  const boardContainer = document.getElementById("boardContainer");
-  boardContainer.innerHTML = getBoardTemplate(tasks);
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-  if (window.location.pathname.includes("board.html")) {
-    initializeBoard();
-  }
+const getUserFormData = (event) => ({
+  name: new FormData(event.target).get("name"),
+  email: new FormData(event.target).get("email"),
+  password: new FormData(event.target).get("password"),
 });
 
-async function fetchAllContacts() {
-  const response = await fetch(`${firebaseUrl}user /guest /contacts.json`);
-  const data = await response.json();
-  
-  if (!data) return [];
-  
-  const contacts = [];
-  const keys = Object.keys(data);
-  for (let i = 0; i < keys.length; i++) {
-    const id = keys[i];
-    const contact = { id, ...data[id] };
-    contacts.push(contact);
-  }
-  return contacts;
+async function createUser(event) {
+    event.preventDefault();
+    const UserData = getUserFormData(event);
+    await addUserToFirebase(UserData);
+    setTimeout(() => {
+        renderSuccessMessage();
+    }, 500);
 }
 
-async function addTaskToFirebase(taskData) {
-  const response = await fetch(`${firebaseUrl}user /guest /task.json`, {
+const postUserData = async (UserData) => {
+  return await fetch(`${firebaseUrl}user /registered/.json`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(taskData),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(UserData),
   });
-  
+};
+
+async function addUserToFirebase(UserData) {
+  const response = await postUserData(UserData);
   const result = await response.json();
   return result.name;
 }
 
-async function deleteTaskFromFirebase(taskId) {
-  const response = await fetch(`${firebaseUrl}user /guest /task/${taskId}.json`, {
-    method: "DELETE",
-  });
-  return true;
-}
+function renderSuccessMessage() {
+  document.body.insertAdjacentHTML('beforeend', getSuccessSignUpMessageTempalte());
 
-async function updateTaskInFirebase(taskId, taskData) {
-  const response = await fetch(`${firebaseUrl}user /guest /task/${taskId}.json`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(taskData),
-  });
-  
-  return true;
+  setTimeout(() => {
+    const toast = document.getElementById('signUpSuccess');
+    if (toast) toast.remove();
+  }, 2000);
 }

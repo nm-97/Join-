@@ -28,6 +28,22 @@ async function fetchContacts() {
   );
 }
 
+async function fetchAllContacts() {
+  const response = await fetch(`${firebaseUrl}user /guest /contacts.json`);
+  const data = await response.json();
+  
+  if (!data) return [];
+  
+  const contacts = [];
+  const keys = Object.keys(data);
+  for (let i = 0; i < keys.length; i++) {
+    const id = keys[i];
+    const contact = { id, ...data[id] };
+    contacts.push(contact);
+  }
+  return contacts;
+}
+
 async function fetchContactById(contactId) {
   const response = await fetch(`${firebaseUrl}user /guest /contacts/${contactId}.json`);
   const data = await response.json();
@@ -126,6 +142,13 @@ const pushContactData = async (contactId, contactData) => {
     body: JSON.stringify(contactData),
   });
 };
+
+async function showContactSideBar() {
+  const contacts = await fetchContacts();
+  const overlay = document.getElementById("contactsList");
+  overlay.innerHTML = renderContactsList(contacts);
+  overlay.style.display = "block";
+}
 
 async function updateContactInFirebase(contactId, contactData) {
   const response = await pushContactData(contactId, contactData);

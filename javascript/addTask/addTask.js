@@ -91,7 +91,7 @@ function mapCategoryToFirebase(category) {
   const categoryMap = {
     'todo': 'toDo',
     'in-progress': 'inProgress',
-    'await-feedback': 'Urgent',
+    'await-feedback': 'awaitFeedback',
     'done': 'done'
   };
   return categoryMap[category] || 'toDo';
@@ -102,34 +102,28 @@ function validateTaskData(taskData) {
     alert('Please enter a title');
     return false;
   }
-  
   if (!taskData.description) {
     alert('Please enter a description');
     return false;
   }
-  
   if (!taskData.dueDate) {
     alert('Please select a due date');
     return false;
   }
-  
   if (!taskData.assignedTo) {
     alert('Please select an assignee');
     return false;
   }
-  
   if (!document.getElementById('taskStatus').value) {
     alert('Please select a category');
     return false;
   }
-  
   return true;
 }
 
 function showTaskCreatedNotification() {
   const notification = document.getElementById('taskNotification');
   notification.style.display = 'block';
-  
   setTimeout(() => {
     notification.style.display = 'none';
   }, 3000);
@@ -142,7 +136,6 @@ function clearForm() {
   document.getElementById('taskAssignee').value = '';
   document.getElementById('taskStatus').value = '';
   document.getElementById('taskSubtask').value = '';
-  
   clearPrioritySelection();
   selectedPriority = "Medium";
 }
@@ -152,3 +145,92 @@ document.addEventListener("DOMContentLoaded", function() {
     initializeAddTask();
   }
 });
+
+async function updateTask(event, taskId) {
+  event.preventDefault();
+  const taskData = getFormData();          
+  if (!validateTaskData(taskData)) {       
+    return;
+  }
+  await updateTaskInFirebase(taskData, taskId);
+  closeEditTaskOverlay();
+  await refreshBoard();
+  showTaskUpdatedNotification();           
+}
+
+async function updateTaskInFirebase(taskData, taskId) {
+  const response = await pushTaskData(taskData, taskId);
+  return await response.json();
+}
+
+const pushTaskData = async (taskData, taskId) => {
+  return await fetch(`${firebaseUrl}user /guest /task/${taskId}.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(taskData),
+  });
+};
+
+async function fetchAllTasks() {
+  let response = await fetch(`${firebaseUrl}user/guest /task.json`);
+  let data = await response.json();
+  
+  if (!data) {
+    response = await fetch(`${firebaseUrl}user /guest /task.json`);
+    data = await response.json();
+  }
+  
+  if (!data) return [];
+  
+  const tasks = [];
+  const keys = Object.keys(data);
+  for (let i = 0; i < keys.length; i++) {
+    const id = keys[i];
+    const task = mapApiTaskToTemplate({ id, ...data[id] });
+    tasks.push(task);
+  }
+  return tasks;
+}
+
+function mapApiTaskToTemplate(data) {
+  return {
+    id: data.id || null,
+    Category: data.Category || "toDo",
+    assignedTo: data.assignedTo || "",
+    description: data.description || "",
+    dueDate: data.dueDate || "",
+    taskPriority: data.taskPriority || "Medium",
+    title: data.title || "Untitled Task"
+  };
+}
+
+async function addTaskToFirebase(taskData) {
+  const response = await fetch(`${firebaseUrl}user /guest /task.json`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(taskData),
+  });
+  
+  const result = await response.json();
+  return result.name;
+}
+async function deleteTaskFromFirebase(taskId) {
+  const response = await fetch(`${firebaseUrl}user /guest /task/${taskId}.json`, {
+    method: "DELETE",
+  });
+  return true;
+}
+
+async function updateTaskInFirebase(taskId, taskData) {
+  const response = await fetch(`${firebaseUrl}user /guest /task/${taskId}.json`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(taskData),
+  });
+  
+  return true;
+}
