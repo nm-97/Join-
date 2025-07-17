@@ -107,7 +107,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function showLocalTimeFormUser() {
     const hour = new Date().getHours();
-    
     let greeting;
     if (hour < 8) greeting = "Good evening,";
     else if (hour < 12) greeting = "Good morning,";

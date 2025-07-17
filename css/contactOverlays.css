@@ -10,6 +10,7 @@
     align-items: center;
     justify-content: center;
     display: none;
+      animation: overlayMoveFromRight 400ms ease-in-out forwards;
 }
 
 .addContactModal,

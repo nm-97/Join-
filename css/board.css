@@ -430,6 +430,7 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 999;
+  animation: overlayMoveFromRight 200ms ease-in-out forwards;
 }
 
 .overlay.hidden {
@@ -598,6 +599,7 @@ hr {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  animation: overlayMoveFromRight 300ms ease-in-out forwards;
 }
 
 .overlayContent {
@@ -609,6 +611,20 @@ hr {
   position: relative;
   overflow-y: auto;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  animation: overlayMoveFromRight 300ms ease-in-out forwards;
+}
+
+@keyframes overlayMoveFromRight {
+
+	0% {
+		opacity: 0;
+		transform: translateX(250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
 .closeBtn {

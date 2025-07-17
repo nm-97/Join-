@@ -1,14 +1,13 @@
 .floatingContactMainContent {
-  margin-top: 70px;
+    margin-top: 70px;
     background-color: #f8f9fa;
     border-radius: 10px;
-  
-
 }
 
 .floatingContactCard {
     border-radius: 10px;
     max-width: 600px;
+    animation: fadeInFromLeft 300ms ease 0s 1 normal forwards;
 }
 
 .floatingContactHeader {
@@ -147,6 +146,19 @@ gap: 8px;
         transform: translateX(250px);
     }
 }
+
+@keyframes fadeInFromLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(-50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
 
 .editContactOverlay.closing {
     animation: editContactOverlayClose 0.2s ease-in-out forwards;
