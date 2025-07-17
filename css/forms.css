@@ -1,0 +1,357 @@
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-size: 20px;
+}
+
+.taskPriorityLabel {
+  font-size: 20px;
+}
+
+.requiredStar {
+  color: #ff0000;
+  font-size: 18px;
+}
+
+.requiredStarText {
+  font-size: 14px;
+  text-align: center;
+}
+
+input,
+textarea,
+select {
+  padding: 12px 21px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.addTaskFormsWrapper input,
+.addTaskFormsWrapper textarea,
+.addTaskFormsWrapper select {
+  width: 420px;
+}
+
+.editInput {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.editTextarea {
+  width: 100%;
+  height: 80px;
+  padding: 12px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  font-size: 16px;
+  resize: none;
+  box-sizing: border-box;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #d1d1d1;
+  font-size: 20px;
+}
+
+#taskDescription {
+  height: 120px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  padding: 18px 16px;
+  font-size: 16px;
+  resize: none;
+  margin-bottom: 10px;
+}
+
+.inputIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.inputIcon input {
+  width: 100%;
+  padding-right: 44px;
+}
+
+.inputIcon img {
+  position: absolute;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+.editInputIcon {
+  position: relative;
+}
+
+.editDateIcon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+}
+
+.taskPriorityGroup {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.taskPriorityBtn,
+.taskPriorityBtnOrange {
+  width: 136px;
+  height: 56px;
+  border-radius: 10px;
+  padding: 16px 10px;
+  gap: 8px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-direction: row-reverse;
+  box-shadow: 0px 0px 4px 0px #0000001a;
+  font-size: 20px;
+}
+
+.taskPriorityBtn {
+  background: #ffffff;
+  border: 1px solid #d1d1d1;
+}
+
+.taskPriorityBtnOrange {
+  background: #ffa800;
+  color: white;
+}
+
+.taskPriorityBtn.selected {
+  background: #ff0000;
+  color: white;
+}
+
+.taskPriorityBtn.selected img,
+.taskPriorityBtnOrange img {
+  filter: brightness(0) invert(1);
+}
+
+.taskPriorityBtn img,
+.taskPriorityBtnOrange img {
+  width: 20px;
+  height: auto;
+}
+
+.taskPriorityBtn span,
+.taskPriorityBtnOrange span {
+  margin-right: 8px;
+}
+
+.editPriorityGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.editPriorityBtn {
+  width: 120px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #d1d1d1;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.editPrioritySelected {
+  background: #ffa800;
+  color: white;
+  border: none;
+}
+
+.editPrioritySelected img {
+  filter: brightness(0) invert(1);
+}
+
+.editPriorityBtn img {
+  width: 16px;
+  height: 16px;
+}
+
+.addTaskBtn,
+.cancelTaskBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  height: 56px;
+}
+
+.addTaskBtn {
+  background: #2a3647;
+  color: #ffffff;
+}
+
+.cancelTaskBtn {
+  background: #f6f7f8;
+  color: #2a3647;
+  border: 1px solid #2a3647;
+  width: 110px;
+}
+
+.addTaskBtn img,
+.cancelTaskBtn img {
+  width: 16px;
+  height: auto;
+}
+
+.addTaskFormsWrapper .addTaskBtn {
+  padding: 16px 24px;
+}
+
+.editOkBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #2a3647;
+  color: #ffffff;
+}
+
+.editOkBtn img {
+  width: 16px;
+  height: auto;
+  filter: brightness(0) invert(1);
+}
+
+.formActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0 40px 40px 40px;
+  box-sizing: border-box;
+}
+
+.formButtons {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+/* Edit Button Container */
+.editButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.editFormGroup {
+  margin-bottom: 25px;
+}
+
+.editFormGroupLast {
+  margin-bottom: 40px;
+}
+
+.editLabel {
+  font-size: 21px;
+  color: #42526e;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.editAvatarGroup {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.editAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.editAvatar1 {
+  background-color: #1FD7C1;
+}
+
+.editAvatar2 {
+  background-color: #9327FF;
+}
+
+.editAvatar3 {
+  background-color: #0038FF;
+}
+
+.editSubtaskInput {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.editSubtaskAdd {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #42526e;
+  cursor: pointer;
+}
+
+.editSubtaskList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.editSubtaskItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+}
+
+.editSubtaskBullet {
+  width: 4px;
+  height: 4px;
+  background-color: #42526e;
+  border-radius: 50%;
+}
