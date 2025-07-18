@@ -7,15 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function countEveryTaskLength(allTasks) {
     return {
-        todoCount: allTasks.filter(task => task.Category === 'toDo').length,
-        doneCount: allTasks.filter(task => task.Category === 'done').length,
-        inProgressCount: allTasks.filter(task => task.Category === 'inProgress').length,
-        awaitFeedbackCount: allTasks.filter(task => task.Category === 'awaitFeedback').length,
+        todoCount: allTasks.filter(task => task.Status === 'toDo').length,
+        doneCount: allTasks.filter(task => task.Status === 'done').length,
+        inProgressCount: allTasks.filter(task => task.Status === 'inProgress').length,
+        awaitFeedbackCount: allTasks.filter(task => task.Status === 'awaitFeedback').length,
         boardCount: allTasks.filter(task => 
-            task.Category === 'toDo' || 
-            task.Category === 'done' || 
-            task.Category === 'inProgress' || 
-            task.Category === 'awaitFeedback'
+            task.Status === 'toDo' || 
+            task.Status === 'done' || 
+            task.Status === 'inProgress' || 
+            task.Status === 'awaitFeedback'
         ).length,
         urgentCount: allTasks.filter(task => task.taskPriority === 'Urgent').length
     };
@@ -61,17 +61,14 @@ function calculateNextDeadline(allTasks) {
         const dueDate = new Date(task.dueDate);
         return dueDate >= today;
     });
-    
     if (futureTasks.length === 0) {
         return "No upcoming deadlines";
     }
-    
     const nextTask = futureTasks.reduce((earliest, task) => {
         const taskDate = new Date(task.dueDate);
         const earliestDate = new Date(earliest.dueDate);
         return taskDate < earliestDate ? task : earliest;
     });
-    
     return formatDate(nextTask.dueDate);
 }
 
