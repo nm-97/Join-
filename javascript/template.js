@@ -181,10 +181,10 @@ function getBoardTemplate(tasks = []) {
       <div class="boardColumn">
         <div class="columnHeader">
           <h2 class="columnTitle">Await feedback</h2>
-          <img src="../assets/icons/board/plus.svg" alt="" onclick="addTaskToColumn('awaitFeedback')">
+          <img src="../assets/icons/board/plus.svg" alt="" onclick="addTaskToColumn('awaitingFeedback')">
         </div>
         <div class="columnContent">
-          ${renderTasksForColumn(tasks, 'awaitFeedback')}
+          ${renderTasksForColumn(tasks, 'awaitingFeedback')}
         </div>
       </div>
 
@@ -286,8 +286,8 @@ function renderSubtasks(subtasks, taskId) {
   }
   return html;
 }
-ffunction renderTasksForColumn(tasks, status) {
-
+function renderTasksForColumn(tasks, status) {
+  // WICHTIG: Großes "S" verwenden
   const filteredTasks = tasks.filter(task => task.Status === status);
   
   if (filteredTasks.length === 0) {
@@ -301,11 +301,12 @@ ffunction renderTasksForColumn(tasks, status) {
   return html;
 }
 
+
 function getEmptyStateTemplate(status) {
   const statusMessages = {
     toDo: 'No tasks To do',
     inProgress: 'No tasks in progress',
-    Urgent: 'No tasks awaiting feedback',
+    awaitingFeedback: 'No tasks awaiting feedback', 
     done: 'No tasks completed'
   };
   
@@ -355,15 +356,15 @@ function getTaskCardTemplate(task) {
 function getCategoryLabel(category) {
   const categoryMap = {
     'technicalTask': 'Technical Task',
-    'UserStory': 'User Story', 
+    'userStory': 'User Story',    
   };
   return categoryMap[category] || 'Technical Task';
 }
 
 function getCategoryClass(category) {
   const classMap = {
-    'technicalTask': 'Technical Task',
-    'UserStory': 'User Story', 
+    'technicalTask': 'technicalTask',
+    'userStory': 'userStory',     
   };
   return classMap[category] || 'technicalTask';
 }
@@ -415,7 +416,9 @@ function getAddTaskOverlay(params = {}) {
                             <img src="../assets/icons/add task/event.svg" alt="">
                         </div>
                     </div>
-                </form>
+              
+               
+                    </form>
                 
                 <div class="addTaskFormsDivider"></div>
                 

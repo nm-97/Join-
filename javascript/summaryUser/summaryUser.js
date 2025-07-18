@@ -15,7 +15,7 @@ function countEveryTaskLength(allTasks) {
             task.Category === 'toDo' || 
             task.Category === 'done' || 
             task.Category === 'inProgress' || 
-            task.Category === 'await-feedback'
+            task.Category === 'awaitFeedback'
         ).length,
         urgentCount: allTasks.filter(task => task.taskPriority === 'Urgent').length
     };

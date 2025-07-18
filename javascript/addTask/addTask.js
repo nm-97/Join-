@@ -112,10 +112,19 @@ function getFormData() {
     Status: 'toDo'  
   };
 }
+
+function mapCategoryToFirebase(category) {
+  const categoryMap = {
+    'userStory': 'User Story',          // ← value → label
+    'technicalTask': 'Technical Task',  // ← value → label
+  };
+  return categoryMap[category] || 'Technical Task';
+}
+
 function mapApiTaskToTemplate(data) {
   return {
     id: data.id || null,
-    Category: data.Category || "Technical Task",
+    Category: data.Category || "Technical Task",  
     Status: data.Status || "toDo",                
     assignedTo: data.assignedTo || "",
     description: data.description || "",
@@ -207,17 +216,6 @@ async function fetchAllTasks() {
   return tasks;
 }
 
-function mapApiTaskToTemplate(data) {
-  return {
-    id: data.id || null,
-    Category: data.Category || "toDo",
-    assignedTo: data.assignedTo || "",
-    description: data.description || "",
-    dueDate: data.dueDate || "",
-    taskPriority: data.taskPriority || "Medium",
-    title: data.title || "Untitled Task"
-  };
-}
 
 async function addTaskToFirebase(taskData) {
   const response = await fetch(`${firebaseUrl}user /guest /task.json`, {
