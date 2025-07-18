@@ -122,7 +122,7 @@ function getFloatingContact(contact) {
               <img src="../assets/icons/shared/edit.svg" alt="">
               Edit
             </button>
-            <button onclick="deleteContactFromFirebase('${contact.id}')" class="deleteBtn">
+            <button onclick="deleteContact('${contact.id}')" class="deleteBtn">
               <img src="../assets/icons/shared/delete.svg" alt="">
               Delete
             </button>

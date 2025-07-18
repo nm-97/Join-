@@ -1,7 +1,5 @@
-
 let selectedPriority = "Medium";
 let selectedCategory = "";
-
 
 function initializeAddTask() {
   setupPriorityButtons();
@@ -55,6 +53,15 @@ function clearPrioritySelection() {
   urgentBtn.style.color = '';
   mediumBtn.style.color = '';
   lowBtn.style.color = '';
+}
+
+function changeColorBasedOnPriority(priority) {
+  const classes = {
+    "Urgent": "taskPriorityBtnUrgentSelected",
+    "Medium": "taskPriorityBtnMediumSelected",
+    "Low": "taskPriorityBtnLowSelected"
+  };
+  return classes[priority] || "";
 }
 
 function setupFormSubmission() {
@@ -128,7 +135,6 @@ function mapCategoryToFirebase(category) {
   return categoryMap[category] || 'Technical Task';
 }
 
-
 function validateTaskData(taskData) {
   if (!taskData.title) {
     alert('Please enter a title');
@@ -161,99 +167,80 @@ function showTaskCreatedNotification() {
       notification.style.display = 'none';
     }, 3000);
   }
-
-  function clearForm() {
-    document.getElementById('taskTitle').value = '';
-    document.getElementById('taskDescription').value = '';
-    document.getElementById('taskDueDate').value = '';
-    document.getElementById('taskAssignee').value = '';
-    document.getElementById('taskStatus').value = '';
-    document.getElementById('taskSubtask').value = '';
-    clearPrioritySelection();
-    selectedPriority = "Medium";
-  }
-
-
-  function changeColorBasedOnPriority(priority) {
-    const classes = {
-      "Urgent": "taskPriorityBtnUrgentSelected",
-      "Medium": "taskPriorityBtnMediumSelected",
-      "Low": "taskPriorityBtnLowSelected"
-    };
-    return classes[priority] || "";
-  }
-
-  function showAddTaskOverlay() {
-    const overlay = document.getElementById('addTaskOverlay');
-    if (overlay) {
-      overlay.innerHTML = getAddTaskOverlay();
-      overlay.style.display = 'flex';
-    
-
-      initializeOverlayAddTask();
-    }
-  }
-
-
-  function closeAddTaskOverlay() {
-    const overlay = document.getElementById('addTaskOverlay');
-    if (overlay) {
-      overlay.style.display = 'none';
-      overlay.innerHTML = '';
-    }
-  }
-
-  function initializeOverlayAddTask() {
-    setupPriorityButtons();
-    setupOverlayFormSubmission();
-    loadContacts();
-  }
-
-
-  function setupOverlayFormSubmission() {
-    const createButton = document.getElementById('createTaskBtn');
-    const clearButton = document.getElementById('clearTaskBtn');
-  
-    if (createButton) createButton.onclick = createOverlayTask;
-    if (clearButton) clearButton.onclick = clearForm;
-  }
-
-
-  async function createOverlayTask() {
-    const taskData = getFormData();
-  
-    if (!validateTaskData(taskData)) {
-      return;
-    }
-  
-    try {
-      await addTaskToFirebase(taskData);
-      clearForm();
-      closeAddTaskOverlay();
-    
-
-      if (typeof refreshBoard === 'function') {
-        await refreshBoard();
-      }
-    } catch (error) {
-      console.error('Error creating task:', error);
-      alert('Error creating task. Please try again.');
-    }
-  }
-
-
-  function addTaskToColumn(status) {
-
-    selectedCategory = status;
-    showAddTaskOverlay();
-  }
-
-
-  document.addEventListener("DOMContentLoaded", function () {
-    if (window.location.pathname.includes("addTask.html")) {
-      setTimeout(() => {
-        initializeAddTask();
-      }, 200);
-    }
-  });
 }
+
+function clearForm() {
+  document.getElementById('taskTitle').value = '';
+  document.getElementById('taskDescription').value = '';
+  document.getElementById('taskDueDate').value = '';
+  document.getElementById('taskAssignee').value = '';
+  document.getElementById('taskStatus').value = '';
+  document.getElementById('taskSubtask').value = '';
+  clearPrioritySelection();
+  selectedPriority = "Medium";
+}
+
+function showAddTaskOverlay() {
+  const overlay = document.getElementById('addTaskOverlay');
+  if (overlay) {
+    overlay.innerHTML = getAddTaskOverlay();
+    overlay.style.display = 'flex';
+    initializeOverlayAddTask();
+  }
+}
+
+function closeAddTaskOverlay() {
+  const overlay = document.getElementById('addTaskOverlay');
+  if (overlay) {
+    overlay.style.display = 'none';
+    overlay.innerHTML = '';
+  }
+}
+
+function initializeOverlayAddTask() {
+  setupPriorityButtons();
+  setupOverlayFormSubmission();
+  loadContacts();
+}
+
+function setupOverlayFormSubmission() {
+  const createButton = document.getElementById('createTaskBtn');
+  const clearButton = document.getElementById('clearTaskBtn');
+
+  if (createButton) createButton.onclick = createOverlayTask;
+  if (clearButton) clearButton.onclick = clearForm;
+}
+
+async function createOverlayTask() {
+  const taskData = getFormData();
+
+  if (!validateTaskData(taskData)) {
+    return;
+  }
+
+  try {
+    await addTaskToFirebase(taskData);
+    clearForm();
+    closeAddTaskOverlay();
+    
+    if (typeof refreshBoard === 'function') {
+      await refreshBoard();
+    }
+  } catch (error) {
+    console.error('Error creating task:', error);
+    alert('Error creating task. Please try again.');
+  }
+}
+
+function addTaskToColumn(status) {
+  selectedCategory = status;
+  showAddTaskOverlay();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.location.pathname.includes("addTask.html")) {
+    setTimeout(() => {
+      initializeAddTask();
+    }, 200);
+  }
+});

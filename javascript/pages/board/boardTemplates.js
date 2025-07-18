@@ -87,7 +87,7 @@ function getTaskDetailOverlay(task) {
         <div class="assignedUsers">
           <div class="assignedUser">
             <div class="userAvatar" style="background-color: ${assignedPersonColor};">${assignedPersonInitials}</div>
-            <span>${task.assignedTo || 'Not assigned'}</span>
+            <span>${task.assignedToName || 'Not assigned'}</span>
           </div>
         </div>
 
@@ -135,7 +135,6 @@ function renderSubtasks(subtasks, taskId) {
 
 
 function renderTasksForColumn(tasks, status) {
-  // WICHTIG: Großes "S" verwenden
   const filteredTasks = tasks.filter(task => task.Status === status);
   
   if (filteredTasks.length === 0) {

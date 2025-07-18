@@ -30,7 +30,7 @@ function showLocalTimeFormUser() {
 }
 
 function renderSignUpSuccessMessage() {
-  document.body.insertAdjacentHTML('beforeend', getSuccessSignUpMessageTempalte());
+  document.body.insertAdjacentHTML('beforeend', getSuccessSignUpMessageTemplate());
   setTimeout(() => {
     const toast = document.getElementById('signUpSuccess');
     if (toast) toast.remove();

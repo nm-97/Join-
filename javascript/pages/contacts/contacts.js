@@ -103,6 +103,8 @@ function closeEditContactOverlay() {
   }
 }
 
+
+
 async function createContact(event) {
   event.preventDefault();
   const formData = new FormData(event.target);

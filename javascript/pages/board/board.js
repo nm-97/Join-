@@ -13,7 +13,8 @@ async function initializeBoard() {
 }
 
 async function showTaskDetail(taskId) {
-  const task = await fetchTaskById(taskId);
+const task = await fetchTaskById(taskId);
+task.assignedToName = await getContactNameById(task.assignedTo);
   const overlay = document.getElementById("taskOverlay");
   overlay.innerHTML = getTaskDetailOverlay(task);
   overlay.classList.remove("hidden");
@@ -32,17 +33,10 @@ async function refreshBoard() {
   boardContainer.innerHTML = getBoardTemplate(tasks);
 }
 
-function initializeOverlayAddTask() {
-  setupPriorityButtons();
-  setupOverlayFormSubmission();
-  loadContacts();
-}
-
 function addTaskToColumn(status) {
   showAddTaskOverlay();
 }
 
-// Board-spezifische Task-Funktionen
 function closeTaskOverlay() {
   const overlay = document.getElementById("taskOverlay");
   if (overlay) {
@@ -57,6 +51,19 @@ function showAddTaskOverlay() {
     overlay.innerHTML = getAddTaskOverlay();
     overlay.style.display = "flex";
     overlay.classList.remove("hidden");
-    initializeOverlayAddTask();
+    initializeAddTask();
+  }
+}
+
+async function getContactNameById(contactId) {
+  if (!contactId) return 'Not assigned';
+  
+  try {
+    const contacts = await fetchAllContacts();
+    const contact = contacts.find(c => c.id === contactId);
+    return contact ? contact.name : 'Unknown Contact';
+  } catch (error) {
+    console.error('Error getting contact name:', error);
+    return 'Unknown Contact';
   }
 }

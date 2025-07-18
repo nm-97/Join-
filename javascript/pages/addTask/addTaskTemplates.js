@@ -171,10 +171,10 @@ function getEditTaskOverlay(task) {
     </div>`;
 }
 
-
-function getTaskNotificationTemplate(message = 'Task added to board') {
+function getSuccessAddTaskMessageTemplate(params) {
+  const message = params.message || 'Task successfully creat';
   return `
-    <div class="ntfbottom ntfmask" id="taskNotification">${message}
-      <img src="../assets/icons/summary and sideboard/board.svg" alt="">
+  <div class="ntfbottom ntfmask" id="taskNotification">Task added to board
+   <img src="../assets/icons/summary and sideboard/board.svg" alt=""></img>
     </div>`;
 }
