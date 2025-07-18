@@ -57,6 +57,13 @@ body {
 .navigation {
     flex: 1;
     padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navi{
+  align-items: center;
 }
 
 .navItem {
@@ -67,6 +74,8 @@ body {
     color: #bdc3c7;
     cursor: pointer;
     transition: all 0.3s ease;
+    padding-left: 75px;
+    padding-right: 75px;
 }
 
 .navItem:hover {
@@ -85,8 +94,6 @@ body {
     justify-content: center;
     padding-bottom: 100px;
     gap: 6px;
-    padding-left: 0;
-    padding-right: 0;
 }
 
 .footerLink {
