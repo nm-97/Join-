@@ -1,3 +1,4 @@
+"use strict";
 
 function getsummaryTemplate(params) {
   return ` <div class="cardSection">
@@ -89,4 +90,15 @@ function getsummaryTemplate(params) {
             <div class="userName" id="userName"></div>
           </div>
         </div>  `;
+}
+
+function getSuccessSignUpMessageTempalte() {
+  return `
+    <div id="signUpSuccess" class="signUpSuccessMessage">
+      <div class="signUpSuccessContent">
+        <img src="../assets/icons/shared/check.svg" alt="Success">
+        <span>You Signed Up successfully</span>
+      </div>
+    </div>
+  `;
 }

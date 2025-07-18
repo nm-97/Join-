@@ -1,64 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
+    <link rel="stylesheet" href="../css/signUp.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../javascript/global/firebase.js"></script>
+    <script src="../javascript/global/user.js"></script>
+    <script src="../javascript/global/utils.js"></script>
+    <script src="../javascript/loadingscreen.js"></script>
+    <script src="../javascript/ui.js" defer></script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
-    <link rel="stylesheet" href="../css/signUp.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <script src="../javascript/firebase.js"></script>
-    <script src="../javascript/signUp.js"></script>
-    <script src="../javascript/template.js"></script>
     <title>Join</title>
-</head>
+  </head>
 
-<body class="fontStyle">
-
+  <body class="fontStyle">
     <header>
-        <a href="../html/index.html"><img src="../assets/icons/joinlogo_black.png" alt="join_logo"></a>
+      <a href="../html/index.html"
+        ><img src="../assets/icons/joinlogo_black.png" alt="join_logo"
+      /></a>
     </header>
 
     <main>
-        <form class="LogInMainContainer" onsubmit="createUser(event)">
-            <h2>Sign Up</h2>
-            <button class="backBtn"><a href="../html/index.html"></a><img src="../assets/icons/login/Vector.svg"
-                    alt=""></button>
-            <div class="LogInInput inputIcon">
-                <input type="Name" id="name" name="name" placeholder="Name" required>
-                <img src="../assets/icons/contacts/person.svg" alt="user">
-            </div>
-            <div class="LogInInput inputIcon">
-                <input type="email" id="email" name="email" placeholder="Email" required>
-                <img src="../assets/icons/login/mail.png" alt="mail">
-            </div>
-            <div class="LogInInput inputIcon">
-                <input type="password" id="password" name="password" placeholder="Password" required>
-                <img src="../assets/icons/login/lock.png" alt="lock">
-            </div>
-            <div class="LogInInput inputIcon">
-              <div class="checkboxLabel">
-                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password"
-                    required>
-             </div>
-                    <img src="../assets/icons/login/lock.png" alt="lock">
-            </div>
-            <div class="checkboxContainer">
-              <div class="checkboxLabel">
-                <input class="checkbox" type="checkbox" id="termsCheckbox" required>
-                <label for="termsCheckbox">I accept the <a href="../html/privacyPolicy.html">Privacy Policy</a></label>
-            </div>
-            </div>
-            <div class="btnPosition">
-                <button type="submit" class="SignUpbtn" id="SignUpButton">Sign Up</button>
-            </div>
-        </form>
+      <form class="LogInMainContainer" onsubmit="createUser(event)">
+        <h2>Sign Up</h2>
+        <button class="backBtn">
+          <a href="../html/index.html"></a
+          ><img src="../assets/icons/login/Vector.svg" alt="" />
+        </button>
+        <div class="LogInInput inputIcon">
+          <input
+            type="Name"
+            id="name"
+            name="name"
+            placeholder="Name"
+            required
+          />
+          <img src="../assets/icons/contacts/person.svg" alt="user" />
+        </div>
+        <div class="LogInInput inputIcon">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+            required
+          />
+          <img src="../assets/icons/login/mail.png" alt="mail" />
+        </div>
+        <div class="LogInInput inputIcon">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          <img src="../assets/icons/login/lock.png" alt="lock" />
+        </div>
+        <div class="LogInInput inputIcon">
+          <div class="checkboxLabel">
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              required
+            />
+          </div>
+          <img src="../assets/icons/login/lock.png" alt="lock" />
+        </div>
+        <div class="checkboxContainer">
+          <div class="checkboxLabel">
+            <input
+              class="checkbox"
+              type="checkbox"
+              id="termsCheckbox"
+              required
+            />
+            <label for="termsCheckbox"
+              >I accept the
+              <a href="../html/privacyPolicy.html">Privacy Policy</a></label
+            >
+          </div>
+        </div>
+        <div class="btnPosition">
+          <button type="submit" class="SignUpbtn" id="SignUpButton">
+            Sign Up
+          </button>
+        </div>
+      </form>
     </main>
 
     <footer>
-        <a href="../html/privacyPolicy.html">Privacy Policy</a>
-        <a href="../html/legalNotice.html">Legal Notice</a>
+      <a href="../html/privacyPolicy.html">Privacy Policy</a>
+      <a href="../html/legalNotice.html">Legal Notice</a>
     </footer>
-</body>
-
+  </body>
 </html>
