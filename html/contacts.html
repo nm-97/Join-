@@ -14,6 +14,7 @@
     <script src="../javascript/pages/contacts/contactsTemplates.js"></script>
     <script src="../javascript/pages/contacts/contacts.js"></script>
     <script src="../javascript/global/ui.js" defer></script>
+    
     <title>Contacts</title>
 </head>
 
@@ -25,7 +26,6 @@
             </div>
 
             <div class="navigation">
-                <div class="navi">
                 <div onclick="location.href='../html/summaryUser.html'" class="navItem">
                     <span class="navIcon iconDashboard"></span>
                     <img src="../assets/icons/summary and sideboard/summary.svg" alt="">
@@ -46,19 +46,18 @@
                     <img src="../assets/icons/summary and sideboard/contact.svg" alt="">
                     <span>Contacts</span>
                 </div>
-                </div>
             </div>
 
-        <div class="footerLinks">
-          <a class="footerLink" href="./privacyPolicy.html">Privacy Policy</a>
-          <a class="footerLink" href="./legalNotice.html">Legal notice</a>
-        </div>
+            <div class="footerLinks">
+                <div class="footerLink">Privacy Policy</div>
+                <div class="footerLink">Legal notice</div>
+            </div>
         </div>
         <div class="mainContainer">
             <div class="header">
                 <div class="headerTitle">Kanban Project Management Tool</div>
                 <div class="headerActions">
-                    <div><img src="../assets/icons/summary and sideboard/help.svg" onclick="location.href='../html/help.html'" alt=""></div>
+                    <div><img src="../assets/icons/summary and sideboard/help.svg" alt=""></div>
                     <div class="userAvatar" onclick="toggleUserMenu()">SM</div>
                         <div class="dropdown none" id="usermenu">
                         <a class="menuItem" href="./legalNotice.html">Legal Notice</a>
