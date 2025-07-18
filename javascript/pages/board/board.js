@@ -67,3 +67,32 @@ async function getContactNameById(contactId) {
     return 'Unknown Contact';
   }
 }
+
+async function editTask(taskId) {
+  const task = await fetchTaskById(taskId);
+  task.assignedToName = await getContactNameById(task.assignedTo);
+  
+  const overlay = document.getElementById("editTaskOverlay");
+  if (overlay && task) {
+    overlay.innerHTML = getEditTaskOverlay(task);
+    overlay.style.display = "flex";
+    overlay.classList.remove("hidden");
+  }
+}
+function closeEditTaskOverlay() {
+  const overlay = document.getElementById("editTaskOverlay");
+  if (overlay) {
+    overlay.style.display = "none";
+    overlay.classList.add("hidden");
+    overlay.innerHTML = '';
+  }
+}
+
+function closeAddTaskOverlay() {
+  const overlay = document.getElementById("addTaskOverlay");
+  if (overlay) {
+    overlay.style.display = "none";
+    overlay.classList.add("hidden");
+    overlay.innerHTML = '';
+  }
+}

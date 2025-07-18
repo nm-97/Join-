@@ -102,9 +102,6 @@ function closeEditContactOverlay() {
     overlay.innerHTML = '';
   }
 }
-
-
-
 async function createContact(event) {
   event.preventDefault();
   const formData = new FormData(event.target);
@@ -113,16 +110,12 @@ async function createContact(event) {
     email: formData.get('email'),
     phone: formData.get('phone')
   };
-  try {
-    await addContactToFirebase(contactData);
-    closeAddContactOverlay();
-    showSuccessMessage('Contact successfully created');
-    const contacts = await fetchAllContacts();
-    renderContactsList(contacts);
-  } catch (error) {
-    console.error('Error creating contact:', error);
-    showErrorMessage('Error creating contact');
-  }
+  
+  await addContactToFirebase(contactData);
+  closeAddContactOverlay();
+  showSuccessMessage('Contact successfully created');
+  const contacts = await fetchAllContacts();
+  renderContactsList(contacts);
 }
 
 async function updateContact(event, contactId) {
@@ -133,34 +126,59 @@ async function updateContact(event, contactId) {
     email: formData.get('email'),
     phone: formData.get('phone')
   };
-  try {
-    await updateContactInFirebase(contactId, contactData);
-    closeEditContactOverlay();
-    showSuccessMessage('Contact successfully updated');
-    const contacts = await fetchAllContacts();
-    renderContactsList(contacts);
-    await showFloatingContact(contactId);
-  } catch (error) {
-    console.error('Error updating contact:', error);
-    showErrorMessage('Error updating contact');
-  }
+  
+  await updateContactInFirebase(contactId, contactData);
+  closeEditContactOverlay();
+  showSuccessMessage('Contact successfully updated');
+  const contacts = await fetchAllContacts();
+  renderContactsList(contacts);
+  await showFloatingContact(contactId);
 }
+
 async function deleteContact(contactId) {
-  try {
-    await deleteContactFromFirebase(contactId);
-    showSuccessMessage('Contact successfully deleted');
-    const floatingContactContainer = document.getElementById('floatingContactOverlay');
-    if (floatingContactContainer) {
-      floatingContactContainer.style.display = 'none';
-      floatingContactContainer.innerHTML = '';
+  await deleteContactFromFirebase(contactId);
+  await deleteAssignedTasks(contactId);
+  await updateContactsUI();
+  showSuccessMessage('Contact successfully deleted');
+}
+
+async function deleteAssignedTasks(contactId) {
+  const allTasks = await fetchAllTasks();
+  
+  for (const task of allTasks) {
+    if (task.assignedTo === contactId) {
+      await deleteTaskFromFirebase(task.id);
+      console.log(`Task "${task.title}" deleted (was assigned to contact ${contactId})`);
     }
-    const contacts = await fetchAllContacts();
-    renderContactsList(contacts);
-  } catch (error) {
-    console.error('Error deleting contact:', error);
-    showErrorMessage('Error deleting contact');
   }
 }
+
+async function updateContactsUI() {
+  closeFloatingContactOverlay();
+  const contacts = await fetchAllContacts();
+  renderContactsList(contacts);
+}
+
+function closeFloatingContactOverlay() {
+  const floatingContactContainer = document.getElementById('floatingContactOverlay');
+  if (floatingContactContainer) {
+    floatingContactContainer.style.display = 'none';
+    floatingContactContainer.innerHTML = '';
+  }
+}
+
+function showSuccessMessage(message) {
+  const successElement = document.createElement('div');
+  successElement.innerHTML = getSuccessContactMessageTemplate({ message });
+  document.body.appendChild(successElement);
+  setTimeout(() => {
+    if (document.body.contains(successElement)) {
+      document.body.removeChild(successElement);
+    }
+  }, 3000);
+}
+
+
 function showSuccessMessage(message) {
   const successElement = document.createElement('div');
   successElement.innerHTML = getSuccessContactMessageTemplate({ message });

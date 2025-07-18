@@ -89,7 +89,7 @@ async function loadContacts() {
     for (let i = 0; i < contacts.length; i++) {
       const contact = contacts[i];
       const option = document.createElement('option');
-      option.value = contact.name;
+      option.value = contact.id;
       option.textContent = contact.name;
       assigneeSelect.appendChild(option);
     }
