@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="../css/LogIn.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/LogInPage.css" />
-    <link rel="stylesheet" href="../css/validation.css">
+    <!-- <link rel="stylesheet" href="../css/validation.css" /> -->
     <script src="../javascript/global/firebase.js"></script>
     <script src="../javascript/global/user.js"></script>
     <script src="../javascript/global/utils.js"></script>
     <script src="../javascript/global/loadingscreen.js"></script>
-    <script src="../javascript/global/validation/validation.js"></script>
-    <script src="../javascript/global/validation/loginvalidation.js"></script>
-    <script src="../javascript/ui.js" defer></script>
+    <!-- <script src="../javascript/global/validation/validation.js"></script> -->
+    <!-- <script src="../javascript/global/validation/loginvalidation.js"></script> -->
+    <script src="../javascript/global/ui.js" defer></script>
     <title>Join</title>
   </head>
 
@@ -38,16 +38,22 @@
       <form class="LogInMainContainer hide">
         <h2>Log in</h2>
         <div class="LogInInput inputIcon">
-          <input id="email" name="email" placeholder="Email"/>
+          <input id="email" name="email" placeholder="Email" />
           <img src="../assets/icons/login/mail.png" alt="mail" />
         </div>
         <div class="LogInInput inputIcon">
-          <input id="password" name="password" placeholder="Password"/>
+          <input id="password" name="password" placeholder="Password" />
           <img src="../assets/icons/login/lock.png" alt="lock" />
         </div>
         <div class="btnPosition">
           <button class="LogInbtn" #logInButton>Log In</button>
-          <button class="guestLogInButton" onclick="setGuestLogin()" #guestLogInButton> Guest Log in </button>
+          <button
+            class="guestLogInButton"
+            onclick="setGuestLogin()"
+            #guestLogInButton
+          >
+            Guest Log in
+          </button>
         </div>
       </form>
     </main>
