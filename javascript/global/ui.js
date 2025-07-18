@@ -7,3 +7,7 @@ function closeUserMenu() {
   const dropdown = document.getElementById("usermenu");
   dropdown.style.display = "none";
 }
+
+function goBack() {
+    window.history.back();
+}
