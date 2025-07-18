@@ -135,11 +135,6 @@ div > strong {
 }
 
 .helpBackArrow {
-  position: fixed;
-  top: 200px;
-  right: 140px;
-  width: 24px;
-  height: 24px;
   cursor: pointer;
   z-index: 1000;
   transition: opacity 0.3s ease;
