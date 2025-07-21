@@ -47,3 +47,95 @@ function clearAllErrors(formElement) {
     clearError(inputs[i].id);
   }
 }
+
+function initPasswordToggle(inputId) {
+  const input = document.getElementById(inputId);
+  let icon = input ? input.parentNode.querySelector('img') : null;
+  
+  if (!icon && input) {
+    icon = input.parentNode.parentNode.querySelector('img');
+  }
+  
+  if (!input || !icon) return;
+  
+  input.dataset.passwordVisible = 'false';
+  input.style.webkitTextSecurity = 'disc';
+  
+  input.addEventListener('input', function() {
+    updatePasswordIcon(inputId);
+  });
+  
+  icon.addEventListener('click', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    togglePasswordVisibility(inputId);
+  });
+  
+  updatePasswordIcon(inputId);
+}
+
+function updatePasswordIcon(inputId) {
+  const input = document.getElementById(inputId);
+  let icon = input ? input.parentNode.querySelector('img') : null;
+  
+  if (!icon && input) {
+    icon = input.parentNode.parentNode.querySelector('img');
+  }
+  
+  if (!input || !icon) return;
+  
+  const hasValue = input.value.length > 0;
+  
+  if (hasValue) {
+    const isVisible = input.dataset.passwordVisible === 'true';
+    
+    if (isVisible) {
+      icon.src = '../assets/icons/login/visibility.svg';
+      icon.alt = 'Hide password';
+    } else {
+      icon.src = '../assets/icons/login/visibilityoff.svg';
+      icon.alt = 'Show password';
+    }
+    icon.style.cursor = 'pointer';
+  } else {
+    icon.src = '../assets/icons/login/lock.png';
+    icon.alt = 'lock';
+    icon.style.cursor = 'default';
+  }
+}
+
+function togglePasswordVisibility(inputId) {
+  const input = document.getElementById(inputId);
+  let icon = input ? input.parentNode.querySelector('img') : null;
+  
+  if (!icon && input) {
+    icon = input.parentNode.parentNode.querySelector('img');
+  }
+  
+  if (!input || !icon || input.value.length === 0) return;
+  
+  const isCurrentlyVisible = input.dataset.passwordVisible === 'true';
+  
+  if (isCurrentlyVisible) {
+    input.style.webkitTextSecurity = 'disc';
+    input.dataset.passwordVisible = 'false';
+    icon.src = '../assets/icons/login/visibilityoff.svg';
+    icon.alt = 'Show password';
+  } else {
+    input.style.webkitTextSecurity = 'none';
+    input.dataset.passwordVisible = 'true';
+    icon.src = '../assets/icons/login/visibility.svg';
+    icon.alt = 'Hide password';
+  }
+}
+
+function initAllPasswordToggles() {
+  const passwordIds = ['password', 'confirmPassword'];
+  
+  for (let i = 0; i < passwordIds.length; i++) {
+    const input = document.getElementById(passwordIds[i]);
+    if (input) {
+      initPasswordToggle(passwordIds[i]);
+    }
+  }
+}

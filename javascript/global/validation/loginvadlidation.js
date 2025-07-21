@@ -60,8 +60,12 @@ async function loginUser(event) {
     
   } catch (error) {
     const errorMessage = document.getElementsByClassName('errorMessage')[0];
-    errorMessage.textContent = 'An error occurred. Please try again.';
+    errorMessage.textContent = 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.';
     errorMessage.classList.remove('hide');
     console.error('Login Fehler:', error);
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  initAllPasswordToggles();
+});

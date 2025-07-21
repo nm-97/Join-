@@ -22,3 +22,24 @@ input:focus {
   border-color: #FF8190 !important;
   box-shadow: 0 0 0 2px rgba(255, 129, 144, 0.2);
 }
+
+.inputIcon {
+  position: relative;
+}
+
+.inputIcon img {
+  transition: all 0.2s ease;
+  user-select: none;
+  pointer-events: auto !important;
+  z-index: 10;
+}
+
+.inputIcon img[src*="visibility"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer !important;
+}
+
+.inputIcon img:hover {
+  opacity: 0.7;
+}

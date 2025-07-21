@@ -20,13 +20,31 @@ const getUserFormData = (event) => ({
   password: new FormData(event.target).get("password"),
 });
 
-async function createUser(event) {
-  event.preventDefault();
-  const UserData = getUserFormData(event);
-  await addUserToFirebase(UserData);
-  setTimeout(() => {
-    renderSignUpSuccessMessage();
-  }, 500);
+async function createUser(userData) {
+  try {
+    const existingUsers = await fetchAllRegisteredUsers();
+    
+    for (let i = 0; i < existingUsers.length; i++) {
+      if (existingUsers[i].email === userData.email) {
+        return {
+          success: false
+        };
+      }
+    }
+    
+    const userId = await addUserToFirebase(userData);
+    
+    return {
+      success: true,
+      userId: userId
+    };
+    
+  } catch (error) {
+    console.error('Registrierung Fehler:', error);
+    return {
+      success: false
+    };
+  }
 }
 
 const postUserData = async (UserData) => {
