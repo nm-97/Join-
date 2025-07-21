@@ -188,3 +188,54 @@ function mapApiContactToTemplate(data) {
     address: data.address || "",
   };
 }
+
+async function fetchAllRegisteredUsers() {
+  const response = await fetch(`${firebaseUrl}user /registered/.json`);
+  const data = await response.json();
+  if (!data) return [];
+  
+  const users = [];
+  const keys = Object.keys(data);
+  for (let i = 0; i < keys.length; i++) {
+    const id = keys[i];
+    const user = { id, ...data[id] };
+    users.push(user);
+  }
+  return users;
+}
+
+async function checkUserCredentials(email, password) {
+  try {
+    const users = await fetchAllRegisteredUsers();
+    
+    for (let i = 0; i < users.length; i++) {
+      const user = users[i];
+      if (user.email === email && user.password === password) {
+        return {
+          success: true,
+          user: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            type: "registered"
+          }
+        };
+      }
+    }
+    
+    return {
+      success: false
+    };
+    
+  } catch (error) {
+    console.error('Login Fehler:', error);
+    return {
+      success: false
+    };
+  }
+}
+
+function setUserLogin(userData) {
+  sessionStorage.setItem('currentUser', JSON.stringify(userData));
+  window.location.href = "../html/summaryUser.html";
+}

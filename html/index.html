@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="../css/LogIn.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/LogInPage.css" />
-    <!-- <link rel="stylesheet" href="../css/validation.css" /> -->
+    <link rel="stylesheet" href="../css/validation.css" />
     <script src="../javascript/global/firebase.js"></script>
     <script src="../javascript/global/user.js"></script>
     <script src="../javascript/global/utils.js"></script>
     <script src="../javascript/global/loadingscreen.js"></script>
-    <!-- <script src="../javascript/global/validation/validation.js"></script> -->
-    <!-- <script src="../javascript/global/validation/loginvalidation.js"></script> -->
+    <script src="../javascript/global/validation/validation.js"></script>
+    <script src="../javascript/global/validation/loginvadlidation.js"></script>
     <script src="../javascript/global/ui.js" defer></script>
     <title>Join</title>
   </head>
@@ -35,7 +35,7 @@
     </header>
 
     <main id="LogInMain">
-      <form class="LogInMainContainer hide">
+      <form class="LogInMainContainer hide" onsubmit="loginUser(event)">
         <h2>Log in</h2>
         <div class="LogInInput inputIcon">
           <input id="email" name="email" placeholder="Email" />
@@ -45,6 +45,7 @@
           <input id="password" name="password" placeholder="Password" />
           <img src="../assets/icons/login/lock.png" alt="lock" />
         </div>
+        <div class="errorMessage hide"></div>
         <div class="btnPosition">
           <button class="LogInbtn" #logInButton>Log In</button>
           <button
