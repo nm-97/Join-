@@ -319,11 +319,6 @@ function mapApiContactToTemplate(data) {
   };
 }
 
-function capitalizeFirstLetter(string) {
-  if (!string || typeof string !== "string") return "";
-  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-}
-
 async function fetchAllRegisteredUsers() {
   const response = await fetch(`${firebaseUrl}user/registered/.json`);
   const data = await response.json();
