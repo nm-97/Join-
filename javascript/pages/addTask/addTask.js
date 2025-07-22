@@ -94,7 +94,7 @@ function setupFormSubmission() {
 
 async function loadContacts() {
   try {
-    const contacts = await fetchAllContacts();
+    const contacts = await fetchContactsByIdAndUser();
     const assigneeSelect = document.getElementById("taskAssignee");
 
     if (!assigneeSelect) return;
@@ -122,7 +122,7 @@ async function createTask() {
   }
 
   try {
-    await addTaskToFirebase(taskData);
+    await addTaskToFirebaseByUser(taskData);
     showTaskCreatedNotification();
     clearForm();
   } catch (error) {
@@ -234,9 +234,8 @@ async function createOverlayTask() {
   if (!validateTaskData(taskData)) {
     return;
   }
-
   try {
-    await addTaskToFirebase(taskData);
+    await addTaskToFirebaseByUser(taskData);
     clearForm();
     closeAddTaskOverlay();
 

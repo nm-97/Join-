@@ -24,7 +24,7 @@ async function createTask() {
   if (!validateTaskData(taskData)) {
     return;
   }
-  await addTaskToFirebase(taskData);
+  await addTaskToFirebaseByUser(taskData);
   showSuccessAddTaskMessage({ message: 'Task successfully created!' });
   clearForm();
 }

@@ -7,13 +7,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function initializeBoard() {
-  const tasks = await fetchAllTasks();
+  const tasks = await fetchTaskByUser();
   const boardContainer = document.getElementById("boardContainer");
   boardContainer.innerHTML = getBoardTemplate(tasks);
 }
 
 async function showTaskDetail(taskId) {
-  const task = await fetchTaskById(taskId);
+  const tasks = await fetchTaskByUser();
+  const task = tasks.find((t) => t.id === taskId);
   task.assignedToName = await getContactNameById(task.assignedTo);
   const overlay = document.getElementById("taskOverlay");
   overlay.innerHTML = getTaskDetailOverlay(task);
@@ -22,13 +23,13 @@ async function showTaskDetail(taskId) {
 }
 
 async function deleteTask(taskId) {
-  await deleteTaskFromFirebase(taskId);
+  await deleteTaskFromFirebaseByUser(taskId);
   closeTaskOverlay();
   await refreshBoard();
 }
 
 async function refreshBoard() {
-  const tasks = await fetchAllTasks();
+  const tasks = await fetchTaskByUser();
   const boardContainer = document.getElementById("boardContainer");
   boardContainer.innerHTML = getBoardTemplate(tasks);
 }
@@ -59,7 +60,7 @@ async function getContactNameById(contactId) {
   if (!contactId) return "Not assigned";
 
   try {
-    const contacts = await fetchAllContacts();
+    const task = await fetchContactByIdAndUser(taskId);
     const contact = contacts.find((c) => c.id === contactId);
     return contact ? contact.name : "Unknown Contact";
   } catch (error) {
@@ -69,16 +70,19 @@ async function getContactNameById(contactId) {
 }
 
 async function editTask(taskId) {
-  const task = await fetchTaskById(taskId);
-  task.assignedToName = await getContactNameById(task.assignedTo);
-
-  const overlay = document.getElementById("editTaskOverlay");
-  if (overlay && task) {
-    overlay.innerHTML = getEditTaskOverlay(task);
-    overlay.style.display = "flex";
-    overlay.classList.remove("hidden");
+  const tasks = await fetchTaskByUser();
+  const task = tasks.find((t) => t.id === taskId);
+  if (task) {
+    task.assignedToName = await getContactNameById(task.assignedTo);
+    const overlay = document.getElementById("editTaskOverlay");
+    if (overlay) {
+      overlay.innerHTML = getEditTaskOverlay(task);
+      overlay.style.display = "flex";
+      overlay.classList.remove("hidden");
+    }
   }
 }
+
 function closeEditTaskOverlay() {
   const overlay = document.getElementById("editTaskOverlay");
   if (overlay) {
