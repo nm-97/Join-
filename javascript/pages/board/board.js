@@ -1,6 +1,6 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   if (window.location.pathname.includes("board.html")) {
     initializeBoard();
   }
@@ -13,8 +13,8 @@ async function initializeBoard() {
 }
 
 async function showTaskDetail(taskId) {
-const task = await fetchTaskById(taskId);
-task.assignedToName = await getContactNameById(task.assignedTo);
+  const task = await fetchTaskById(taskId);
+  task.assignedToName = await getContactNameById(task.assignedTo);
   const overlay = document.getElementById("taskOverlay");
   overlay.innerHTML = getTaskDetailOverlay(task);
   overlay.classList.remove("hidden");
@@ -56,22 +56,22 @@ function showAddTaskOverlay() {
 }
 
 async function getContactNameById(contactId) {
-  if (!contactId) return 'Not assigned';
-  
+  if (!contactId) return "Not assigned";
+
   try {
     const contacts = await fetchAllContacts();
-    const contact = contacts.find(c => c.id === contactId);
-    return contact ? contact.name : 'Unknown Contact';
+    const contact = contacts.find((c) => c.id === contactId);
+    return contact ? contact.name : "Unknown Contact";
   } catch (error) {
-    console.error('Error getting contact name:', error);
-    return 'Unknown Contact';
+    console.error("Error getting contact name:", error);
+    return "Unknown Contact";
   }
 }
 
 async function editTask(taskId) {
   const task = await fetchTaskById(taskId);
   task.assignedToName = await getContactNameById(task.assignedTo);
-  
+
   const overlay = document.getElementById("editTaskOverlay");
   if (overlay && task) {
     overlay.innerHTML = getEditTaskOverlay(task);
@@ -84,7 +84,7 @@ function closeEditTaskOverlay() {
   if (overlay) {
     overlay.style.display = "none";
     overlay.classList.add("hidden");
-    overlay.innerHTML = '';
+    overlay.innerHTML = "";
   }
 }
 
@@ -93,6 +93,6 @@ function closeAddTaskOverlay() {
   if (overlay) {
     overlay.style.display = "none";
     overlay.classList.add("hidden");
-    overlay.innerHTML = '';
+    overlay.innerHTML = "";
   }
 }
