@@ -111,9 +111,10 @@ body {
 .boardContainer {
   display: flex;
   width: 100%;
+  height: 100%;
   margin-top: 24px;
   gap: 30px;
-  overflow-x: auto;
+  overflow-y: hidden;
 }
 .boardColumn {
   flex: 1;
@@ -237,7 +238,7 @@ body {
   gap: 0;
 }
 
-.columnHeader img{
+.columnHeader img {
   cursor: pointer;
 }
 
@@ -615,16 +616,15 @@ hr {
 }
 
 @keyframes overlayMoveFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(250px);
+  }
 
-	0% {
-		opacity: 0;
-		transform: translateX(250px);
-	}
-
-	100% {
-		opacity: 1;
-		transform: translateX(0);
-	}
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .closeBtn {
@@ -953,15 +953,15 @@ label {
 }
 
 .editAvatar1 {
-  background-color: #1FD7C1;
+  background-color: #1fd7c1;
 }
 
 .editAvatar2 {
-  background-color: #9327FF;
+  background-color: #9327ff;
 }
 
 .editAvatar3 {
-  background-color: #0038FF;
+  background-color: #0038ff;
 }
 
 .editSubtaskInput {
