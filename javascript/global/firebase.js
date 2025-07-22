@@ -46,6 +46,12 @@ async function createUser(userData) {
       }
     }
     const userId = await addUserToFirebase(userData);
+    setUserLogin({
+      id: userId,
+      name: userData.name,
+      email: userData.email,
+    });
+
     return {
       success: true,
       userId: userId,
@@ -59,29 +65,40 @@ async function createUser(userData) {
 }
 
 const postUserData = async (UserData) => {
-  return await fetch(`${firebaseUrl}user /registered/.json`, {
+  return await fetch(`${firebaseUrl}user/registered/.json`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(UserData),
   });
 };
 
-async function addUserToFirebase(UserData) {
-  const response = await postUserData(UserData);
+async function addUserToFirebase(userData) {
+  const userDataWithType = {
+    ...userData,
+    type: "registered",
+  };
+
+  // DEBUG: Zeige was gespeichert wird
+  console.log("🔥 Speichere User in Firebase:", userDataWithType);
+
+  const response = await postUserData(userDataWithType);
   const result = await response.json();
+
+  // DEBUG: Zeige Firebase Antwort
+  console.log("🔥 Firebase Antwort:", result);
+
   return result.name;
 }
-
 async function fetchTaskByUser() {
   const currentUser = getCurrentUser();
   let response;
   let data;
   if (currentUser.type === "registered") {
     response = await fetch(
-      `${firebaseUrl}user /registered/${currentUser.id}/task.json`
+      `${firebaseUrl}user/registered/${currentUser.id}/task.json`
     );
   } else if (currentUser.type === "guest") {
-    response = await fetch(`${firebaseUrl}user /guest /task.json`);
+    response = await fetch(`${firebaseUrl}user/guest/task.json`);
   }
   data = await response.json();
   if (!data) return [];
@@ -94,7 +111,7 @@ async function addTaskToFirebaseByUser(taskData) {
   const currentUser = getCurrentUser();
   if (currentUser.type === "registered") {
     const response = await fetch(
-      `${firebaseUrl}user /registered/${currentUser.id}/task.json`,
+      `${firebaseUrl}user/registered/${currentUser.id}/task.json`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -104,7 +121,7 @@ async function addTaskToFirebaseByUser(taskData) {
     const result = await response.json();
     return result.name;
   } else if (currentUser.type === "guest") {
-    const response = await fetch(`${firebaseUrl}user /guest /task.json`, {
+    const response = await fetch(`${firebaseUrl}user/guest/task.json`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(taskData),
@@ -136,12 +153,12 @@ async function deleteContactFromFirebase(contactId) {
 
     if (currentUser.type === "registered") {
       response = await fetch(
-        `${firebaseUrl}user /registered/${currentUser.id}/contacts/${contactId}.json`,
+        `${firebaseUrl}user/registered/${currentUser.id}/contacts/${contactId}.json`,
         { method: "DELETE" }
       );
     } else if (currentUser.type === "guest") {
       response = await fetch(
-        `${firebaseUrl}user /guest /contacts/${contactId}.json`,
+        `${firebaseUrl}user/guest/contacts/${contactId}.json`,
         { method: "DELETE" }
       );
     }
@@ -158,7 +175,7 @@ async function updateContactInFirebaseByUser(contactId, contactData) {
 
   if (currentUser.type === "registered") {
     response = await fetch(
-      `${firebaseUrl}user /registered/${currentUser.id}/contacts/${contactId}.json`,
+      `${firebaseUrl}user/registered/${currentUser.id}/contacts/${contactId}.json`,
       {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -167,7 +184,7 @@ async function updateContactInFirebaseByUser(contactId, contactData) {
     );
   } else if (currentUser.type === "guest") {
     response = await fetch(
-      `${firebaseUrl}user /guest /contacts/${contactId}.json`,
+      `${firebaseUrl}user/guest/contacts/${contactId}.json`,
       {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -184,10 +201,10 @@ async function fetchContactsByIdAndUser() {
   let data;
   if (currentUser.type === "registered") {
     response = await fetch(
-      `${firebaseUrl}user /registered/${currentUser.id}/contacts.json`
+      `${firebaseUrl}user/registered/${currentUser.id}/contacts.json`
     );
   } else if (currentUser.type === "guest") {
-    response = await fetch(`${firebaseUrl}user /guest /contacts.json`);
+    response = await fetch(`${firebaseUrl}user/guest/contacts.json`);
   }
   data = await response.json();
   if (!data) return [];
@@ -201,11 +218,11 @@ async function fetchContactByIdAndUser(contactId) {
   let response;
   if (currentUser.type === "registered") {
     response = await fetch(
-      `${firebaseUrl}user /registered/${currentUser.id}/contacts/${contactId}.json`
+      `${firebaseUrl}user/registered/${currentUser.id}/contacts/${contactId}.json`
     );
   } else if (currentUser.type === "guest") {
     response = await fetch(
-      `${firebaseUrl}user /guest /contacts/${contactId}.json`
+      `${firebaseUrl}user/guest/contacts/${contactId}.json`
     );
   }
   const data = await response.json();
@@ -217,7 +234,7 @@ async function addContactToFirebaseByUser(contactData) {
   let response;
   if (currentUser.type === "registered") {
     response = await fetch(
-      `${firebaseUrl}user /registered/${currentUser.id}/contacts.json`,
+      `${firebaseUrl}user/registered/${currentUser.id}/contacts.json`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -227,7 +244,7 @@ async function addContactToFirebaseByUser(contactData) {
     const result = await response.json();
     return result.name;
   } else if (currentUser.type === "guest") {
-    response = await fetch(`${firebaseUrl}user /guest /contacts.json`, {
+    response = await fetch(`${firebaseUrl}user/guest/contacts.json`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(contactData),
@@ -242,7 +259,7 @@ async function updateTaskInFirebaseByUser(taskId, taskData) {
   let response;
   if (currentUser.type === "registered") {
     response = await fetch(
-      `${firebaseUrl}user /registered/${currentUser.id}/task/${taskId}.json`,
+      `${firebaseUrl}user/registered/${currentUser.id}/task/${taskId}.json`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -250,7 +267,7 @@ async function updateTaskInFirebaseByUser(taskId, taskData) {
       }
     );
   } else if (currentUser.type === "guest") {
-    response = await fetch(`${firebaseUrl}user /guest /task/${taskId}.json`, {
+    response = await fetch(`${firebaseUrl}user/guest/task/${taskId}.json`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(taskData),
@@ -264,13 +281,13 @@ async function deleteTaskFromFirebaseByUser(taskId) {
   let response;
   if (currentUser.type === "registered") {
     response = await fetch(
-      `${firebaseUrl}user /registered/${currentUser.id}/task/${taskId}.json`,
+      `${firebaseUrl}user/registered/${currentUser.id}/task/${taskId}.json`,
       {
         method: "DELETE",
       }
     );
   } else if (currentUser.type === "guest") {
-    response = await fetch(`${firebaseUrl}user /guest /task/${taskId}.json`, {
+    response = await fetch(`${firebaseUrl}user/guest/task/${taskId}.json`, {
       method: "DELETE",
     });
   }
@@ -302,8 +319,13 @@ function mapApiContactToTemplate(data) {
   };
 }
 
+function capitalizeFirstLetter(string) {
+  if (!string || typeof string !== "string") return "";
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
+
 async function fetchAllRegisteredUsers() {
-  const response = await fetch(`${firebaseUrl}user /registered/.json`);
+  const response = await fetch(`${firebaseUrl}user/registered/.json`);
   const data = await response.json();
   if (!data) return [];
 
