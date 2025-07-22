@@ -4,7 +4,7 @@ function getBoardTemplate(tasks = []) {
       <div class="boardColumn">
         <div class="columnHeader">
           <h2 class="columnTitle">To do</h2>
-          <img src="../assets/icons/board/plus.svg" alt="" onclick="addTaskToColumn('toDo')">
+          <img src="../assets/icons/board/plus.svg" alt="addTaskIcon" onclick="addTaskToColumn('toDo')">
         </div>
         <div id="toDoColumn" class="columnContent" ondrop="dropToAnotherColumn(event)" ondragover="moveToAnotherColumn(event)">
           ${renderTasksForColumn(tasks, "toDo")}
@@ -14,7 +14,7 @@ function getBoardTemplate(tasks = []) {
       <div class="boardColumn">
         <div class="columnHeader">
           <h2 class="columnTitle">In progress</h2>
-          <img src="../assets/icons/board/plus.svg" alt="" onclick="addTaskToColumn('inProgress')">
+          <img src="../assets/icons/board/plus.svg" alt="addTaskIcon" onclick="addTaskToColumn('inProgress')">
         </div>
         <div id="inProgressColumn" class="columnContent" ondrop="dropToAnotherColumn(event)" ondragover="moveToAnotherColumn(event)">
           ${renderTasksForColumn(tasks, "inProgress")}
@@ -24,7 +24,7 @@ function getBoardTemplate(tasks = []) {
       <div class="boardColumn">
         <div class="columnHeader">
           <h2 class="columnTitle">Await feedback</h2>
-          <img src="../assets/icons/board/plus.svg" alt="">
+          <img src="../assets/icons/board/plus.svg" alt="addTaskIcon">
         </div>
         <div id="awaitingFeedbackColumn" class="columnContent" ondrop="dropToAnotherColumn(event)" ondragover="moveToAnotherColumn(event)">
           ${renderTasksForColumn(tasks, "awaitingFeedback")}
@@ -34,7 +34,7 @@ function getBoardTemplate(tasks = []) {
       <div class="boardColumn">
         <div class="columnHeader">
           <h2 class="columnTitle">Done</h2>
-          <img src="../assets/icons/board/plus.svg" alt="">
+          <img src="../assets/icons/board/plus.svg" alt="addTaskIcon">
         </div>
         <div id="doneColumn" class="columnContent" ondrop="dropToAnotherColumn(event)" ondragover="moveToAnotherColumn(event)">
           ${renderTasksForColumn(tasks, "done")}
@@ -135,7 +135,7 @@ function renderSubtasks(subtasks, taskId) {
         <div class="checkbox ${checkedClass}" onclick="toggleSubtask('${taskId}', '${
       subtask.id
     }')"></div>
-        <img src="../assets/icons/board/${iconSrc}" alt="">
+        <img src="../assets/icons/board/${iconSrc}" alt="subtaskIcon">
         <span>${subtask.text || "Untitled Subtask"}</span>
       </div>`;
   }

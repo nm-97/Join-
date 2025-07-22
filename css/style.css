@@ -1,8 +1,8 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
 }
 body {
   background-color: #e5e5e5;
@@ -18,102 +18,103 @@ body {
 }
 
 @font-face {
-    font-family: 'Inter';
-    src: url('../assets/fonts/Inter/Inter-VariableFont_opsz,wght.ttf') format('truetype');
-    font-display: swap;
+  font-family: "Inter";
+  src: url("../assets/fonts/Inter/Inter-VariableFont_opsz,wght.ttf")
+    format("truetype");
+  font-display: swap;
 }
 
 .pageWrapper {
-    width: 100%;
-    max-width: 1920px;
-    background-color: #f5f5f7;
-    display: flex;
-    min-height: 100vh;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1920px;
+  background-color: #f5f5f7;
+  display: flex;
+  min-height: 100vh;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar {
-    width: 280px;
-    min-width: 280px;
-    background-color: #2a3647;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+  width: 280px;
+  min-width: 280px;
+  background-color: #2a3647;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .logo {
-    padding: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
 }
 
 .joinLogo {
-    width: 100px;
-    height: 120px;
+  width: 100px;
+  height: 120px;
 }
 
 .navigation {
-    flex: 1;
-    padding: 20px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  flex: 1;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.navi{
+.navi {
   align-items: center;
 }
 
 .navItem {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 15px 30px;
-    color: #bdc3c7;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding-left: 75px;
-    padding-right: 75px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 30px;
+  color: #bdc3c7;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding-left: 75px;
+  padding-right: 75px;
 }
 
 .navItem:hover {
-    background-color: #34495e;
-    color: white;
+  background-color: #34495e;
+  color: white;
 }
 
 .navItem.active {
-    background-color: #0A1931;
-    color: white;
+  background-color: #0a1931;
+  color: white;
 }
 
 .footerLinks {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-bottom: 100px;
-    gap: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 100px;
+  gap: 6px;
 }
 
 .footerLink {
-    color: #7f8c8d;
-    text-decoration: none;
-    font-size: 16px;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    padding: 10px 0px;
-    display: flex;
-    text-align: center;
-    justify-content: center;
+  color: #7f8c8d;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 10px 0px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
 }
 
 .footerLink:hover {
-    color: #3498db;
+  color: #3498db;
 }
 
 .footerLink.active {
-  background-color: #0A1931;
+  background-color: #0a1931;
   color: white;
 }
 
@@ -129,32 +130,32 @@ body {
 }
 
 .headerTitle {
-    font-size: 20px;
-    font-weight: 400;
+  font-size: 20px;
+  font-weight: 400;
 }
 
 .headerActions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-.headerActions img{
+.headerActions img {
   cursor: pointer;
 }
 
 .userAvatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #3498db;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    border: 1px solid black;
-    cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #3498db;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border: 1px solid black;
+  cursor: pointer;
 }
 /* Avatar Overlay */
 
@@ -171,15 +172,15 @@ body {
   transform: none;
   z-index: 1000;
   width: 150px;
-  height: 158px;;
+  height: 158px;
 }
 
-.none{
-    display: none;
+.none {
+  display: none;
 }
 
 .menuItem {
-  color: #CDCDCD;
+  color: #cdcdcd;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -204,7 +205,7 @@ body {
   margin-bottom: 0;
 }
 
-.ntfmask{
+.ntfmask {
   width: 256px;
   height: 75px;
   background-color: #2b3647;
@@ -226,10 +227,10 @@ body {
   transform: translateX(-50%);
 }
 
-.ntfUpRight{
-    position: fixed;
-    top: 30px;
-    right: 30px;
+.ntfUpRight {
+  position: fixed;
+  top: 30px;
+  right: 30px;
 }
 
 .ntfcenter {
@@ -237,4 +238,11 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-84%, -481%);
+}
+
+.ntfcenterS {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

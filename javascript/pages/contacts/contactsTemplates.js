@@ -1,6 +1,5 @@
-
 function getContactWithSeparator(contact, showSeparator = false) {
-  let separatorHTML = '';
+  let separatorHTML = "";
   if (showSeparator) {
     const letter = contact.name.charAt(0).toUpperCase();
     separatorHTML = `
@@ -8,7 +7,7 @@ function getContactWithSeparator(contact, showSeparator = false) {
       <div class="alphabetLetter">${letter}</div>
     </div>`;
   }
-  
+
   return separatorHTML + getContactTemplate(contact);
 }
 
@@ -36,7 +35,7 @@ function getAddContactOverlay() {
                         </div>
                         <div class="addContactModalRight">
                             <button class="addContactClose" onclick="closeAddContactOverlay()">
-                                <img src="../assets/icons/shared/close.svg" alt="">
+                                <img src="../assets/icons/shared/close.svg" alt="closeIcon">
                             </button>
                             <div class="addContactFormAvatarPosition">
                                 <div class="addContactAvatar">
@@ -45,21 +44,21 @@ function getAddContactOverlay() {
                                 <form class="addContactForm" onsubmit="createContact(event)">
                                     <div class="addContactInputWrapper">
                                         <input type="text" name="name" placeholder="Name" required>
-                                        <img src="../assets/icons/contacts/person.svg" class="inputIcon" alt="">
+                                        <img src="../assets/icons/contacts/person.svg" class="inputIcon" alt="personIcon">
                                     </div>
                                     <div class="addContactInputWrapper">
                                         <input type="email" name="email" placeholder="Email" required>
-                                        <img src="../assets/icons/contacts/mail.svg" class="inputIcon" alt="">
+                                        <img src="../assets/icons/contacts/mail.svg" class="inputIcon" alt="mailIcon">
                                     </div>
                                     <div class="addContactInputWrapper">
                                         <input type="tel" name="phone" placeholder="Phone" required>
-                                        <img src="../assets/icons/contacts/call.svg" class="inputIcon" alt="">
+                                        <img src="../assets/icons/contacts/call.svg" class="inputIcon" alt="phoneIcon">
                                     </div>
                                     <div class="addContactBtnRow">
                                         <button type="button" class="addContactCancelBtn" onclick="closeAddContactOverlay()">Cancel
-                                            <img src="../assets/icons/shared/close.svg" alt=""></button>
+                                            <img src="../assets/icons/shared/close.svg" alt="cancelIcon"></button>
                                         <button type="submit" class="addContactCreateBtn">Create contact
-                                            <img src="../assets/icons/add task/check.svg" alt=""></button>
+                                            <img src="../assets/icons/add task/check.svg" alt="checkIcon"></button>
                                     </div>
                                 </form>
                             </div>
@@ -76,7 +75,7 @@ function getEditContactOverlay(contact) {
                     </div>
                     <div class="editContactModalRight">
                         <button class="editContactClose" onclick="closeEditContactOverlay()">
-                            <img src="../assets/icons/shared/Close.svg" alt="">
+                            <img src="../assets/icons/shared/Close.svg" alt="closeIcon">
                         </button>
                         <div class="addContactFormAvatarPosition">
                             <div class="editContactAvatar">
@@ -85,21 +84,21 @@ function getEditContactOverlay(contact) {
                             <form class="editContactForm" onsubmit="updateContact(event, '${contact.id}')">
                                 <div class="editContactInputWrapper">
                                     <input type="text" name="name" placeholder="Name" value="${contact.name}" required>
-                                    <img src="../assets/icons/contacts/person.svg" class="inputIcon" alt="">
+                                    <img src="../assets/icons/contacts/person.svg" class="inputIcon" alt="personIcon">
                                 </div>
                                 <div class="editContactInputWrapper">
                                     <input type="email" name="email" placeholder="Email" value="${contact.email}" required>
-                                    <img src="../assets/icons/contacts/mail.svg" class="inputIcon" alt="">
+                                    <img src="../assets/icons/contacts/mail.svg" class="inputIcon" alt="mailIcon">
                                 </div>
                                 <div class="editContactInputWrapper">
                                     <input type="tel" name="phone" placeholder="Phone" value="${contact.phone}" required>
-                                    <img src="../assets/icons/contacts/call.svg" class="inputIcon" alt="">
+                                    <img src="../assets/icons/contacts/call.svg" class="inputIcon" alt="phoneIcon">
                                 </div>
                                 <div class="editContactBtnRow">
                                     <button type="button" class="editContactDeleteBtn" onclick="closeEditContactOverlay()">Cancel
-                                        <img src="../assets/contacts/Close.svg" alt=""></button>
+                                        <img src="../assets/contacts/Close.svg" alt="cancelIcon"></button>
                                     <button type="submit" class="editContactSaveBtn">Save
-                                        <img src="../assets/icons/add task/check.svg" alt=""></button>
+                                        <img src="../assets/icons/add task/check.svg" alt="saveIcon"></button>
                                 </div>
                             </form>
                         </div>
@@ -119,11 +118,11 @@ function getFloatingContact(contact) {
           <span>${contact.name}</span>
           <div class="floatingContactActions">
             <button onclick="showEditContactOverlay('${contact.id}')" class="editBtn">
-              <img src="../assets/icons/shared/edit.svg" alt="">
+              <img src="../assets/icons/shared/edit.svg" alt="editIcon">
               Edit
             </button>
             <button onclick="deleteContact('${contact.id}')" class="deleteBtn">
-              <img src="../assets/icons/shared/delete.svg" alt="">
+              <img src="../assets/icons/shared/delete.svg" alt="deleteIcon">
               Delete
             </button>
           </div>
@@ -145,7 +144,7 @@ function getFloatingContact(contact) {
 }
 
 function getSuccessContactMessageTemplate(params = {}) {
-  const message = params.message || 'Contact successfully created';
+  const message = params.message || "Contact successfully created";
   return `
 <div id="addContactSuccess" class="ntfcenter ntfmask">${message}</div>`;
 }

@@ -1,4 +1,3 @@
-
 function getAddTaskOverlay(params = {}) {
   return `
         <div class="overlayContent">
@@ -21,7 +20,7 @@ function getAddTaskOverlay(params = {}) {
                         <label for="taskDueDate">Due Date <span class="requiredStar">*</span></label>
                         <div class="inputIcon">
                             <input placeholder="dd/mm/yyyy" id="taskDueDate" name="taskDueDate" required>
-                            <img src="../assets/icons/add task/event.svg" alt="">
+                            <img src="../assets/icons/add task/event.svg" alt="calendarIcon">
                         </div>
                       <div class="errorMessage hide" id="taskDueDateError"></div>
                     </div>
@@ -34,15 +33,15 @@ function getAddTaskOverlay(params = {}) {
                         <label for="taskPriority" class="taskPriorityLabel">Task Priority</label>
                         <div class="taskPriorityGroup">
                             <button type="button" class="taskPriorityBtn" id="urgentBtn">
-                                <img src="../assets/icons/shared/urgent.svg" alt="">
+                                <img src="../assets/icons/shared/urgent.svg" alt="urgentIcon">
                                 <span>Urgent</span>
                             </button>
                             <button type="button" class="taskPriorityBtnOrange" id="mediumBtn">
-                                <img src="../assets/icons/shared/medium.svg" alt="">
+                                <img src="../assets/icons/shared/medium.svg" alt="mediumIcon">
                                 <span>Medium</span>
                             </button>
                             <button type="button" class="taskPriorityBtn" id="lowBtn">
-                                <img src="../assets/icons/shared/low.svg" alt="">
+                                <img src="../assets/icons/shared/low.svg" alt="lowIcon">
                                 <span>Low</span>
                             </button>
                         </div>
@@ -86,9 +85,9 @@ function getAddTaskOverlay(params = {}) {
 }
 
 function getEditTaskOverlay(task) {
-  const assignedPersonInitials = getInitials(task.assignedTo || '');
-  const assignedPersonColor = getAvatarColor(task.assignedTo || '');
-  
+  const assignedPersonInitials = getInitials(task.assignedTo || "");
+  const assignedPersonColor = getAvatarColor(task.assignedTo || "");
+
   return `
     <div class="overlay">
       <div class="taskDetailModal">
@@ -100,19 +99,25 @@ function getEditTaskOverlay(task) {
         
         <div class="editFormGroup">
           <label class="editLabel">Title</label>
-          <input type="text" id="editTaskTitle" placeholder="Title" class="editInput" value="${task.title || ''}">
+          <input type="text" id="editTaskTitle" placeholder="Title" class="editInput" value="${
+            task.title || ""
+          }">
         </div>
         
         <div class="editFormGroup">
           <label class="editLabel">Description</label>
-          <textarea id="editTaskDescription" placeholder="Description" class="editTextarea">${task.description || ''}</textarea>
+          <textarea id="editTaskDescription" placeholder="Description" class="editTextarea">${
+            task.description || ""
+          }</textarea>
         </div>
         
         <div class="editFormGroup">
           <label class="editLabel">Due date</label>
           <div class="editInputIcon">
-            <input type="date" id="editTaskDueDate" placeholder="Due Date" class="editInput" value="${task.dueDate || ''}">
-            <img src="../assets/icons/add task/event.svg" class="editDateIcon">
+            <input type="date" id="editTaskDueDate" placeholder="Due Date" class="editInput" value="${
+              task.dueDate || ""
+            }">
+            <img src="../assets/icons/add task/event.svg" class="editDateIcon" alt="calendarIcon">
           </div>
         </div>
         
@@ -120,15 +125,15 @@ function getEditTaskOverlay(task) {
           <label for="taskPriority" class="taskPriorityLabel">Task Priority</label>
             <div class="taskPriorityGroup">
                 <button type="button" class="taskPriorityBtn" id="urgentBtn">
-                <img src="../assets/icons/shared/urgent.svg" alt="">
+                <img src="../assets/icons/shared/urgent.svg" alt="urgentIcon">
                 <span>Urgent</span>
                 </button>
               <button type="button" class="taskPriorityBtnOrange" id="mediumBtn">
-                <img src="../assets/icons/shared/medium.svg" alt="">
+                <img src="../assets/icons/shared/medium.svg" alt="mediumIcon">
                 <span>Medium</span>
               </button>
               <button type="button" class="taskPriorityBtn" id="lowBtn">
-                <img src="../assets/icons/shared/low.svg" alt="">
+                <img src="../assets/icons/shared/low.svg" alt="lowIcon">
                 <span>Low</span>
               </button>
             </div>
@@ -142,7 +147,7 @@ function getEditTaskOverlay(task) {
           <div class="assignedUsers">
             <div class="assignedUser">
             <div class="userAvatar" style="background-color: ${assignedPersonColor};">${assignedPersonInitials}</div>
-            <span>${task.assignedTo || 'Not assigned'}</span>
+            <span>${task.assignedTo || "Not assigned"}</span>
           </div>
         </div>
         </div>
@@ -168,7 +173,7 @@ function getEditTaskOverlay(task) {
         <div class="editButtonContainer">
           <button class="editOkBtn" id="editSaveBtn">
             Ok
-            <img src="../assets/icons/add task/check.svg">
+            <img src="../assets/icons/add task/check.svg" alt="checkIcon">
           </button>
         </div>
       </div>
@@ -176,9 +181,9 @@ function getEditTaskOverlay(task) {
 }
 
 function getSuccessAddTaskMessageTemplate(params) {
-  const message = params.message || 'Task successfully creat';
+  const message = params.message || "Task successfully creat";
   return `
   <div class="ntfbottom ntfmask" id="taskNotification">Task added to board
-   <img src="../assets/icons/summary and sideboard/board.svg" alt=""></img>
+   <img src="../assets/icons/summary and sideboard/board.svg" alt="boardIcon"></img>
     </div>`;
 }

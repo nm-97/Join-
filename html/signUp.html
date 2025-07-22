@@ -6,14 +6,15 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
     <link rel="stylesheet" href="../css/signUp.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/validation.css">
+    <link rel="stylesheet" href="../css/validation.css" />
     <script src="../javascript/global/firebase.js"></script>
     <script src="../javascript/global/user.js"></script>
     <script src="../javascript/global/utils.js"></script>
-    <script src="../javascript/loadingscreen.js"></script>
-    <script src="../javascript/ui.js" defer></script>
+    <script src="../javascript/global/loadingscreen.js"></script>
+    <script src="../javascript/global/ui.js" defer></script>
     <script src="../javascript/global/validation/validation.js"></script>
     <script src="../javascript/global/validation/signupvalidation.js"></script>
+    <script src="../javascript/pages/signUp.js/signUpTemplate.js"></script>
 
     <title>Join</title>
   </head>
@@ -30,31 +31,38 @@
         <h2>Sign Up</h2>
         <button class="backBtn">
           <a href="../html/index.html"></a
-          ><img src="../assets/icons/login/Vector.svg" alt="" />
+          ><img src="../assets/icons/login/Vector.svg" alt="backArrow" />
         </button>
         <div class="LogInInput inputIcon">
-          <input id="name" name="name" placeholder="Name"/>
+          <input id="name" name="name" placeholder="Name" />
           <img src="../assets/icons/contacts/person.svg" alt="user" />
         </div>
         <div class="LogInInput inputIcon">
-          <input id="email" name="email" placeholder="Email"/>
+          <input id="email" name="email" placeholder="Email" />
           <img src="../assets/icons/login/mail.png" alt="mail" />
         </div>
         <div class="LogInInput inputIcon">
-          <input id="password" name="password" placeholder="Password"/>
+          <input id="password" name="password" placeholder="Password" />
           <img src="../assets/icons/login/lock.png" alt="lock" />
         </div>
         <div class="LogInInput inputIcon">
           <div class="checkboxLabel">
-            <input id="confirmPassword" name="confirmPassword" placeholder="Confirm Password"/>
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+            />
             <img src="../assets/icons/login/lock.png" alt="lock" />
           </div>
         </div>
-          <div class="errorMessage hide"></div>
+        <div class="errorMessage hide"></div>
         <div class="checkboxContainer">
           <div class="checkboxLabel">
-            <input class="checkbox" type="checkbox" id="termsCheckbox"/>
-            <label for="termsCheckbox">I accept the <a href="../html/privacyPolicy.html">Privacy Policy</a></label>
+            <input class="checkbox" type="checkbox" id="termsCheckbox" />
+            <label for="termsCheckbox"
+              >I accept the
+              <a href="../html/privacyPolicy.html">Privacy Policy</a></label
+            >
           </div>
         </div>
         <div class="btnPosition">
@@ -64,6 +72,8 @@
         </div>
       </form>
     </main>
+
+    <div class="signUpToast" id="signUpToastMessage"></div>
 
     <footer>
       <a href="../html/privacyPolicy.html">Privacy Policy</a>

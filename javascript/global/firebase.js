@@ -18,7 +18,7 @@ function setGuestLogin() {
   window.location.href = "../html/summaryUser.html";
 }
 
-function setUserLogin(params) {
+function setUserLogin(params, redirect = true) {
   sessionStorage.setItem(
     "currentUser",
     JSON.stringify({
@@ -26,7 +26,9 @@ function setUserLogin(params) {
       ...params,
     })
   );
-  window.location.href = "../html/summaryUser.html";
+  if (redirect) {
+    window.location.href = "../html/summaryUser.html";
+  }
 }
 
 const getUserFormData = (event) => ({
@@ -36,32 +38,28 @@ const getUserFormData = (event) => ({
 });
 
 async function createUser(userData) {
-  try {
-    const existingUsers = await fetchAllRegisteredUsers();
-    for (let i = 0; i < existingUsers.length; i++) {
-      if (existingUsers[i].email === userData.email) {
-        return {
-          success: false,
-        };
-      }
+  const existingUsers = await fetchAllRegisteredUsers();
+  for (let i = 0; i < existingUsers.length; i++) {
+    if (existingUsers[i].email === userData.email) {
+      return {
+        success: false,
+      };
     }
-    const userId = await addUserToFirebase(userData);
-    setUserLogin({
+  }
+  const userId = await addUserToFirebase(userData);
+  setUserLogin(
+    {
       id: userId,
       name: userData.name,
       email: userData.email,
-    });
-
-    return {
-      success: true,
-      userId: userId,
-    };
-  } catch (error) {
-    console.error("Registrierung Fehler:", error);
-    return {
-      success: false,
-    };
-  }
+    },
+    false
+  );
+  renderSignUpSuccessMessage();
+  return {
+    success: true,
+    userId: userId,
+  };
 }
 
 const postUserData = async (UserData) => {
@@ -77,18 +75,11 @@ async function addUserToFirebase(userData) {
     ...userData,
     type: "registered",
   };
-
-  // DEBUG: Zeige was gespeichert wird
-  console.log("🔥 Speichere User in Firebase:", userDataWithType);
-
   const response = await postUserData(userDataWithType);
   const result = await response.json();
-
-  // DEBUG: Zeige Firebase Antwort
-  console.log("🔥 Firebase Antwort:", result);
-
   return result.name;
 }
+
 async function fetchTaskByUser() {
   const currentUser = getCurrentUser();
   let response;
@@ -146,7 +137,6 @@ async function deleteContactFromFirebase(contactId) {
     const tasksToDelete = allTasks.filter(
       (task) => task.assignedTo === contactName
     );
-
     for (let i = 0; i < tasksToDelete.length; i++) {
       await deleteTaskFromFirebaseByUser(tasksToDelete[i].id);
     }
@@ -172,7 +162,6 @@ async function deleteContactFromFirebase(contactId) {
 async function updateContactInFirebaseByUser(contactId, contactData) {
   const currentUser = getCurrentUser();
   let response;
-
   if (currentUser.type === "registered") {
     response = await fetch(
       `${firebaseUrl}user/registered/${currentUser.id}/contacts/${contactId}.json`,
@@ -323,7 +312,6 @@ async function fetchAllRegisteredUsers() {
   const response = await fetch(`${firebaseUrl}user/registered/.json`);
   const data = await response.json();
   if (!data) return [];
-
   const users = [];
   const keys = Object.keys(data);
   for (let i = 0; i < keys.length; i++) {
@@ -337,7 +325,6 @@ async function fetchAllRegisteredUsers() {
 async function checkUserCredentials(email, password) {
   try {
     const users = await fetchAllRegisteredUsers();
-
     for (let i = 0; i < users.length; i++) {
       const user = users[i];
       if (user.email === email && user.password === password) {
@@ -352,7 +339,6 @@ async function checkUserCredentials(email, password) {
         };
       }
     }
-
     return {
       success: false,
     };
