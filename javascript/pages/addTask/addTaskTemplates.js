@@ -10,11 +10,12 @@ function getAddTaskOverlay(params = {}) {
                 <form>
                     <div class="formGroup">
                         <label for="taskTitle">Title <span class="requiredStar">*</span></label>
-                        <input type="text" placeholder="Enter a title" id="taskTitle" name="taskTitle" required>
+                        <input type="text" placeholder="Enter a title" id="taskTitle" name="taskTitle">
+                      <div class="errorMessage hide"></div>
                     </div>
                     <div class="formGroup">
-                        <label for="taskDescription">Description <span class="requiredStar">*</span></label>
-                        <textarea id="taskDescription" placeholder="Enter a description" name="taskDescription" required></textarea>
+                        <label for="taskDescription">Description</label>
+                        <textarea id="taskDescription" placeholder="Enter a description" name="taskDescription"></textarea>
                     </div>
                     <div class="formGroup">
                         <label for="taskDueDate">Due Date <span class="requiredStar">*</span></label>
@@ -22,6 +23,7 @@ function getAddTaskOverlay(params = {}) {
                             <input placeholder="dd/mm/yyyy" id="taskDueDate" name="taskDueDate" required>
                             <img src="../assets/icons/add task/event.svg" alt="">
                         </div>
+                      <div class="errorMessage hide" id="taskDueDateError"></div>
                     </div>
                 </form>
                 
@@ -47,17 +49,19 @@ function getAddTaskOverlay(params = {}) {
                     </div>
                     <div class="formGroup">
                         <label for="taskAssignee">Assigned to <span class="requiredStar">*</span></label>
-                        <select id="taskAssignee" name="taskAssignee" required>
+                        <select id="taskAssignee" name="taskAssignee">
                             <option value="" disabled selected hidden>Select contacts to assign</option>
                         </select>
+                      <div class="errorMessage hide"></div>
                     </div>
                     <div class="formGroup">
                         <label for="taskStatus">Category <span class="requiredStar">*</span></label>
-                        <select id="taskStatus" name="taskStatus" required>
+                        <select id="taskStatus" name="taskStatus">
                             <option value="" disabled selected hidden>Select task category</option>
                             <option value="userStory">User Story</option>
                             <option value="technicalTask">Technical Task</option>
                         </select>
+                      <div class="errorMessage hide"></div>
                     </div>
                     <div class="formGroup">
                         <label for="Subtask">Subtask</label>

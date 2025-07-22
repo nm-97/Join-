@@ -8,23 +8,12 @@ function closeUserMenu() {
   dropdown.style.display = "none";
 }
 
-function showSuccessAddTaskMessage(params) {
-  const notificationHTML = getSuccessAddTaskMessageTemplate(params);
-  document.body.insertAdjacentHTML('beforeend', notificationHTML);
-  setTimeout(() => {
-    const notification = document.getElementById('taskNotification');
-    if (notification) {
-      notification.remove();
-    }
-  }, 2000);
-}
+function showSuccessAddTaskMessage() {
+  const notification = document.getElementById('taskNotification');
+  if (!notification) return;
 
-async function createTask() {
-  const taskData = getFormData();
-  if (!validateTaskData(taskData)) {
-    return;
-  }
-  await addTaskToFirebase(taskData);
-  showSuccessAddTaskMessage({ message: 'Task successfully created!' });
-  clearForm();
+  notification.classList.remove('hide');
+  setTimeout(() => {
+    notification.classList.add('hide');
+  }, 2000);
 }

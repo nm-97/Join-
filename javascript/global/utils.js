@@ -30,30 +30,6 @@ function calculateNextDeadline(allTasks) {
   return formatDate(nextTask.dueDate);
 }
 
-function validateTaskData(taskData) {
-  if (!taskData.title) {
-    alert('Please enter a title');
-    return false;
-  }
-  if (!taskData.description) {
-    alert('Please enter a description');
-    return false;
-  }
-  if (!taskData.dueDate) {
-    alert('Please select a due date');
-    return false;
-  }
-  if (!taskData.assignedTo) {
-    alert('Please select an assignee');
-    return false;
-  }
-  if (!document.getElementById('taskStatus').value) {
-    alert('Please select a category');
-    return false;
-  }
-  return true;
-}
-
 const groupContactsByLetter = (contacts) => {
   return contacts.reduce((grouped, contact) => {
     const firstLetter = contact.name.charAt(0).toUpperCase();
@@ -70,7 +46,6 @@ function mapCategoryToFirebase(category) {
   };
   return categoryMap[category] || 'Technical Task';
 }
-
 
 const getContactFormData = (event) => ({
   name: new FormData(event.target).get("name"),
