@@ -14,108 +14,145 @@ function validateSignupForm() {
   const email = emailInput.value;
   const password = passwordInput.value;
   const confirmPassword = confirmPasswordInput.value;
+  const termsAccepted = termsCheckbox.checked;
   
-  let isValid = true;
-  let errorText = '';
+  clearSignupErrors();
+  
+  const validationResult = checkAllSignupFields(name, email, password, confirmPassword, termsAccepted);
+  
+  if (!validationResult.isValid) {
+    markErrorInputs(name, email, password, confirmPassword);
+    showSignupError(validationResult.errorText);
+    return false;
+  }
+  
+  return true;
+}
+
+function checkAllSignupFields(name, email, password, confirmPassword, termsAccepted) {
+  if (!validateRequired(name)) {
+    return { isValid: false, errorText: 'Please enter your name.' };
+  }
+  
+  if (!validateRequired(email)) {
+    return { isValid: false, errorText: 'Please enter an email address.' };
+  }
+  
+  if (!validateEmail(email)) {
+    return { isValid: false, errorText: 'Please enter a valid email address.' };
+  }
+  
+  if (!validateRequired(password)) {
+    return { isValid: false, errorText: 'Please enter a password.' };
+  }
+  
+  if (!validatePassword(password, 6)) {
+    return { isValid: false, errorText: 'Password must be at least 6 characters long.' };
+  }
+  
+  if (!validateRequired(confirmPassword)) {
+    return { isValid: false, errorText: 'Please confirm your password.' };
+  }
+  
+  if (password !== confirmPassword) {
+    return { isValid: false, errorText: 'Passwords do not match.' };
+  }
+  
+  if (!termsAccepted) {
+    return { isValid: false, errorText: 'Please accept the Privacy Policy.' };
+  }
+  
+  return { isValid: true };
+}
+
+function markErrorInputs(name, email, password, confirmPassword) {
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const confirmPasswordInput = document.getElementById('confirmPassword');
+  
+  if (!validateRequired(name)) {
+    nameInput.classList.add('errorInput');
+  }
+  
+  if (!validateRequired(email) || !validateEmail(email)) {
+    emailInput.classList.add('errorInput');
+  }
+  
+  if (!validateRequired(password) || !validatePassword(password, 6)) {
+    passwordInput.classList.add('errorInput');
+  }
+  
+  if (!validateRequired(confirmPassword) || password !== confirmPassword) {
+    confirmPasswordInput.classList.add('errorInput');
+  }
+}
+
+function clearSignupErrors() {
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const confirmPasswordInput = document.getElementById('confirmPassword');
+  const errorMessage = document.getElementsByClassName('errorMessage')[0];
   
   nameInput.classList.remove('errorInput');
   emailInput.classList.remove('errorInput');
   passwordInput.classList.remove('errorInput');
   confirmPasswordInput.classList.remove('errorInput');
   errorMessage.classList.add('hide');
-  
-  if (!validateRequired(name)) {
-    nameInput.classList.add('errorInput');
-    errorText = 'Please enter your name.';
-    isValid = false;
-  }
-  
-  if (!validateRequired(email)) {
-    emailInput.classList.add('errorInput');
-    if (!errorText) errorText = 'Please enter an email address.';
-    isValid = false;
-  } else if (!validateEmail(email)) {
-    emailInput.classList.add('errorInput');
-    if (!errorText) errorText = 'Please enter a valid email address.';
-    isValid = false;
-  }
-  
-  if (!validateRequired(password)) {
-    passwordInput.classList.add('errorInput');
-    if (!errorText) errorText = 'Please enter a password.';
-    isValid = false;
-  } else if (!validatePassword(password, 6)) {
-    passwordInput.classList.add('errorInput');
-    if (!errorText) errorText = 'Password must be at least 6 characters long.';
-    isValid = false;
-  }
-  
-  if (!validateRequired(confirmPassword)) {
-    confirmPasswordInput.classList.add('errorInput');
-    if (!errorText) errorText = 'Please confirm your password.';
-    isValid = false;
-  } else if (password !== confirmPassword) {
-    passwordInput.classList.add('errorInput');
-    confirmPasswordInput.classList.add('errorInput');
-    if (!errorText) errorText = 'Passwords do not match.';
-    isValid = false;
-  }
-  
-  if (!termsCheckbox.checked) {
-    if (!errorText) errorText = 'Please accept the Privacy Policy.';
-    isValid = false;
-  }
-  
-  if (!isValid) {
-    errorMessage.textContent = errorText;
-    errorMessage.classList.remove('hide');
-  }
-  
-  return isValid;
+}
+
+function showSignupError(text) {
+  const errorMessage = document.getElementsByClassName('errorMessage')[0];
+  errorMessage.textContent = text;
+  errorMessage.classList.remove('hide');
 }
 
 async function signupUser(event) {
   event.preventDefault();
   
-  if (!validateSignupForm()) {
-    return;
-  }
+  if (!validateSignupForm()) return;
   
   const formData = new FormData(event.target);
-  const userData = {
-    name: formData.get('name'),
-    email: formData.get('email'),
-    password: formData.get('password')
-  };
+  const name = formData.get('name');
+  const email = formData.get('email');
+  const password = formData.get('password');
   
+  await processSignup(name, email, password);
+}
+
+async function processSignup(name, email, password) {
   try {
+    const userData = { name: name, email: email, password: password };
     const signupResult = await createUser(userData);
     
-    if (!signupResult.success) {
-      const emailInput = document.getElementById('email');
-      const errorMessage = document.getElementsByClassName('errorMessage')[0];
-      
-      emailInput.classList.add('errorInput');
-      errorMessage.textContent = 'This email address is already registered.';
-      errorMessage.classList.remove('hide');
-      return;
+    if (signupResult.success) {
+      showSuccessMessage();
+    } else {
+      showEmailAlreadyExistsError();
     }
-    
-    const errorMessage = document.getElementsByClassName('errorMessage')[0];
-    errorMessage.textContent = 'Registration successful! You can now log in.';
-    errorMessage.style.color = '#4CAF50';
-    errorMessage.classList.remove('hide');
-    
-    setTimeout(() => {
-      window.location.href = '../html/index.html';
-    }, 2000);
-    
   } catch (error) {
-    const errorMessage = document.getElementsByClassName('errorMessage')[0];
-    errorMessage.textContent = 'An error occurred. Please try again.';
-    errorMessage.classList.remove('hide');
-    console.error('SignUp Fehler:', error);
+    showSignupError('An error occurred. Please try again.');
+    console.error('SignUp Error:', error);
   }
+}
+
+function showSuccessMessage() {
+  const errorMessage = document.getElementsByClassName('errorMessage')[0];
+  errorMessage.textContent = 'Registration successful! You can now log in.';
+  errorMessage.style.color = '#4CAF50';
+  errorMessage.classList.remove('hide');
+  
+  setTimeout(function() {
+    window.location.href = '../html/index.html';
+  }, 2000);
+}
+
+function showEmailAlreadyExistsError() {
+  const emailInput = document.getElementById('email');
+  
+  emailInput.classList.add('errorInput');
+  showSignupError('This email address is already registered.');
 }
 
 document.addEventListener('DOMContentLoaded', function() {

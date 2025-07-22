@@ -1,16 +1,22 @@
 "use strict";
 
 function validateEmail(email) {
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailPattern.test(email);
+  if (email.length < 5) return false;
+  if (email.indexOf('@') === -1) return false;
+  if (email.indexOf('.') === -1) return false;
+  return true;
 }
 
-function validatePassword(password, minLength = 6) {
-  return password && password.length >= minLength;
+function validatePassword(password, minLength) {
+  if (!password) return false;
+  if (password.length < minLength) return false;
+  return true;
 }
 
 function validateRequired(value) {
-  return value && value.trim().length > 0;
+  if (!value) return false;
+  if (value.trim().length === 0) return false;
+  return true;
 }
 
 function showError(inputId, message) {
@@ -19,14 +25,11 @@ function showError(inputId, message) {
   
   input.classList.add('errorInput');
   
-  clearError(inputId);
-  
-  const errorDiv = document.createElement('div');
-  errorDiv.className = 'errorMessage';
-  errorDiv.textContent = message;
-  errorDiv.id = inputId + 'Error';
-  
-  input.parentNode.insertBefore(errorDiv, input.nextSibling);
+  const errorDiv = document.getElementById(inputId + 'Error');
+  if (errorDiv) {
+    errorDiv.textContent = message;
+    errorDiv.classList.remove('hide');
+  }
 }
 
 function clearError(inputId) {
@@ -37,7 +40,8 @@ function clearError(inputId) {
   
   const errorMessage = document.getElementById(inputId + 'Error');
   if (errorMessage) {
-    errorMessage.remove();
+    errorMessage.textContent = '';
+    errorMessage.classList.add('hide');
   }
 }
 
@@ -50,24 +54,18 @@ function clearAllErrors(formElement) {
 
 function initPasswordToggle(inputId) {
   const input = document.getElementById(inputId);
-  let icon = input ? input.parentNode.querySelector('img') : null;
-  
-  if (!icon && input) {
-    icon = input.parentNode.parentNode.querySelector('img');
-  }
+  const icon = input.parentNode.querySelector('img');
   
   if (!input || !icon) return;
   
-  input.dataset.passwordVisible = 'false';
+  input.setAttribute('data-visible', 'false');
   input.style.webkitTextSecurity = 'disc';
   
   input.addEventListener('input', function() {
     updatePasswordIcon(inputId);
   });
   
-  icon.addEventListener('click', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
+  icon.addEventListener('click', function() {
     togglePasswordVisibility(inputId);
   });
   
@@ -76,18 +74,12 @@ function initPasswordToggle(inputId) {
 
 function updatePasswordIcon(inputId) {
   const input = document.getElementById(inputId);
-  let icon = input ? input.parentNode.querySelector('img') : null;
-  
-  if (!icon && input) {
-    icon = input.parentNode.parentNode.querySelector('img');
-  }
+  const icon = input.parentNode.querySelector('img');
   
   if (!input || !icon) return;
   
-  const hasValue = input.value.length > 0;
-  
-  if (hasValue) {
-    const isVisible = input.dataset.passwordVisible === 'true';
+  if (input.value.length > 0) {
+    const isVisible = input.getAttribute('data-visible') === 'true';
     
     if (isVisible) {
       icon.src = '../assets/icons/login/visibility.svg';
@@ -106,24 +98,20 @@ function updatePasswordIcon(inputId) {
 
 function togglePasswordVisibility(inputId) {
   const input = document.getElementById(inputId);
-  let icon = input ? input.parentNode.querySelector('img') : null;
-  
-  if (!icon && input) {
-    icon = input.parentNode.parentNode.querySelector('img');
-  }
+  const icon = input.parentNode.querySelector('img');
   
   if (!input || !icon || input.value.length === 0) return;
   
-  const isCurrentlyVisible = input.dataset.passwordVisible === 'true';
+  const isCurrentlyVisible = input.getAttribute('data-visible') === 'true';
   
   if (isCurrentlyVisible) {
     input.style.webkitTextSecurity = 'disc';
-    input.dataset.passwordVisible = 'false';
+    input.setAttribute('data-visible', 'false');
     icon.src = '../assets/icons/login/visibilityoff.svg';
     icon.alt = 'Show password';
   } else {
     input.style.webkitTextSecurity = 'none';
-    input.dataset.passwordVisible = 'true';
+    input.setAttribute('data-visible', 'true');
     icon.src = '../assets/icons/login/visibility.svg';
     icon.alt = 'Hide password';
   }

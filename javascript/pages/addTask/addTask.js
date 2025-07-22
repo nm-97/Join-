@@ -87,7 +87,6 @@ function setupFormSubmission() {
     console.error("Form buttons not found");
     return;
   }
-
   createButton.onclick = createTask;
   clearButton.onclick = clearForm;
 }

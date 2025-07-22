@@ -10,59 +10,69 @@ function validateLoginForm() {
   const email = emailInput.value;
   const password = passwordInput.value;
   
-  let isValid = true;
+  clearLoginErrors();
+  
+  if (!isValidLoginData(email, password)) {
+    showLoginError('Check your email and password. Please try again.');
+    return false;
+  }
+  
+  return true;
+}
+
+function isValidLoginData(email, password) {
+  if (!validateRequired(email)) return false;
+  if (!validateEmail(email)) return false;
+  if (!validateRequired(password)) return false;
+  if (!validatePassword(password, 6)) return false;
+  return true;
+}
+
+function clearLoginErrors() {
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const errorMessage = document.getElementsByClassName('errorMessage')[0];
   
   emailInput.classList.remove('errorInput');
   passwordInput.classList.remove('errorInput');
   errorMessage.classList.add('hide');
+}
+
+function showLoginError(message) {
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const errorMessage = document.getElementsByClassName('errorMessage')[0];
   
-  if (!validateRequired(email) || !validateEmail(email) || 
-      !validateRequired(password) || !validatePassword(password, 6)) {
-    
-    emailInput.classList.add('errorInput');
-    passwordInput.classList.add('errorInput');
-    
-    errorMessage.textContent = 'Check your email and password. Please try again.';
-    errorMessage.classList.remove('hide');
-    isValid = false;
-  }
-  
-  return isValid;
+  emailInput.classList.add('errorInput');
+  passwordInput.classList.add('errorInput');
+  errorMessage.textContent = message;
+  errorMessage.classList.remove('hide');
 }
 
 async function loginUser(event) {
   event.preventDefault();
   
-  if (!validateLoginForm()) {
-    return;
-  }
+  if (!validateLoginForm()) return;
   
   const formData = new FormData(event.target);
   const email = formData.get('email');
   const password = formData.get('password');
   
+  await processLogin(email, password);
+}
+
+async function processLogin(email, password) {
   try {
     const loginResult = await checkUserCredentials(email, password);
     
-    if (!loginResult.success) {
-      const emailInput = document.getElementById('email');
-      const passwordInput = document.getElementById('password');
-      const errorMessage = document.getElementsByClassName('errorMessage')[0];
-      
-      emailInput.classList.add('errorInput');
-      passwordInput.classList.add('errorInput');
-      errorMessage.textContent = 'Check your email and password. Please try again.';
-      errorMessage.classList.remove('hide');
-      return;
+    if (loginResult.success) {
+      setUserLogin(loginResult.user);
+    } else {
+      showLoginError('Check your email and password. Please try again.');
     }
-    
-    setUserLogin(loginResult.user);
-    
   } catch (error) {
-    const errorMessage = document.getElementsByClassName('errorMessage')[0];
-    errorMessage.textContent = 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.';
-    errorMessage.classList.remove('hide');
-    console.error('Login Fehler:', error);
+    showLoginError('An error occurred. Please try again.');
+    console.error('Login Error:', error);
   }
 }
 

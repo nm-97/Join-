@@ -1,6 +1,7 @@
 function toggleUserMenu() {
   const dropdown = document.getElementById("usermenu");
-  dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+  dropdown.style.display =
+    dropdown.style.display === "block" ? "none" : "block";
 }
 
 function closeUserMenu() {
@@ -10,9 +11,9 @@ function closeUserMenu() {
 
 function showSuccessAddTaskMessage(params) {
   const notificationHTML = getSuccessAddTaskMessageTemplate(params);
-  document.body.insertAdjacentHTML('beforeend', notificationHTML);
+  document.body.insertAdjacentHTML("beforeend", notificationHTML);
   setTimeout(() => {
-    const notification = document.getElementById('taskNotification');
+    const notification = document.getElementById("taskNotification");
     if (notification) {
       notification.remove();
     }
@@ -25,6 +26,6 @@ async function createTask() {
     return;
   }
   await addTaskToFirebaseByUser(taskData);
-  showSuccessAddTaskMessage({ message: 'Task successfully created!' });
+  showSuccessAddTaskMessage({ message: "Task successfully created!" });
   clearForm();
 }
