@@ -2,204 +2,109 @@ let currentDraggedTaskId = null;
 
 function startDragging(taskId) {
   currentDraggedTaskId = taskId;
-
-  const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
-  if (taskElement) {
-    taskElement.style.animation =
-      "cardGrab 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards";
-    setTimeout(() => {
-      taskElement.classList.add("dragging");
-      taskElement.style.animation = "";
-      addFloatingEffect(taskElement);
-    }, 300);
-  }
 }
 
-function addFloatingEffect(taskElement) {
-  let moveTimer;
-  const addMovingClass = () => {
-    taskElement.classList.add("moving");
-    clearTimeout(moveTimer);
+function clearAllDragOverEffects() {
+  document.querySelectorAll(".drag-over").forEach((col) => {
+    col.classList.remove("drag-over");
+    col.style.animation = "";
+  });
+}
 
-    moveTimer = setTimeout(() => {
-      taskElement.classList.remove("moving");
-    }, 200);
-  };
-  const handleMouseMove = () => addMovingClass();
-  document.addEventListener("mousemove", handleMouseMove);
-  const originalCleanup = cleanupAfterDrop;
-  cleanupAfterDrop = function () {
-    document.removeEventListener("mousemove", handleMouseMove);
-    taskElement.classList.remove("moving");
-    originalCleanup();
-  };
+function clearOtherDragOverEffects(currentColumn) {
+  document.querySelectorAll(".drag-over").forEach((col) => {
+    if (col !== currentColumn) {
+      col.classList.remove("drag-over");
+      col.style.animation = "";
+    }
+  });
+}
+
+function activateDropZone(column) {
+  column.classList.add("drag-over");
+  column.style.animation = "dropZoneActivate 0.3s ease-out";
+  setTimeout(() => {
+    column.style.animation = "";
+  }, 50);
 }
 
 function moveToAnotherColumn(ev) {
   ev.preventDefault();
   const column = ev.currentTarget;
-  column.classList.add("drag-over");
-  column.style.animation = "dropZoneActivate 0.3s ease-out";
-  setTimeout(() => {
-    column.style.animation = "";
-  }, 300);
+  clearOtherDragOverEffects(column);
+  if (!column.classList.contains("drag-over")) {
+    activateDropZone(column);
+  }
 }
 
-function addDropAnimation(taskElement) {
-  taskElement.classList.remove("dragging", "moving");
-  taskElement.style.animation =
-    "cardRelease 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards";
-  setTimeout(() => {
-    taskElement.style.animation = "";
-    taskElement.style.animation =
-      "taskDrop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards";
-    setTimeout(() => {
-      taskElement.style.animation = "";
-    }, 600);
-  }, 500);
+function deactivateDropZone(column) {
+  column.classList.remove("drag-over");
+  column.style.animation = "";
 }
 
-function cleanupAfterDrop() {
+function removeDragOver(ev) {
+  const column = ev.currentTarget;
+  deactivateDropZone(column);
+}
+
+function moveTaskToColumn(taskCard, targetColumn) {
+  const originalColumn = taskCard.parentElement;
+  targetColumn.appendChild(taskCard);
+  return originalColumn;
+}
+
+async function updateTaskStatus(taskId, newStatus) {
+  await changeStatusforDraggedTask(taskId, { Status: newStatus });
+}
+
+function resetDragState() {
   currentDraggedTaskId = null;
-  document.querySelectorAll(".dragging").forEach((element) => {
-    element.classList.remove("dragging", "moving");
-    element.style.animation = "cardRelease 0.4s ease-out forwards";
-    setTimeout(() => {
-      element.style.animation = "";
-    }, 400);
-  });
-  document.querySelectorAll(".drag-over").forEach((element) => {
-    element.classList.remove("drag-over");
-    element.style.animation = "";
-  });
+}
+
+function addDropAnimation(taskCard) {
+  taskCard.classList.add("task-dropped");
+  setTimeout(() => {
+    taskCard.classList.remove("task-dropped");
+  }, 200);
 }
 
 async function dropToAnotherColumn(ev) {
   ev.preventDefault();
-  const dropResult = handleDropEvent(ev);
-  if (!dropResult.success) return;
-  const { columnId, newStatus } = dropResult;
-  if (currentDraggedTaskId && newStatus) {
-    await processTaskDrop(currentDraggedTaskId, columnId, newStatus);
-  }
-  cleanupAfterDrop();
-}
-
-function handleDropEvent(ev) {
-  const columnElement = ev.currentTarget;
-  const columnId = columnElement.id;
+  const columnId = ev.currentTarget.id;
   const newStatus = getColumnStatus(columnId);
-  removeDragOverEffects(columnElement);
-  return {
-    success: Boolean(columnId && newStatus),
-    columnId,
-    newStatus,
-  };
-}
-
-async function processTaskDrop(taskId, targetColumnId, newStatus) {
-  try {
-    updateTaskVisually(taskId, targetColumnId);
-    await updateTaskInDatabase(taskId, newStatus);
-  } catch (error) {
-    console.error("Error processing task drop:", error);
-    await handleDropError();
+  const column = ev.currentTarget;
+  deactivateDropZone(column);
+  if (currentDraggedTaskId && newStatus) {
+    const taskCard = document.querySelector(
+      `[data-task-id="${currentDraggedTaskId}"]`
+    );
+    const taskColumn = document.getElementById(columnId);
+    if (taskCard && taskColumn) {
+      const originalColumn = moveTaskToColumn(taskCard, taskColumn);
+      updateEmptyStates(originalColumn, taskColumn);
+      addDropAnimation(taskCard);
+      await updateTaskStatus(currentDraggedTaskId, newStatus);
+    }
   }
-}
-
-function updateTaskVisually(taskId, targetColumnId) {
-  const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
-  if (taskElement) {
-    removeDraggingAnimation(taskElement);
-    showTaskinRightColumn(taskId, targetColumnId);
-    addDropAnimation(taskElement);
-  }
-}
-
-async function updateTaskInDatabase(taskId, newStatus) {
-  await changeStatusforDraggedTask(taskId, {
-    Status: newStatus,
-  });
-}
-
-function removeDraggingAnimation(taskElement) {
-  taskElement.classList.remove("dragging");
-  taskElement.style.animation = "";
-}
-
-function addDropAnimation(taskElement) {
-  taskElement.classList.add("task-dropped");
-  setTimeout(() => {
-    taskElement.classList.remove("task-dropped");
-  }, 400);
-}
-
-function removeDragOverEffects(columnElement) {
-  columnElement.classList.remove("drag-over");
-}
-
-function cleanupAfterDrop() {
-  currentDraggedTaskId = null;
-  removeAllDraggingClasses();
-  removeAllDragOverEffects();
-}
-
-function removeAllDraggingClasses() {
-  document.querySelectorAll(".dragging").forEach((element) => {
-    element.classList.remove("dragging");
-    element.style.animation = "";
-  });
-}
-
-function removeAllDragOverEffects() {
-  document.querySelectorAll(".drag-over").forEach((element) => {
-    element.classList.remove("drag-over");
-  });
-}
-
-async function handleDropError() {
-  try {
-    await initializeBoard();
-  } catch (error) {
-    console.error("Error reinitializing board:", error);
-  }
-}
-
-async function updateColumnStatus(taskId, status) {
-  try {
-    await updateTaskInFirebase(taskId, { Status: status });
-    await initializeBoard();
-  } catch (error) {}
+  resetDragState();
 }
 
 async function changeStatusforDraggedTask(taskId, taskData) {
   try {
     const currentUser = getCurrentUser();
     let url;
-    
     if (currentUser.type === "registered") {
       url = `${firebaseUrl}user/registered/${currentUser.id}/task/${taskId}.json`;
     } else if (currentUser.type === "guest") {
       url = `${firebaseUrl}user/guest/task/${taskId}.json`;
     }
-    
-    console.log("Updating task at URL:", url);
-    
     const response = await fetch(url, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(taskData),
     });
-    
-    if (response.ok) {
-      console.log("✅ Task status updated successfully");
-    } else {
-      console.error("❌ Failed to update task status:", response.status);
-    }
-    
     return response.ok;
   } catch (error) {
-    console.error("❌ Error updating task:", error);
     return false;
   }
 }
@@ -214,26 +119,24 @@ function getColumnStatus(columnId) {
   return TaskStatus[columnId];
 }
 
-function showTaskinRightColumn(taskId, targetColumnId) {
-  const taskCard = document.querySelector(`[data-task-id="${taskId}"]`);
-  const taskColumn = document.getElementById(targetColumnId);
-  if (taskCard && taskColumn) {
-    const originalColumn = taskCard.parentElement;
-    taskColumn.appendChild(taskCard);
-    updateEmptyStates(originalColumn, taskColumn);
+function removeEmptyStateFromColumn(column) {
+  const emptyInTarget = column.querySelector(".emptyState");
+  if (emptyInTarget) {
+    emptyInTarget.remove();
+  }
+}
+
+function addEmptyStateToColumn(column) {
+  const tasksLeft = column.querySelectorAll(".taskCard").length;
+  if (tasksLeft === 0) {
+    const columnStatus = getColumnStatus(column.id);
+    if (columnStatus) {
+      column.innerHTML = getEmptyStateTemplate(columnStatus);
+    }
   }
 }
 
 function updateEmptyStates(fromColumn, toColumn) {
-  const emptyInTarget = toColumn.querySelector(".emptyState");
-  if (emptyInTarget) {
-    emptyInTarget.remove();
-  }
-  const tasksLeft = fromColumn.querySelectorAll(".taskCard").length;
-  if (tasksLeft === 0) {
-    const columnStatus = getColumnStatus(fromColumn.id);
-    if (columnStatus) {
-      fromColumn.innerHTML = getEmptyStateTemplate(columnStatus);
-    }
-  }
+  removeEmptyStateFromColumn(toColumn);
+  addEmptyStateToColumn(fromColumn);
 }

@@ -116,6 +116,7 @@ body {
   gap: 30px;
   overflow-y: hidden;
   overflow-x: hidden;
+  padding: 12px;
 }
 .boardColumn {
   flex: 1;
@@ -156,7 +157,7 @@ body {
   background-color: #e0e0e0;
   border: 2px dashed #d1d1d1;
   border-radius: 10px;
-  padding: 40px;
+  padding: 24px;
   text-align: center;
   color: #a8a8a8;
   font-size: 16px;
