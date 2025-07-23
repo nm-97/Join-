@@ -60,8 +60,7 @@ async function getContactNameById(contactId) {
   if (!contactId) return "Not assigned";
 
   try {
-    const task = await fetchContactByIdAndUser(taskId);
-    const contact = contacts.find((c) => c.id === contactId);
+    const contact = await fetchContactByIdAndUser(contactId);
     return contact ? contact.name : "Unknown Contact";
   } catch (error) {
     console.error("Error getting contact name:", error);

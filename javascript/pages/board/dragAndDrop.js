@@ -173,15 +173,35 @@ async function updateColumnStatus(taskId, status) {
 }
 
 async function changeStatusforDraggedTask(taskId, taskData) {
-  const response = await fetch(
-    `${firebaseUrl}user /guest /task/${taskId}.json`,
-    {
+  try {
+    const currentUser = getCurrentUser();
+    let url;
+    
+    if (currentUser.type === "registered") {
+      url = `${firebaseUrl}user/registered/${currentUser.id}/task/${taskId}.json`;
+    } else if (currentUser.type === "guest") {
+      url = `${firebaseUrl}user/guest/task/${taskId}.json`;
+    }
+    
+    console.log("Updating task at URL:", url);
+    
+    const response = await fetch(url, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(taskData),
+    });
+    
+    if (response.ok) {
+      console.log("✅ Task status updated successfully");
+    } else {
+      console.error("❌ Failed to update task status:", response.status);
     }
-  );
-  return response.ok;
+    
+    return response.ok;
+  } catch (error) {
+    console.error("❌ Error updating task:", error);
+    return false;
+  }
 }
 
 function getColumnStatus(columnId) {
