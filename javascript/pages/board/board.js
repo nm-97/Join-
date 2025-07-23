@@ -58,7 +58,6 @@ function showAddTaskOverlay() {
 
 async function getContactNameById(contactId) {
   if (!contactId) return "Not assigned";
-
   try {
     const contact = await fetchContactByIdAndUser(contactId);
     return contact ? contact.name : "Unknown Contact";
@@ -98,4 +97,31 @@ function closeAddTaskOverlay() {
     overlay.classList.add("hidden");
     overlay.innerHTML = "";
   }
+}
+
+function getCategoryLabel(category) {
+  const categoryMap = {
+    "Technical Task": "Technical Task",
+    "User Story": "User Story",
+    technicalTask: "Technical Task",
+    userStory: "User Story",
+  };
+  return categoryMap[category] || "Technical Task";
+}
+
+function getCategoryClass(category) {
+  const classMap = {
+    "Technical Task": "technicalTask",
+    "User Story": "userStory",
+    technicalTask: "technicalTask",
+    userStory: "userStory",
+  };
+  return classMap[category] || "technicalTask";
+}
+
+function renderSingleAssignee(assignedTo) {
+  if (!assignedTo) return "";
+  const initials = getInitials(assignedTo);
+  const color = getAvatarColor(assignedTo);
+  return `<span class="assignee" style="background-color: ${color}">${initials}</span>`;
 }

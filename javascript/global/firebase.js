@@ -3,9 +3,63 @@
 const firebaseUrl =
   "https://joinda1312-default-rtdb.europe-west1.firebasedatabase.app/";
 
+const GUEST_TASKS_PATH = "user/guest/task.json";
+const GUEST_CONTACTS_PATH = "user/guest/contacts.json";
+const USERS_PATH = "user/registered/.json";
+
+const getUserTasksPath = (userId) => `user/registered/${userId}/task.json`;
+const getUserTaskPath = (userId, taskId) =>
+  `user/registered/${userId}/task/${taskId}.json`;
+const getUserContactsPath = (userId) =>
+  `user/registered/${userId}/contacts.json`;
+const getUserContactPath = (userId, contactId) =>
+  `user/registered/${userId}/contacts/${contactId}.json`;
+const getGuestTaskPath = (taskId) => `user/guest/task/${taskId}.json`;
+const getGuestContactPath = (contactId) =>
+  `user/guest/contacts/${contactId}.json`;
+
 function getCurrentUser() {
   const currentUser = sessionStorage.getItem("currentUser");
   return currentUser ? JSON.parse(currentUser) : { type: "guest" };
+}
+
+async function fetchData(path) {
+  const response = await fetch(`${firebaseUrl}${path}`);
+  if (!response.ok) {
+    throw new Error(`GET request failed: ${response.status}`);
+  }
+  return await response.json();
+}
+
+async function postData(path, data) {
+  const response = await fetch(`${firebaseUrl}${path}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  if (!response.ok) {
+    throw new Error(`POST request failed: ${response.status}`);
+  }
+  return await response.json();
+}
+
+async function patchData(path, data) {
+  const response = await fetch(`${firebaseUrl}${path}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  if (!response.ok) {
+    throw new Error(`PATCH request failed: ${response.status}`);
+  }
+  return await response.json();
+}
+
+async function deleteData(path) {
+  const response = await fetch(`${firebaseUrl}${path}`, {
+    method: "DELETE",
+  });
+  return response.ok;
 }
 
 function setGuestLogin() {
@@ -61,37 +115,22 @@ async function createUser(userData) {
     userId: userId,
   };
 }
-
 const postUserData = async (UserData) => {
-  return await fetch(`${firebaseUrl}user/registered/.json`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(UserData),
-  });
+  return await postData(USERS_PATH, UserData);
 };
 
 async function addUserToFirebase(userData) {
-  const userDataWithType = {
-    ...userData,
-    type: "registered",
-  };
-  const response = await postUserData(userDataWithType);
-  const result = await response.json();
+  const result = await postData(USERS_PATH, userData);
   return result.name;
 }
 
 async function fetchTaskByUser() {
   const currentUser = getCurrentUser();
-  let response;
-  let data;
-  if (currentUser.type === "registered") {
-    response = await fetch(
-      `${firebaseUrl}user/registered/${currentUser.id}/task.json`
-    );
-  } else if (currentUser.type === "guest") {
-    response = await fetch(`${firebaseUrl}user/guest/task.json`);
-  }
-  data = await response.json();
+  const path =
+    currentUser.type === "registered"
+      ? getUserTasksPath(currentUser.id)
+      : GUEST_TASKS_PATH;
+  const data = await fetchData(path);
   if (!data) return [];
   return Object.entries(data).map(([id, taskData]) =>
     mapApiTaskToTemplate({ id, ...taskData })
@@ -100,26 +139,12 @@ async function fetchTaskByUser() {
 
 async function addTaskToFirebaseByUser(taskData) {
   const currentUser = getCurrentUser();
-  if (currentUser.type === "registered") {
-    const response = await fetch(
-      `${firebaseUrl}user/registered/${currentUser.id}/task.json`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(taskData),
-      }
-    );
-    const result = await response.json();
-    return result.name;
-  } else if (currentUser.type === "guest") {
-    const response = await fetch(`${firebaseUrl}user/guest/task.json`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(taskData),
-    });
-    const result = await response.json();
-    return result.name;
-  }
+  const path =
+    currentUser.type === "registered"
+      ? getUserTasksPath(currentUser.id)
+      : GUEST_TASKS_PATH;
+  const result = await postData(path, taskData);
+  return result.name;
 }
 
 async function fetchTaskById(taskId) {
@@ -129,7 +154,6 @@ async function fetchTaskById(taskId) {
 
 async function deleteContactFromFirebase(contactId) {
   const currentUser = getCurrentUser();
-  let response;
   try {
     const contact = await fetchContactByIdAndUser(contactId);
     const contactName = contact.name;
@@ -140,148 +164,79 @@ async function deleteContactFromFirebase(contactId) {
     for (let i = 0; i < tasksToDelete.length; i++) {
       await deleteTaskFromFirebaseByUser(tasksToDelete[i].id);
     }
-
-    if (currentUser.type === "registered") {
-      response = await fetch(
-        `${firebaseUrl}user/registered/${currentUser.id}/contacts/${contactId}.json`,
-        { method: "DELETE" }
-      );
-    } else if (currentUser.type === "guest") {
-      response = await fetch(
-        `${firebaseUrl}user/guest/contacts/${contactId}.json`,
-        { method: "DELETE" }
-      );
-    }
-    return true;
+    const path =
+      currentUser.type === "registered"
+        ? getUserContactPath(currentUser.id, contactId)
+        : getGuestContactPath(contactId);
+    return await deleteData(path);
   } catch (error) {
     console.error("Fehler beim Löschen:", error);
     return false;
   }
 }
 
+async function deleteTaskFromFirebaseByUser(taskId) {
+  const currentUser = getCurrentUser();
+  const path =
+    currentUser.type === "registered"
+      ? getUserTaskPath(currentUser.id, taskId)
+      : getGuestTaskPath(taskId);
+  return await deleteData(path);
+}
+
 async function updateContactInFirebaseByUser(contactId, contactData) {
   const currentUser = getCurrentUser();
-  let response;
-  if (currentUser.type === "registered") {
-    response = await fetch(
-      `${firebaseUrl}user/registered/${currentUser.id}/contacts/${contactId}.json`,
-      {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(contactData),
-      }
-    );
-  } else if (currentUser.type === "guest") {
-    response = await fetch(
-      `${firebaseUrl}user/guest/contacts/${contactId}.json`,
-      {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(contactData),
-      }
-    );
-  }
-  return response.ok;
+  const path =
+    currentUser.type === "registered"
+      ? getUserContactPath(currentUser.id, contactId)
+      : getGuestContactPath(contactId);
+  await patchData(path, contactData);
+  return true;
+}
+
+async function fetchContactByIdAndUser(contactId) {
+  const currentUser = getCurrentUser();
+  const path =
+    currentUser.type === "registered"
+      ? getUserContactPath(currentUser.id, contactId)
+      : getGuestContactPath(contactId);
+  return await fetchData(path);
 }
 
 async function fetchContactsByIdAndUser() {
   const currentUser = getCurrentUser();
-  let response;
-  let data;
-  if (currentUser.type === "registered") {
-    response = await fetch(
-      `${firebaseUrl}user/registered/${currentUser.id}/contacts.json`
-    );
-  } else if (currentUser.type === "guest") {
-    response = await fetch(`${firebaseUrl}user/guest/contacts.json`);
-  }
-  data = await response.json();
+  const path =
+    currentUser.type === "registered"
+      ? getUserContactsPath(currentUser.id)
+      : GUEST_CONTACTS_PATH;
+  const data = await fetchData(path);
   if (!data) return [];
   return Object.entries(data).map(([id, contactData]) =>
     mapApiContactToTemplate({ id, ...contactData })
   );
 }
 
-async function fetchContactByIdAndUser(contactId) {
-  const currentUser = getCurrentUser();
-  let response;
-  if (currentUser.type === "registered") {
-    response = await fetch(
-      `${firebaseUrl}user/registered/${currentUser.id}/contacts/${contactId}.json`
-    );
-  } else if (currentUser.type === "guest") {
-    response = await fetch(
-      `${firebaseUrl}user/guest/contacts/${contactId}.json`
-    );
-  }
-  const data = await response.json();
-  return mapApiContactToTemplate({ id: contactId, ...data });
-}
-
 async function addContactToFirebaseByUser(contactData) {
   const currentUser = getCurrentUser();
-  let response;
-  if (currentUser.type === "registered") {
-    response = await fetch(
-      `${firebaseUrl}user/registered/${currentUser.id}/contacts.json`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(contactData),
-      }
-    );
-    const result = await response.json();
-    return result.name;
-  } else if (currentUser.type === "guest") {
-    response = await fetch(`${firebaseUrl}user/guest/contacts.json`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(contactData),
-    });
-    const result = await response.json();
-    return result.name;
-  }
+  const path =
+    currentUser.type === "registered"
+      ? getUserContactsPath(currentUser.id)
+      : GUEST_CONTACTS_PATH;
+  const result = await postData(path, contactData);
+  return result.name;
 }
 
 async function updateTaskInFirebaseByUser(taskId, taskData) {
   const currentUser = getCurrentUser();
-  let response;
-  if (currentUser.type === "registered") {
-    response = await fetch(
-      `${firebaseUrl}user/registered/${currentUser.id}/task/${taskId}.json`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(taskData),
-      }
-    );
-  } else if (currentUser.type === "guest") {
-    response = await fetch(`${firebaseUrl}user/guest/task/${taskId}.json`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(taskData),
-    });
-  }
+  const path =
+    currentUser.type === "registered"
+      ? getUserTaskPath(currentUser.id, taskId)
+      : getGuestTaskPath(taskId);
+  await patchData(path, taskData);
   return true;
 }
 
-async function deleteTaskFromFirebaseByUser(taskId) {
-  const currentUser = getCurrentUser();
-  let response;
-  if (currentUser.type === "registered") {
-    response = await fetch(
-      `${firebaseUrl}user/registered/${currentUser.id}/task/${taskId}.json`,
-      {
-        method: "DELETE",
-      }
-    );
-  } else if (currentUser.type === "guest") {
-    response = await fetch(`${firebaseUrl}user/guest/task/${taskId}.json`, {
-      method: "DELETE",
-    });
-  }
-  return true;
-}
+// deleteContactFromFirebase function is defined above at line 155 - this duplicate removed
 
 function mapApiTaskToTemplate(data) {
   return {
@@ -309,17 +264,9 @@ function mapApiContactToTemplate(data) {
 }
 
 async function fetchAllRegisteredUsers() {
-  const response = await fetch(`${firebaseUrl}user/registered/.json`);
-  const data = await response.json();
+  const data = await fetchData(USERS_PATH);
   if (!data) return [];
-  const users = [];
-  const keys = Object.keys(data);
-  for (let i = 0; i < keys.length; i++) {
-    const id = keys[i];
-    const user = { id, ...data[id] };
-    users.push(user);
-  }
-  return users;
+  return Object.entries(data).map(([id, userData]) => ({ id, ...userData }));
 }
 
 async function checkUserCredentials(email, password) {

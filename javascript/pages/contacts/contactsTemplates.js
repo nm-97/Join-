@@ -76,7 +76,7 @@ function getEditContactOverlay(contact) {
                     </div>
                     <div class="editContactModalRight">
                         <button class="editContactClose" onclick="closeEditContactOverlay()">
-                            <img src="../assets/icons/shared/Close.svg" alt="closeIcon">
+                            <img src="../assets/icons/shared/close.svg" alt="closeIcon">
                         </button>
                         <div class="addContactFormAvatarPosition">
                             <div class="editContactAvatar">
@@ -84,20 +84,20 @@ function getEditContactOverlay(contact) {
                             </div>
                             <form class="editContactForm" onsubmit="updateContact(event, '${contact.id}')">
                                 <div class="editContactInputWrapper">
-                                    <input type="text" name="name" placeholder="Name" value="${contact.name}" required>
+                                    <input type="text" name="name" placeholder="Name" value="${contact.name}">
                                     <img src="../assets/icons/contacts/person.svg" class="inputIcon" alt="personIcon">
                                 </div>
                                 <div class="editContactInputWrapper">
-                                    <input type="email" name="email" placeholder="Email" value="${contact.email}" required>
+                                    <input name="email" placeholder="Email" value="${contact.email}">
                                     <img src="../assets/icons/contacts/mail.svg" class="inputIcon" alt="mailIcon">
                                 </div>
                                 <div class="editContactInputWrapper">
-                                    <input type="tel" name="phone" placeholder="Phone" value="${contact.phone}" required>
+                                    <input name="phone" placeholder="Phone" value="${contact.phone}">
                                     <img src="../assets/icons/contacts/call.svg" class="inputIcon" alt="phoneIcon">
                                 </div>
                                 <div class="editContactBtnRow">
                                     <button type="button" class="editContactDeleteBtn" onclick="closeEditContactOverlay()">Cancel
-                                        <img src="../assets/contacts/Close.svg" alt="cancelIcon"></button>
+                                        <img src="../assets/icons/shared/close.svg" alt="cancelIcon"></button>
                                     <button type="submit" class="editContactSaveBtn">Save
                                         <img src="../assets/icons/add task/check.svg" alt="saveIcon"></button>
                                 </div>

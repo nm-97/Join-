@@ -90,23 +90,13 @@ async function dropToAnotherColumn(ev) {
 }
 
 async function changeStatusforDraggedTask(taskId, taskData) {
-  try {
-    const currentUser = getCurrentUser();
-    let url;
-    if (currentUser.type === "registered") {
-      url = `${firebaseUrl}user/registered/${currentUser.id}/task/${taskId}.json`;
-    } else if (currentUser.type === "guest") {
-      url = `${firebaseUrl}user/guest/task/${taskId}.json`;
-    }
-    const response = await fetch(url, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(taskData),
-    });
-    return response.ok;
-  } catch (error) {
-    return false;
-  }
+  const currentUser = getCurrentUser();
+  const path =
+    currentUser.type === "registered"
+      ? getUserTaskPath(currentUser.id, taskId)
+      : getGuestTaskPath(taskId);
+  
+  return await patchData(path, taskData);
 }
 
 function getColumnStatus(columnId) {

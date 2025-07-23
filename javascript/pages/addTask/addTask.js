@@ -90,7 +90,6 @@ function setDefaultPriority() {
 function setupFormSubmission() {
   const createButton = document.getElementById("createTaskBtn");
   const clearButton = document.getElementById("clearTaskBtn");
-
   if (!createButton || !clearButton) {
     console.error("Form buttons not found");
     return;
@@ -103,12 +102,9 @@ async function loadContacts() {
   try {
     const contacts = await fetchContactsByIdAndUser();
     const assigneeSelect = document.getElementById("taskAssignee");
-
     if (!assigneeSelect) return;
-
     assigneeSelect.innerHTML =
       '<option value="" disabled selected hidden>Select contacts to assign</option>';
-
     for (let i = 0; i < contacts.length; i++) {
       const contact = contacts[i];
       const option = document.createElement("option");
@@ -123,7 +119,6 @@ async function loadContacts() {
 
 async function createTask() {
   if (!validateAddTaskForm()) return;
-
   const taskData = getFormData();
   try {
     await addTaskToFirebaseByUser(taskData);
@@ -146,21 +141,12 @@ function getFormData() {
   };
 }
 
-function mapCategoryToFirebase(category) {
-  const categoryMap = {
-    userStory: "User Story",
-    technicalTask: "Technical Task",
-  };
-  return categoryMap[category] || "Technical Task", "User Story";
-}
-
 function showTaskCreatedNotification() {
   const overlay = document.createElement("div");
   overlay.id = "successMessageOverlay";
   overlay.innerHTML = getSuccessAddTaskMessageTemplate();
   overlay.style.display = "flex";
   document.body.appendChild(overlay);
-
   setTimeout(() => {
     overlay.remove();
   }, 2000);
