@@ -47,6 +47,9 @@ function getFormInputs() {
 }
 
 function validateTitle(titleInput) {
+  console.log('Title value:', titleInput ? titleInput.value : 'no input found');
+  console.log('validateRequired result:', titleInput ? validateRequired(titleInput.value) : false);
+  
   if (!titleInput || !validateRequired(titleInput.value)) {
     showError('taskTitle', 'This field is required');
     return false;
@@ -132,21 +135,11 @@ function showPriorityError(message) {
   if (!priorityGroup) return;
   
   clearPriorityError();
-  createPriorityErrorDiv(priorityGroup, message);
-}
-
-function createPriorityErrorDiv(priorityGroup, message) {
-  let errorDiv = priorityGroup.querySelector('.errorMessage');
   
+  const errorDiv = priorityGroup.querySelector('.errorMessage');
   if (errorDiv) {
     errorDiv.textContent = message;
     errorDiv.classList.remove('hide');
-  } else {
-    errorDiv = document.createElement('div');
-    errorDiv.className = 'errorMessage';
-    errorDiv.textContent = message;
-    errorDiv.id = 'taskPriorityError';
-    priorityGroup.parentNode.insertBefore(errorDiv, priorityGroup.nextSibling);
   }
 }
 
@@ -154,20 +147,6 @@ function clearPriorityError() {
   const priorityGroup = document.querySelector('.taskPriorityGroup');
   if (!priorityGroup) return;
   
-  clearSpecificPriorityError() || clearGeneralPriorityError(priorityGroup);
-}
-
-function clearSpecificPriorityError() {
-  const specificErrorMessage = document.getElementById('taskPriorityError');
-  if (specificErrorMessage) {
-    specificErrorMessage.textContent = '';
-    specificErrorMessage.classList.add('hide');
-    return true;
-  }
-  return false;
-}
-
-function clearGeneralPriorityError(priorityGroup) {
   const errorDiv = priorityGroup.querySelector('.errorMessage');
   if (errorDiv) {
     errorDiv.textContent = '';
@@ -241,8 +220,6 @@ async function createOverlayTask() {
 async function processTaskCreation(taskData, isOverlay) {
   try {
     const taskId = await addTaskToFirebase(taskData);
-    console.log('Task created with ID:', taskId);
-    
     handleSuccessfulTaskCreation(isOverlay);
   } catch (error) {
     handleTaskCreationError(error);
@@ -299,3 +276,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 100);
   }
 });
+
+function showTaskCreatedNotification() {
+  const container = document.getElementById('taskNotificationContainer');
+  if (!container) return;
+  
+  // Template verwenden
+  const notificationHTML = getSuccessAddTaskMessageTemplate({});
+  container.innerHTML = notificationHTML;
+  
+  // Notification anzeigen
+  const notification = document.getElementById('taskNotification');
+  if (notification) {
+    notification.style.display = 'block';
+    
+    // Nach 3 Sekunden automatisch ausblenden
+    setTimeout(() => {
+      notification.style.display = 'none';
+      container.innerHTML = '';
+    }, 3000);
+  }
+}

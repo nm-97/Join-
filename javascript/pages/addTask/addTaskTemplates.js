@@ -20,7 +20,7 @@ function getAddTaskOverlay(params = {}) {
                     <div class="formGroup">
                         <label for="taskDueDate">Due Date <span class="requiredStar">*</span></label>
                         <div class="inputIcon">
-                            <input placeholder="dd/mm/yyyy" id="taskDueDate" name="taskDueDate" required>
+                            <input placeholder="dd/mm/yyyy" id="taskDueDate" name="taskDueDate">
                             <img src="../assets/icons/add task/event.svg" alt="">
                         </div>
                       <div class="errorMessage hide" id="taskDueDateError"></div>
@@ -31,7 +31,7 @@ function getAddTaskOverlay(params = {}) {
                 
                 <form>
                     <div class="formGroup">
-                        <label for="taskPriority" class="taskPriorityLabel">Task Priority</label>
+                        <label for="taskPriority" class="taskPriorityLabel">Task Priority <span class="requiredStar">*</span></label>
                         <div class="taskPriorityGroup">
                             <button type="button" class="taskPriorityBtn" id="urgentBtn">
                                 <img src="../assets/icons/shared/urgent.svg" alt="">

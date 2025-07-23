@@ -118,6 +118,7 @@ function initializeOverlayAddTask() {
   setupPriorityButtons();
   setupOverlayFormSubmission();
   loadContacts();
+  initializeDateInput();
 }
 
 function setupOverlayFormSubmission() {

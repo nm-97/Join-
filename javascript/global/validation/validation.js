@@ -25,7 +25,9 @@ function showError(inputId, message) {
   
   input.classList.add('errorInput');
   
-  const errorDiv = document.getElementById(inputId + 'Error');
+  const formGroup = input.closest('.formGroup');
+  const errorDiv = formGroup.querySelector('.errorMessage');
+  
   if (errorDiv) {
     errorDiv.textContent = message;
     errorDiv.classList.remove('hide');
@@ -42,6 +44,13 @@ function clearError(inputId) {
   if (errorMessage) {
     errorMessage.textContent = '';
     errorMessage.classList.add('hide');
+  } else {
+    const formGroup = input.closest('.formGroup') || input.parentNode;
+    const errorDiv = formGroup.querySelector('.errorMessage');
+    if (errorDiv) {
+      errorDiv.textContent = '';
+      errorDiv.classList.add('hide');
+    }
   }
 }
 
