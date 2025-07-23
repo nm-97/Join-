@@ -28,7 +28,7 @@
     <header class="logoPageHeader hide">
       <div class="SignUpbtnPosition">
         <p>Not a Join user?</p>
-        <button class="SignUpbtn">
+        <button class="SignUpbtn" id="signUpButton">
           <a href="../html/signUp.html">Sign Up</a>
         </button>
       </div>
@@ -47,14 +47,8 @@
         </div>
         <div class="errorMessage hide"></div>
         <div class="btnPosition">
-          <button class="LogInbtn" #logInButton>Log In</button>
-          <button
-            class="guestLogInButton"
-            onclick="setGuestLogin()"
-            #guestLogInButton
-          >
-            Guest Log in
-          </button>
+          <button class="LogInbtn" #logInButton id="loginButton">Log In</button>
+          <button class="guestLogInButton" onclick="setGuestLogin()" #guestLogInButton id="guestLoginButton">Guest Log in</button>
         </div>
       </form>
     </main>

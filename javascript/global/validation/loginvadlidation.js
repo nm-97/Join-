@@ -47,12 +47,19 @@ function showLoginError(message) {
   passwordInput.classList.add('errorInput');
   errorMessage.textContent = message;
   errorMessage.classList.remove('hide');
+  
+  enableAllButtons();
 }
 
 async function loginUser(event) {
   event.preventDefault();
   
-  if (!validateLoginForm()) return;
+  disableAllButtons();
+  
+  if (!validateLoginForm()) {
+    enableAllButtons();
+    return;
+  }
   
   const formData = new FormData(event.target);
   const email = formData.get('email');
@@ -79,3 +86,41 @@ async function processLogin(email, password) {
 document.addEventListener('DOMContentLoaded', function() {
   initAllPasswordToggles();
 });
+
+function disableAllButtons() {
+  const loginButton = document.getElementById('loginButton');
+  const guestLoginButton = document.getElementById('guestLoginButton');
+  const signUpButton = document.getElementById('signUpButton');
+  
+  if (loginButton) {
+    loginButton.disabled = true;
+    loginButton.classList.add('buttonDisabled');
+  }
+  if (guestLoginButton) {
+    guestLoginButton.disabled = true;
+    guestLoginButton.classList.add('buttonDisabled');
+  }
+  if (signUpButton) {
+    signUpButton.disabled = true;
+    signUpButton.classList.add('buttonDisabled');
+  }
+}
+
+function enableAllButtons() {
+  const loginButton = document.getElementById('loginButton');
+  const guestLoginButton = document.getElementById('guestLoginButton');
+  const signUpButton = document.getElementById('signUpButton');
+  
+  if (loginButton) {
+    loginButton.disabled = false;
+    loginButton.classList.remove('buttonDisabled');
+  }
+  if (guestLoginButton) {
+    guestLoginButton.disabled = false;
+    guestLoginButton.classList.remove('buttonDisabled');
+  }
+  if (signUpButton) {
+    signUpButton.disabled = false;
+    signUpButton.classList.remove('buttonDisabled');
+  }
+}
