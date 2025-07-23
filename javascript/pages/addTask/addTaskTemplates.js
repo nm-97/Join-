@@ -19,8 +19,8 @@ function getAddTaskOverlay(params = {}) {
                     <div class="formGroup">
                         <label for="taskDueDate">Due Date <span class="requiredStar">*</span></label>
                         <div class="inputIcon">
-                            <input placeholder="dd/mm/yyyy" id="taskDueDate" name="taskDueDate">
-                            <img src="../assets/icons/add task/event.svg" alt="calenderIcon">
+                            <input placeholder="dd/mm/yyyy" id="taskDueDate" name="taskDueDate" required>
+                            <img src="../assets/icons/add task/event.svg" alt="calendarIcon">
                         </div>
                       <div class="errorMessage hide" id="taskDueDateError"></div>
                     </div>
@@ -30,7 +30,7 @@ function getAddTaskOverlay(params = {}) {
                 
                 <form>
                     <div class="formGroup">
-                        <label for="taskPriority" class="taskPriorityLabel">Task Priority <span class="requiredStar">*</span></label>
+                        <label for="taskPriority" class="taskPriorityLabel">Task Priority</label>
                         <div class="taskPriorityGroup">
                             <button type="button" class="taskPriorityBtn" id="urgentBtn">
                                 <img src="../assets/icons/shared/urgent.svg" alt="urgentIcon">
@@ -180,10 +180,15 @@ function getEditTaskOverlay(task) {
     </div>`;
 }
 
-function getSuccessAddTaskMessageTemplate(params) {
-  const message = params.message || "Task successfully creat";
+function getSuccessAddTaskMessageTemplate() {
   return `
-  <div class="ntfbottom ntfmask" id="taskNotification">Task added to board
-   <img src="../assets/icons/summary and sideboard/board.svg" alt="boardIcon"></img>
-    </div>`;
+    <div class="success-overlay">
+      <div class="success-message-container">
+        <div class="success-icon">
+          <img src="../assets/icons/shared/check-white.svg" alt="Success">
+        </div>
+        <p class="success-text">Task added to board</p>
+      </div>
+    </div>
+  `;
 }

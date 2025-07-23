@@ -115,15 +115,13 @@ async function loadContacts() {
 
 async function createTask() {
   if (!validateAddTaskForm()) return;
-  
+
   const taskData = getFormData();
   try {
     await addTaskToFirebaseByUser(taskData);
     showTaskCreatedNotification();
     clearForm();
-  } catch (error) {
-    console.error("Error creating task:", error);
-  }
+  } catch (error) {}
 }
 
 function getFormData() {
@@ -149,13 +147,15 @@ function mapCategoryToFirebase(category) {
 }
 
 function showTaskCreatedNotification() {
-  const notification = document.getElementById("taskNotification");
-  if (notification) {
-    notification.style.display = "block";
-    setTimeout(() => {
-      notification.style.display = "none";
-    }, 3000);
-  }
+  const overlay = document.createElement("div");
+  overlay.id = "successMessageOverlay";
+  overlay.innerHTML = getSuccessAddTaskMessageTemplate();
+  overlay.style.display = "flex";
+  document.body.appendChild(overlay);
+
+  setTimeout(() => {
+    overlay.remove();
+  }, 2000);
 }
 
 function clearForm() {
@@ -203,7 +203,7 @@ function setupOverlayFormSubmission() {
 
 async function createOverlayTask() {
   if (!validateAddTaskForm()) return;
-  
+
   const taskData = getFormData();
   try {
     await addTaskToFirebaseByUser(taskData);
