@@ -43,17 +43,18 @@ function getAddContactOverlay() {
                                 </div>
                                 <form class="addContactForm" onsubmit="createContact(event)">
                                     <div class="addContactInputWrapper">
-                                        <input type="text" name="name" placeholder="Name" required>
+                                        <input type="text" name="name" placeholder="Name">
                                         <img src="../assets/icons/contacts/person.svg" class="inputIcon" alt="personIcon">
                                     </div>
                                     <div class="addContactInputWrapper">
-                                        <input type="email" name="email" placeholder="Email" required>
+                                        <input name="email" placeholder="Email">
                                         <img src="../assets/icons/contacts/mail.svg" class="inputIcon" alt="mailIcon">
                                     </div>
                                     <div class="addContactInputWrapper">
-                                        <input type="tel" name="phone" placeholder="Phone" required>
+                                        <input name="phone" placeholder="Phone">
                                         <img src="../assets/icons/contacts/call.svg" class="inputIcon" alt="phoneIcon">
                                     </div>
+                                    <div class="errorMessage hide"></div>
                                     <div class="addContactBtnRow">
                                         <button type="button" class="addContactCancelBtn" onclick="closeAddContactOverlay()">Cancel
                                             <img src="../assets/icons/shared/close.svg" alt="cancelIcon"></button>

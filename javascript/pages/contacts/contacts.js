@@ -71,6 +71,7 @@ function showAddContactOverlay() {
   if (overlay) {
     overlay.innerHTML = getAddContactOverlay();
     overlay.style.display = "flex";
+    setupPhoneInputFilter();
   }
 }
 
@@ -91,6 +92,7 @@ async function showEditContactOverlay(contactId) {
     if (overlay) {
       overlay.innerHTML = getEditContactOverlay(contact);
       overlay.style.display = "flex";
+      setupPhoneInputFilter();
     }
   } catch (error) {
     console.error("Error showing edit contact overlay:", error);
@@ -106,6 +108,8 @@ function closeEditContactOverlay() {
 }
 async function createContact(event) {
   event.preventDefault();
+  if (!validateContactForm()) return;
+
   const formData = new FormData(event.target);
   const contactData = {
     name: formData.get("name"),
