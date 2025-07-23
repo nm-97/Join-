@@ -5,6 +5,7 @@ function initializeAddTask() {
   setupPriorityButtons();
   setupFormSubmission();
   loadContacts();
+  setDefaultPriority();
 }
 
 function setupPriorityButtons() {
@@ -79,6 +80,13 @@ function changeColorBasedOnPriority(priority) {
   return classes[priority] || "";
 }
 
+function setDefaultPriority() {
+  const mediumBtn = document.getElementById("mediumBtn");
+  if (mediumBtn) {
+    mediumBtn.classList.add("taskPriorityBtnMediumSelected");
+  }
+}
+
 function setupFormSubmission() {
   const createButton = document.getElementById("createTaskBtn");
   const clearButton = document.getElementById("clearTaskBtn");
@@ -143,7 +151,7 @@ function mapCategoryToFirebase(category) {
     userStory: "User Story",
     technicalTask: "Technical Task",
   };
-  return categoryMap[category] || "Technical Task";
+  return categoryMap[category] || "Technical Task", "User Story";
 }
 
 function showTaskCreatedNotification() {
@@ -191,6 +199,7 @@ function initializeOverlayAddTask() {
   setupOverlayFormSubmission();
   loadContacts();
   initializeDateInput();
+  setDefaultPriority();
 }
 
 function setupOverlayFormSubmission() {

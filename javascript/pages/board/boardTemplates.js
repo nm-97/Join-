@@ -221,7 +221,7 @@ function getCategoryLabel(category) {
     technicalTask: "Technical Task",
     userStory: "User Story",
   };
-  return categoryMap[category] || "Technical Task";
+  return categoryMap[category] || "Technical Task", "User Story";
 }
 
 function getCategoryClass(category) {
@@ -229,7 +229,7 @@ function getCategoryClass(category) {
     technicalTask: "technicalTask",
     userStory: "userStory",
   };
-  return classMap[category] || "technicalTask";
+  return classMap[category] || "technicalTask", "userStory";
 }
 
 function renderSingleAssignee(assignedTo) {
