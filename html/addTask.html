@@ -6,7 +6,7 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/addTask.css" />
-    <link rel="stylesheet" href="../css/validation.css">
+    <link rel="stylesheet" href="../css/validation.css" />
     <script src="../javascript/global/firebase.js"></script>
     <script src="../javascript/global/user.js"></script>
     <script src="../javascript/global/utils.js"></script>
@@ -22,37 +22,64 @@
     <div class="pageWrapper">
       <div class="sidebar">
         <div class="logo">
-          <img class="joinLogo" src="../assets/icons/joinlogo.svg" alt="" />
+          <img
+            class="joinLogo"
+            src="../assets/icons/joinlogo.svg"
+            alt="joinLogo"
+          />
         </div>
 
         <div class="navigation">
           <div class="navi">
-            <div onclick="location.href='../html/summaryUser.html'" class="navItem">
+            <div
+              onclick="location.href='../html/summaryUser.html'"
+              class="navItem"
+            >
               <span class="navIcon iconDashboard"></span>
-              <img src="../assets/icons/summary and sideboard/summary.svg" alt=""/>
+              <img
+                src="../assets/icons/summary and sideboard/summary.svg"
+                alt=""
+              />
               <span>Summary</span>
             </div>
-            <div onclick="location.href='../html/addTask.html'" class="navItem active">
+            <div
+              onclick="location.href='../html/addTask.html'"
+              class="navItem active"
+            >
               <span class="navIcon iconTask"></span>
-              <img src="../assets/icons/summary and sideboard/addtask.svg" alt=""/>
+              <img
+                src="../assets/icons/summary and sideboard/addtask.svg"
+                alt=""
+              />
               <span>Add Task</span>
             </div>
             <div onclick="location.href='../html/board.html'" class="navItem">
               <span class="navIcon iconBoard"></span>
-              <img src="../assets/icons/summary and sideboard/board.svg" alt=""/>
+              <img
+                src="../assets/icons/summary and sideboard/board.svg"
+                alt=""
+              />
               <span>Board</span>
             </div>
-            <div onclick="location.href='../html/contacts.html'" class="navItem">
+            <div
+              onclick="location.href='../html/contacts.html'"
+              class="navItem"
+            >
               <span class="navIcon iconContacts"></span>
-              <img src="../assets/icons/summary and sideboard/contact.svg" alt=""/>
+              <img
+                src="../assets/icons/summary and sideboard/contact.svg"
+                alt=""
+              />
               <span>Contacts</span>
             </div>
           </div>
         </div>
 
         <div class="footerLinks">
-          <a class="footerLink" href="./privacyPolicy.html">Privacy Policy</a>
-          <a class="footerLink" href="./legalNotice.html">Legal notice</a>
+          <a class="footerLink" href="../html/privacyPolicy.html"
+            >Privacy Policy</a
+          >
+          <a class="footerLink" href="../html/legalNotice.html">Legal notice</a>
         </div>
       </div>
 
@@ -68,9 +95,15 @@
             </div>
             <div class="userAvatar" onclick="toggleUserMenu()">SM</div>
             <div class="dropdown none" id="usermenu">
-              <a class="menuItem" href="./legalNotice.html">Legal Notice</a>
-              <a class="menuItem" href="./privacyPolicy.html">Privacy Policy</a>
-              <a class="menuItem" href="./LogIn.html">Log out</a>
+              <a class="menuItem" href="../html/legalNotice.html"
+                >Legal Notice</a
+              >
+              <a class="menuItem" href="../html/privacyPolicy.html"
+                >Privacy Policy</a
+              >
+              <a class="menuItem" onclick="logoutUserDirectly()" href="#"
+                >Log out</a
+              >
             </div>
           </div>
         </div>
@@ -83,20 +116,40 @@
             <form>
               <div class="formGroup">
                 <label for="taskTitle"
-                  >Title <span class="requiredStar">*</span></label>
-                <input type="text" placeholder="Enter a title" id="taskTitle" name="taskTitle"/>
-                  <div class="errorMessage hide"></div>
+                  >Title <span class="requiredStar">*</span></label
+                >
+                <input
+                  type="text"
+                  placeholder="Enter a title"
+                  id="taskTitle"
+                  name="taskTitle"
+                />
+                <div class="errorMessage hide"></div>
               </div>
               <div class="formGroup">
-                <label for="taskDescription"
-                  >Description</label>
-                <textarea id="taskDescription" placeholder="Enter a description" name="taskDescription"></textarea>
+                <label for="taskDescription">Description</label>
+                <textarea
+                  id="taskDescription"
+                  placeholder="Enter a description"
+                  name="taskDescription"
+                ></textarea>
               </div>
               <div class="formGroup">
-                <label for="taskDueDate">Due Date <span class="requiredStar">*</span></label>
+                <label for="taskDueDate"
+                  >Due Date <span class="requiredStar">*</span></label
+                >
                 <div class="inputIcon">
-                  <input placeholder="dd/mm/yyyy" id="taskDueDate" name="taskDueDate" maxlength="10" autocomplete="off"/>
-                  <img src="../assets/icons/add task/event.svg" alt="" />
+                  <input
+                    placeholder="dd/mm/yyyy"
+                    id="taskDueDate"
+                    name="taskDueDate"
+                    maxlength="10"
+                    autocomplete="off"
+                  />
+                  <img
+                    src="../assets/icons/add task/event.svg"
+                    alt="calendarIcon"
+                  />
                 </div>
                 <div class="errorMessage hide" id="taskDueDateError"></div>
               </div>
@@ -104,25 +157,39 @@
             <div class="addTaskFormsDivider"></div>
             <form>
               <div class="formGroup">
-                <label for="taskPriority" class="taskPriorityLabel">Task Priority</label>
+                <label for="taskPriority" class="taskPriorityLabel"
+                  >Task Priority</label
+                >
                 <div class="taskPriorityGroup">
                   <button type="button" class="taskPriorityBtn" id="urgentBtn">
-                    <img src="../assets/icons/shared/urgent.svg" alt="" />
+                    <img
+                      src="../assets/icons/shared/urgent.svg"
+                      alt="urgentIcon"
+                    />
                     <span>Urgent</span>
                   </button>
-                  <button type="button" class="taskPriorityBtnOrange" id="mediumBtn">
-                    <img src="../assets/icons/shared/medium.svg" alt="" />
+                  <button
+                    type="button"
+                    class="taskPriorityBtnOrange"
+                    id="mediumBtn"
+                  >
+                    <img
+                      src="../assets/icons/shared/medium.svg"
+                      alt="mediumIcon"
+                    />
                     <span>Medium</span>
                   </button>
                   <button type="button" class="taskPriorityBtn" id="lowBtn">
-                    <img src="../assets/icons/shared/low.svg" alt="" />
+                    <img src="../assets/icons/shared/low.svg" alt="lowIcon" />
                     <span>Low</span>
                   </button>
-                    <div class="errorMessage hide"></div>
+                  <div class="errorMessage hide"></div>
                 </div>
               </div>
               <div class="formGroup">
-                <label for="taskAssignee">Assigned to <span class="requiredStar">*</span></label>
+                <label for="taskAssignee"
+                  >Assigned to <span class="requiredStar">*</span></label
+                >
                 <select id="taskAssignee" name="taskAssignee">
                   <option value="" disabled selected hidden>
                     Select contacts to assign
@@ -131,10 +198,12 @@
                   <option value="user2">User 2</option>
                   <option value="user3">User 3</option>
                 </select>
-                  <div class="errorMessage hide"></div>
+                <div class="errorMessage hide"></div>
               </div>
               <div class="formGroup">
-                <label for="taskStatus">Category <span class="requiredStar">*</span></label>
+                <label for="taskStatus"
+                  >Category <span class="requiredStar">*</span></label
+                >
                 <select id="taskStatus" name="taskStatus">
                   <option value="" disabled selected hidden>
                     Select task category
@@ -142,22 +211,34 @@
                   <option value="userStory">User Story</option>
                   <option value="technicalTask">Technical Task</option>
                 </select>
-                        <div class="errorMessage hide"></div>
+                <div class="errorMessage hide"></div>
               </div>
               <div class="formGroup">
                 <label for="Subtask">Subtask</label>
-                <input type="text" placeholder="Add new subtask" id="taskSubtask" name="taskSubtask" multiple/>
+                <input
+                  type="text"
+                  placeholder="Add new subtask"
+                  id="taskSubtask"
+                  name="taskSubtask"
+                  multiple
+                />
               </div>
               <div class="formActions">
                 <span class="requiredStarText">*This field is required</span>
                 <div class="formButtons">
                   <button type="button" class="cancelTaskBtn" id="clearTaskBtn">
                     Clear
-                    <img src="../assets/icons/shared/close.svg" alt="cancel icon"/>
+                    <img
+                      src="../assets/icons/shared/close.svg"
+                      alt="cancel icon"
+                    />
                   </button>
                   <button type="button" class="addTaskBtn" id="createTaskBtn">
                     Create Task
-                    <img src="../assets/icons/add task/check.svg" alt="check icon"/>
+                    <img
+                      src="../assets/icons/add task/check.svg"
+                      alt="check icon"
+                    />
                   </button>
                 </div>
               </div>
