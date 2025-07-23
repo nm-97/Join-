@@ -246,3 +246,11 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.buttonDisabled {
+  background-color: #cccccc !important;
+  color: #666666 !important;
+  cursor: not-allowed !important;
+  opacity: 0.6;
+  pointer-events: none;
+}

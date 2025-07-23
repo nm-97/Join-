@@ -247,3 +247,7 @@ footer a {
     color: #A8A8A8;
     text-decoration: none;
 }
+footer a:hover{
+    color: #29ABE2;
+    font-weight: 700;
+}
