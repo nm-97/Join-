@@ -84,15 +84,15 @@ function getEditContactOverlay(contact) {
                             </div>
                             <form class="editContactForm" onsubmit="updateContact(event, '${contact.id}')">
                                 <div class="editContactInputWrapper">
-                                    <input type="text" name="name" placeholder="Name" value="${contact.name}" required>
+                                    <input type="text" name="name" placeholder="Name" value="${contact.name}">
                                     <img src="../assets/icons/contacts/person.svg" class="inputIcon" alt="personIcon">
                                 </div>
                                 <div class="editContactInputWrapper">
-                                    <input type="email" name="email" placeholder="Email" value="${contact.email}" required>
+                                    <input name="email" placeholder="Email" value="${contact.email}">
                                     <img src="../assets/icons/contacts/mail.svg" class="inputIcon" alt="mailIcon">
                                 </div>
                                 <div class="editContactInputWrapper">
-                                    <input type="tel" name="phone" placeholder="Phone" value="${contact.phone}" required>
+                                    <input name="phone" placeholder="Phone" value="${contact.phone}">
                                     <img src="../assets/icons/contacts/call.svg" class="inputIcon" alt="phoneIcon">
                                 </div>
                                 <div class="editContactBtnRow">
