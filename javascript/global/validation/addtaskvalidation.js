@@ -281,16 +281,13 @@ function showTaskCreatedNotification() {
   const container = document.getElementById('taskNotificationContainer');
   if (!container) return;
   
-  // Template verwenden
   const notificationHTML = getSuccessAddTaskMessageTemplate({});
   container.innerHTML = notificationHTML;
   
-  // Notification anzeigen
   const notification = document.getElementById('taskNotification');
   if (notification) {
     notification.style.display = 'block';
-    
-    // Nach 3 Sekunden automatisch ausblenden
+
     setTimeout(() => {
       notification.style.display = 'none';
       container.innerHTML = '';
