@@ -153,11 +153,9 @@ input {
     align-items: center;
     gap: 10px;
     padding: 15px 20px;
-    
 }
 
-.SignUpbtn,
-.LogInbtn {
+.SignUpbtn{
     padding: 15px 24px;
     border-radius: 8px;
     font-weight: 700;
@@ -173,22 +171,10 @@ input {
     font-size: 21px;
 }
 
-.guestLogInButton {
-    padding: 15px 20px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 21px;
-    border: none;
-    cursor: pointer;
-}
-
-.SignUpbtn:hover,
-.LogInbtn:hover,
-.guestLogInButton:hover {
-    background-color: #2a3647;
+.SignUpbtn:hover{
+    background-color: #2AABE2;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-    color: #e5e5e5;
-    filter: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.2);
+    color: #ffffff;
     transition: filter 0.2s;
 }
 
@@ -243,4 +229,9 @@ footer a {
     line-height: 120%;
     color: #A8A8A8;
     text-decoration: none;
+}
+
+footer a:hover{
+    color: #29ABE2;
+    font-weight: 700;
 }
