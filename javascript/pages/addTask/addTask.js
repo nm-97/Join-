@@ -114,19 +114,15 @@ async function loadContacts() {
 }
 
 async function createTask() {
+  if (!validateAddTaskForm()) return;
+  
   const taskData = getFormData();
-
-  if (!validateTaskData(taskData)) {
-    return;
-  }
-
   try {
     await addTaskToFirebaseByUser(taskData);
     showTaskCreatedNotification();
     clearForm();
   } catch (error) {
     console.error("Error creating task:", error);
-    alert("Error creating task. Please try again.");
   }
 }
 
@@ -150,30 +146,6 @@ function mapCategoryToFirebase(category) {
     technicalTask: "Technical Task",
   };
   return categoryMap[category] || "Technical Task";
-}
-
-function validateTaskData(taskData) {
-  if (!taskData.title) {
-    alert("Please enter a title");
-    return false;
-  }
-  if (!taskData.description) {
-    alert("Please enter a description");
-    return false;
-  }
-  if (!taskData.dueDate) {
-    alert("Please select a due date");
-    return false;
-  }
-  if (!taskData.assignedTo) {
-    alert("Please select an assignee");
-    return false;
-  }
-  if (!document.getElementById("taskStatus").value) {
-    alert("Please select a category");
-    return false;
-  }
-  return true;
 }
 
 function showTaskCreatedNotification() {
@@ -230,21 +202,18 @@ function setupOverlayFormSubmission() {
 }
 
 async function createOverlayTask() {
+  if (!validateAddTaskForm()) return;
+  
   const taskData = getFormData();
-  if (!validateTaskData(taskData)) {
-    return;
-  }
   try {
     await addTaskToFirebaseByUser(taskData);
     clearForm();
     closeAddTaskOverlay();
-
     if (typeof refreshBoard === "function") {
       await refreshBoard();
     }
   } catch (error) {
     console.error("Error creating task:", error);
-    alert("Error creating task. Please try again.");
   }
 }
 

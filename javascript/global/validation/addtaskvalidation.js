@@ -47,8 +47,6 @@ function getFormInputs() {
 }
 
 function validateTitle(titleInput) {
-  console.log('Title value:', titleInput ? titleInput.value : 'no input found');
-  console.log('validateRequired result:', titleInput ? validateRequired(titleInput.value) : false);
   
   if (!titleInput || !validateRequired(titleInput.value)) {
     showError('taskTitle', 'This field is required');
@@ -203,44 +201,6 @@ function mapCategoryToFirebase(category) {
   return categoryMap[category] || 'Technical Task';
 }
 
-async function createTask() {
-  if (!validateAddTaskForm()) return;
-  
-  const taskData = getFormDataForFirebase();
-  await processTaskCreation(taskData, false);
-}
-
-async function createOverlayTask() {
-  if (!validateAddTaskForm()) return;
-  
-  const taskData = getFormDataForFirebase();
-  await processTaskCreation(taskData, true);
-}
-
-async function processTaskCreation(taskData, isOverlay) {
-  try {
-    const taskId = await addTaskToFirebase(taskData);
-    handleSuccessfulTaskCreation(isOverlay);
-  } catch (error) {
-    handleTaskCreationError(error);
-  }
-}
-
-function handleSuccessfulTaskCreation(isOverlay) {
-  showTaskCreatedNotification();
-  clearFormWithValidation();
-  
-  if (isOverlay) {
-    if (typeof closeAddTaskOverlay === 'function') closeAddTaskOverlay();
-    if (typeof refreshBoard === 'function') refreshBoard();
-  }
-}
-
-function handleTaskCreationError(error) {
-  console.error('Error creating task:', error);
-  showError('taskTitle', 'Error creating task. Please try again.');
-}
-
 function clearFormWithValidation() {
   clearAllFormInputs();
   resetPriorityToDefault();
@@ -276,21 +236,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 100);
   }
 });
-
-function showTaskCreatedNotification() {
-  const container = document.getElementById('taskNotificationContainer');
-  if (!container) return;
-  
-  const notificationHTML = getSuccessAddTaskMessageTemplate({});
-  container.innerHTML = notificationHTML;
-  
-  const notification = document.getElementById('taskNotification');
-  if (notification) {
-    notification.style.display = 'block';
-
-    setTimeout(() => {
-      notification.style.display = 'none';
-      container.innerHTML = '';
-    }, 3000);
-  }
-}
