@@ -106,12 +106,19 @@ function showSignupError(text) {
   const errorMessage = document.getElementsByClassName('errorMessage')[0];
   errorMessage.textContent = text;
   errorMessage.classList.remove('hide');
+  
+  enableSignUpButton();
 }
 
 async function signupUser(event) {
   event.preventDefault();
   
-  if (!validateSignupForm()) return;
+  disableSignUpButton();
+  
+  if (!validateSignupForm()) {
+    enableSignUpButton();
+    return;
+  }
   
   const formData = new FormData(event.target);
   const name = formData.get('name');
@@ -153,8 +160,28 @@ function showEmailAlreadyExistsError() {
   
   emailInput.classList.add('errorInput');
   showSignupError('This email address is already registered.');
+  
+  enableSignUpButton();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
   initAllPasswordToggles();
 });
+
+function disableSignUpButton() {
+  const signUpButton = document.getElementById('SignUpButton');
+  
+  if (signUpButton) {
+    signUpButton.disabled = true;
+    signUpButton.classList.add('buttonDisabled');
+  }
+}
+
+function enableSignUpButton() {
+  const signUpButton = document.getElementById('SignUpButton');
+  
+  if (signUpButton) {
+    signUpButton.disabled = false;
+    signUpButton.classList.remove('buttonDisabled');
+  }
+}
