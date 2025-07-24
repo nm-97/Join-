@@ -5,17 +5,22 @@
 
 .errorMessage {
   color: #ff8190;
-  font-size: 12px;
-  margin-top: 4px;
-  margin-bottom: 8px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.2;
 }
 
-input:focus {
-  /* border: 2px solid #29ABE2 !important; */
+input:focus,
+textarea:focus {
+  border: 2px solid #29ABE2 !important;
   outline: none;
-  /* box-shadow: 0 0 0 2px rgba(41, 171, 226, 0.2); */
+  box-shadow: 0 0 0 2px rgba(41, 171, 226, 0.2);
+}
+
+select:focus {
+  border: 2px solid #29ABE2 !important;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(41, 171, 226, 0.2);
 }
 
 .errorInput:focus {

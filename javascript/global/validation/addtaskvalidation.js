@@ -31,7 +31,7 @@ function validateAddTaskForm() {
   if (!validateTitle(inputs.titleInput)) isValid = false;
   if (!validateDueDate(inputs.dueDateInput)) isValid = false;
   if (!validateCategory(inputs.categorySelect)) isValid = false;
-  if (!validateAssignee(inputs.assigneeSelect)) isValid = false;
+  if (!validateAssignee()) isValid = false;
   if (!validatePriority()) isValid = false;
   
   return isValid;
@@ -41,13 +41,11 @@ function getFormInputs() {
   return {
     titleInput: document.getElementById('taskTitle'),
     dueDateInput: document.getElementById('taskDueDate'),
-    categorySelect: document.getElementById('taskStatus'),
-    assigneeSelect: document.getElementById('taskAssignee')
+    categorySelect: document.getElementById('taskStatus')
   };
 }
 
 function validateTitle(titleInput) {
-  
   if (!titleInput || !validateRequired(titleInput.value)) {
     showError('taskTitle', 'This field is required');
     return false;
@@ -79,12 +77,52 @@ function validateCategory(categorySelect) {
   return true;
 }
 
-function validateAssignee(assigneeSelect) {
-  if (!assigneeSelect || !validateRequired(assigneeSelect.value)) {
-    showError('taskAssignee', 'This field is required');
+function validateAssignee() {
+  if (typeof getSelectedContactIds !== 'function') {
     return false;
   }
+  
+  const selectedContactIds = getSelectedContactIds();
+  
+  if (!selectedContactIds || selectedContactIds.length === 0) {
+    showCustomDropdownError('This field is required');
+    return false;
+  }
+  
+  clearCustomDropdownError();
   return true;
+}
+
+function showCustomDropdownError(message) {
+  const customDropdownContainer = document.querySelector('.customDropdownContainer');
+  if (!customDropdownContainer) return;
+  
+  const errorDiv = customDropdownContainer.querySelector('.errorMessage');
+  if (errorDiv) {
+    errorDiv.textContent = message;
+    errorDiv.classList.remove('hide');
+  }
+  
+  const dropdownHeader = document.querySelector('.dropdownHeader');
+  if (dropdownHeader) {
+    dropdownHeader.style.borderColor = '#ff0000';
+  }
+}
+
+function clearCustomDropdownError() {
+  const customDropdownContainer = document.querySelector('.customDropdownContainer');
+  if (!customDropdownContainer) return;
+  
+  const errorDiv = customDropdownContainer.querySelector('.errorMessage');
+  if (errorDiv) {
+    errorDiv.textContent = '';
+    errorDiv.classList.add('hide');
+  }
+  
+  const dropdownHeader = document.querySelector('.dropdownHeader');
+  if (dropdownHeader) {
+    dropdownHeader.style.borderColor = '#d1d1d1';
+  }
 }
 
 function validatePriority() {
@@ -156,7 +194,7 @@ function clearAllTaskErrors() {
   clearError('taskTitle');
   clearError('taskDueDate');
   clearError('taskStatus');
-  clearError('taskAssignee');
+  clearCustomDropdownError();
   clearPriorityError();
 }
 
@@ -211,8 +249,11 @@ function clearAllFormInputs() {
   document.getElementById('taskTitle').value = '';
   document.getElementById('taskDescription').value = '';
   document.getElementById('taskDueDate').value = '';
-  document.getElementById('taskAssignee').value = '';
   document.getElementById('taskStatus').value = '';
+  
+  if (typeof clearContactSelections === 'function') {
+    clearContactSelections();
+  }
   
   const subtaskInput = document.getElementById('taskSubtask');
   if (subtaskInput) subtaskInput.value = '';

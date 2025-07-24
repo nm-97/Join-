@@ -146,7 +146,7 @@ function getFormData() {
     description: document.getElementById("taskDescription").value,
     dueDate: document.getElementById("taskDueDate").value,
     taskPriority: selectedPriority,
-    assignedTo: document.getElementById("taskAssignee").value,
+    assignedTo: assignedTo,
     Category: mapCategoryToFirebase(
       document.getElementById("taskStatus").value
     ),
@@ -170,7 +170,6 @@ function clearForm() {
   document.getElementById("taskTitle").value = "";
   document.getElementById("taskDescription").value = "";
   document.getElementById("taskDueDate").value = "";
-  document.getElementById("taskAssignee").value = "";
   document.getElementById("taskStatus").value = "";
   document.getElementById("taskSubtask").value = "";
   clearPrioritySelection();
