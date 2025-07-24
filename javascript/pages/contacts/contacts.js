@@ -1,4 +1,3 @@
-// Global variable to store loaded contacts
 let loadedContacts = [];
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -10,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 async function initializeContacts() {
   try {
     const contacts = await fetchContactsByIdAndUser();
-    loadedContacts = contacts; // Store for later use
+    loadedContacts = contacts;
     renderContactsList(contacts);
   } catch (error) {
     console.error("Error initializing contacts:", error);
@@ -42,14 +41,11 @@ function renderContactsList(contacts) {
 }
 
 async function showFloatingContact(contactId) {
-  let contact = loadedContacts.find(c => c.id === contactId);
-  
+  let contact = loadedContacts.find((c) => c.id === contactId);
   if (!contact) {
     contact = await fetchContactByIdAndUser(contactId);
   }
-  
   if (!contact) return;
-  
   const floatingContactContainer = document.getElementById(
     "floatingContactOverlay"
   );

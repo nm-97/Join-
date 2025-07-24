@@ -7,12 +7,15 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/addTask.css" />
     <link rel="stylesheet" href="../css/validation.css" />
+    <link rel="stylesheet" href="../css/subtask.css" />
     <script src="../javascript/global/firebase.js"></script>
     <script src="../javascript/global/user.js"></script>
     <script src="../javascript/global/utils.js"></script>
     <script src="../javascript/pages/addTask/addTaskTemplates.js"></script>
     <script src="../javascript/global/validation/validation.js"></script>
     <script src="../javascript/pages/addTask/addTask.js"></script>
+    <script src="../javascript/pages/addTask/subTask.js"></script>
+    <script src="../javascript/pages/addTask/subTaskTemplate.js"></script>
     <script src="../javascript/global/validation/addtaskvalidation.js"></script>
     <script src="../javascript/global/ui.js" defer></script>
     <title>Add Task</title>
@@ -109,134 +112,9 @@
           <div class="pageHeader">
             <h1 class="addTaskH1">Add Task</h1>
           </div>
-          <div class="addTaskFormsWrapper">
-            <form>
-              <div class="formGroup">
-                <label for="taskTitle"
-                  >Title <span class="requiredStar">*</span></label
-                >
-                <input
-                  type="text"
-                  placeholder="Enter a title"
-                  id="taskTitle"
-                  name="taskTitle"
-                />
-                <div class="errorMessage hide"></div>
-              </div>
-              <div class="formGroup">
-                <label for="taskDescription">Description</label>
-                <textarea
-                  id="taskDescription"
-                  placeholder="Enter a description"
-                  name="taskDescription"
-                ></textarea>
-              </div>
-              <div class="formGroup">
-                <label for="taskDueDate"
-                  >Due Date <span class="requiredStar">*</span></label
-                >
-                <div class="inputIcon">
-                  <input
-                    placeholder="dd/mm/yyyy"
-                    id="taskDueDate"
-                    name="taskDueDate"
-                    maxlength="10"
-                    autocomplete="off"
-                  />
-                  <img
-                    src="../assets/icons/add task/event.svg"
-                    alt="calendarIcon"
-                  />
-                </div>
-                <div class="errorMessage hide" id="taskDueDateError"></div>
-              </div>
-            </form>
-            <div class="addTaskFormsDivider"></div>
-            <form>
-              <div class="formGroup">
-                <label for="taskPriority" class="taskPriorityLabel"
-                  >Task Priority</label
-                >
-                <div class="taskPriorityGroup">
-                  <button type="button" class="taskPriorityBtn" id="urgentBtn">
-                    <img
-                      src="../assets/icons/shared/urgent.svg"
-                      alt="urgentIcon"
-                    />
-                    <span>Urgent</span>
-                  </button>
-                  <button
-                    type="button"
-                    class="taskPriorityBtnOrange"
-                    id="mediumBtn"
-                  >
-                    <img
-                      src="../assets/icons/shared/medium.svg"
-                      alt="mediumIcon"
-                    />
-                    <span>Medium</span>
-                  </button>
-                  <button type="button" class="taskPriorityBtn" id="lowBtn">
-                    <img src="../assets/icons/shared/low.svg" alt="lowIcon" />
-                    <span>Low</span>
-                  </button>
-                  <div class="errorMessage hide"></div>
-                </div>
-              </div>
-              <div class="formGroup">
-                <label for="taskAssignee"
-                  >Assigned to <span class="requiredStar">*</span></label
-                >
-                <select id="taskAssignee" name="taskAssignee">
-                  <option value="" disabled selected hidden>
-                    Select contacts to assign
-                  </option>
-                  <option value="user1">User 1</option>
-                  <option value="user2">User 2</option>
-                  <option value="user3">User 3</option>
-                </select>
-                <div class="errorMessage hide"></div>
-              </div>
-              <div class="formGroup">
-                <label for="taskStatus"
-                  >Category <span class="requiredStar">*</span></label
-                >
-                <select id="taskStatus" name="taskStatus">
-                  <option value="" disabled selected hidden>
-                    Select task category
-                  </option>
-                  <option value="userStory">User Story</option>
-                  <option value="technicalTask">Technical Task</option>
-                </select>
-                <div class="errorMessage hide"></div>
-              </div>
-              <div class="formGroup">
-                <label for="Subtask">Subtask</label>
-                <input
-                  type="text"
-                  placeholder="Add new subtask"
-                  id="taskSubtask"
-                  name="taskSubtask"
-                  multiple
-                />
-              </div>
-              <div class="formActions">
-                <span class="requiredStarText">*This field is required</span>
-                <div class="formButtons">
-                  <button type="button" class="cancelTaskBtn" id="clearTaskBtn">
-                    Clear
-                    <img
-                      src="../assets/icons/shared/close.svg"
-                      alt="cancel icon"
-                    />
-                  </button>
-                  <button type="button" class="addTaskBtn" id="createTaskBtn">
-                    Create Task
-                    <img
-                      src="../assets/icons/add task/check.svg"
-                      alt="check icon"
-                    />
-                  </button>
+          <div class="addTaskFormsWrapper"  id="mainContent">
+           
+             
                 </div>
               </div>
             </form>

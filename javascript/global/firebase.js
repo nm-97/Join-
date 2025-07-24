@@ -6,6 +6,7 @@ const firebaseUrl =
 const GUEST_TASKS_PATH = "user/guest/task.json";
 const GUEST_CONTACTS_PATH = "user/guest/contacts.json";
 const USERS_PATH = "user/registered/.json";
+const GUEST_SUBTASKS_PATH = "user/guest/subtasks.json";
 
 const getUserTasksPath = (userId) => `user/registered/${userId}/task.json`;
 const getUserTaskPath = (userId, taskId) =>
@@ -14,9 +15,13 @@ const getUserContactsPath = (userId) =>
   `user/registered/${userId}/contacts.json`;
 const getUserContactPath = (userId, contactId) =>
   `user/registered/${userId}/contacts/${contactId}.json`;
+const getUserSubtaskPath = (userId, subtaskId) =>
+  `user/registered/${userId}/subtasks/${subtaskId}.json`;
 const getGuestTaskPath = (taskId) => `user/guest/task/${taskId}.json`;
 const getGuestContactPath = (contactId) =>
   `user/guest/contacts/${contactId}.json`;
+const getGuestSubtaskPath = (subtaskId) =>
+  `user/guest/subtasks/${subtaskId}.json`;
 
 function getCurrentUser() {
   const currentUser = sessionStorage.getItem("currentUser");
@@ -236,8 +241,6 @@ async function updateTaskInFirebaseByUser(taskId, taskData) {
   return true;
 }
 
-// deleteContactFromFirebase function is defined above at line 155 - this duplicate removed
-
 function mapApiTaskToTemplate(data) {
   return {
     id: data.id || null,
@@ -248,6 +251,7 @@ function mapApiTaskToTemplate(data) {
     dueDate: data.dueDate || "",
     taskPriority: data.taskPriority || "Medium",
     title: data.title || "Untitled Task",
+    subtasks: data.subtasks || [],
   };
 }
 

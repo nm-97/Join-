@@ -199,22 +199,22 @@ label {
 }
 
 .taskPriorityBtn.taskPriorityBtnUrgentSelected {
-  background-color: #FF3D00 !important;
+  background-color: #ff3d00 !important;
   color: white !important;
-  border: 2px solid #FF3D00 !important;
+  border: 2px solid #ff3d00 !important;
 }
 
 .taskPriorityBtn.taskPriorityBtnMediumSelected,
 .taskPriorityBtnOrange.taskPriorityBtnMediumSelected {
-  background-color: #FF9500 !important;
+  background-color: #ff9500 !important;
   color: white !important;
-  border: 2px solid #FF9500 !important;
+  border: 2px solid #ff9500 !important;
 }
 
 .taskPriorityBtn.taskPriorityBtnLowSelected {
-  background-color: #7AE229 !important;
+  background-color: #7ae229 !important;
   color: white !important;
-  border: 2px solid #7AE229 !important;
+  border: 2px solid #7ae229 !important;
 }
 
 .taskPriorityBtn.taskPriorityBtnUrgentSelected img,
@@ -227,4 +227,21 @@ label {
 .taskPriorityBtn,
 .taskPriorityBtnOrange {
   transition: all 0.3s ease;
+}
+
+.input {
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  font-size: 20px;
+  color: #d1d1d1;
+  font-weight: 400;
+  padding: 0 70px 0 20px;
+}
+
+.inputIcon img {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  filter: invert(1);
+  cursor: pointer;
 }

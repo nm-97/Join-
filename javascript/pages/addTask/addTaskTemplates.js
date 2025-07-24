@@ -2,9 +2,7 @@ function getAddTaskOverlay(params = {}) {
   return `
         <div class="overlayContent">
             <button class="closeBtn" onclick="closeAddTaskOverlay()">&times;</button>
-            
             <h1 class="addTaskH1">Add Task</h1>
-            
             <div class="addTaskFormsWrapper">
                 <form>
                     <div class="formGroup">
@@ -25,9 +23,7 @@ function getAddTaskOverlay(params = {}) {
                       <div class="errorMessage hide" id="taskDueDateError"></div>
                     </div>
                 </form>
-                
                 <div class="addTaskFormsDivider"></div>
-                
                 <form>
                     <div class="formGroup">
                         <label for="taskPriority" class="taskPriorityLabel">Task Priority</label>
@@ -87,7 +83,6 @@ function getAddTaskOverlay(params = {}) {
 function getEditTaskOverlay(task) {
   const assignedPersonInitials = getInitials(task.assignedTo || "");
   const assignedPersonColor = getAvatarColor(task.assignedTo || "");
-
   return `
     <div class="overlay">
       <div class="taskDetailModal">
@@ -184,4 +179,142 @@ function getSuccessAddTaskMessageTemplate() {
   return `  <div class="ntfcenterS ntfmask" id="taskNotification">Task added to board
    <img src="../assets/icons/summary and sideboard/board.svg" alt="boardIcon"></img>
     </div>`;
+}
+
+function getaddTaskMainContent() {
+  return ` <form>
+              <div class="formGroup">
+                <label for="taskTitle"
+                  >Title <span class="requiredStar">*</span></label
+                >
+                <input
+                  type="text"
+                  placeholder="Enter a title"
+                  id="taskTitle"
+                  name="taskTitle"
+                />
+                <div class="errorMessage hide"></div>
+              </div>
+              <div class="formGroup">
+                <label for="taskDescription">Description</label>
+                <textarea
+                  id="taskDescription"
+                  placeholder="Enter a description"
+                  name="taskDescription"
+                ></textarea>
+              </div>
+              <div class="formGroup">
+                <label for="taskDueDate"
+                  >Due Date <span class="requiredStar">*</span></label
+                >
+                <div class="inputIcon">
+                  <input
+                    placeholder="dd/mm/yyyy"
+                    id="taskDueDate"
+                    name="taskDueDate"
+                    maxlength="10"
+                    autocomplete="off"
+                  />
+                  <img
+                    src="../assets/icons/add task/event.svg"
+                    alt="calendarIcon"
+                  />
+                </div>
+                <div class="errorMessage hide" id="taskDueDateError"></div>
+              </div>
+            </form>
+            <div class="addTaskFormsDivider"></div>
+            <form>
+              <div class="formGroup">
+                <label for="taskPriority" class="taskPriorityLabel"
+                  >Task Priority</label
+                >
+                <div class="taskPriorityGroup">
+                  <button type="button" class="taskPriorityBtn" id="urgentBtn">
+                    <img
+                      src="../assets/icons/shared/urgent.svg"
+                      alt="urgentIcon"
+                    />
+                    <span>Urgent</span>
+                  </button>
+                  <button
+                    type="button"
+                    class="taskPriorityBtnOrange"
+                    id="mediumBtn"
+                  >
+                    <img
+                      src="../assets/icons/shared/medium.svg"
+                      alt="mediumIcon"
+                    />
+                    <span>Medium</span>
+                  </button>
+                  <button type="button" class="taskPriorityBtn" id="lowBtn">
+                    <img src="../assets/icons/shared/low.svg" alt="lowIcon" />
+                    <span>Low</span>
+                  </button>
+                  <div class="errorMessage hide"></div>
+                </div>
+              </div>
+              <div class="formGroup">
+                <label for="taskAssignee"
+                  >Assigned to <span class="requiredStar">*</span></label
+                >
+                <select id="taskAssignee" name="taskAssignee">
+                  <option value="" disabled selected hidden>
+                    Select contacts to assign
+                  </option>
+                  <option value="user1">User 1</option>
+                  <option value="user2">User 2</option>
+                  <option value="user3">User 3</option>
+                </select>
+                <div class="errorMessage hide"></div>
+              </div>
+              <div class="formGroup">
+                <label for="taskStatus"
+                  >Category <span class="requiredStar">*</span></label
+                >
+                <select id="taskStatus" name="taskStatus">
+                  <option value="" disabled selected hidden>
+                    Select task category
+                  </option>
+                  <option value="userStory">User Story</option>
+                  <option value="technicalTask">Technical Task</option>
+                </select>
+                <div class="errorMessage hide"></div>
+              </div>
+              <div class="formGroup">
+                <label for="Subtask">Subtask</label>
+                <div class="inputIcon">
+                  <input
+                    type="text"
+                    placeholder="Add new subtask"
+                    id="taskSubtask"
+                    name="taskSubtask"
+                    multiple
+                  />
+                  <img
+                    src="../assets/icons/board/addtask.svg"
+                    alt="addSubtask" id="createSubtaskButton"
+                  />
+                </div>
+                  <div id="editableDiv" class="subtaskDisplayContainer">
+               </div>
+              </div>
+               <div class="formActions">
+                <span class="requiredStarText">*This field is required</span>
+                <div class="formButtons">
+                  <button type="button" class="cancelTaskBtn" id="clearTaskBtn">
+                    Clear
+                    <img
+                      src="../assets/icons/shared/close.svg"
+                      alt="cancel icon"
+                    />
+                  </button>
+                  <button type="button" class="addTaskBtn" id="createTaskBtn">
+                    Create Task
+                    <img
+                      src="../assets/icons/add task/check.svg"
+                      alt="check icon"
+                    />
+                  </button>`;
 }

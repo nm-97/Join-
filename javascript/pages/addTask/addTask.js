@@ -1,11 +1,21 @@
 let selectedPriority = "Medium";
 let selectedCategory = "";
+let currentSubtasks = [];
 
 function initializeAddTask() {
+  renderAddTaskMainContent();
   setupPriorityButtons();
   setupFormSubmission();
+  currentSubtasks = [];
+  window.currentSubtasks = currentSubtasks;
+  setupSubtaskEvents();
   loadContacts();
   setDefaultPriority();
+}
+
+function renderAddTaskMainContent() {
+  const mainContent = document.getElementById("mainContent");
+  mainContent.innerHTML = getaddTaskMainContent();
 }
 
 function setupPriorityButtons() {
@@ -87,15 +97,15 @@ function setDefaultPriority() {
   }
 }
 
-function setupFormSubmission() {
+async function setupFormSubmission() {
   const createButton = document.getElementById("createTaskBtn");
   const clearButton = document.getElementById("clearTaskBtn");
   if (!createButton || !clearButton) {
     console.error("Form buttons not found");
     return;
   }
-  createButton.onclick = createTask;
-  clearButton.onclick = clearForm;
+  await (createButton.onclick = createTask);
+  await (clearButton.onclick = clearForm);
 }
 
 async function loadContacts() {
@@ -119,11 +129,14 @@ async function loadContacts() {
 
 async function createTask() {
   if (!validateAddTaskForm()) return;
-  const taskData = getFormData();
   try {
+    const taskData = getFormData();
     await addTaskToFirebaseByUser(taskData);
-    showTaskCreatedNotification();
+    window.currentSubtasks = [];
+    document.getElementById("taskSubtask").value = "";
+    renderSubtasks([]);
     clearForm();
+    showSuccessMessage("Task erfolgreich erstellt!");
   } catch (error) {}
 }
 
@@ -138,6 +151,7 @@ function getFormData() {
       document.getElementById("taskStatus").value
     ),
     Status: "toDo",
+    subtasks: currentSubtasks,
   };
 }
 
@@ -161,6 +175,8 @@ function clearForm() {
   document.getElementById("taskSubtask").value = "";
   clearPrioritySelection();
   selectedPriority = "Medium";
+  currentSubtasks = [];
+  renderSubtasks([]);
 }
 
 function showAddTaskOverlay() {
@@ -198,7 +214,6 @@ function setupOverlayFormSubmission() {
 
 async function createOverlayTask() {
   if (!validateAddTaskForm()) return;
-
   const taskData = getFormData();
   try {
     await addTaskToFirebaseByUser(taskData);
