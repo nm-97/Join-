@@ -104,8 +104,12 @@ async function setupFormSubmission() {
     console.error("Form buttons not found");
     return;
   }
-  await (createButton.onclick = createTask);
-  await (clearButton.onclick = clearForm);
+  
+  // ✅ Korrekte Event-Zuweisung
+  createButton.onclick = createTask;
+  clearButton.onclick = clearForm;
+  
+  console.log("Form buttons erfolgreich verbunden!");
 }
 
 async function loadContacts() {
@@ -131,13 +135,17 @@ async function createTask() {
   if (!validateAddTaskForm()) return;
   try {
     const taskData = getFormData();
+    console.log("Task-Daten vor dem Speichern:", taskData);
     await addTaskToFirebaseByUser(taskData);
+    console.log("Task erfolgreich gespeichert!");
     window.currentSubtasks = [];
     document.getElementById("taskSubtask").value = "";
     renderSubtasks([]);
     clearForm();
-    showSuccessMessage("Task erfolgreich erstellt!");
-  } catch (error) {}
+    showTaskCreatedNotification();
+  } catch (error) {
+    console.error("Fehler beim Erstellen der Task:", error);
+  }
 }
 
 function getFormData() {
@@ -146,7 +154,7 @@ function getFormData() {
     description: document.getElementById("taskDescription").value,
     dueDate: document.getElementById("taskDueDate").value,
     taskPriority: selectedPriority,
-    assignedTo: assignedTo,
+    assignedTo: document.getElementById("taskAssignee").value,
     Category: mapCategoryToFirebase(
       document.getElementById("taskStatus").value
     ),
