@@ -72,13 +72,27 @@ function getAddTaskOverlay(params = {}) {
                       <div class="errorMessage hide"></div>
                     </div>
                     <div class="formGroup">
-                        <label for="taskStatus">Category <span class="requiredStar">*</span></label>
-                        <select id="taskStatus" name="taskStatus">
-                            <option value="" disabled selected hidden>Select task category</option>
-                            <option value="userStory">User Story</option>
-                            <option value="technicalTask">Technical Task</option>
-                        </select>
-                      <div class="errorMessage hide"></div>
+                     <div class="customDropdownContainer">
+                          <div class="customDropdown" id="customDropdown">
+                            <div class="dropdownHeader">
+                              <input
+                                type="text"
+                                class="dropdownInput"
+                                id="dropdownInput"
+                                name="taskAssignee"
+                                placeholder="Select contacts to assign"
+                                readonly
+                              />
+                              <button type="button" class="dropdownArrow" id="dropdownArrow"></button>
+                            </div>
+                            <div class="dropdownContent" id="dropdownContent">
+                              <div class="contactsList" id="contactsDropdownList">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="selectedContactsDisplay" id="selectedContactsDisplay">
+                          </div>
+                        </div>
                     </div>
                     <div class="formGroup">
                         <label for="Subtask">Subtask</label>
@@ -322,18 +336,31 @@ function getaddTaskMainContent() {
                 <div class="errorMessage hide"></div>
               </div>
               <div class="formGroup">
-                <label for="taskStatus"
+                <div class="customDropdownContainer">
+                          <label for="taskCategory"
                   >Category <span class="requiredStar">*</span></label
                 >
-                <select id="taskStatus" name="taskStatus">
-                  <option value="" disabled selected hidden>
-                    Select task category
-                  </option>
-                  <option value="userStory">User Story</option>
-                  <option value="technicalTask">Technical Task</option>
-                </select>
-                <div class="errorMessage hide"></div>
-              </div>
+                <div class="customDropdown" id="customCategoryDropdown">
+                            <div class="dropdownHeader">
+                              <input
+                                type="text"
+                                class="dropdownInput"
+                                id="categoryDropdownInput"
+                                name="taskCategory"
+                                placeholder="Select task category"
+                                readonly
+                              />
+                              <button type="button" class="dropdownArrow" id="categoryDropdownArrow"></button>
+                            </div>
+                            <div class="dropdownContent" id="categoryDropdownContent">
+                              <div class="contactsList" id="categoriesDropdownList">
+                                <!-- Categories werden hier dynamisch eingefügt -->
+                              </div>
+                            </div>
+                          </div>
+                          <div class="selectedContactsDisplay" id="selectedContactsDisplay">
+                          </div>
+                        </div>
               <div class="formGroup">
                 <label for="Subtask">Subtask</label>
                 <div class="inputIcon">

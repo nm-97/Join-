@@ -10,6 +10,7 @@ function initializeAddTask() {
   window.currentSubtasks = currentSubtasks;
   setupSubtaskEvents();
   loadContacts(); // Custom Dropdown loadContacts from customdropdown.js
+  loadCategories(); // Load categories for dropdown
   setDefaultPriority();
 }
 
@@ -215,6 +216,12 @@ function initializeOverlayAddTask() {
   currentSubtasks = [];
   window.currentSubtasks = currentSubtasks;
   loadContacts();
+
+  // Load categories with slight delay to ensure DOM is ready
+  setTimeout(() => {
+    loadCategories();
+  }, 100);
+
   initializeDateInput();
   setDefaultPriority();
 }

@@ -79,22 +79,25 @@ function validateCategory(categorySelect) {
 }
 
 function validateAssignee() {
-  if (typeof getSelectedContactIds !== 'function') {
-    // Fallback für normales Select-Element
+  if (typeof getSelectedContactIds !== "function") {
     const assigneeSelect = document.getElementById("taskAssignee");
-    if (!assigneeSelect || !assigneeSelect.value || assigneeSelect.value === "") {
+    if (
+      !assigneeSelect ||
+      !assigneeSelect.value ||
+      assigneeSelect.value === ""
+    ) {
       return false;
     }
     return true;
   }
-  
+
   const selectedContactIds = getSelectedContactIds();
-  
+
   if (!selectedContactIds || selectedContactIds.length === 0) {
-    showCustomDropdownError('This field is required');
+    showCustomDropdownError("This field is required");
     return false;
   }
-  
+
   clearCustomDropdownError();
   return true;
 }

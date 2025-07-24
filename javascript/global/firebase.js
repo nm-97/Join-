@@ -205,7 +205,11 @@ async function fetchContactByIdAndUser(contactId) {
     currentUser.type === "registered"
       ? getUserContactPath(currentUser.id, contactId)
       : getGuestContactPath(contactId);
-  return await fetchData(path);
+  const result = await fetchData(path);
+  if (result) {
+    result.id = contactId; // ID zum Contact-Objekt hinzufügen
+  }
+  return result;
 }
 
 async function fetchContactsByIdAndUser() {
