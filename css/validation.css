@@ -5,9 +5,7 @@
 
 .errorMessage {
   color: #ff8190;
-  font-size: 12px;
-  margin-top: 4px;
-  margin-bottom: 8px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.2;
 }
