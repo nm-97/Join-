@@ -181,7 +181,7 @@ function getEditTaskOverlay(task) {
 }
 
 function getSuccessAddTaskMessageTemplate() {
-  return `  <div class="ntfbottom ntfmask" id="taskNotification">Task added to board
+  return `  <div class="ntfcenterS ntfmask" id="taskNotification">Task added to board
    <img src="../assets/icons/summary and sideboard/board.svg" alt="boardIcon"></img>
     </div>`;
 }
