@@ -2,7 +2,9 @@ function getAddTaskOverlay(params = {}) {
   return `
         <div class="overlayContent">
             <button class="closeBtn" onclick="closeAddTaskOverlay()">&times;</button>
+            
             <h1 class="addTaskH1">Add Task</h1>
+            
             <div class="addTaskFormsWrapper">
                 <form>
                     <div class="formGroup">
@@ -23,7 +25,9 @@ function getAddTaskOverlay(params = {}) {
                       <div class="errorMessage hide" id="taskDueDateError"></div>
                     </div>
                 </form>
+                
                 <div class="addTaskFormsDivider"></div>
+                
                 <form>
                     <div class="formGroup">
                         <label for="taskPriority" class="taskPriorityLabel">Task Priority</label>
@@ -42,33 +46,31 @@ function getAddTaskOverlay(params = {}) {
                             </button>
                         </div>
                     </div>
-                      <div class="customDropdownContainer">
+                    <div class="formGroup">
                         <label for="taskAssignee">Assigned to <span class="requiredStar">*</span></label>
-                        
-                        <div class="customDropdown" id="customDropdown">
-                          <div class="dropdownHeader" id="dropdownHeader">
-                            <input 
-                              type="text" 
-                              class="dropdownInput" 
-                              id="dropdownInput" 
-                              placeholder="Select contacts to assign"
-                              readonly
-                            />
-                            <button type="button" class="dropdownArrow" id="dropdownArrow">
-                            </button>
-                          </div>
-                          
-                          <div class="dropdownContent" id="dropdownContent">
-                            <div class="contactsList" id="contactsDropdownList">
+                        <div class="customDropdownContainer">
+                          <div class="customDropdown" id="customDropdown">
+                            <div class="dropdownHeader">
+                              <input
+                                type="text"
+                                class="dropdownInput"
+                                id="dropdownInput"
+                                name="taskAssignee"
+                                placeholder="Select contacts to assign"
+                                readonly
+                              />
+                              <button type="button" class="dropdownArrow" id="dropdownArrow"></button>
+                            </div>
+                            <div class="dropdownContent" id="dropdownContent">
+                              <div class="contactsList" id="contactsDropdownList">
+                              </div>
                             </div>
                           </div>
+                          <div class="selectedContactsDisplay" id="selectedContactsDisplay">
+                          </div>
                         </div>
-                        
-                        <div class="selectedContactsDisplay" id="selectedContactsDisplay">
-                        </div>
-                        
-                        <div class="errorMessage hide"></div>
-                      </div>
+                      <div class="errorMessage hide"></div>
+                    </div>
                     <div class="formGroup">
                         <label for="taskStatus">Category <span class="requiredStar">*</span></label>
                         <select id="taskStatus" name="taskStatus">
@@ -80,7 +82,21 @@ function getAddTaskOverlay(params = {}) {
                     </div>
                     <div class="formGroup">
                         <label for="Subtask">Subtask</label>
-                        <input type="text" placeholder="Add new subtask" id="taskSubtask" name="taskSubtask">
+                        <div class="inputIcon">
+                          <input
+                            type="text"
+                            placeholder="Add new subtask"
+                            id="taskSubtask"
+                            name="taskSubtask"
+                            multiple
+                          />
+                          <img
+                            src="../assets/icons/board/addtask.svg"
+                            alt="addSubtask" id="createSubtaskButton"
+                          />
+                        </div>
+                          <div id="editableDiv" class="subtaskDisplayContainer">
+                       </div>
                     </div>
                     <div class="formActions">
                         <span class="requiredStarText">*This field is required</span>
@@ -103,6 +119,7 @@ function getAddTaskOverlay(params = {}) {
 function getEditTaskOverlay(task) {
   const assignedPersonInitials = getInitials(task.assignedTo || "");
   const assignedPersonColor = getAvatarColor(task.assignedTo || "");
+
   return `
     <div class="overlay">
       <div class="taskDetailModal">
@@ -279,14 +296,29 @@ function getaddTaskMainContent() {
                 <label for="taskAssignee"
                   >Assigned to <span class="requiredStar">*</span></label
                 >
-                <select id="taskAssignee" name="taskAssignee">
-                  <option value="" disabled selected hidden>
-                    Select contacts to assign
-                  </option>
-                  <option value="user1">User 1</option>
-                  <option value="user2">User 2</option>
-                  <option value="user3">User 3</option>
-                </select>
+                <div class="customDropdownContainer">
+                  <div class="customDropdown" id="customDropdown">
+                    <div class="dropdownHeader">
+                      <input
+                        type="text"
+                        class="dropdownInput"
+                        id="dropdownInput"
+                        name="taskAssignee"
+                        placeholder="Select contacts to assign"
+                        readonly
+                      />
+                      <button type="button" class="dropdownArrow" id="dropdownArrow"></button>
+                    </div>
+                    <div class="dropdownContent" id="dropdownContent">
+                      <div class="contactsList" id="contactsDropdownList">
+                        <!-- Contacts werden hier dynamisch eingefügt -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="selectedContactsDisplay" id="selectedContactsDisplay">
+                    <!-- Ausgewählte Kontakte werden hier angezeigt -->
+                  </div>
+                </div>
                 <div class="errorMessage hide"></div>
               </div>
               <div class="formGroup">

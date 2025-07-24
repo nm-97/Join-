@@ -9,7 +9,7 @@ function initializeAddTask() {
   currentSubtasks = [];
   window.currentSubtasks = currentSubtasks;
   setupSubtaskEvents();
-  loadContacts();
+  loadContacts(); // Custom Dropdown loadContacts from customdropdown.js
   setDefaultPriority();
 }
 
@@ -114,7 +114,7 @@ async function setupFormSubmission() {
   });
 }
 
-async function loadContacts() {
+async function loadContactsForSelect() {
   try {
     const contacts = await fetchContactsByIdAndUser();
     const assigneeSelect = document.getElementById("taskAssignee");
@@ -211,6 +211,9 @@ function closeAddTaskOverlay() {
 function initializeOverlayAddTask() {
   setupPriorityButtons();
   setupOverlayFormSubmission();
+  setupSubtaskEvents();
+  currentSubtasks = [];
+  window.currentSubtasks = currentSubtasks;
   loadContacts();
   initializeDateInput();
   setDefaultPriority();
