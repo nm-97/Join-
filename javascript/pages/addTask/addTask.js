@@ -159,7 +159,7 @@ function getFormData() {
     description: document.getElementById("taskDescription").value,
     dueDate: document.getElementById("taskDueDate").value,
     taskPriority: selectedPriority,
-    assignedTo: document.getElementById("taskAssignee").value,
+    assignedTo: assignedTo,
     Category: mapCategoryToFirebase(
       document.getElementById("taskStatus").value
     ),
