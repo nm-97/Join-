@@ -46,13 +46,33 @@ function getAddTaskOverlay(params = {}) {
                             </button>
                         </div>
                     </div>
-                    <div class="formGroup">
+                      <div class="customDropdownContainer">
                         <label for="taskAssignee">Assigned to <span class="requiredStar">*</span></label>
-                        <select id="taskAssignee" name="taskAssignee">
-                            <option value="" disabled selected hidden>Select contacts to assign</option>
-                        </select>
-                      <div class="errorMessage hide"></div>
-                    </div>
+                        
+                        <div class="customDropdown" id="customDropdown">
+                          <div class="dropdownHeader" id="dropdownHeader">
+                            <input 
+                              type="text" 
+                              class="dropdownInput" 
+                              id="dropdownInput" 
+                              placeholder="Select contacts to assign"
+                              readonly
+                            />
+                            <button type="button" class="dropdownArrow" id="dropdownArrow">
+                            </button>
+                          </div>
+                          
+                          <div class="dropdownContent" id="dropdownContent">
+                            <div class="contactsList" id="contactsDropdownList">
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="selectedContactsDisplay" id="selectedContactsDisplay">
+                        </div>
+                        
+                        <div class="errorMessage hide"></div>
+                      </div>
                     <div class="formGroup">
                         <label for="taskStatus">Category <span class="requiredStar">*</span></label>
                         <select id="taskStatus" name="taskStatus">

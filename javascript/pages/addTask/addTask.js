@@ -4,7 +4,9 @@ let selectedCategory = "";
 function initializeAddTask() {
   setupPriorityButtons();
   setupFormSubmission();
-  loadContacts();
+  if (typeof loadContacts === 'function') {
+    loadContacts();
+  }
   setDefaultPriority();
 }
 
@@ -98,47 +100,41 @@ function setupFormSubmission() {
   clearButton.onclick = clearForm;
 }
 
-async function loadContacts() {
-  try {
-    const contacts = await fetchContactsByIdAndUser();
-    const assigneeSelect = document.getElementById("taskAssignee");
-    if (!assigneeSelect) return;
-    assigneeSelect.innerHTML =
-      '<option value="" disabled selected hidden>Select contacts to assign</option>';
-    for (let i = 0; i < contacts.length; i++) {
-      const contact = contacts[i];
-      const option = document.createElement("option");
-      option.value = contact.id;
-      option.textContent = contact.name;
-      assigneeSelect.appendChild(option);
-    }
-  } catch (error) {
-    console.error("Error loading contacts:", error);
-  }
-}
-
 async function createTask() {
   if (!validateAddTaskForm()) return;
+  
   const taskData = getFormData();
+  
   try {
     await addTaskToFirebaseByUser(taskData);
     showTaskCreatedNotification();
     clearForm();
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error creating task:", error);
+  }
 }
 
 function getFormData() {
-  return {
+  let assignedTo = "";
+  
+  if (typeof getSelectedContactIds === 'function') {
+    const selectedContactIds = getSelectedContactIds();
+    assignedTo = selectedContactIds.length > 0 ? selectedContactIds[0] : "";
+  }
+  
+  const formData = {
     title: document.getElementById("taskTitle").value,
     description: document.getElementById("taskDescription").value,
     dueDate: document.getElementById("taskDueDate").value,
     taskPriority: selectedPriority,
-    assignedTo: document.getElementById("taskAssignee").value,
+    assignedTo: assignedTo,
     Category: mapCategoryToFirebase(
       document.getElementById("taskStatus").value
     ),
     Status: "toDo",
   };
+  
+  return formData;
 }
 
 function showTaskCreatedNotification() {
@@ -156,11 +152,16 @@ function clearForm() {
   document.getElementById("taskTitle").value = "";
   document.getElementById("taskDescription").value = "";
   document.getElementById("taskDueDate").value = "";
-  document.getElementById("taskAssignee").value = "";
   document.getElementById("taskStatus").value = "";
   document.getElementById("taskSubtask").value = "";
+  
+  if (typeof clearContactSelections === 'function') {
+    clearContactSelections();
+  }
+  
   clearPrioritySelection();
   selectedPriority = "Medium";
+  setDefaultPriority();
 }
 
 function showAddTaskOverlay() {
@@ -183,7 +184,9 @@ function closeAddTaskOverlay() {
 function initializeOverlayAddTask() {
   setupPriorityButtons();
   setupOverlayFormSubmission();
-  loadContacts();
+  if (typeof loadContacts === 'function') {
+    loadContacts();
+  }
   initializeDateInput();
   setDefaultPriority();
 }
