@@ -1,3 +1,6 @@
+// Global variable to store loaded contacts
+let loadedContacts = [];
+
 document.addEventListener("DOMContentLoaded", function () {
   if (window.location.pathname.includes("contacts.html")) {
     initializeContacts();
@@ -7,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 async function initializeContacts() {
   try {
     const contacts = await fetchContactsByIdAndUser();
+    loadedContacts = contacts; // Store for later use
     renderContactsList(contacts);
   } catch (error) {
     console.error("Error initializing contacts:", error);
@@ -16,7 +20,7 @@ async function initializeContacts() {
 function renderContactsList(contacts) {
   const contactsList = document.getElementById("contactsList");
   if (!contactsList) return;
-  if (!Array.isArray(contacts)) {
+  if (!contacts || !Array.isArray(contacts)) {
     contacts = [];
   }
   const validContacts = contacts.filter((contact) => contact && contact.name);
@@ -34,24 +38,24 @@ function renderContactsList(contacts) {
     }
     html += getContactWithSeparator(contact, showSeparator);
   }
-
   contactsList.innerHTML = html;
 }
 
 async function showFloatingContact(contactId) {
-  try {
-    const contact = await fetchContactByIdAndUser(contactId);
-    if (!contact) return;
-
-    const floatingContactContainer = document.getElementById(
-      "floatingContactOverlay"
-    );
-    if (floatingContactContainer) {
-      floatingContactContainer.innerHTML = getFloatingContact(contact);
-      floatingContactContainer.style.display = "block";
-    }
-  } catch (error) {
-    console.error("Error showing floating contact:", error);
+  let contact = loadedContacts.find(c => c.id === contactId);
+  
+  if (!contact) {
+    contact = await fetchContactByIdAndUser(contactId);
+  }
+  
+  if (!contact) return;
+  
+  const floatingContactContainer = document.getElementById(
+    "floatingContactOverlay"
+  );
+  if (floatingContactContainer) {
+    floatingContactContainer.innerHTML = getFloatingContact(contact);
+    floatingContactContainer.style.display = "block";
   }
 }
 
@@ -87,7 +91,6 @@ async function showEditContactOverlay(contactId) {
   try {
     const contact = await fetchContactByIdAndUser(contactId);
     if (!contact) return;
-
     const overlay = document.getElementById("editContactOverlay");
     if (overlay) {
       overlay.innerHTML = getEditContactOverlay(contact);
@@ -106,17 +109,16 @@ function closeEditContactOverlay() {
     overlay.innerHTML = "";
   }
 }
+
 async function createContact(event) {
   event.preventDefault();
   if (!validateContactForm()) return;
-
   const formData = new FormData(event.target);
   const contactData = {
     name: formData.get("name"),
     email: formData.get("email"),
     phone: formData.get("phone"),
   };
-
   await addContactToFirebaseByUser(contactData);
   closeAddContactOverlay();
   showSuccessMessage("Contact successfully created");
@@ -150,13 +152,9 @@ async function deleteContact(contactId) {
 
 async function deleteAssignedTasks(contactId) {
   const allTasks = await fetchTaskByUser();
-
   for (const task of allTasks) {
     if (task.assignedTo === contactId) {
       await deleteTaskFromFirebaseByUser(task.id);
-      console.log(
-        `Task "${task.title}" deleted (was assigned to contact ${contactId})`
-      );
     }
   }
 }
@@ -164,6 +162,7 @@ async function deleteAssignedTasks(contactId) {
 async function updateContactsUI() {
   closeFloatingContactOverlay();
   const contacts = await fetchContactsByIdAndUser();
+  loadedContacts = contacts;
   renderContactsList(contacts);
 }
 

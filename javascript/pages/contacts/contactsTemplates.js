@@ -76,7 +76,7 @@ function getEditContactOverlay(contact) {
                     </div>
                     <div class="editContactModalRight">
                         <button class="editContactClose" onclick="closeEditContactOverlay()">
-                            <img src="../assets/icons/shared/Close.svg" alt="closeIcon">
+                            <img src="../assets/icons/shared/close.svg" alt="closeIcon">
                         </button>
                         <div class="addContactFormAvatarPosition">
                             <div class="editContactAvatar">
@@ -97,7 +97,7 @@ function getEditContactOverlay(contact) {
                                 </div>
                                 <div class="editContactBtnRow">
                                     <button type="button" class="editContactDeleteBtn" onclick="closeEditContactOverlay()">Cancel
-                                        <img src="../assets/contacts/Close.svg" alt="cancelIcon"></button>
+                                        <img src="../assets/icons/shared/close.svg" alt="cancelIcon"></button>
                                     <button type="submit" class="editContactSaveBtn">Save
                                         <img src="../assets/icons/add task/check.svg" alt="saveIcon"></button>
                                 </div>

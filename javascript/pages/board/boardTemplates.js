@@ -170,20 +170,16 @@ function getEmptyStateTemplate(status) {
 function getTaskCardTemplate(task) {
   const priority = (task.taskPriority || "medium").toLowerCase();
   const assignedPerson = task.assignedTo || "";
-
   const categoryLabel = getCategoryLabel(task.Category);
   const categoryClass = getCategoryClass(task.Category);
-
   const subtasks = task.subtasks || [
     { id: "demo1", text: "Setup project", completed: true },
     { id: "demo2", text: "Implementation", completed: false },
   ];
-
   const completedSubtasks = subtasks.filter((sub) => sub.completed).length;
   const progressPercent =
     subtasks.length > 0 ? (completedSubtasks / subtasks.length) * 100 : 0;
   const hasSubtasks = subtasks.length > 0;
-
   return `
     <div class="taskCard" data-task-id="${task.id}" draggable="true" 
          ondragstart="startDragging('${task.id}')" 
@@ -218,18 +214,22 @@ function getTaskCardTemplate(task) {
 
 function getCategoryLabel(category) {
   const categoryMap = {
+    "Technical Task": "Technical Task",
+    "User Story": "User Story",
     technicalTask: "Technical Task",
     userStory: "User Story",
   };
-  return categoryMap[category] || "Technical Task", "User Story";
+  return categoryMap[category] || "Technical Task";
 }
 
 function getCategoryClass(category) {
   const classMap = {
+    "Technical Task": "technicalTask",
+    "User Story": "userStory",
     technicalTask: "technicalTask",
     userStory: "userStory",
   };
-  return classMap[category] || "technicalTask", "userStory";
+  return classMap[category] || "technicalTask";
 }
 
 function renderSingleAssignee(assignedTo) {

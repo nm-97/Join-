@@ -15,7 +15,6 @@ async function filterTaskbySearchInput(searchValue) {
 
   tasks.forEach((task) => {
     const isMatch = isTaskMatchingSearch(task, searchValue);
-
     if (isMatch) {
       showHighlightTask(task.id);
     } else {
@@ -75,5 +74,5 @@ function initializeSearch() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  initializeSearch(); // ✅ Wichtig!
+  initializeSearch();
 });
