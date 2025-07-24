@@ -104,12 +104,14 @@ async function setupFormSubmission() {
     console.error("Form buttons not found");
     return;
   }
-  
-  // ✅ Korrekte Event-Zuweisung
-  createButton.onclick = createTask;
-  clearButton.onclick = clearForm;
-  
-  console.log("Form buttons erfolgreich verbunden!");
+  createButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    createTask();
+  });
+  clearButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    clearForm();
+  });
 }
 
 async function loadContacts() {
@@ -132,12 +134,15 @@ async function loadContacts() {
 }
 
 async function createTask() {
-  if (!validateAddTaskForm()) return;
+  const isValid = validateAddTaskForm();
+
+  if (!isValid) {
+    return;
+  }
+
   try {
     const taskData = getFormData();
-    console.log("Task-Daten vor dem Speichern:", taskData);
     await addTaskToFirebaseByUser(taskData);
-    console.log("Task erfolgreich gespeichert!");
     window.currentSubtasks = [];
     document.getElementById("taskSubtask").value = "";
     renderSubtasks([]);

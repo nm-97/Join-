@@ -78,18 +78,12 @@ function validateCategory(categorySelect) {
 }
 
 function validateAssignee() {
-  if (typeof getSelectedContactIds !== 'function') {
+  const assigneeSelect = document.getElementById('taskAssignee');
+  
+  if (!assigneeSelect || !assigneeSelect.value || assigneeSelect.value === '') {
     return false;
   }
   
-  const selectedContactIds = getSelectedContactIds();
-  
-  if (!selectedContactIds || selectedContactIds.length === 0) {
-    showCustomDropdownError('This field is required');
-    return false;
-  }
-  
-  clearCustomDropdownError();
   return true;
 }
 
