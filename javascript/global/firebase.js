@@ -148,10 +148,8 @@ async function addTaskToFirebaseByUser(taskData) {
     currentUser.type === "registered"
       ? getUserTasksPath(currentUser.id)
       : GUEST_TASKS_PATH;
-  
-  // Remove the id field from taskData before saving to Firebase (if it exists)
   const { id, ...cleanTaskData } = taskData;
-  
+
   const result = await postData(path, cleanTaskData);
   return result.name;
 }
@@ -211,7 +209,7 @@ async function fetchContactByIdAndUser(contactId) {
       : getGuestContactPath(contactId);
   const result = await fetchData(path);
   if (result) {
-    result.id = contactId; // ID zum Contact-Objekt hinzufügen
+    result.id = contactId;
   }
   return result;
 }
@@ -245,10 +243,7 @@ async function updateTaskInFirebaseByUser(taskId, taskData) {
     currentUser.type === "registered"
       ? getUserTaskPath(currentUser.id, taskId)
       : getGuestTaskPath(taskId);
-  
-  // Remove the id field from taskData before saving to Firebase
   const { id, ...cleanTaskData } = taskData;
-  
   await patchData(path, cleanTaskData);
   return true;
 }
@@ -283,32 +278,4 @@ async function fetchAllRegisteredUsers() {
   const data = await fetchData(USERS_PATH);
   if (!data) return [];
   return Object.entries(data).map(([id, userData]) => ({ id, ...userData }));
-}
-
-async function checkUserCredentials(email, password) {
-  try {
-    const users = await fetchAllRegisteredUsers();
-    for (let i = 0; i < users.length; i++) {
-      const user = users[i];
-      if (user.email === email && user.password === password) {
-        return {
-          success: true,
-          user: {
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            type: "registered",
-          },
-        };
-      }
-    }
-    return {
-      success: false,
-    };
-  } catch (error) {
-    console.error("Login Fehler:", error);
-    return {
-      success: false,
-    };
-  }
 }
