@@ -273,13 +273,18 @@ function getFormData() {
   const selectedContacts =
     typeof getSelectedContactIds === "function" ? getSelectedContactIds() : [];
 
+  // Use the customdropdown.js system for category
+  const categoryValue = typeof getSelectedCategoryName === "function" 
+    ? getSelectedCategoryName() 
+    : (selectedCategory || "");
+
   const formData = {
     title: document.getElementById("taskTitle")?.value || "",
     description: document.getElementById("taskDescription")?.value || "",
     dueDate: document.getElementById("taskDueDate")?.value || "",
     taskPriority: selectedPriority,
     assignedTo: selectedContacts[0] || "",
-    Category: mapCategoryToFirebase(selectedCategory),
+    Category: mapCategoryToFirebase(categoryValue),
     Status: "toDo",
     subtasks: currentSubtasks,
   };
@@ -370,15 +375,15 @@ function setupOverlayFormSubmission() {
   if (clearButton) clearButton.onclick = clearForm;
 }
 
-function createOverlayTask() {
+async function createOverlayTask() {
   if (!validateAddTaskForm()) return;
   const taskData = getFormData();
   try {
-    addTaskToFirebaseByUser(taskData);
+    await addTaskToFirebaseByUser(taskData);
     clearForm();
     closeAddTaskOverlay();
     if (typeof refreshBoard === "function") {
-      refreshBoard();
+      await refreshBoard();
     }
   } catch (error) {}
 }

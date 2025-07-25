@@ -62,7 +62,7 @@ function showAddTaskOverlay() {
     overlay.innerHTML = getAddTaskOverlay();
     overlay.style.display = "flex";
     overlay.classList.remove("hidden");
-    initializeAddTask();
+    initializeOverlayAddTask();
   }
 }
 
