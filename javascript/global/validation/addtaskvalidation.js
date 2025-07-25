@@ -69,7 +69,13 @@ function validateDueDate(dueDateInput) {
 }
 
 function validateCategory() {
-  if (!selectedCategory || selectedCategory === "") {
+  // Use the customdropdown.js system which is more reliable
+  const categoryValue =
+    typeof getSelectedCategoryName === "function"
+      ? getSelectedCategoryName()
+      : selectedCategory || "";
+
+  if (!categoryValue || categoryValue === "") {
     showCategoryError("This field is required");
     return false;
   }
@@ -264,13 +270,18 @@ function convertDateFormat(dueDateInput) {
 }
 
 function createTaskDataObject(formattedDueDate) {
+  const categoryValue =
+    typeof getSelectedCategoryName === "function"
+      ? getSelectedCategoryName()
+      : selectedCategory || "";
+
   return {
     title: document.getElementById("taskTitle").value,
     description: document.getElementById("taskDescription").value || "",
     dueDate: formattedDueDate,
     taskPriority: selectedPriority,
     assignedTo: document.getElementById("taskAssignee").value,
-    Category: mapCategoryToFirebase(selectedCategory),
+    Category: mapCategoryToFirebase(categoryValue),
     Status: "toDo",
   };
 }
