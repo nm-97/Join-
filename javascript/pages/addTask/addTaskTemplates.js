@@ -1,5 +1,5 @@
 function getAddTaskOverlay(params = {}) {
- return `
+  return `
        <div class="overlayContent">
            <button class="closeBtn" onclick="closeAddTaskOverlay()">&times;</button>
            
@@ -219,7 +219,7 @@ function getSuccessAddTaskMessageTemplate() {
 }
 
 function getaddTaskMainContent() {
- return ` <form>
+  return ` <form>
              <div class="formGroup">
                <label for="taskTitle">Title <span class="requiredStar">*</span></label>
                <input type="text" placeholder="Enter a title" id="taskTitle" name="taskTitle"/>
