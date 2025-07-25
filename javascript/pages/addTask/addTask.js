@@ -4,14 +4,14 @@ let currentSubtasks = [];
 
 function initializeAddTask() {
   renderAddTaskMainContent();
-  initializeDateInput(); 
+  initializeDateInput();
   setupPriorityButtons();
   setupFormSubmission();
   currentSubtasks = [];
   window.currentSubtasks = currentSubtasks;
   setupSubtaskEvents();
-  loadContacts(); 
-  loadCategories(); 
+  loadContacts();
+  loadCategories();
   setDefaultPriority();
 }
 
@@ -118,9 +118,9 @@ function setupFormSubmission() {
 function loadCategories() {
   const categories = [
     { value: "User Story", label: "User Story" },
-    { value: "Technical Task", label: "Technical Task" }
+    { value: "Technical Task", label: "Technical Task" },
   ];
-  
+
   setupCategoryDropdown(categories);
 }
 
@@ -131,7 +131,13 @@ function setupCategoryDropdown(categories) {
   const categoryContent = document.getElementById("categoryDropdownContent");
   const categoryList = document.getElementById("categoriesDropdownList");
 
-  if (!categoryDropdown || !categoryInput || !categoryArrow || !categoryContent || !categoryList) {
+  if (
+    !categoryDropdown ||
+    !categoryInput ||
+    !categoryArrow ||
+    !categoryContent ||
+    !categoryList
+  ) {
     return;
   }
 
@@ -145,23 +151,23 @@ function setupCategoryDropdown(categories) {
         <span class="contactName">${category.label}</span>
       </div>
     `;
-    
-    categoryItem.onclick = function() {
+
+    categoryItem.onclick = function () {
       selectCategory(category.value, category.label);
     };
-    
+
     categoryList.appendChild(categoryItem);
   }
 
-  categoryArrow.onclick = function() {
+  categoryArrow.onclick = function () {
     toggleCategoryDropdown();
   };
 
-  categoryInput.onclick = function() {
+  categoryInput.onclick = function () {
     toggleCategoryDropdown();
   };
 
-  document.onclick = function(event) {
+  document.onclick = function (event) {
     if (!categoryDropdown.contains(event.target)) {
       closeCategoryDropdown();
     }
@@ -171,11 +177,11 @@ function setupCategoryDropdown(categories) {
 function toggleCategoryDropdown() {
   const categoryContent = document.getElementById("categoryDropdownContent");
   const categoryArrow = document.getElementById("categoryDropdownArrow");
-  
+
   if (!categoryContent || !categoryArrow) return;
 
   const isOpen = categoryContent.style.display === "block";
-  
+
   if (isOpen) {
     closeCategoryDropdown();
   } else {
@@ -186,7 +192,7 @@ function toggleCategoryDropdown() {
 function openCategoryDropdown() {
   const categoryContent = document.getElementById("categoryDropdownContent");
   const categoryArrow = document.getElementById("categoryDropdownArrow");
-  
+
   if (categoryContent) categoryContent.style.display = "block";
   if (categoryArrow) categoryArrow.style.transform = "rotate(180deg)";
 }
@@ -194,19 +200,19 @@ function openCategoryDropdown() {
 function closeCategoryDropdown() {
   const categoryContent = document.getElementById("categoryDropdownContent");
   const categoryArrow = document.getElementById("categoryDropdownArrow");
-  
+
   if (categoryContent) categoryContent.style.display = "none";
   if (categoryArrow) categoryArrow.style.transform = "rotate(0deg)";
 }
 
 function selectCategory(value, label) {
   selectedCategory = value;
-  
+
   const categoryInput = document.getElementById("categoryDropdownInput");
   if (categoryInput) {
     categoryInput.value = label;
   }
-  
+
   closeCategoryDropdown();
   if (typeof clearCategoryError === "function") {
     clearCategoryError();
@@ -236,8 +242,7 @@ function loadContactsForSelect() {
       option.textContent = contact.name;
       assigneeSelect.appendChild(option);
     }
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 
 function createTask() {
@@ -261,16 +266,14 @@ function createTask() {
     clearForm();
 
     showTaskCreatedNotification();
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 
 function getFormData() {
-  const selectedContacts = typeof getSelectedContactIds === "function"
-    ? getSelectedContactIds()
-    : [];
+  const selectedContacts =
+    typeof getSelectedContactIds === "function" ? getSelectedContactIds() : [];
 
-  return {
+  const formData = {
     title: document.getElementById("taskTitle")?.value || "",
     description: document.getElementById("taskDescription")?.value || "",
     dueDate: document.getElementById("taskDueDate")?.value || "",
@@ -280,6 +283,8 @@ function getFormData() {
     Status: "toDo",
     subtasks: currentSubtasks,
   };
+
+  return formData;
 }
 
 function mapCategoryToFirebase(category) {
@@ -375,8 +380,7 @@ function createOverlayTask() {
     if (typeof refreshBoard === "function") {
       refreshBoard();
     }
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 
 function addTaskToColumn(status) {

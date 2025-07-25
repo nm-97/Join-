@@ -10,7 +10,6 @@ function getBoardTemplate(tasks = []) {
           ${renderTasksForColumn(tasks, "toDo")}
         </div>
       </div>
-
       <div class="boardColumn">
         <div class="columnHeader">
           <h2 class="columnTitle">In progress</h2>
@@ -20,7 +19,6 @@ function getBoardTemplate(tasks = []) {
           ${renderTasksForColumn(tasks, "inProgress")}
         </div>
       </div>
-
       <div class="boardColumn">
         <div class="columnHeader">
           <h2 class="columnTitle">Await feedback</h2>
@@ -30,7 +28,6 @@ function getBoardTemplate(tasks = []) {
           ${renderTasksForColumn(tasks, "awaitingFeedback")}
         </div>
       </div>
-
       <div class="boardColumn">
         <div class="columnHeader">
           <h2 class="columnTitle">Done</h2>
@@ -44,15 +41,12 @@ function getBoardTemplate(tasks = []) {
 }
 
 function getTaskDetailOverlay(task) {
-  const assignedPersonInitials = getInitials(task.assignedTo || "");
-  const assignedPersonColor = getAvatarColor(task.assignedTo || "");
+  const assignedPersonName = task.assignedToName || "Not assigned";
+  const assignedPersonInitials = getInitials(assignedPersonName);
+  const assignedPersonColor = getAvatarColor(assignedPersonName);
   const priority = (task.taskPriority || "medium").toLowerCase();
-
   const categoryLabel = getCategoryLabel(task.Category);
   const categoryClass = getCategoryClass(task.Category);
-
-  const subtasks = task.subtasks || [];
-
   return `
     <div class="overlay" id="taskOverlay">
       <div class="taskDetailModal">
@@ -62,20 +56,16 @@ function getTaskDetailOverlay(task) {
             <img src="../assets/icons/shared/close.svg" alt="close">
           </button>
         </div>
-        
         <h2 class="modalTitle">${task.title || "Untitled Task"}</h2>
-        
         <p class="modalDescription">${
           task.description || "No description available"
         }</p>
-        
         <div class="detailRow">
           <span class="detailLabel">Due date:</span>
           <span class="detailValue">${
             formatDate(task.dueDate) || "No due date"
           }</span>
         </div>
-        
         <div class="detailRow">
           <span class="detailLabel">Priority:</span>
           <span class="detailValue">
@@ -84,24 +74,21 @@ function getTaskDetailOverlay(task) {
             } <img src="../assets/icons/shared/${priority}.svg" alt="${priority}">
           </span>
         </div>
-        
         <div class="detailRow">
           <span class="detailLabel">Assigned To:</span>
         </div>
         <div class="assignedUsers">
           <div class="assignedUser">
             <div class="userAvatar" style="background-color: ${assignedPersonColor};">${assignedPersonInitials}</div>
-            <span>${task.assignedToName || "Not assigned"}</span>
+            <span>${assignedPersonName}</span>
           </div>
         </div>
-
         <div class="subtasksSection">
           <h3 class="subtasksTitle">Subtasks</h3>
           <div class="subtasksList">
             ${renderSubtasks(task.subtasks || [], task.id)}
           </div>
         </div>
-        
         <div class="modalActions">
           <button class="modalButton" onclick="deleteTask('${task.id}')">
             <img src="../assets/icons/shared/delete.svg" alt="delete">Delete
@@ -121,21 +108,16 @@ function renderSubtasks(subtasks, taskId) {
   if (!subtasks || subtasks.length === 0) {
     return '<div class="noSubtasks">No subtasks available</div>';
   }
-
   let html = "";
   for (let i = 0; i < subtasks.length; i++) {
     const subtask = subtasks[i];
-    const checkedClass = subtask.completed ? "checked" : "";
     const iconSrc = subtask.completed
-      ? "checked button.svg"
+      ? "checked button hover.svg"
       : "check button.svg";
 
     html += `
       <div class="subtaskItem">
-        <div class="checkbox ${checkedClass}" onclick="toggleSubtask('${taskId}', '${
-      subtask.id
-    }')"></div>
-        <img src="../assets/icons/board/${iconSrc}" alt="subtaskIcon">
+        <img src="../assets/icons/board/${iconSrc}" alt="subtaskIcon" class="subtaskCheckbox" onclick="toggleSubtask('${taskId}', '${subtask.id}')">
         <span>${subtask.text || "Untitled Subtask"}</span>
       </div>`;
   }
@@ -144,11 +126,9 @@ function renderSubtasks(subtasks, taskId) {
 
 function renderTasksForColumn(tasks, status) {
   const filteredTasks = tasks.filter((task) => task.Status === status);
-
   if (filteredTasks.length === 0) {
     return getEmptyStateTemplate(status);
   }
-
   let html = "";
   for (let i = 0; i < filteredTasks.length; i++) {
     html += getTaskCardTemplate(filteredTasks[i]);
@@ -169,14 +149,13 @@ function getEmptyStateTemplate(status) {
 
 function getTaskCardTemplate(task) {
   const priority = (task.taskPriority || "medium").toLowerCase();
-  const assignedPerson = task.assignedTo || "";
+  const assignedPersonName = task.assignedToName || "";
   const categoryLabel = getCategoryLabel(task.Category);
   const categoryClass = getCategoryClass(task.Category);
-  const subtasks = task.subtasks || [
-    { id: "demo1", text: "Setup project", completed: true },
-    { id: "demo2", text: "Implementation", completed: false },
-  ];
-  const completedSubtasks = subtasks.filter((sub) => sub.completed).length;
+  const subtasks = task.subtasks || [];
+  const completedSubtasks = subtasks.filter(
+    (sub) => sub && sub.completed
+  ).length;
   const progressPercent =
     subtasks.length > 0 ? (completedSubtasks / subtasks.length) * 100 : 0;
   const hasSubtasks = subtasks.length > 0;
@@ -204,7 +183,7 @@ function getTaskCardTemplate(task) {
         }
         <div class="taskFooterBottom">
           <div class="taskAssignees">
-            ${renderSingleAssignee(assignedPerson)}
+            ${renderSingleAssignee(assignedPersonName)}
           </div>
           <img src="../assets/icons/shared/${priority}.svg" alt="${priority}">
         </div>
@@ -232,10 +211,12 @@ function getCategoryClass(category) {
   return classMap[category] || "technicalTask";
 }
 
-function renderSingleAssignee(assignedTo) {
-  if (!assignedTo) return "";
-
-  const initials = getInitials(assignedTo);
-  const color = getAvatarColor(assignedTo);
+function renderSingleAssignee(assignedToName) {
+  if (!assignedToName) return "";
+  const initials = getInitials(assignedToName);
+  const color = getAvatarColor(assignedToName);
+  if (!initials || initials === "") {
+    return `<span class="assignee" style="background-color: #FF8A00;">?</span>`;
+  }
   return `<span class="assignee" style="background-color: ${color}">${initials}</span>`;
 }

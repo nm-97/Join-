@@ -8,6 +8,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function initializeBoard() {
   const tasks = await fetchTaskByUser();
+  for (let i = 0; i < tasks.length; i++) {
+    if (tasks[i].assignedTo) {
+      tasks[i].assignedToName = await getContactNameById(tasks[i].assignedTo);
+    }
+  }
   const boardContainer = document.getElementById("boardContainer");
   boardContainer.innerHTML = getBoardTemplate(tasks);
 }
@@ -30,6 +35,11 @@ async function deleteTask(taskId) {
 
 async function refreshBoard() {
   const tasks = await fetchTaskByUser();
+  for (let i = 0; i < tasks.length; i++) {
+    if (tasks[i].assignedTo) {
+      tasks[i].assignedToName = await getContactNameById(tasks[i].assignedTo);
+    }
+  }
   const boardContainer = document.getElementById("boardContainer");
   boardContainer.innerHTML = getBoardTemplate(tasks);
 }
@@ -124,4 +134,40 @@ function renderSingleAssignee(assignedTo) {
   const initials = getInitials(assignedTo);
   const color = getAvatarColor(assignedTo);
   return `<span class="assignee" style="background-color: ${color}">${initials}</span>`;
+}
+
+async function toggleSubtask(taskId, subtaskId) {
+  try {
+    const task = await findAndToggleSubtask(taskId, subtaskId);
+    if (!task) return;
+    await updateTaskInFirebase(taskId, task);
+    updateSubtaskListInOverlay(task, taskId);
+    await refreshBoard();
+  } catch (error) {
+    console.error("Error toggling subtask:", error);
+  }
+}
+
+async function findAndToggleSubtask(taskId, subtaskId) {
+  const tasks = await fetchTaskByUser();
+  const task = tasks.find((t) => t.id === taskId);
+  if (!task || !task.subtasks) return null;
+  const subtaskIndex = task.subtasks.findIndex((sub) => sub.id === subtaskId);
+  if (subtaskIndex === -1) return null;
+  task.subtasks[subtaskIndex].completed =
+    !task.subtasks[subtaskIndex].completed;
+  return task;
+}
+
+async function updateTaskInFirebase(taskId, task) {
+  await updateTaskInFirebaseByUser(taskId, task);
+}
+
+function updateSubtaskListInOverlay(task, taskId) {
+  const overlay = document.getElementById("taskOverlay");
+  if (!overlay || overlay.classList.contains("hidden")) return;
+  const subtasksList = overlay.querySelector(".subtasksList");
+  if (subtasksList) {
+    subtasksList.innerHTML = renderSubtasks(task.subtasks, taskId);
+  }
 }

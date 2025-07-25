@@ -239,11 +239,9 @@ body {
   display: flex;
   gap: 0;
 }
-
 .columnHeader img {
   cursor: pointer;
 }
-
 .assignee {
   width: 34px;
   height: 34px;
@@ -566,6 +564,17 @@ body {
   font-size: 16px;
 }
 
+.subtaskCheckbox {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  width: 25px;
+  height: 24px;
+}
+
+.subtaskCheckbox:hover {
+  opacity: 0.8;
+}
+
 .modalActions {
   display: flex;
   justify-content: flex-end;
@@ -590,7 +599,6 @@ hr {
   margin: 20px 0;
 }
 
-/* overlay add task */
 .overlayAddTask {
   position: fixed;
   top: 0;
