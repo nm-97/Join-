@@ -30,8 +30,7 @@ function validateAddTaskForm() {
 
   if (!validateTitle(inputs.titleInput)) isValid = false;
   if (!validateDueDate(inputs.dueDateInput)) isValid = false;
-  if (!validateCategory(inputs.categorySelect)) isValid = false;
-  if (!validateAssignee()) isValid = false;
+  if (!validateCategory()) isValid = false;
   if (!validateAssignee()) isValid = false;
   if (!validatePriority()) isValid = false;
 
@@ -42,7 +41,6 @@ function getFormInputs() {
   return {
     titleInput: document.getElementById("taskTitle"),
     dueDateInput: document.getElementById("taskDueDate"),
-    categorySelect: document.getElementById("taskStatus"),
   };
 }
 
@@ -70,11 +68,12 @@ function validateDueDate(dueDateInput) {
   return true;
 }
 
-function validateCategory(categorySelect) {
-  if (!categorySelect || !validateRequired(categorySelect.value)) {
-    showError("taskStatus", "This field is required");
+function validateCategory() {
+  if (!selectedCategory || selectedCategory === "") {
+    showCategoryError("This field is required");
     return false;
   }
+  clearCategoryError();
   return true;
 }
 
@@ -133,6 +132,38 @@ function clearCustomDropdownError() {
   }
 
   const dropdownHeader = document.querySelector(".dropdownHeader");
+  if (dropdownHeader) {
+    dropdownHeader.style.borderColor = "#d1d1d1";
+  }
+}
+
+function showCategoryError(message) {
+  const categoryDropdown = document.getElementById("customCategoryDropdown");
+  if (!categoryDropdown) return;
+
+  const errorDiv = categoryDropdown.parentNode.querySelector(".errorMessage");
+  if (errorDiv) {
+    errorDiv.textContent = message;
+    errorDiv.classList.remove("hide");
+  }
+
+  const dropdownHeader = categoryDropdown.querySelector(".dropdownHeader");
+  if (dropdownHeader) {
+    dropdownHeader.style.borderColor = "#ff0000";
+  }
+}
+
+function clearCategoryError() {
+  const categoryDropdown = document.getElementById("customCategoryDropdown");
+  if (!categoryDropdown) return;
+
+  const errorDiv = categoryDropdown.parentNode.querySelector(".errorMessage");
+  if (errorDiv) {
+    errorDiv.textContent = "";
+    errorDiv.classList.add("hide");
+  }
+
+  const dropdownHeader = categoryDropdown.querySelector(".dropdownHeader");
   if (dropdownHeader) {
     dropdownHeader.style.borderColor = "#d1d1d1";
   }
@@ -206,8 +237,8 @@ function clearPriorityError() {
 function clearAllTaskErrors() {
   clearError("taskTitle");
   clearError("taskDueDate");
-  clearError("taskStatus");
   clearCustomDropdownError();
+  clearCategoryError();
   clearPriorityError();
 }
 
@@ -239,17 +270,15 @@ function createTaskDataObject(formattedDueDate) {
     dueDate: formattedDueDate,
     taskPriority: selectedPriority,
     assignedTo: document.getElementById("taskAssignee").value,
-    Category: mapCategoryToFirebase(
-      document.getElementById("taskStatus").value
-    ),
+    Category: mapCategoryToFirebase(selectedCategory),
     Status: "toDo",
   };
 }
 
 function mapCategoryToFirebase(category) {
   const categoryMap = {
-    userStory: "User Story",
-    technicalTask: "Technical Task",
+    "User Story": "User Story",
+    "Technical Task": "Technical Task",
   };
   return categoryMap[category] || "Technical Task";
 }
@@ -257,6 +286,7 @@ function mapCategoryToFirebase(category) {
 function clearFormWithValidation() {
   clearAllFormInputs();
   resetPriorityToDefault();
+  resetCategoryToDefault();
   clearAllTaskErrors();
 }
 
@@ -264,7 +294,6 @@ function clearAllFormInputs() {
   document.getElementById("taskTitle").value = "";
   document.getElementById("taskDescription").value = "";
   document.getElementById("taskDueDate").value = "";
-  document.getElementById("taskStatus").value = "";
 
   if (typeof clearContactSelections === "function") {
     clearContactSelections();
@@ -279,6 +308,15 @@ function resetPriorityToDefault() {
     clearPrioritySelection();
   }
   selectedPriority = "Medium";
+}
+
+function resetCategoryToDefault() {
+  selectedCategory = "";
+  const categoryInput = document.getElementById("categoryDropdownInput");
+  if (categoryInput) {
+    categoryInput.value = "";
+    categoryInput.placeholder = "Select task category";
+  }
 }
 
 function clearForm() {

@@ -4,13 +4,14 @@ let currentSubtasks = [];
 
 function initializeAddTask() {
   renderAddTaskMainContent();
+  initializeDateInput(); 
   setupPriorityButtons();
   setupFormSubmission();
   currentSubtasks = [];
   window.currentSubtasks = currentSubtasks;
   setupSubtaskEvents();
-  loadContacts(); // Custom Dropdown loadContacts from customdropdown.js
-  loadCategories(); // Load categories for dropdown
+  loadContacts(); 
+  loadCategories(); 
   setDefaultPriority();
 }
 
@@ -28,26 +29,26 @@ function setupPriorityButtons() {
     return;
   }
 
-  urgentBtn.addEventListener("click", function () {
+  urgentBtn.onclick = function () {
     clearPrioritySelection();
     const priorityClass = changeColorBasedOnPriority("Urgent");
     urgentBtn.classList.add(priorityClass);
     selectedPriority = "Urgent";
-  });
+  };
 
-  mediumBtn.addEventListener("click", function () {
+  mediumBtn.onclick = function () {
     clearPrioritySelection();
     const priorityClass = changeColorBasedOnPriority("Medium");
     mediumBtn.classList.add(priorityClass);
     selectedPriority = "Medium";
-  });
+  };
 
-  lowBtn.addEventListener("click", function () {
+  lowBtn.onclick = function () {
     clearPrioritySelection();
     const priorityClass = changeColorBasedOnPriority("Low");
     lowBtn.classList.add(priorityClass);
     selectedPriority = "Low";
-  });
+  };
 }
 
 function clearPrioritySelection() {
@@ -98,26 +99,132 @@ function setDefaultPriority() {
   }
 }
 
-async function setupFormSubmission() {
+function setupFormSubmission() {
   const createButton = document.getElementById("createTaskBtn");
   const clearButton = document.getElementById("clearTaskBtn");
   if (!createButton || !clearButton) {
-    console.error("Form buttons not found");
     return;
   }
-  createButton.addEventListener("click", function (e) {
+  createButton.onclick = function (e) {
     e.preventDefault();
     createTask();
-  });
-  clearButton.addEventListener("click", function (e) {
+  };
+  clearButton.onclick = function (e) {
     e.preventDefault();
     clearForm();
-  });
+  };
 }
 
-async function loadContactsForSelect() {
+function loadCategories() {
+  const categories = [
+    { value: "User Story", label: "User Story" },
+    { value: "Technical Task", label: "Technical Task" }
+  ];
+  
+  setupCategoryDropdown(categories);
+}
+
+function setupCategoryDropdown(categories) {
+  const categoryDropdown = document.getElementById("customCategoryDropdown");
+  const categoryInput = document.getElementById("categoryDropdownInput");
+  const categoryArrow = document.getElementById("categoryDropdownArrow");
+  const categoryContent = document.getElementById("categoryDropdownContent");
+  const categoryList = document.getElementById("categoriesDropdownList");
+
+  if (!categoryDropdown || !categoryInput || !categoryArrow || !categoryContent || !categoryList) {
+    return;
+  }
+
+  categoryList.innerHTML = "";
+  for (let i = 0; i < categories.length; i++) {
+    const category = categories[i];
+    const categoryItem = document.createElement("div");
+    categoryItem.className = "contactItem";
+    categoryItem.innerHTML = `
+      <div class="contactInfo">
+        <span class="contactName">${category.label}</span>
+      </div>
+    `;
+    
+    categoryItem.onclick = function() {
+      selectCategory(category.value, category.label);
+    };
+    
+    categoryList.appendChild(categoryItem);
+  }
+
+  categoryArrow.onclick = function() {
+    toggleCategoryDropdown();
+  };
+
+  categoryInput.onclick = function() {
+    toggleCategoryDropdown();
+  };
+
+  document.onclick = function(event) {
+    if (!categoryDropdown.contains(event.target)) {
+      closeCategoryDropdown();
+    }
+  };
+}
+
+function toggleCategoryDropdown() {
+  const categoryContent = document.getElementById("categoryDropdownContent");
+  const categoryArrow = document.getElementById("categoryDropdownArrow");
+  
+  if (!categoryContent || !categoryArrow) return;
+
+  const isOpen = categoryContent.style.display === "block";
+  
+  if (isOpen) {
+    closeCategoryDropdown();
+  } else {
+    openCategoryDropdown();
+  }
+}
+
+function openCategoryDropdown() {
+  const categoryContent = document.getElementById("categoryDropdownContent");
+  const categoryArrow = document.getElementById("categoryDropdownArrow");
+  
+  if (categoryContent) categoryContent.style.display = "block";
+  if (categoryArrow) categoryArrow.style.transform = "rotate(180deg)";
+}
+
+function closeCategoryDropdown() {
+  const categoryContent = document.getElementById("categoryDropdownContent");
+  const categoryArrow = document.getElementById("categoryDropdownArrow");
+  
+  if (categoryContent) categoryContent.style.display = "none";
+  if (categoryArrow) categoryArrow.style.transform = "rotate(0deg)";
+}
+
+function selectCategory(value, label) {
+  selectedCategory = value;
+  
+  const categoryInput = document.getElementById("categoryDropdownInput");
+  if (categoryInput) {
+    categoryInput.value = label;
+  }
+  
+  closeCategoryDropdown();
+  if (typeof clearCategoryError === "function") {
+    clearCategoryError();
+  }
+}
+
+function clearCategorySelection() {
+  selectedCategory = "";
+  const categoryInput = document.getElementById("categoryDropdownInput");
+  if (categoryInput) {
+    categoryInput.value = "";
+    categoryInput.placeholder = "Select task category";
+  }
+}
+
+function loadContactsForSelect() {
   try {
-    const contacts = await fetchContactsByIdAndUser();
+    const contacts = fetchContactsByIdAndUser();
     const assigneeSelect = document.getElementById("taskAssignee");
     if (!assigneeSelect) return;
     assigneeSelect.innerHTML =
@@ -130,11 +237,10 @@ async function loadContactsForSelect() {
       assigneeSelect.appendChild(option);
     }
   } catch (error) {
-    console.error("Error loading contacts:", error);
   }
 }
 
-async function createTask() {
+function createTask() {
   const isValid = validateAddTaskForm();
 
   if (!isValid) {
@@ -143,30 +249,45 @@ async function createTask() {
 
   try {
     const taskData = getFormData();
-    await addTaskToFirebaseByUser(taskData);
+
+    const result = addTaskToFirebaseByUser(taskData);
+
     window.currentSubtasks = [];
-    document.getElementById("taskSubtask").value = "";
-    renderSubtasks([]);
+    const subtaskInput = document.getElementById("taskSubtask");
+    if (subtaskInput) subtaskInput.value = "";
+    if (typeof renderSubtasks === "function") {
+      renderSubtasks([]);
+    }
     clearForm();
+
     showTaskCreatedNotification();
   } catch (error) {
-    console.error("Fehler beim Erstellen der Task:", error);
   }
 }
 
 function getFormData() {
+  const selectedContacts = typeof getSelectedContactIds === "function"
+    ? getSelectedContactIds()
+    : [];
+
   return {
-    title: document.getElementById("taskTitle").value,
-    description: document.getElementById("taskDescription").value,
-    dueDate: document.getElementById("taskDueDate").value,
+    title: document.getElementById("taskTitle")?.value || "",
+    description: document.getElementById("taskDescription")?.value || "",
+    dueDate: document.getElementById("taskDueDate")?.value || "",
     taskPriority: selectedPriority,
-    assignedTo: assignedTo,
-    Category: mapCategoryToFirebase(
-      document.getElementById("taskStatus").value
-    ),
+    assignedTo: selectedContacts[0] || "",
+    Category: mapCategoryToFirebase(selectedCategory),
     Status: "toDo",
     subtasks: currentSubtasks,
   };
+}
+
+function mapCategoryToFirebase(category) {
+  const categoryMap = {
+    "User Story": "User Story",
+    "Technical Task": "Technical Task",
+  };
+  return categoryMap[category] || "Technical Task";
 }
 
 function showTaskCreatedNotification() {
@@ -184,12 +305,19 @@ function clearForm() {
   document.getElementById("taskTitle").value = "";
   document.getElementById("taskDescription").value = "";
   document.getElementById("taskDueDate").value = "";
-  document.getElementById("taskStatus").value = "";
-  document.getElementById("taskSubtask").value = "";
+  const subtaskInput = document.getElementById("taskSubtask");
+  if (subtaskInput) subtaskInput.value = "";
   clearPrioritySelection();
+  clearCategorySelection();
   selectedPriority = "Medium";
+  selectedCategory = "";
   currentSubtasks = [];
-  renderSubtasks([]);
+  if (typeof renderSubtasks === "function") {
+    renderSubtasks([]);
+  }
+  if (typeof clearContactSelections === "function") {
+    clearContactSelections();
+  }
 }
 
 function showAddTaskOverlay() {
@@ -212,12 +340,15 @@ function closeAddTaskOverlay() {
 function initializeOverlayAddTask() {
   setupPriorityButtons();
   setupOverlayFormSubmission();
-  setupSubtaskEvents();
+  if (typeof setupSubtaskEvents === "function") {
+    setupSubtaskEvents();
+  }
   currentSubtasks = [];
   window.currentSubtasks = currentSubtasks;
-  loadContacts();
+  if (typeof loadContacts === "function") {
+    loadContacts();
+  }
 
-  // Load categories with slight delay to ensure DOM is ready
   setTimeout(() => {
     loadCategories();
   }, 100);
@@ -234,18 +365,17 @@ function setupOverlayFormSubmission() {
   if (clearButton) clearButton.onclick = clearForm;
 }
 
-async function createOverlayTask() {
+function createOverlayTask() {
   if (!validateAddTaskForm()) return;
   const taskData = getFormData();
   try {
-    await addTaskToFirebaseByUser(taskData);
+    addTaskToFirebaseByUser(taskData);
     clearForm();
     closeAddTaskOverlay();
     if (typeof refreshBoard === "function") {
-      await refreshBoard();
+      refreshBoard();
     }
   } catch (error) {
-    console.error("Error creating task:", error);
   }
 }
 

@@ -336,10 +336,10 @@ function getaddTaskMainContent() {
                 <div class="errorMessage hide"></div>
               </div>
               <div class="formGroup">
-                <div class="customDropdownContainer">
-                          <label for="taskCategory"
+                <label for="taskCategory"
                   >Category <span class="requiredStar">*</span></label
                 >
+                <div class="customDropdownContainer">
                 <div class="customDropdown" id="customCategoryDropdown">
                             <div class="dropdownHeader">
                               <input
@@ -358,9 +358,8 @@ function getaddTaskMainContent() {
                               </div>
                             </div>
                           </div>
-                          <div class="selectedContactsDisplay" id="selectedContactsDisplay">
-                          </div>
-                        </div>
+                <div class="errorMessage hide"></div>
+              </div>
               <div class="formGroup">
                 <label for="Subtask">Subtask</label>
                 <div class="inputIcon">
