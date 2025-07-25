@@ -21,66 +21,65 @@ function renderAddTaskMainContent() {
 }
 
 function setupPriorityButtons() {
-  const urgentBtn = document.getElementById("urgentBtn");
-  const mediumBtn = document.getElementById("mediumBtn");
-  const lowBtn = document.getElementById("lowBtn");
+  const buttons = getPriorityButtons();
+  if (!validateAllButtonsExist(buttons)) return;
 
-  if (!urgentBtn || !mediumBtn || !lowBtn) {
-    return;
-  }
+  attachPriorityButtonEvents(buttons);
+}
 
-  urgentBtn.onclick = function () {
-    clearPrioritySelection();
-    const priorityClass = changeColorBasedOnPriority("Urgent");
-    urgentBtn.classList.add(priorityClass);
-    selectedPriority = "Urgent";
-  };
+function validateAllButtonsExist(buttons) {
+  return buttons.urgent && buttons.medium && buttons.low;
+}
 
-  mediumBtn.onclick = function () {
-    clearPrioritySelection();
-    const priorityClass = changeColorBasedOnPriority("Medium");
-    mediumBtn.classList.add(priorityClass);
-    selectedPriority = "Medium";
-  };
+function attachPriorityButtonEvents(buttons) {
+  buttons.urgent.onclick = () => selectPriority("Urgent", buttons.urgent);
+  buttons.medium.onclick = () => selectPriority("Medium", buttons.medium);
+  buttons.low.onclick = () => selectPriority("Low", buttons.low);
+}
 
-  lowBtn.onclick = function () {
-    clearPrioritySelection();
-    const priorityClass = changeColorBasedOnPriority("Low");
-    lowBtn.classList.add(priorityClass);
-    selectedPriority = "Low";
-  };
+function selectPriority(priority, button) {
+  clearPrioritySelection();
+  const priorityClass = changeColorBasedOnPriority(priority);
+  button.classList.add(priorityClass);
+  selectedPriority = priority;
 }
 
 function clearPrioritySelection() {
-  const urgentBtn = document.getElementById("urgentBtn");
-  const mediumBtn = document.getElementById("mediumBtn");
-  const lowBtn = document.getElementById("lowBtn");
+  const buttons = getPriorityButtons();
+  removeAllPriorityClasses(buttons);
+  resetButtonStyles(buttons);
+}
 
-  urgentBtn.classList.remove(
-    "taskPriorityBtnUrgentSelected",
-    "taskPriorityBtnMediumSelected",
-    "taskPriorityBtnLowSelected",
-    "selected"
-  );
-  mediumBtn.classList.remove(
-    "taskPriorityBtnUrgentSelected",
-    "taskPriorityBtnMediumSelected",
-    "taskPriorityBtnLowSelected",
-    "selected"
-  );
-  lowBtn.classList.remove(
-    "taskPriorityBtnUrgentSelected",
-    "taskPriorityBtnMediumSelected",
-    "taskPriorityBtnLowSelected",
-    "selected"
-  );
+function getPriorityButtons() {
+  return {
+    urgent: document.getElementById("urgentBtn"),
+    medium: document.getElementById("mediumBtn"),
+    low: document.getElementById("lowBtn"),
+  };
+}
 
-  urgentBtn.style.backgroundColor = "";
-  mediumBtn.style.backgroundColor = "";
-  lowBtn.style.backgroundColor = "";
-  urgentBtn.style.color = "";
-  mediumBtn.style.color = "";
-  lowBtn.style.color = "";
+function removeAllPriorityClasses(buttons) {
+  const classesToRemove = [
+    "taskPriorityBtnUrgentSelected",
+    "taskPriorityBtnMediumSelected",
+    "taskPriorityBtnLowSelected",
+    "selected",
+  ];
+
+  Object.values(buttons).forEach((btn) => {
+    if (btn) {
+      btn.classList.remove(...classesToRemove);
+    }
+  });
+}
+
+function resetButtonStyles(buttons) {
+  Object.values(buttons).forEach((btn) => {
+    if (btn) {
+      btn.style.backgroundColor = "";
+      btn.style.color = "";
+    }
+  });
 }
 
 function changeColorBasedOnPriority(priority) {
@@ -125,50 +124,58 @@ function loadCategories() {
 }
 
 function setupCategoryDropdown(categories) {
-  const categoryDropdown = document.getElementById("customCategoryDropdown");
-  const categoryInput = document.getElementById("categoryDropdownInput");
-  const categoryArrow = document.getElementById("categoryDropdownArrow");
-  const categoryContent = document.getElementById("categoryDropdownContent");
-  const categoryList = document.getElementById("categoriesDropdownList");
+  const dropdownElements = getCategoryDropdownElements();
+  if (!validateCategoryDropdownElements(dropdownElements)) return;
 
-  if (
-    !categoryDropdown ||
-    !categoryInput ||
-    !categoryArrow ||
-    !categoryContent ||
-    !categoryList
-  ) {
-    return;
-  }
+  populateCategoryList(categories, dropdownElements.categoryList);
+  attachCategoryDropdownEvents(dropdownElements);
+}
 
+function getCategoryDropdownElements() {
+  return {
+    categoryDropdown: document.getElementById("customCategoryDropdown"),
+    categoryInput: document.getElementById("categoryDropdownInput"),
+    categoryArrow: document.getElementById("categoryDropdownArrow"),
+    categoryContent: document.getElementById("categoryDropdownContent"),
+    categoryList: document.getElementById("categoriesDropdownList"),
+  };
+}
+
+function validateCategoryDropdownElements(elements) {
+  return (
+    elements.categoryDropdown &&
+    elements.categoryInput &&
+    elements.categoryArrow &&
+    elements.categoryContent &&
+    elements.categoryList
+  );
+}
+
+function populateCategoryList(categories, categoryList) {
   categoryList.innerHTML = "";
-  for (let i = 0; i < categories.length; i++) {
-    const category = categories[i];
-    const categoryItem = document.createElement("div");
-    categoryItem.className = "contactItem";
-    categoryItem.innerHTML = `
-      <div class="contactInfo">
-        <span class="contactName">${category.label}</span>
-      </div>
-    `;
-
-    categoryItem.onclick = function () {
-      selectCategory(category.value, category.label);
-    };
-
+  categories.forEach((category) => {
+    const categoryItem = createCategoryItem(category);
     categoryList.appendChild(categoryItem);
-  }
+  });
+}
 
-  categoryArrow.onclick = function () {
-    toggleCategoryDropdown();
-  };
+function createCategoryItem(category) {
+  const categoryItem = document.createElement("div");
+  categoryItem.className = "contactItem";
+  categoryItem.innerHTML = `
+    <div class="contactInfo">
+      <span class="contactName">${category.label}</span>
+    </div>
+  `;
+  categoryItem.onclick = () => selectCategory(category.value, category.label);
+  return categoryItem;
+}
 
-  categoryInput.onclick = function () {
-    toggleCategoryDropdown();
-  };
-
-  document.onclick = function (event) {
-    if (!categoryDropdown.contains(event.target)) {
+function attachCategoryDropdownEvents(elements) {
+  elements.categoryArrow.onclick = () => toggleCategoryDropdown();
+  elements.categoryInput.onclick = () => toggleCategoryDropdown();
+  document.onclick = (event) => {
+    if (!elements.categoryDropdown.contains(event.target)) {
       closeCategoryDropdown();
     }
   };
@@ -177,11 +184,8 @@ function setupCategoryDropdown(categories) {
 function toggleCategoryDropdown() {
   const categoryContent = document.getElementById("categoryDropdownContent");
   const categoryArrow = document.getElementById("categoryDropdownArrow");
-
   if (!categoryContent || !categoryArrow) return;
-
   const isOpen = categoryContent.style.display === "block";
-
   if (isOpen) {
     closeCategoryDropdown();
   } else {
@@ -192,7 +196,6 @@ function toggleCategoryDropdown() {
 function openCategoryDropdown() {
   const categoryContent = document.getElementById("categoryDropdownContent");
   const categoryArrow = document.getElementById("categoryDropdownArrow");
-
   if (categoryContent) categoryContent.style.display = "block";
   if (categoryArrow) categoryArrow.style.transform = "rotate(180deg)";
 }
@@ -200,19 +203,16 @@ function openCategoryDropdown() {
 function closeCategoryDropdown() {
   const categoryContent = document.getElementById("categoryDropdownContent");
   const categoryArrow = document.getElementById("categoryDropdownArrow");
-
   if (categoryContent) categoryContent.style.display = "none";
   if (categoryArrow) categoryArrow.style.transform = "rotate(0deg)";
 }
 
 function selectCategory(value, label) {
   selectedCategory = value;
-
   const categoryInput = document.getElementById("categoryDropdownInput");
   if (categoryInput) {
     categoryInput.value = label;
   }
-
   closeCategoryDropdown();
   if (typeof clearCategoryError === "function") {
     clearCategoryError();
@@ -247,16 +247,12 @@ function loadContactsForSelect() {
 
 function createTask() {
   const isValid = validateAddTaskForm();
-
   if (!isValid) {
     return;
   }
-
   try {
     const taskData = getFormData();
-
     const result = addTaskToFirebaseByUser(taskData);
-
     window.currentSubtasks = [];
     const subtaskInput = document.getElementById("taskSubtask");
     if (subtaskInput) subtaskInput.value = "";
@@ -264,7 +260,6 @@ function createTask() {
       renderSubtasks([]);
     }
     clearForm();
-
     showTaskCreatedNotification();
   } catch (error) {}
 }
@@ -272,12 +267,10 @@ function createTask() {
 function getFormData() {
   const selectedContacts =
     typeof getSelectedContactIds === "function" ? getSelectedContactIds() : [];
-
-  // Use the customdropdown.js system for category
-  const categoryValue = typeof getSelectedCategoryName === "function" 
-    ? getSelectedCategoryName() 
-    : (selectedCategory || "");
-
+  const categoryValue =
+    typeof getSelectedCategoryName === "function"
+      ? getSelectedCategoryName()
+      : selectedCategory || "";
   const formData = {
     title: document.getElementById("taskTitle")?.value || "",
     description: document.getElementById("taskDescription")?.value || "",
@@ -288,7 +281,6 @@ function getFormData() {
     Status: "toDo",
     subtasks: currentSubtasks,
   };
-
   return formData;
 }
 
@@ -358,11 +350,9 @@ function initializeOverlayAddTask() {
   if (typeof loadContacts === "function") {
     loadContacts();
   }
-
   setTimeout(() => {
     loadCategories();
   }, 100);
-
   initializeDateInput();
   setDefaultPriority();
 }
@@ -370,7 +360,6 @@ function initializeOverlayAddTask() {
 function setupOverlayFormSubmission() {
   const createButton = document.getElementById("createTaskBtn");
   const clearButton = document.getElementById("clearTaskBtn");
-
   if (createButton) createButton.onclick = createOverlayTask;
   if (clearButton) clearButton.onclick = clearForm;
 }

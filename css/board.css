@@ -864,6 +864,7 @@ label {
 
 .editFormGroup {
   margin-bottom: 25px;
+  margin-top: 20px;
 }
 
 .editFormGroupLast {
@@ -1026,6 +1027,7 @@ label {
   cursor: pointer;
   background: #2a3647;
   color: #ffffff;
+  margin-top: 30px;
 }
 
 .editOkBtn img {

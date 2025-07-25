@@ -22,7 +22,7 @@ function getBoardTemplate(tasks = []) {
       <div class="boardColumn">
         <div class="columnHeader">
           <h2 class="columnTitle">Await feedback</h2>
-          <img src="../assets/icons/board/plus.svg" alt="addTaskIcon">
+          <img src="../assets/icons/board/plus.svg" alt="addTaskIcon" onclick="addTaskToColumn('awaitingFeedback')">
         </div>
         <div id="awaitingFeedbackColumn" class="columnContent" ondrop="dropToAnotherColumn(event)" ondragover="moveToAnotherColumn(event)">
           ${renderTasksForColumn(tasks, "awaitingFeedback")}
@@ -31,7 +31,7 @@ function getBoardTemplate(tasks = []) {
       <div class="boardColumn">
         <div class="columnHeader">
           <h2 class="columnTitle">Done</h2>
-          <img src="../assets/icons/board/plus.svg" alt="addTaskIcon">
+          <img src="../assets/icons/board/plus.svg" onclick="addTaskToColumn('done')" alt="addTaskIcon">
         </div>
         <div id="doneColumn" class="columnContent" ondrop="dropToAnotherColumn(event)" ondragover="moveToAnotherColumn(event)">
           ${renderTasksForColumn(tasks, "done")}
@@ -47,6 +47,7 @@ function getTaskDetailOverlay(task) {
   const priority = (task.taskPriority || "medium").toLowerCase();
   const categoryLabel = getCategoryLabel(task.Category);
   const categoryClass = getCategoryClass(task.Category);
+  
   return `
     <div class="overlay" id="taskOverlay">
       <div class="taskDetailModal">
@@ -86,7 +87,7 @@ function getTaskDetailOverlay(task) {
         <div class="subtasksSection">
           <h3 class="subtasksTitle">Subtasks</h3>
           <div class="subtasksList">
-            ${renderSubtasks(task.subtasks || [], task.id)}
+            ${renderTaskDetailSubtasks(task.subtasks || [], task.id)}
           </div>
         </div>
         <div class="modalActions">
@@ -104,10 +105,11 @@ function getTaskDetailOverlay(task) {
     </div>`;
 }
 
-function renderSubtasks(subtasks, taskId) {
+function renderTaskDetailSubtasks(subtasks, taskId) {
   if (!subtasks || subtasks.length === 0) {
     return '<div class="noSubtasks">No subtasks available</div>';
   }
+  
   let html = "";
   for (let i = 0; i < subtasks.length; i++) {
     const subtask = subtasks[i];
@@ -117,10 +119,13 @@ function renderSubtasks(subtasks, taskId) {
 
     html += `
       <div class="subtaskItem">
-        <img src="../assets/icons/board/${iconSrc}" alt="subtaskIcon" class="subtaskCheckbox" onclick="toggleSubtask('${taskId}', '${subtask.id}')">
+        <img src="../assets/icons/board/${iconSrc}" alt="subtaskIcon" class="subtaskCheckbox" onclick="toggleSubtask('${taskId}', '${
+      subtask.id
+    }')">
         <span>${subtask.text || "Untitled Subtask"}</span>
       </div>`;
   }
+  
   return html;
 }
 

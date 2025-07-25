@@ -1,21 +1,20 @@
 "use strict";
 
-const capitalizeFirstLetter = (string) => 
+const capitalizeFirstLetter = (string) =>
   string ? string.charAt(0).toUpperCase() + string.slice(1).toLowerCase() : "";
-
 
 function formatDate(dateString) {
   let date = new Date(dateString);
-  return date.toLocaleDateString('en-US', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 }
 
 function calculateNextDeadline(allTasks) {
   const today = new Date();
-  const futureTasks = allTasks.filter(task => {
+  const futureTasks = allTasks.filter((task) => {
     const dueDate = new Date(task.dueDate);
     return dueDate >= today;
   });
@@ -41,10 +40,10 @@ const groupContactsByLetter = (contacts) => {
 
 function mapCategoryToFirebase(category) {
   const categoryMap = {
-    'userStory': 'User Story',
-    'technicalTask': 'Technical Task',
+    userStory: "User Story",
+    technicalTask: "Technical Task",
   };
-  return categoryMap[category] || 'Technical Task';
+  return categoryMap[category] || "Technical Task";
 }
 
 const getContactFormData = (event) => ({

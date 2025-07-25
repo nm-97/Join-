@@ -22,7 +22,8 @@
   max-width: 525px;
   width: 90%;
   max-height: 90vh;
-  overflow-y: auto;
+  overflow-x: scroll;
+  overflow-y: scroll;
   position: relative;
 }
 
@@ -323,7 +324,7 @@ hr {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: #D1D1D1;
+  background: #d1d1d1;
   margin-bottom: 32px;
   display: flex;
   align-items: center;
@@ -335,7 +336,7 @@ hr {
   width: 64px;
   height: 64px;
   filter: brightness(0) invert(1);
-  box-shadow: 0px 0px 4px 0px #0000001A;
+  box-shadow: 0px 0px 4px 0px #0000001a;
 }
 
 .addContactForm,
@@ -445,12 +446,12 @@ hr {
 }
 
 .floatingContactAvatar {
-  background: #FF7A00;
+  background: #ff7a00;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  border: 3px solid #ffffff; 
+  border: 3px solid #ffffff;
   font-size: 47px;
   font-weight: 500;
   border-radius: 70px;
@@ -518,7 +519,7 @@ hr {
 .floatingContactInfoDetails a {
   font-size: 16px;
   text-decoration: none;
-  color: #007CEE;
+  color: #007cee;
 }
 
 .floatingContactInfoDetails span {

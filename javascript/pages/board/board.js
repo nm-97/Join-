@@ -78,20 +78,119 @@ async function getContactNameById(contactId) {
 }
 
 async function editTask(taskId) {
+  const task = await loadTaskForEdit(taskId);
+  if (task) {
+    openEditTaskOverlay(task);
+    initializeEditTaskFunctionality(taskId, task);
+  }
+}
+
+async function loadTaskForEdit(taskId) {
   const tasks = await fetchTaskByUser();
   const task = tasks.find((t) => t.id === taskId);
   if (task) {
     task.assignedToName = await getContactNameById(task.assignedTo);
-    const overlay = document.getElementById("editTaskOverlay");
-    if (overlay) {
-      overlay.innerHTML = getEditTaskOverlay(task);
-      overlay.style.display = "flex";
-      overlay.classList.remove("hidden");
-    }
+  }
+  return task;
+}
+
+function openEditTaskOverlay(task) {
+  const overlay = document.getElementById("editTaskOverlay");
+  if (overlay) {
+    overlay.innerHTML = getEditTaskOverlay(task);
+    overlay.style.display = "flex";
+    overlay.classList.remove("hidden");
+  }
+}
+
+function initializeEditTaskFunctionality(taskId, task) {
+  setTimeout(() => {
+    initializeEditTaskOverlayFunctions();
+    setTimeout(() => {
+      loadTaskDataIntoEditForm(task);
+      setupEditTaskSaveButton(taskId);
+    }, 100);
+  }, 100);
+}
+
+function initializeEditTaskOverlayFunctions() {
+  if (typeof initializeOverlayAddTask === "function") {
+    initializeOverlayAddTask();
+  }
+}
+
+function loadTaskDataIntoEditForm(task) {
+  currentSubtasks = task.subtasks || [];
+  window.currentSubtasks = currentSubtasks;
+  window.originalSubtasks = task.subtasks || [];
+  if (typeof renderSubtasks === "function") {
+    renderSubtasks(window.currentSubtasks);
+  }
+}
+
+function setupEditTaskSaveButton(taskId) {
+  const saveButton = document.getElementById("editSaveBtn");
+  if (saveButton) {
+    saveButton.onclick = async function (event) {
+      event.preventDefault();
+      await saveEditTask(taskId);
+    };
+  }
+}
+
+async function saveEditTask(taskId) {
+  try {
+    const updatedTaskData = collectEditTaskFormData();
+    await updateTaskInFirebase(taskId, updatedTaskData);
+    await finishEditTaskSave(taskId);
+  } catch (error) {
+    console.error("Error updating task:", error);
+  }
+}
+
+function collectEditTaskFormData() {
+  return {
+    title: document.getElementById("editTaskTitle")?.value || "",
+    description: document.getElementById("editTaskDescription")?.value || "",
+    dueDate: document.getElementById("editTaskDueDate")?.value || "",
+    taskPriority: selectedPriority || "Medium",
+    Category: getSelectedCategory(),
+    assignedTo: getSelectedAssignedTo(),
+    subtasks: window.currentSubtasks || window.originalSubtasks || [],
+  };
+}
+
+function getSelectedCategory() {
+  return typeof getSelectedCategoryName === "function"
+    ? getSelectedCategoryName()
+    : selectedCategory || "Technical Task";
+}
+
+function getSelectedAssignedTo() {
+  return typeof getSelectedContactIds === "function"
+    ? getSelectedContactIds()[0]
+    : "";
+}
+
+async function updateTaskInFirebase(taskId, taskData) {
+  await updateTaskInFirebaseByUser(taskId, taskData);
+}
+
+async function finishEditTaskSave(taskId) {
+  closeEditTaskOverlay();
+  if (taskId) {
+    await showTaskDetail(taskId);
+  }
+  if (typeof refreshBoard === "function") {
+    await refreshBoard();
   }
 }
 
 function closeEditTaskOverlay() {
+  hideEditTaskOverlay();
+}
+
+function hideEditTaskOverlay() {
   const overlay = document.getElementById("editTaskOverlay");
   if (overlay) {
     overlay.style.display = "none";
@@ -101,6 +200,10 @@ function closeEditTaskOverlay() {
 }
 
 function closeAddTaskOverlay() {
+  hideAddTaskOverlay();
+}
+
+function hideAddTaskOverlay() {
   const overlay = document.getElementById("addTaskOverlay");
   if (overlay) {
     overlay.style.display = "none";
@@ -168,6 +271,6 @@ function updateSubtaskListInOverlay(task, taskId) {
   if (!overlay || overlay.classList.contains("hidden")) return;
   const subtasksList = overlay.querySelector(".subtasksList");
   if (subtasksList) {
-    subtasksList.innerHTML = renderSubtasks(task.subtasks, taskId);
+    subtasksList.innerHTML = renderTaskDetailSubtasks(task.subtasks, taskId);
   }
 }

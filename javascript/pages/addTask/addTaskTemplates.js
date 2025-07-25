@@ -146,7 +146,7 @@ function getEditTaskOverlay(task) {
         <div class="editFormGroup">
           <label class="editLabel">Due date</label>
           <div class="editInputIcon">
-            <input type="date" id="editTaskDueDate" placeholder="Due Date" class="editInput" value="${
+            <input type="text" id="editTaskDueDate" placeholder="Due Date" class="editInput" value="${
               task.dueDate || ""
             }">
             <img src="../assets/icons/add task/event.svg" class="editDateIcon" alt="calendarIcon">
@@ -172,34 +172,34 @@ function getEditTaskOverlay(task) {
         </div>
         
         <div class="editFormGroup">
-          <label class="editLabel">Assigned to</label>
-          <select placeholder="Choose the Contact" id="editTaskAssignee" class="editInput">
-            <option value="" disabled hidden>Select contacts to assign</option>
-          </select>
-          <div class="assignedUsers">
-            <div class="assignedUser">
-            <div class="userAvatar" style="background-color: ${assignedPersonColor};">${assignedPersonInitials}</div>
-            <span>${task.assignedTo || "Not assigned"}</span>
-          </div>
-        </div>
+         <label for="taskAssignee">Assigned to <span class="requiredStar">*</span></label>
+               <div class="customDropdownContainer">
+                 <div class="customDropdown" id="customDropdown">
+                   <div class="dropdownHeader">
+                     <input type="text" class="dropdownInput" id="dropdownInput" name="taskAssignee" placeholder="Select contacts to assign" readonly/>
+                     <button type="button" class="dropdownArrow" id="dropdownArrow"></button>
+                   </div>
+                   <div class="dropdownContent" id="dropdownContent">
+                     <div class="contactsList" id="contactsDropdownList">
+                       <!-- Contacts werden hier dynamisch eingefügt -->
+                     </div>
+                   </div>
+                 </div>
+                 <div class="selectedContactsDisplay" id="selectedContactsDisplay">
+                   <!-- Ausgewählte Kontakte werden hier angezeigt -->
+                 </div>
+               </div>
+               <div class="errorMessage hide"></div>
         </div>
         
         <div class="editFormGroup editFormGroupLast">
-          <label class="editLabel">Subtasks</label>
-          <div class="editSubtaskInput">
-            <input type="text" id="editTaskSubtask" placeholder="Add new subtask" class="editInput">
-            <span class="editSubtaskAdd">+</span>
-          </div>
-          <div class="editSubtaskList">
-            <div class="editSubtaskItem">
-              <span class="editSubtaskBullet"></span>
-              <span>Implement Recipe Recommendation</span>
-            </div>
-            <div class="editSubtaskItem">
-              <span class="editSubtaskBullet"></span>
-              <span>Start Page Layout</span>
-            </div>
-          </div>
+           <label for="Subtask">Subtask</label>
+               <div class="inputIcon">
+                 <input type="text" placeholder="Add new subtask" id="taskSubtask" name="taskSubtask" multiple/>
+                 <img src="../assets/icons/board/addtask.svg" alt="addSubtask" id="createSubtaskButton"/>
+               </div>
+               <div id="editableDiv" class="subtaskDisplayContainer">
+               </div>
         </div>
         
         <div class="editButtonContainer">
