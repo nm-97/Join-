@@ -148,7 +148,11 @@ async function addTaskToFirebaseByUser(taskData) {
     currentUser.type === "registered"
       ? getUserTasksPath(currentUser.id)
       : GUEST_TASKS_PATH;
-  const result = await postData(path, taskData);
+  
+  // Remove the id field from taskData before saving to Firebase (if it exists)
+  const { id, ...cleanTaskData } = taskData;
+  
+  const result = await postData(path, cleanTaskData);
   return result.name;
 }
 
@@ -241,7 +245,11 @@ async function updateTaskInFirebaseByUser(taskId, taskData) {
     currentUser.type === "registered"
       ? getUserTaskPath(currentUser.id, taskId)
       : getGuestTaskPath(taskId);
-  await patchData(path, taskData);
+  
+  // Remove the id field from taskData before saving to Firebase
+  const { id, ...cleanTaskData } = taskData;
+  
+  await patchData(path, cleanTaskData);
   return true;
 }
 
