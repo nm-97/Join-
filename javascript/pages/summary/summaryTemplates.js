@@ -1,5 +1,17 @@
+/**
+ * @fileoverview HTML templates for the Summary page
+ * Contains template functions for rendering the dashboard and summary statistics
+ * @author Join Project Team
+ * @version 1.0.0
+ */
+
 "use strict";
 
+/**
+ * Generates the main summary dashboard template with task statistics cards
+ * @param {Object} params - Optional parameters for customizing the template
+ * @returns {string} HTML string for the complete summary dashboard
+ */
 function getsummaryTemplate(params) {
   return ` <div class="cardSection">
             <div class="pageHeaderWrapper">

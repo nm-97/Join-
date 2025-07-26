@@ -1,3 +1,16 @@
+/**
+ * @fileoverview HTML templates for the Contacts page
+ * Contains template functions for rendering contact items, overlays, and forms
+ * @author Join Project Team
+ * @version 1.0.0
+ */
+
+/**
+ * Generates contact template with optional alphabetical separator
+ * @param {Object} contact - The contact object to render
+ * @param {boolean} showSeparator - Whether to show alphabetical separator
+ * @returns {string} HTML string for contact with optional separator
+ */
 function getContactWithSeparator(contact, showSeparator = false) {
   let separatorHTML = "";
   if (showSeparator) {
@@ -11,6 +24,11 @@ function getContactWithSeparator(contact, showSeparator = false) {
   return separatorHTML + getContactTemplate(contact);
 }
 
+/**
+ * Generates HTML template for a single contact item
+ * @param {Object} contact - The contact object to render
+ * @returns {string} HTML string for the contact item
+ */
 function getContactTemplate(contact) {
   const initials = contact.name.charAt(0).toUpperCase();
   const color = getAvatarColor(contact.name);
@@ -24,6 +42,10 @@ function getContactTemplate(contact) {
   </div>`;
 }
 
+/**
+ * Generates HTML template for the Add Contact overlay modal
+ * @returns {string} HTML string for the Add Contact overlay
+ */
 function getAddContactOverlay() {
   return `
          <div class="addContactModal">

@@ -1,5 +1,15 @@
+/**
+ * @fileoverview Summary page functionality for the JOIN application
+ * Handles dashboard display, task statistics, and user greeting
+ * @author Join Project Team
+ * @version 1.0.0
+ */
+
 "use strict";
 
+/**
+ * Initializes summary page when DOM content is loaded
+ */
 document.addEventListener("DOMContentLoaded", () => {
   if (window.location.pathname.includes("summaryUser.html")) {
     rendersummaryMainContent();
@@ -7,6 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+/**
+ * Renders the main summary content template
+ */
 function rendersummaryMainContent() {
   let summaryMainContent = getsummaryTemplate();
   const summaryElement = document.getElementById("summaryMainContent");
@@ -17,6 +30,9 @@ function rendersummaryMainContent() {
   }
 }
 
+/**
+ * Loads all summary data simultaneously and updates the dashboard
+ */
 async function loadAllDataSimultaneously() {
   try {
     const allTasks = await fetchTaskByUser();
@@ -29,6 +45,11 @@ async function loadAllDataSimultaneously() {
   }
 }
 
+/**
+ * Counts tasks by status and priority for dashboard statistics
+ * @param {Array} allTasks - Array of all task objects
+ * @returns {Object} Object containing counts for different task categories
+ */
 function countEveryTaskLength(allTasks) {
   return {
     todoCount: allTasks.filter((task) => task.Status === "toDo").length,

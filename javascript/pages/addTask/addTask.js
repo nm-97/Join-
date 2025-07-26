@@ -1,7 +1,17 @@
+/**
+ * @fileoverview Add Task page functionality for the JOIN application
+ * Handles task creation, form validation, priority selection, and subtask management
+ * @author Join Project Team
+ * @version 1.0.0
+ */
+
 let selectedPriority = "Medium";
 let selectedCategory = "";
 let currentSubtasks = [];
 
+/**
+ * Initializes the Add Task page with all necessary components and event listeners
+ */
 function initializeAddTask() {
   renderAddTaskMainContent();
   initializeDateInput();
@@ -15,11 +25,17 @@ function initializeAddTask() {
   setDefaultPriority();
 }
 
+/**
+ * Renders the main content for the Add Task page
+ */
 function renderAddTaskMainContent() {
   const mainContent = document.getElementById("mainContent");
   mainContent.innerHTML = getaddTaskMainContent();
 }
 
+/**
+ * Sets up event listeners for priority selection buttons
+ */
 function setupPriorityButtons() {
   const buttons = getPriorityButtons();
   if (!validateAllButtonsExist(buttons)) return;
@@ -27,16 +43,30 @@ function setupPriorityButtons() {
   attachPriorityButtonEvents(buttons);
 }
 
+/**
+ * Validates that all priority buttons exist in the DOM
+ * @param {Object} buttons - Object containing priority button elements
+ * @returns {boolean} True if all buttons exist, false otherwise
+ */
 function validateAllButtonsExist(buttons) {
   return buttons.urgent && buttons.medium && buttons.low;
 }
 
+/**
+ * Attaches click event listeners to priority buttons
+ * @param {Object} buttons - Object containing priority button elements
+ */
 function attachPriorityButtonEvents(buttons) {
   buttons.urgent.onclick = () => selectPriority("Urgent", buttons.urgent);
   buttons.medium.onclick = () => selectPriority("Medium", buttons.medium);
   buttons.low.onclick = () => selectPriority("Low", buttons.low);
 }
 
+/**
+ * Selects a priority level and updates button styling
+ * @param {string} priority - The priority level to select
+ * @param {HTMLElement} button - The button element that was clicked
+ */
 function selectPriority(priority, button) {
   clearPrioritySelection();
   const priorityClass = changeColorBasedOnPriority(priority);
@@ -44,6 +74,9 @@ function selectPriority(priority, button) {
   selectedPriority = priority;
 }
 
+/**
+ * Clears all priority selections and resets button styles
+ */
 function clearPrioritySelection() {
   const buttons = getPriorityButtons();
   removeAllPriorityClasses(buttons);

@@ -1,5 +1,15 @@
+/**
+ * @fileoverview Validation functions for the Add Task form
+ * Handles form input validation, date formatting, and error display for task creation
+ * @author Join Project Team
+ * @version 1.0.0
+ */
+
 "use strict";
 
+/**
+ * Initializes date input formatting for the task due date field
+ */
 function initializeDateInput() {
   const dueDateInput = document.getElementById("taskDueDate");
   if (!dueDateInput) return;
@@ -7,6 +17,10 @@ function initializeDateInput() {
   setupDateFormatting(dueDateInput);
 }
 
+/**
+ * Sets up date formatting for input field with DD/MM/YYYY pattern
+ * @param {HTMLElement} input - The date input element to format
+ */
 function setupDateFormatting(input) {
   input.addEventListener("input", function (e) {
     let value = e.target.value.replace(/\D/g, "");
@@ -22,6 +36,10 @@ function setupDateFormatting(input) {
   });
 }
 
+/**
+ * Validates the entire Add Task form
+ * @returns {boolean} True if all validations pass, false otherwise
+ */
 function validateAddTaskForm() {
   const inputs = getFormInputs();
   let isValid = true;
@@ -37,6 +55,10 @@ function validateAddTaskForm() {
   return isValid;
 }
 
+/**
+ * Gets form input elements for validation
+ * @returns {Object} Object containing title and due date input elements
+ */
 function getFormInputs() {
   return {
     titleInput: document.getElementById("taskTitle"),
@@ -44,6 +66,11 @@ function getFormInputs() {
   };
 }
 
+/**
+ * Validates the task title input
+ * @param {HTMLElement} titleInput - The title input element to validate
+ * @returns {boolean} True if title is valid, false otherwise
+ */
 function validateTitle(titleInput) {
   if (!titleInput || !validateRequired(titleInput.value)) {
     showError("taskTitle", "This field is required");

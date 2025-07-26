@@ -1,6 +1,17 @@
+/**
+ * @fileoverview Custom dropdown component functionality
+ * @author Join Project Team
+ * @version 1.0.0
+ */
+
+/** @type {Array} Array to store all loaded contacts */
 let allContacts = [];
+/** @type {Array} Array to store currently selected contacts */
 let selectedContacts = [];
 
+/**
+ * Loads contacts from database and sets up dropdown
+ */
 async function loadContacts() {
   try {
     let contacts = await fetchContactsByIdAndUser();
@@ -31,6 +42,10 @@ async function loadContacts() {
   }
 }
 
+/**
+ * Renders contacts dropdown HTML with avatars and checkboxes
+ * @param {Array} contacts - Array of contact objects to render
+ */
 function renderContactsDropdown(contacts) {
   const contactsList = document.getElementById("contactsDropdownList");
   if (!contactsList) return;
@@ -60,6 +75,12 @@ function renderContactsDropdown(contacts) {
   setupContactCheckboxes();
 }
 
+/**
+ * Sets up event handlers for dropdown interactions
+ * @param {string} dropdownId - ID of the dropdown container
+ * @param {string} inputId - ID of the dropdown input field
+ * @param {string} arrowId - ID of the dropdown arrow button
+ */
 function setupDropdownEvents(dropdownId, inputId, arrowId) {
   const dropdown = document.getElementById(dropdownId);
   const dropdownInput = document.getElementById(inputId);
@@ -86,6 +107,10 @@ function setupDropdownEvents(dropdownId, inputId, arrowId) {
   });
 }
 
+/**
+ * Toggles dropdown open/close state
+ * @param {string} dropdownId - ID of the dropdown to toggle
+ */
 function toggleDropdown(dropdownId) {
   const dropdown = document.getElementById(dropdownId);
   if (dropdown.classList.contains("open")) {
@@ -95,6 +120,10 @@ function toggleDropdown(dropdownId) {
   }
 }
 
+/**
+ * Opens the dropdown and shows content
+ * @param {string} dropdownId - ID of the dropdown to open
+ */
 function openDropdown(dropdownId) {
   const dropdown = document.getElementById(dropdownId);
   if (dropdown) {
@@ -102,6 +131,10 @@ function openDropdown(dropdownId) {
   }
 }
 
+/**
+ * Closes a specific dropdown by removing the 'open' class
+ * @param {string} dropdownId - The ID of the dropdown element to close
+ */
 function closeDropdown(dropdownId) {
   const dropdown = document.getElementById(dropdownId);
   if (dropdown) {
@@ -109,6 +142,10 @@ function closeDropdown(dropdownId) {
   }
 }
 
+/**
+ * Filters contact items based on search term by showing/hiding them
+ * @param {string} searchTerm - The term to filter contacts by (case insensitive)
+ */
 function filterContacts(searchTerm) {
   const contactItems = document.querySelectorAll(".contactItem");
   contactItems.forEach(function (item) {
@@ -123,6 +160,9 @@ function filterContacts(searchTerm) {
   });
 }
 
+/**
+ * Sets up event listeners for contact checkboxes to handle selection changes
+ */
 function setupContactCheckboxes() {
   const checkboxes = document.querySelectorAll(".contactItem .customCheckbox");
   checkboxes.forEach(function (checkbox) {
@@ -133,6 +173,9 @@ function setupContactCheckboxes() {
   });
 }
 
+/**
+ * Updates the selectedContacts array based on currently checked checkboxes
+ */
 function updateSelectedContacts() {
   const checkedBoxes = document.querySelectorAll(
     ".contactItem .customCheckbox:checked"
@@ -147,6 +190,9 @@ function updateSelectedContacts() {
   });
 }
 
+/**
+ * Updates the dropdown input field and refreshes the selected contacts display
+ */
 function updateDropdownInput() {
   const dropdownInput = document.getElementById("dropdownInput");
   if (!dropdownInput) return;
@@ -155,6 +201,10 @@ function updateDropdownInput() {
   updateSelectedContactsDisplay();
 }
 
+/**
+ * Updates the visual display of selected contacts as avatar badges
+ * Shows up to 5 contacts with a "+X more" indicator if needed
+ */
 function updateSelectedContactsDisplay() {
   const displayContainer = document.getElementById("selectedContactsDisplay");
   if (!displayContainer) return;
@@ -192,6 +242,10 @@ function updateSelectedContactsDisplay() {
   displayContainer.innerHTML = html;
 }
 
+/**
+ * Removes a contact from the selection by unchecking its checkbox
+ * @param {string} contactId - The ID of the contact to remove from selection
+ */
 function removeContactSelection(contactId) {
   const checkbox = document.getElementById(`contact-${contactId}`);
   if (checkbox) {
@@ -201,10 +255,17 @@ function removeContactSelection(contactId) {
   updateDropdownInput();
 }
 
+/**
+ * Returns an array of IDs of currently selected contacts
+ * @returns {string[]} Array of contact IDs
+ */
 function getSelectedContactIds() {
   return selectedContacts.map((contact) => contact.id);
 }
 
+/**
+ * Clears all contact selections by unchecking all checkboxes and resetting arrays
+ */
 function clearContactSelections() {
   selectedContacts = [];
   const checkboxes = document.querySelectorAll(".contactItem .customCheckbox");
@@ -220,6 +281,9 @@ const categories = [
   { id: "userStory", name: "User Story" },
 ];
 
+/**
+ * Initializes and loads the categories dropdown with predefined categories
+ */
 function loadCategories() {
   const categoriesDropdownList = document.getElementById(
     "categoriesDropdownList"
@@ -235,6 +299,10 @@ function loadCategories() {
   setupCategorySelection();
 }
 
+/**
+ * Renders the categories dropdown list with provided category data
+ * @param {Array} categories - Array of category objects with id and name properties
+ */
 function renderCategoriesDropdown(categories) {
   const categoriesList = document.getElementById("categoriesDropdownList");
   if (!categoriesList) {
@@ -258,6 +326,9 @@ function renderCategoriesDropdown(categories) {
   categoriesList.innerHTML = html;
 }
 
+/**
+ * Sets up click event listeners for category selection in the dropdown
+ */
 function setupCategorySelection() {
   const categoryItems = document.querySelectorAll("[data-category-id]");
   categoryItems.forEach((item) => {
@@ -275,10 +346,18 @@ function setupCategorySelection() {
   });
 }
 
+/**
+ * Returns the ID of the currently selected category
+ * @returns {string} The selected category ID
+ */
 function getSelectedCategoryId() {
   return selectedDropdownCategory;
 }
 
+/**
+ * Returns the name of the currently selected category from the input field
+ * @returns {string} The selected category name or empty string if not found
+ */
 function getSelectedCategoryName() {
   const categoryDropdownInput = document.getElementById(
     "categoryDropdownInput"

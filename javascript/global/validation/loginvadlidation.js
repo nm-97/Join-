@@ -1,5 +1,16 @@
+/**
+ * @fileoverview Login form validation functions
+ * Handles validation for user login forms including email and password checks
+ * @author Join Project Team
+ * @version 1.0.0
+ */
+
 "use strict";
 
+/**
+ * Validates the login form including email and password fields
+ * @returns {boolean} True if all validations pass, false otherwise
+ */
 function validateLoginForm() {
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
@@ -20,6 +31,12 @@ function validateLoginForm() {
   return true;
 }
 
+/**
+ * Validates login credentials for completeness and format
+ * @param {string} email - The email address to validate
+ * @param {string} password - The password to validate
+ * @returns {boolean} True if both email and password are valid, false otherwise
+ */
 function isValidLoginData(email, password) {
   if (!validateRequired(email)) return false;
   if (!validateEmail(email)) return false;

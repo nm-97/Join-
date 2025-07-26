@@ -1,9 +1,23 @@
+/**
+ * @fileoverview Drag and drop functionality for the task board
+ * Handles task movement between columns with visual feedback and animations
+ * @author Join Project Team
+ * @version 1.0.0
+ */
+
 let currentDraggedTaskId = null;
 
+/**
+ * Initiates dragging process by storing the task ID being dragged
+ * @param {string} taskId - The ID of the task being dragged
+ */
 function startDragging(taskId) {
   currentDraggedTaskId = taskId;
 }
 
+/**
+ * Clears all drag-over visual effects from all columns
+ */
 function clearAllDragOverEffects() {
   document.querySelectorAll(".drag-over").forEach((col) => {
     col.classList.remove("drag-over");
@@ -11,6 +25,10 @@ function clearAllDragOverEffects() {
   });
 }
 
+/**
+ * Clears drag-over effects from all columns except the current one
+ * @param {HTMLElement} currentColumn - The column to keep the drag-over effect on
+ */
 function clearOtherDragOverEffects(currentColumn) {
   document.querySelectorAll(".drag-over").forEach((col) => {
     if (col !== currentColumn) {
@@ -20,6 +38,10 @@ function clearOtherDragOverEffects(currentColumn) {
   });
 }
 
+/**
+ * Activates the drop zone visual effect with animation
+ * @param {HTMLElement} column - The column element to activate as drop zone
+ */
 function activateDropZone(column) {
   column.classList.add("drag-over");
   column.style.animation = "dropZoneActivate 0.3s ease-out";
@@ -28,6 +50,10 @@ function activateDropZone(column) {
   }, 50);
 }
 
+/**
+ * Handles drag over event for column elements
+ * @param {Event} ev - The drag over event
+ */
 function moveToAnotherColumn(ev) {
   ev.preventDefault();
   const column = ev.currentTarget;
@@ -37,16 +63,29 @@ function moveToAnotherColumn(ev) {
   }
 }
 
+/**
+ * Deactivates the drop zone visual effect
+ * @param {HTMLElement} column - The column element to deactivate
+ */
 function deactivateDropZone(column) {
   column.classList.remove("drag-over");
   column.style.animation = "";
 }
 
+/**
+ * Removes drag-over effect when drag leaves a column
+ * @param {Event} ev - The drag leave event
+ */
 function removeDragOver(ev) {
   const column = ev.currentTarget;
   deactivateDropZone(column);
 }
 
+/**
+ * Moves a task card to a target column with animation
+ * @param {HTMLElement} taskCard - The task card element to move
+ * @param {HTMLElement} targetColumn - The target column element
+ */
 function moveTaskToColumn(taskCard, targetColumn) {
   const originalColumn = taskCard.parentElement;
   targetColumn.appendChild(taskCard);
@@ -95,7 +134,7 @@ async function changeStatusforDraggedTask(taskId, taskData) {
     currentUser.type === "registered"
       ? getUserTaskPath(currentUser.id, taskId)
       : getGuestTaskPath(taskId);
-  
+
   return await patchData(path, taskData);
 }
 

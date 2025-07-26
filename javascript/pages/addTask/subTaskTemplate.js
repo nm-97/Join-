@@ -1,3 +1,15 @@
+/**
+ * @fileoverview HTML templates for subtask functionality
+ * Contains template functions for rendering subtasks in the Add Task feature
+ * @author Join Project Team
+ * @version 1.0.0
+ */
+
+/**
+ * Generates HTML template for displaying subtasks with edit and delete options
+ * @param {Array} subtasks - Array of subtask objects to render
+ * @returns {string} HTML string for the subtasks container
+ */
 function selectSubtask(subtasks = []) {
   if (!subtasks || subtasks.length === 0) {
     return `<div class="noSubtasks">

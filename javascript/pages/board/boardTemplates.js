@@ -1,3 +1,15 @@
+/**
+ * @fileoverview HTML templates for the Board page
+ * Contains template functions for rendering the task board and its components
+ * @author Join Project Team
+ * @version 1.0.0
+ */
+
+/**
+ * Generates the main board template with all columns and tasks
+ * @param {Array} tasks - Array of task objects to render on the board
+ * @returns {string} HTML string for the complete board layout
+ */
 function getBoardTemplate(tasks = []) {
   return `
     <div class="boardContainer">
@@ -47,7 +59,7 @@ function getTaskDetailOverlay(task) {
   const priority = (task.taskPriority || "medium").toLowerCase();
   const categoryLabel = getCategoryLabel(task.Category);
   const categoryClass = getCategoryClass(task.Category);
-  
+
   return `
     <div class="overlay" id="taskOverlay">
       <div class="taskDetailModal">
@@ -109,7 +121,7 @@ function renderTaskDetailSubtasks(subtasks, taskId) {
   if (!subtasks || subtasks.length === 0) {
     return '<div class="noSubtasks">No subtasks available</div>';
   }
-  
+
   let html = "";
   for (let i = 0; i < subtasks.length; i++) {
     const subtask = subtasks[i];
@@ -125,7 +137,7 @@ function renderTaskDetailSubtasks(subtasks, taskId) {
         <span>${subtask.text || "Untitled Subtask"}</span>
       </div>`;
   }
-  
+
   return html;
 }
 

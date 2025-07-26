@@ -1,3 +1,11 @@
+/**
+ * @fileoverview Firebase database integration for JOIN task management application
+ * Handles all CRUD operations with Firebase Realtime Database for tasks, contacts, and subtasks
+ * Supports both guest users and registered users with different data paths
+ * @author Development Team
+ * @version 1.0.0
+ */
+
 "use strict";
 
 const firebaseUrl =
@@ -23,11 +31,21 @@ const getGuestContactPath = (contactId) =>
 const getGuestSubtaskPath = (subtaskId) =>
   `user/guest/subtasks/${subtaskId}.json`;
 
+/**
+ * Retrieves the current user from session storage
+ * @returns {Object} Current user object or guest user object if none found
+ */
 function getCurrentUser() {
   const currentUser = sessionStorage.getItem("currentUser");
   return currentUser ? JSON.parse(currentUser) : { type: "guest" };
 }
 
+/**
+ * Fetches data from Firebase database
+ * @param {string} path - The Firebase database path to fetch from
+ * @returns {Promise<any>} The fetched data from Firebase
+ * @throws {Error} When the HTTP request fails
+ */
 async function fetchData(path) {
   const response = await fetch(`${firebaseUrl}${path}`);
   if (!response.ok) {
@@ -36,6 +54,13 @@ async function fetchData(path) {
   return await response.json();
 }
 
+/**
+ * Posts data to Firebase database
+ * @param {string} path - The Firebase database path to post to
+ * @param {any} data - The data to post to Firebase
+ * @returns {Promise<any>} The response from Firebase
+ * @throws {Error} When the HTTP request fails
+ */
 async function postData(path, data) {
   const response = await fetch(`${firebaseUrl}${path}`, {
     method: "POST",
@@ -48,6 +73,13 @@ async function postData(path, data) {
   return await response.json();
 }
 
+/**
+ * Updates existing data in Firebase database using PATCH method
+ * @param {string} path - The Firebase database path to update
+ * @param {any} data - The data to update in Firebase
+ * @returns {Promise<any>} The response from Firebase
+ * @throws {Error} When the HTTP request fails
+ */
 async function patchData(path, data) {
   const response = await fetch(`${firebaseUrl}${path}`, {
     method: "PATCH",
@@ -60,6 +92,11 @@ async function patchData(path, data) {
   return await response.json();
 }
 
+/**
+ * Deletes data from Firebase database
+ * @param {string} path - The Firebase database path to delete from
+ * @returns {Promise<boolean>} True if deletion was successful, false otherwise
+ */
 async function deleteData(path) {
   const response = await fetch(`${firebaseUrl}${path}`, {
     method: "DELETE",
@@ -67,6 +104,9 @@ async function deleteData(path) {
   return response.ok;
 }
 
+/**
+ * Sets up guest login by storing guest user data in session storage and redirecting
+ */
 function setGuestLogin() {
   sessionStorage.setItem(
     "currentUser",
@@ -77,6 +117,11 @@ function setGuestLogin() {
   window.location.href = "../html/summaryUser.html";
 }
 
+/**
+ * Sets up registered user login by storing user data in session storage
+ * @param {Object} params - User parameters (id, name, email, etc.)
+ * @param {boolean} redirect - Whether to redirect after login (default: true)
+ */
 function setUserLogin(params, redirect = true) {
   sessionStorage.setItem(
     "currentUser",
@@ -90,12 +135,22 @@ function setUserLogin(params, redirect = true) {
   }
 }
 
+/**
+ * Extracts user form data from a form submission event
+ * @param {Event} event - The form submission event
+ * @returns {Object} Object containing name, email, and password from form
+ */
 const getUserFormData = (event) => ({
   name: new FormData(event.target).get("name"),
   email: new FormData(event.target).get("email"),
   password: new FormData(event.target).get("password"),
 });
 
+/**
+ * Creates a new user account after checking for email uniqueness
+ * @param {Object} userData - User data object containing name, email, password
+ * @returns {Promise<Object>} Success status and user ID if successful
+ */
 async function createUser(userData) {
   const existingUsers = await fetchAllRegisteredUsers();
   for (let i = 0; i < existingUsers.length; i++) {
@@ -120,6 +175,11 @@ async function createUser(userData) {
     userId: userId,
   };
 }
+/**
+ * Posts user data to Firebase database
+ * @param {Object} UserData - User data to post
+ * @returns {Promise<any>} Firebase response
+ */
 const postUserData = async (UserData) => {
   return await postData(USERS_PATH, UserData);
 };

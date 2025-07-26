@@ -1,14 +1,30 @@
+/**
+ * @fileoverview Subtask management functionality for the Add Task feature
+ * Handles subtask creation, editing, deletion, and event handling
+ * @author Join Project Team
+ * @version 1.0.0
+ */
+
+/**
+ * Initializes subtask functionality with empty array and event listeners
+ */
 function initializeSubtask() {
   renderSubtasks([]);
   setupSubtaskEvents();
 }
 
+/**
+ * Sets up all event listeners for subtask functionality
+ */
 function setupSubtaskEvents() {
   setupSubtaskIconEvents();
   setupSubtaskInputEvents();
   setupSubtaskContainerEvents();
 }
 
+/**
+ * Sets up click events for the subtask creation icon
+ */
 function setupSubtaskIconEvents() {
   const subtaskIcon = document.getElementById("createSubtaskButton");
   if (subtaskIcon) {
@@ -19,6 +35,9 @@ function setupSubtaskIconEvents() {
   }
 }
 
+/**
+ * Sets up double-click events for the subtask input field
+ */
 function setupSubtaskInputEvents() {
   const subtaskInput = document.getElementById("taskSubtask");
   if (subtaskInput) {
@@ -29,6 +48,9 @@ function setupSubtaskInputEvents() {
   }
 }
 
+/**
+ * Sets up event listeners for the subtask container
+ */
 function setupSubtaskContainerEvents() {
   const container = document.getElementById("editableDiv");
   if (container) {
@@ -37,6 +59,10 @@ function setupSubtaskContainerEvents() {
   }
 }
 
+/**
+ * Sets up double-click events for editing subtasks in the container
+ * @param {HTMLElement} container - The subtask container element
+ */
 function setupContainerDoubleClickEvents(container) {
   container.addEventListener("dblclick", (e) => {
     if (e.target.classList.contains("subtaskText")) {
@@ -47,6 +73,10 @@ function setupContainerDoubleClickEvents(container) {
   });
 }
 
+/**
+ * Sets up click events for subtask action buttons
+ * @param {HTMLElement} container - The subtask container element
+ */
 function setupContainerButtonClickEvents(container) {
   container.addEventListener("click", (e) => {
     e.preventDefault();

@@ -1,11 +1,24 @@
+/**
+ * @fileoverview Contacts page functionality for the JOIN application
+ * Handles contact management, display, creation, editing, and deletion
+ * @author Join Project Team
+ * @version 1.0.0
+ */
+
 let loadedContacts = [];
 
+/**
+ * Initializes contacts page when DOM content is loaded
+ */
 document.addEventListener("DOMContentLoaded", function () {
   if (window.location.pathname.includes("contacts.html")) {
     initializeContacts();
   }
 });
 
+/**
+ * Initializes the contacts page by fetching and rendering contacts
+ */
 async function initializeContacts() {
   try {
     const contacts = await fetchContactsByIdAndUser();
@@ -16,6 +29,10 @@ async function initializeContacts() {
   }
 }
 
+/**
+ * Renders the contacts list with alphabetical separators
+ * @param {Array} contacts - Array of contact objects to render
+ */
 function renderContactsList(contacts) {
   const contactsList = document.getElementById("contactsList");
   if (!contactsList) return;
@@ -40,6 +57,10 @@ function renderContactsList(contacts) {
   contactsList.innerHTML = html;
 }
 
+/**
+ * Displays a contact in the floating overlay
+ * @param {string} contactId - The ID of the contact to display
+ */
 async function showFloatingContact(contactId) {
   let contact = loadedContacts.find((c) => c.id === contactId);
   if (!contact) {

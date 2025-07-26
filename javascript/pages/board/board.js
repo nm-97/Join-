@@ -1,11 +1,24 @@
+/**
+ * @fileoverview Board page functionality for the JOIN application
+ * Handles task board display, task management, and column-based task organization
+ * @author Join Project Team
+ * @version 1.0.0
+ */
+
 "use strict";
 
+/**
+ * Initializes the board when DOM content is loaded and on correct page
+ */
 document.addEventListener("DOMContentLoaded", function () {
   if (window.location.pathname.includes("board.html")) {
     initializeBoard();
   }
 });
 
+/**
+ * Initializes the board by fetching tasks and rendering the board template
+ */
 async function initializeBoard() {
   const tasks = await fetchTaskByUser();
   for (let i = 0; i < tasks.length; i++) {
@@ -17,6 +30,10 @@ async function initializeBoard() {
   boardContainer.innerHTML = getBoardTemplate(tasks);
 }
 
+/**
+ * Shows detailed view of a specific task in an overlay
+ * @param {string} taskId - The ID of the task to display
+ */
 async function showTaskDetail(taskId) {
   const tasks = await fetchTaskByUser();
   const task = tasks.find((t) => t.id === taskId);
@@ -27,12 +44,19 @@ async function showTaskDetail(taskId) {
   overlay.style.display = "flex";
 }
 
+/**
+ * Deletes a task from Firebase and refreshes the board
+ * @param {string} taskId - The ID of the task to delete
+ */
 async function deleteTask(taskId) {
   await deleteTaskFromFirebaseByUser(taskId);
   closeTaskOverlay();
   await refreshBoard();
 }
 
+/**
+ * Refreshes the board by re-fetching tasks and re-rendering
+ */
 async function refreshBoard() {
   const tasks = await fetchTaskByUser();
   for (let i = 0; i < tasks.length; i++) {
@@ -44,6 +68,10 @@ async function refreshBoard() {
   boardContainer.innerHTML = getBoardTemplate(tasks);
 }
 
+/**
+ * Opens the Add Task overlay for a specific column status
+ * @param {string} status - The status/column to add the task to
+ */
 function addTaskToColumn(status) {
   showAddTaskOverlay();
 }

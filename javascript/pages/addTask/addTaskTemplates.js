@@ -1,3 +1,15 @@
+/**
+ * @fileoverview HTML templates for the Add Task functionality
+ * Contains all template functions for rendering Add Task forms and overlays
+ * @author Join Project Team
+ * @version 1.0.0
+ */
+
+/**
+ * Generates HTML template for the Add Task overlay
+ * @param {Object} params - Optional parameters for customizing the template
+ * @returns {string} HTML string for the Add Task overlay
+ */
 function getAddTaskOverlay(params = {}) {
   return `
        <div class="overlayContent">
