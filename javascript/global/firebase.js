@@ -279,3 +279,31 @@ async function fetchAllRegisteredUsers() {
   if (!data) return [];
   return Object.entries(data).map(([id, userData]) => ({ id, ...userData }));
 }
+
+async function checkUserCredentials(email, password) {
+  try {
+    const users = await fetchAllRegisteredUsers();
+    for (let i = 0; i < users.length; i++) {
+      const user = users[i];
+      if (user.email === email && user.password === password) {
+        return {
+          success: true,
+          user: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            type: "registered",
+          },
+        };
+      }
+    }
+    return {
+      success: false,
+    };
+  } catch (error) {
+    console.error("Login Fehler:", error);
+    return {
+      success: false,
+    };
+  }
+}
