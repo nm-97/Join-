@@ -1,6 +1,7 @@
 .subtasksContainer {
   max-height: 200px;
   overflow-y: auto;
+  padding: 8px 2px;
 }
 
 .subtaskItem {
@@ -93,6 +94,8 @@
 .subtaskText[contenteditable="true"] {
   border-bottom: 1px solid #29abe2;
   cursor: text;
+  background-color: #ffffff;
+  outline: none;
 }
 
 .subtaskText[contenteditable="false"] {
@@ -102,7 +105,7 @@
 
 .subtaskText:empty::before {
   content: "Subtask bearbeiten...";
-  color: #999;
+  color: #ffffff;
   font-style: italic;
 }
 

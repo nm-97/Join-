@@ -242,13 +242,13 @@ function showSuccessMessage(message) {
   }, 3000);
 }
 
-function showSuccessMessage(message) {
-  const successElement = document.createElement("div");
-  successElement.innerHTML = getSuccessContactMessageTemplate({ message });
-  document.body.appendChild(successElement);
-  setTimeout(() => {
-    if (document.body.contains(successElement)) {
-      document.body.removeChild(successElement);
+window.addEventListener("load", async () => {
+  const contactIdForOverlay = sessionStorage.getItem("contactIdForOverlay");
+  if (contactIdForOverlay) {
+    const contact = await fetchContactByIdAndUser(contactIdForOverlay);
+    if (contact) {
+      showFloatingContact(contact.id);
     }
-  }, 3000);
-}
+    sessionStorage.removeItem("contactIdForOverlay");
+  }
+});

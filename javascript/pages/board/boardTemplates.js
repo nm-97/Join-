@@ -58,12 +58,25 @@ function getBoardTemplate(tasks = []) {
  * @returns {string} HTML string for the task detail overlay
  */
 function getTaskDetailOverlay(task) {
-  const assignedPersonName = task.assignedToName || "Not assigned";
-  const assignedPersonInitials = getInitials(assignedPersonName);
-  const assignedPersonColor = getAvatarColor(assignedPersonName);
   const priority = (task.taskPriority || "medium").toLowerCase();
   const categoryLabel = getCategoryLabel(task.Category);
   const categoryClass = getCategoryClass(task.Category);
+  const assignedContacts = task.assignedContacts || [];
+  let assignedUsersHtml = "";
+  if (assignedContacts.length === 0) {
+    assignedUsersHtml = '<div class="assignedUser">Not assigned</div>';
+  } else {
+    assignedContacts.forEach((contact) => {
+      const initials = getInitials(contact.name);
+      const color = getAvatarColor(contact.name);
+      assignedUsersHtml += `
+        <div class="assignedUser">
+          <div class="userAvatar" onclick="openContactOverlayFromTaskDetail('${contact.id}')" style="background-color: ${color};">${initials}</div>
+          <span class="contactLink" onclick="openContactOverlayFromTaskDetail('${contact.id}')">${contact.name}</span>
+        </div>
+      `;
+    });
+  }
 
   return `
     <div class="overlay" id="taskOverlay">
@@ -96,10 +109,7 @@ function getTaskDetailOverlay(task) {
           <span class="detailLabel">Assigned To:</span>
         </div>
         <div class="assignedUsers">
-          <div class="assignedUser">
-            <div class="userAvatar" style="background-color: ${assignedPersonColor};">${assignedPersonInitials}</div>
-            <span>${assignedPersonName}</span>
-          </div>
+          ${assignedUsersHtml}
         </div>
         <div class="subtasksSection">
           <h3 class="subtasksTitle">Subtasks</h3>
@@ -193,7 +203,7 @@ function getEmptyStateTemplate(status) {
  */
 function getTaskCardTemplate(task) {
   const priority = (task.taskPriority || "medium").toLowerCase();
-  const assignedPersonName = task.assignedToName || "";
+  const assigneesHtml = renderTaskCardAssignees(task.assignedContacts || []);
   const categoryLabel = getCategoryLabel(task.Category);
   const categoryClass = getCategoryClass(task.Category);
   const subtasks = task.subtasks || [];
@@ -227,7 +237,7 @@ function getTaskCardTemplate(task) {
         }
         <div class="taskFooterBottom">
           <div class="taskAssignees">
-            ${renderSingleAssignee(assignedPersonName)}
+            ${assigneesHtml}
           </div>
           <img src="../assets/icons/shared/${priority}.svg" alt="${priority}">
         </div>
@@ -266,16 +276,30 @@ function getCategoryClass(category) {
 }
 
 /**
- * Generates HTML for a single assignee avatar based on their name
- * @param {string} assignedToName - Name of the assignee
- * @returns {string} HTML snippet for the assignee avatar
+ * Renders avatars for all assigned contacts in task cards
+ * @param {Array} assignedContacts - Array of contact objects
+ * @returns {string} HTML for all contact avatars in task cards
  */
-function renderSingleAssignee(assignedToName) {
-  if (!assignedToName) return "";
-  const initials = getInitials(assignedToName);
-  const color = getAvatarColor(assignedToName);
-  if (!initials || initials === "") {
-    return `<span class="assignee" style="background-color: #FF8A00;">?</span>`;
+function renderTaskCardAssignees(assignedContacts) {
+  if (!assignedContacts || assignedContacts.length === 0) {
+    return '<div class="noAssignee" title="Not assigned">NA</div>';
   }
-  return `<span class="assignee" style="background-color: ${color}">${initials}</span>`;
+  let avatarsHtml = "";
+  const visibleContacts = assignedContacts.slice(0, 3);
+  const remainingCount = assignedContacts.length - 3;
+  visibleContacts.forEach((contact) => {
+    const initials = getInitials(contact.name);
+    const color = getAvatarColor(contact.name);
+    avatarsHtml += `
+      <div class="assignee" style="background-color: ${color};" title="${contact.name}">
+        ${initials}
+      </div>
+    `;
+  });
+
+  if (remainingCount > 0) {
+    avatarsHtml += `<div class="assignee"title="${remainingCount} more contacts">+${remainingCount}</div>`;
+  }
+
+  return avatarsHtml;
 }

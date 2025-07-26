@@ -389,7 +389,7 @@ function getFormData() {
     description: document.getElementById("taskDescription")?.value || "",
     dueDate: document.getElementById("taskDueDate")?.value || "",
     taskPriority: selectedPriority,
-    assignedTo: selectedContacts[0] || "",
+    assignedTo: selectedContacts,
     Category: mapCategoryToFirebase(categoryValue),
     Status: "toDo",
     subtasks: currentSubtasks,

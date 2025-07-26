@@ -23,7 +23,9 @@ async function initializeBoard() {
   const tasks = await fetchTaskByUser();
   for (let i = 0; i < tasks.length; i++) {
     if (tasks[i].assignedTo) {
-      tasks[i].assignedToName = await getContactNameById(tasks[i].assignedTo);
+      tasks[i].assignedContacts = await getAllContactsFromAssigned(
+        tasks[i].assignedTo
+      );
     }
   }
   const boardContainer = document.getElementById("boardContainer");
@@ -37,9 +39,9 @@ async function initializeBoard() {
 async function showTaskDetail(taskId) {
   const tasks = await fetchTaskByUser();
   const task = tasks.find((t) => t.id === taskId);
-  task.assignedToName = await getContactNameById(task.assignedTo);
+  task.assignedContacts = await getAllContactsFromAssigned(task.assignedTo);
   const overlay = document.getElementById("taskOverlay");
-  overlay.innerHTML = getTaskDetailOverlay(task);
+  overlay.innerHTML = await getTaskDetailOverlay(task);
   overlay.classList.remove("hidden");
   overlay.style.display = "flex";
 }
@@ -61,7 +63,9 @@ async function refreshBoard() {
   const tasks = await fetchTaskByUser();
   for (let i = 0; i < tasks.length; i++) {
     if (tasks[i].assignedTo) {
-      tasks[i].assignedToName = await getContactNameById(tasks[i].assignedTo);
+      tasks[i].assignedContacts = await getAllContactsFromAssigned(
+        tasks[i].assignedTo
+      );
     }
   }
   const boardContainer = document.getElementById("boardContainer");
@@ -117,6 +121,27 @@ async function getContactNameById(contactId) {
 }
 
 /**
+ * Opens contact details when clicking on a contact name in task detail.
+ * Saves the contactId for the floating overlay in sessionStorage,
+ * then redirects to the contacts page.
+ * @param {string} contactId - ID of the contact to show.
+ */
+async function openContactOverlayFromTaskDetail(contactId) {
+  try {
+    const contact = await fetchContactByIdAndUser(contactId);
+    sessionStorage.setItem(
+      "contactIdForOverlay",
+      contact ? contact.id : contactId
+    );
+    window.location.href = `contacts.html?contactId=${
+      contact ? contact.id : contactId
+    }`;
+  } catch (error) {
+    sessionStorage.setItem("contactIdForOverlay", contactId);
+    window.location.href = `contacts.html?contactId=${contactId}`;
+  }
+}
+/**
  * Initiates edit mode for a task by loading data and showing edit overlay
  * @param {string} taskId - The ID of the task to edit
  */
@@ -131,13 +156,13 @@ async function editTask(taskId) {
 /**
  * Loads task data for editing
  * @param {string} taskId - The ID of the task to load
- * @returns {Promise<Object|null>} The task object with contact name or null if not found
+ * @returns {Promise<Object|null>} The task object with contact data or null if not found
  */
 async function loadTaskForEdit(taskId) {
   const tasks = await fetchTaskByUser();
   const task = tasks.find((t) => t.id === taskId);
   if (task) {
-    task.assignedToName = await getContactNameById(task.assignedTo);
+    task.assignedContacts = await getAllContactsFromAssigned(task.assignedTo);
   }
   return task;
 }
@@ -247,15 +272,14 @@ function getSelectedCategory() {
 }
 
 /**
- * Retrieves the currently selected assignee from the edit form
- * @returns {string} Contact ID of assignee
+ * Retrieves the currently selected assignees from the edit form
+ * @returns {Array} Array of contact IDs of assignees
  */
 function getSelectedAssignedTo() {
   return typeof getSelectedContactIds === "function"
-    ? getSelectedContactIds()[0]
-    : "";
+    ? getSelectedContactIds() // Gibt das komplette Array zurück
+    : [];
 }
-
 /**
  * Sends updated task object to Firebase
  * @param {string} taskId - The ID of the task

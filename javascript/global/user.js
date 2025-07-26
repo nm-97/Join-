@@ -96,6 +96,8 @@ function getInitials(name) {
  * @returns {string} Hexadecimal color code
  */
 function getAvatarColor(name) {
+  if (!name || typeof name !== "string") return "#6B7280";
+
   const colors = [
     "#FF5EB3",
     "#6E52FF",
@@ -110,6 +112,18 @@ function getAvatarColor(name) {
     "#FFE62B",
     "#FF4646",
     "#FFBB2B",
+    "#8B5CF6",
+    "#10B981",
+    "#F97316",
+    "#EF4444",
+    "#3B82F6",
+    "#84CC16",
+    "#F59E0B",
   ];
-  return colors[name.charCodeAt(0) % colors.length];
+
+  const firstChar = name.charCodeAt(0);
+  const lastChar = name.charCodeAt(name.length - 1);
+  const nameLength = name.length;
+  const colorIndex = (firstChar + lastChar + nameLength) % colors.length;
+  return colors[colorIndex];
 }

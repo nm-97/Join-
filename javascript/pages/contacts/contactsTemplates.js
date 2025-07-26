@@ -30,7 +30,7 @@ function getContactWithSeparator(contact, showSeparator = false) {
  * @returns {string} HTML string for the contact item
  */
 function getContactTemplate(contact) {
-  const initials = contact.name.charAt(0).toUpperCase();
+  const initials = getInitials(contact.name);
   const color = getAvatarColor(contact.name);
 
   return `<div class="contactItem" onclick="showFloatingContact('${contact.id}'); selectContactItem('${contact.id}');" id="${contact.id}" data-id="${contact.id}">
@@ -140,7 +140,7 @@ function getEditContactOverlay(contact) {
  * @returns {string} HTML string for the floating contact content
  */
 function getFloatingContact(contact) {
-  const initials = contact.name.charAt(0).toUpperCase();
+  const initials = getInitials(contact.name);
   const color = getAvatarColor(contact.name);
 
   return `<div class="floatingContactMainContent">

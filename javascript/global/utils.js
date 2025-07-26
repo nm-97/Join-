@@ -100,3 +100,39 @@ function updateCounter(elementId, value) {
     element.textContent = value;
   }
 }
+
+// Ersetze die getAllContactsFromAssigned Funktion (ab Zeile ~105):
+
+/**
+ * Handles assignedTo array and returns all contact objects
+ * @param {Array|string|null} assignedTo - The assignedTo field (array, string, or null)
+ * @returns {Promise<Array>} Promise resolving to array of contact objects
+ */
+async function getAllContactsFromAssigned(assignedTo) {
+  if (!assignedTo) return [];
+  const contactIds = Array.isArray(assignedTo) ? assignedTo : [assignedTo];
+  const contacts = [];
+  
+  for (const contactId of contactIds) {
+    try {
+      const contact = await fetchContactByIdAndUser(contactId);
+      if (contact) {
+        contacts.push(contact);
+      }
+    } catch (error) {
+      console.warn(`Contact with ID ${contactId} not found:`, error);
+    }
+  }
+  
+  return contacts;
+}
+
+/**
+ * Gets all contact names from assignedTo array
+ * @param {Array|string|null} assignedTo - The assignedTo field
+ * @returns {Array} Array of contact names
+ */
+function getAllContactNamesFromAssigned(assignedTo) {
+  const contacts = getAllContactsFromAssigned(assignedTo);
+  return contacts.map((contact) => contact.name);
+}

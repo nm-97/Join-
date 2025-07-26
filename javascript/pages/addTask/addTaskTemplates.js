@@ -129,9 +129,22 @@ function getAddTaskOverlay(params = {}) {
 }
 
 function getEditTaskOverlay(task) {
-  const assignedPersonInitials = getInitials(task.assignedTo || "");
-  const assignedPersonColor = getAvatarColor(task.assignedTo || "");
-
+  const assignedContacts = task.assignedContacts || [];
+  let assignedInfoHtml = "";
+  if (assignedContacts.length === 0) {
+    assignedInfoHtml = '<div class="assignedInfo">Not assigned</div>';
+  } else {
+    assignedContacts.forEach((contact) => {
+      const initials = getInitials(contact.name);
+      const color = getAvatarColor(contact.name);
+      assignedInfoHtml += `
+        <div class="assignedInfo">
+          <div class="userAvatar" style="background-color: ${color};">${initials}</div>
+          <span>${contact.name}</span>
+        </div>
+      `;
+    });
+  }
   return `
     <div class="overlay">
       <div class="taskDetailModal">
