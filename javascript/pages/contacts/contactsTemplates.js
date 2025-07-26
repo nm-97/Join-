@@ -89,6 +89,11 @@ function getAddContactOverlay() {
                     </div>`;
 }
 
+/**
+ * Generates HTML for the Edit Contact overlay modal
+ * @param {Object} contact - The contact object to render in the edit form
+ * @returns {string} HTML string for the edit contact overlay
+ */
 function getEditContactOverlay(contact) {
   return `<div class="editContactModal">
                     <div class="editContactModalLeft">
@@ -129,6 +134,11 @@ function getEditContactOverlay(contact) {
                 </div>`;
 }
 
+/**
+ * Generates HTML for the floating contact detail overlay
+ * @param {Object} contact - The contact object with details to display
+ * @returns {string} HTML string for the floating contact content
+ */
 function getFloatingContact(contact) {
   const initials = contact.name.charAt(0).toUpperCase();
   const color = getAvatarColor(contact.name);
@@ -166,6 +176,12 @@ function getFloatingContact(contact) {
   </div>`;
 }
 
+/**
+ * Generates HTML template for a temporary success notification
+ * @param {Object} params - Parameters object for the message
+ * @param {string} params.message - The success message to display
+ * @returns {string} HTML string for the success notification element
+ */
 function getSuccessContactMessageTemplate(params = {}) {
   const message = params.message || "Contact successfully created";
   return `

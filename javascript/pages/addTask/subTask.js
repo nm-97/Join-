@@ -89,11 +89,19 @@ function setupContainerButtonClickEvents(container) {
   });
 }
 
+/**
+ * Handles the delete button click for a subtask
+ * @param {Event} e - The click event
+ */
 function handleDeleteButtonClick(e) {
   const index = e.target.closest(".subtaskItem").dataset.index;
   deleteSubtask(parseInt(index));
 }
 
+/**
+ * Handles the check button click for a subtask to save edits
+ * @param {Event} e - The click event
+ */
 function handleCheckButtonClick(e) {
   const subtaskItem = e.target.closest(".subtaskItem");
   const subtaskText = subtaskItem.querySelector(".subtaskText");
@@ -103,6 +111,10 @@ function handleCheckButtonClick(e) {
   hideSubtaskBtn();
 }
 
+/**
+ * Shows or hides the subtask action buttons
+ * @param {boolean} params - Whether to show the buttons
+ */
 function showSubTaskBtn(params) {
   const editableDiv = document.getElementById("editableDiv");
   if (!editableDiv) {
@@ -114,6 +126,10 @@ function showSubTaskBtn(params) {
   }
 }
 
+/**
+ * Adds a new subtask to the current task
+ * Creates a subtask object and adds it to the global currentSubtasks array
+ */
 function addSubtaskToTask() {
   const subtaskInput = document.getElementById("taskSubtask");
   if (!subtaskInput || !subtaskInput.value.trim()) {
@@ -132,6 +148,10 @@ function addSubtaskToTask() {
   renderSubtasks(window.currentSubtasks);
 }
 
+/**
+ * Deletes a subtask at the specified index
+ * @param {number} index - The index of the subtask to delete
+ */
 function deleteSubtask(index) {
   if (typeof window.currentSubtasks !== "undefined") {
     window.currentSubtasks.splice(index, 1);
@@ -139,6 +159,11 @@ function deleteSubtask(index) {
   }
 }
 
+/**
+ * Edits the text of a subtask at the specified index
+ * @param {number} index - The index of the subtask to edit
+ * @param {string} newText - The new text for the subtask
+ */
 function editSubtaskText(index, newText) {
   if (
     typeof window.currentSubtasks !== "undefined" &&
@@ -148,6 +173,10 @@ function editSubtaskText(index, newText) {
   }
 }
 
+/**
+ * Renders the subtasks list in the DOM
+ * @param {Array} subtasks - Array of subtask objects to render
+ */
 function renderSubtasks(subtasks = []) {
   const subtaskData = selectSubtask(subtasks);
   const editableDiv = document.getElementById("editableDiv");
@@ -156,6 +185,9 @@ function renderSubtasks(subtasks = []) {
   }
 }
 
+/**
+ * Shows or hides subtask action buttons based on editing state
+ */
 function hideSubtaskBtn() {
   const subtaskActionsContainers = document.querySelectorAll(".subtaskActions");
   const editableDiv = document.getElementById("editableDiv");

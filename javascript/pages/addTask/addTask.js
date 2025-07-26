@@ -83,6 +83,10 @@ function clearPrioritySelection() {
   resetButtonStyles(buttons);
 }
 
+/**
+ * Retrieves priority button elements from the DOM
+ * @returns {Object} Object containing urgent, medium, and low buttons
+ */
 function getPriorityButtons() {
   return {
     urgent: document.getElementById("urgentBtn"),
@@ -91,6 +95,10 @@ function getPriorityButtons() {
   };
 }
 
+/**
+ * Removes all selected priority CSS classes from priority buttons
+ * @param {Object} buttons - Priority button elements
+ */
 function removeAllPriorityClasses(buttons) {
   const classesToRemove = [
     "taskPriorityBtnUrgentSelected",
@@ -106,6 +114,10 @@ function removeAllPriorityClasses(buttons) {
   });
 }
 
+/**
+ * Resets inline styles for priority buttons
+ * @param {Object} buttons - Priority button elements
+ */
 function resetButtonStyles(buttons) {
   Object.values(buttons).forEach((btn) => {
     if (btn) {
@@ -115,6 +127,11 @@ function resetButtonStyles(buttons) {
   });
 }
 
+/**
+ * Determines the CSS class to apply based on selected priority
+ * @param {string} priority - Selected priority ('Urgent', 'Medium', 'Low')
+ * @returns {string} CSS class name for the priority button
+ */
 function changeColorBasedOnPriority(priority) {
   const classes = {
     Urgent: "taskPriorityBtnUrgentSelected",
@@ -124,6 +141,9 @@ function changeColorBasedOnPriority(priority) {
   return classes[priority] || "";
 }
 
+/**
+ * Sets the default priority selection to Medium on page load
+ */
 function setDefaultPriority() {
   const mediumBtn = document.getElementById("mediumBtn");
   if (mediumBtn) {
@@ -131,6 +151,9 @@ function setDefaultPriority() {
   }
 }
 
+/**
+ * Sets up click handlers for the create and clear buttons
+ */
 function setupFormSubmission() {
   const createButton = document.getElementById("createTaskBtn");
   const clearButton = document.getElementById("clearTaskBtn");
@@ -147,6 +170,9 @@ function setupFormSubmission() {
   };
 }
 
+/**
+ * Loads predefined task categories and initializes category dropdown
+ */
 function loadCategories() {
   const categories = [
     { value: "User Story", label: "User Story" },
@@ -156,6 +182,10 @@ function loadCategories() {
   setupCategoryDropdown(categories);
 }
 
+/**
+ * Initializes the category dropdown logic with provided categories
+ * @param {Array} categories - List of category objects with value and label
+ */
 function setupCategoryDropdown(categories) {
   const dropdownElements = getCategoryDropdownElements();
   if (!validateCategoryDropdownElements(dropdownElements)) return;
@@ -164,6 +194,10 @@ function setupCategoryDropdown(categories) {
   attachCategoryDropdownEvents(dropdownElements);
 }
 
+/**
+ * Retrieves DOM elements related to the category dropdown
+ * @returns {Object} Elements for the custom category dropdown
+ */
 function getCategoryDropdownElements() {
   return {
     categoryDropdown: document.getElementById("customCategoryDropdown"),
@@ -174,6 +208,11 @@ function getCategoryDropdownElements() {
   };
 }
 
+/**
+ * Verifies that all necessary category dropdown elements exist
+ * @param {Object} elements - Category dropdown DOM elements
+ * @returns {boolean} True if elements are valid, false otherwise
+ */
 function validateCategoryDropdownElements(elements) {
   return (
     elements.categoryDropdown &&
@@ -184,6 +223,11 @@ function validateCategoryDropdownElements(elements) {
   );
 }
 
+/**
+ * Populates the category dropdown list with category items
+ * @param {Array} categories - List of category objects
+ * @param {HTMLElement} categoryList - Container element for categories
+ */
 function populateCategoryList(categories, categoryList) {
   categoryList.innerHTML = "";
   categories.forEach((category) => {
@@ -192,6 +236,11 @@ function populateCategoryList(categories, categoryList) {
   });
 }
 
+/**
+ * Creates a DOM element for a single category item
+ * @param {Object} category - Category with value and label
+ * @returns {HTMLElement} Category item element
+ */
 function createCategoryItem(category) {
   const categoryItem = document.createElement("div");
   categoryItem.className = "contactItem";
@@ -204,6 +253,10 @@ function createCategoryItem(category) {
   return categoryItem;
 }
 
+/**
+ * Attaches click and toggle events for the category dropdown
+ * @param {Object} elements - Category dropdown DOM elements
+ */
 function attachCategoryDropdownEvents(elements) {
   elements.categoryArrow.onclick = () => toggleCategoryDropdown();
   elements.categoryInput.onclick = () => toggleCategoryDropdown();
@@ -214,6 +267,9 @@ function attachCategoryDropdownEvents(elements) {
   };
 }
 
+/**
+ * Toggles the visibility of the category dropdown list
+ */
 function toggleCategoryDropdown() {
   const categoryContent = document.getElementById("categoryDropdownContent");
   const categoryArrow = document.getElementById("categoryDropdownArrow");
@@ -226,6 +282,9 @@ function toggleCategoryDropdown() {
   }
 }
 
+/**
+ * Opens the category dropdown list
+ */
 function openCategoryDropdown() {
   const categoryContent = document.getElementById("categoryDropdownContent");
   const categoryArrow = document.getElementById("categoryDropdownArrow");
@@ -233,6 +292,9 @@ function openCategoryDropdown() {
   if (categoryArrow) categoryArrow.style.transform = "rotate(180deg)";
 }
 
+/**
+ * Closes the category dropdown list
+ */
 function closeCategoryDropdown() {
   const categoryContent = document.getElementById("categoryDropdownContent");
   const categoryArrow = document.getElementById("categoryDropdownArrow");
@@ -240,6 +302,11 @@ function closeCategoryDropdown() {
   if (categoryArrow) categoryArrow.style.transform = "rotate(0deg)";
 }
 
+/**
+ * Handles selecting a category from the dropdown
+ * @param {string} value - The category value
+ * @param {string} label - The category label
+ */
 function selectCategory(value, label) {
   selectedCategory = value;
   const categoryInput = document.getElementById("categoryDropdownInput");
@@ -252,6 +319,9 @@ function selectCategory(value, label) {
   }
 }
 
+/**
+ * Clears the selected category back to the default state
+ */
 function clearCategorySelection() {
   selectedCategory = "";
   const categoryInput = document.getElementById("categoryDropdownInput");
@@ -261,6 +331,9 @@ function clearCategorySelection() {
   }
 }
 
+/**
+ * Populates the assignee select element with contacts from Firebase
+ */
 function loadContactsForSelect() {
   try {
     const contacts = fetchContactsByIdAndUser();
@@ -278,6 +351,9 @@ function loadContactsForSelect() {
   } catch (error) {}
 }
 
+/**
+ * Validates form data and creates a new task in Firebase
+ */
 function createTask() {
   const isValid = validateAddTaskForm();
   if (!isValid) {
@@ -297,6 +373,10 @@ function createTask() {
   } catch (error) {}
 }
 
+/**
+ * Collects and returns the current form data as an object
+ * @returns {Object} Task data object
+ */
 function getFormData() {
   const selectedContacts =
     typeof getSelectedContactIds === "function" ? getSelectedContactIds() : [];
@@ -317,6 +397,11 @@ function getFormData() {
   return formData;
 }
 
+/**
+ * Maps UI category value to Firebase category string
+ * @param {string} category - UI category value
+ * @returns {string} Firebase category string
+ */
 function mapCategoryToFirebase(category) {
   const categoryMap = {
     "User Story": "User Story",
@@ -325,6 +410,9 @@ function mapCategoryToFirebase(category) {
   return categoryMap[category] || "Technical Task";
 }
 
+/**
+ * Shows a temporary success notification for task creation
+ */
 function showTaskCreatedNotification() {
   const overlay = document.createElement("div");
   overlay.id = "successMessageOverlay";
@@ -336,6 +424,9 @@ function showTaskCreatedNotification() {
   }, 2000);
 }
 
+/**
+ * Clears all input fields and resets state for the Add Task form
+ */
 function clearForm() {
   document.getElementById("taskTitle").value = "";
   document.getElementById("taskDescription").value = "";
@@ -355,6 +446,9 @@ function clearForm() {
   }
 }
 
+/**
+ * Opens the Add Task overlay for creating a new task
+ */
 function showAddTaskOverlay() {
   const overlay = document.getElementById("addTaskOverlay");
   if (overlay) {
@@ -364,6 +458,9 @@ function showAddTaskOverlay() {
   }
 }
 
+/**
+ * Closes the Add Task overlay and clears its contents
+ */
 function closeAddTaskOverlay() {
   const overlay = document.getElementById("addTaskOverlay");
   if (overlay) {
@@ -372,6 +469,9 @@ function closeAddTaskOverlay() {
   }
 }
 
+/**
+ * Initializes the Add Task overlay UI components and state
+ */
 function initializeOverlayAddTask() {
   setupPriorityButtons();
   setupOverlayFormSubmission();
@@ -390,6 +490,9 @@ function initializeOverlayAddTask() {
   setDefaultPriority();
 }
 
+/**
+ * Sets up form submission logic specifically for the overlay
+ */
 function setupOverlayFormSubmission() {
   const createButton = document.getElementById("createTaskBtn");
   const clearButton = document.getElementById("clearTaskBtn");
@@ -397,6 +500,9 @@ function setupOverlayFormSubmission() {
   if (clearButton) clearButton.onclick = clearForm;
 }
 
+/**
+ * Validates and creates a task from the overlay, then refreshes the board
+ */
 async function createOverlayTask() {
   if (!validateAddTaskForm()) return;
   const taskData = getFormData();
@@ -410,6 +516,10 @@ async function createOverlayTask() {
   } catch (error) {}
 }
 
+/**
+ * Opens the Add Task overlay with a pre-selected status
+ * @param {string} status - The task status to preselect
+ */
 function addTaskToColumn(status) {
   selectedCategory = status;
   showAddTaskOverlay();

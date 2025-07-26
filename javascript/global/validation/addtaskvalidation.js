@@ -79,6 +79,11 @@ function validateTitle(titleInput) {
   return true;
 }
 
+/**
+ * Validates the due date input including required, format, and date constraints
+ * @param {HTMLElement} dueDateInput - The due date input element to validate
+ * @returns {boolean} True if due date is valid, false otherwise
+ */
 function validateDueDate(dueDateInput) {
   if (!dueDateInput || !validateRequired(dueDateInput.value)) {
     showError("taskDueDate", "This field is required");
@@ -95,6 +100,10 @@ function validateDueDate(dueDateInput) {
   return true;
 }
 
+/**
+ * Validates the task category selection
+ * @returns {boolean} True if a category is selected, false otherwise
+ */
 function validateCategory() {
   // Use the customdropdown.js system which is more reliable
   const categoryValue =
@@ -110,6 +119,10 @@ function validateCategory() {
   return true;
 }
 
+/**
+ * Validates the assignee selection using custom dropdown or select element
+ * @returns {boolean} True if assignee is selected, false otherwise
+ */
 function validateAssignee() {
   if (typeof getSelectedContactIds !== "function") {
     const assigneeSelect = document.getElementById("taskAssignee");
@@ -134,6 +147,10 @@ function validateAssignee() {
   return true;
 }
 
+/**
+ * Displays an error message for the custom contacts dropdown
+ * @param {string} message - The error message to show
+ */
 function showCustomDropdownError(message) {
   const customDropdownContainer = document.querySelector(
     ".customDropdownContainer"
@@ -152,6 +169,9 @@ function showCustomDropdownError(message) {
   }
 }
 
+/**
+ * Clears the error message for the custom contacts dropdown
+ */
 function clearCustomDropdownError() {
   const customDropdownContainer = document.querySelector(
     ".customDropdownContainer"
@@ -170,6 +190,10 @@ function clearCustomDropdownError() {
   }
 }
 
+/**
+ * Displays an error message for the category dropdown
+ * @param {string} message - The error message to show
+ */
 function showCategoryError(message) {
   const categoryDropdown = document.getElementById("customCategoryDropdown");
   if (!categoryDropdown) return;
@@ -186,6 +210,9 @@ function showCategoryError(message) {
   }
 }
 
+/**
+ * Clears the error message for the category dropdown
+ */
 function clearCategoryError() {
   const categoryDropdown = document.getElementById("customCategoryDropdown");
   if (!categoryDropdown) return;
@@ -202,6 +229,10 @@ function clearCategoryError() {
   }
 }
 
+/**
+ * Validates that a priority has been selected
+ * @returns {boolean} True if priority is selected, false otherwise
+ */
 function validatePriority() {
   if (!selectedPriority || selectedPriority === "") {
     showPriorityError("This field is required");
@@ -210,6 +241,11 @@ function validatePriority() {
   return true;
 }
 
+/**
+ * Checks if a date string matches DD/MM/YYYY format
+ * @param {string} dateString - The date string to check
+ * @returns {boolean} True if format is valid, false otherwise
+ */
 function validateDateFormat(dateString) {
   if (dateString.length !== 10) return false;
   if (dateString[2] !== "/" || dateString[5] !== "/") return false;
@@ -225,6 +261,11 @@ function validateDateFormat(dateString) {
   return true;
 }
 
+/**
+ * Checks if the given date string represents today or a future date
+ * @param {string} dateString - The date string to validate
+ * @returns {boolean} True if date is today or in the future, false otherwise
+ */
 function validateTodayOrFutureDate(dateString) {
   if (!validateDateFormat(dateString)) return false;
 
@@ -239,10 +280,19 @@ function validateTodayOrFutureDate(dateString) {
   return inputDate >= today;
 }
 
+/**
+ * Alias for validateTodayOrFutureDate to ensure due date is not in the past
+ * @param {string} dateString - The date string to validate
+ * @returns {boolean} True if date is valid, false otherwise
+ */
 function validateFutureDate(dateString) {
   return validateTodayOrFutureDate(dateString);
 }
 
+/**
+ * Displays an error message for the priority group
+ * @param {string} message - The error message to show
+ */
 function showPriorityError(message) {
   const priorityGroup = document.querySelector(".taskPriorityGroup");
   if (!priorityGroup) return;
@@ -256,6 +306,9 @@ function showPriorityError(message) {
   }
 }
 
+/**
+ * Clears the error message for the priority group
+ */
 function clearPriorityError() {
   const priorityGroup = document.querySelector(".taskPriorityGroup");
   if (!priorityGroup) return;
@@ -267,6 +320,9 @@ function clearPriorityError() {
   }
 }
 
+/**
+ * Clears all validation error messages for the Add Task form
+ */
 function clearAllTaskErrors() {
   clearError("taskTitle");
   clearError("taskDueDate");
@@ -275,6 +331,10 @@ function clearAllTaskErrors() {
   clearPriorityError();
 }
 
+/**
+ * Collects and formats form data for Firebase submission
+ * @returns {Object} Task data object ready for Firebase
+ */
 function getFormDataForFirebase() {
   const dueDateInput = document.getElementById("taskDueDate");
   const formattedDueDate = convertDateFormat(dueDateInput);
@@ -282,6 +342,11 @@ function getFormDataForFirebase() {
   return createTaskDataObject(formattedDueDate);
 }
 
+/**
+ * Converts input date from DD/MM/YYYY to YYYY-MM-DD
+ * @param {HTMLElement} dueDateInput - The date input element
+ * @returns {string} Date string in YYYY-MM-DD format or empty string
+ */
 function convertDateFormat(dueDateInput) {
   if (!dueDateInput || !dueDateInput.value) return "";
 
@@ -296,6 +361,11 @@ function convertDateFormat(dueDateInput) {
   return "";
 }
 
+/**
+ * Creates a task data object from form inputs
+ * @param {string} formattedDueDate - Due date in YYYY-MM-DD format
+ * @returns {Object} New task data object
+ */
 function createTaskDataObject(formattedDueDate) {
   const categoryValue =
     typeof getSelectedCategoryName === "function"
@@ -313,6 +383,11 @@ function createTaskDataObject(formattedDueDate) {
   };
 }
 
+/**
+ * Maps the selected category name to Firebase category value
+ * @param {string} category - The selected category name
+ * @returns {string} Firebase-compatible category name
+ */
 function mapCategoryToFirebase(category) {
   const categoryMap = {
     "User Story": "User Story",
@@ -321,6 +396,9 @@ function mapCategoryToFirebase(category) {
   return categoryMap[category] || "Technical Task";
 }
 
+/**
+ * Resets the Add Task form inputs and validation states
+ */
 function clearFormWithValidation() {
   clearAllFormInputs();
   resetPriorityToDefault();
@@ -328,6 +406,9 @@ function clearFormWithValidation() {
   clearAllTaskErrors();
 }
 
+/**
+ * Clears all input fields in the Add Task form
+ */
 function clearAllFormInputs() {
   document.getElementById("taskTitle").value = "";
   document.getElementById("taskDescription").value = "";
@@ -341,6 +422,9 @@ function clearAllFormInputs() {
   if (subtaskInput) subtaskInput.value = "";
 }
 
+/**
+ * Resets the selected priority to its default value
+ */
 function resetPriorityToDefault() {
   if (typeof clearPrioritySelection === "function") {
     clearPrioritySelection();
@@ -348,6 +432,9 @@ function resetPriorityToDefault() {
   selectedPriority = "Medium";
 }
 
+/**
+ * Resets the selected category to its default state
+ */
 function resetCategoryToDefault() {
   selectedCategory = "";
   const categoryInput = document.getElementById("categoryDropdownInput");
@@ -357,6 +444,9 @@ function resetCategoryToDefault() {
   }
 }
 
+/**
+ * Clears the Add Task form completely
+ */
 function clearForm() {
   clearFormWithValidation();
 }

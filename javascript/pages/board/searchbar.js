@@ -23,6 +23,7 @@ function handleSearchInput() {
 /**
  * Filters tasks based on search input value
  * @param {string} searchValue - The search term to filter tasks by
+ * @returns {Promise<void>} Resolves after tasks are filtered
  */
 async function filterTaskbySearchInput(searchValue) {
   const tasks = await fetchTaskByUser();
@@ -95,6 +96,9 @@ function showHighlightTask(taskId) {
   }
 }
 
+/**
+ * Shows all tasks by removing hidden and highlight classes
+ */
 function showAllTasks() {
   const allTasks = document.querySelectorAll("[data-task-id]");
   allTasks.forEach((taskElement) => {
@@ -102,10 +106,18 @@ function showAllTasks() {
   });
 }
 
+/**
+ * Gets the DOM element for a given task ID
+ * @param {string} taskId - The ID of the task
+ * @returns {Element|null} The task element or null if not found
+ */
 function getTaskElement(taskId) {
   return document.querySelector(`[data-task-id="${taskId}"]`);
 }
 
+/**
+ * Initializes search input event listener on DOMContentLoaded
+ */
 function initializeSearch() {
   const searchInput = document.getElementById("searchInput");
   if (searchInput) {

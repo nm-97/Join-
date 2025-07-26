@@ -32,6 +32,7 @@ function rendersummaryMainContent() {
 
 /**
  * Loads all summary data simultaneously and updates the dashboard
+ * @returns {Promise<void>} Resolves when data is loaded and UI is updated
  */
 async function loadAllDataSimultaneously() {
   try {
@@ -71,6 +72,11 @@ function countEveryTaskLength(allTasks) {
   };
 }
 
+/**
+ * Updates all dashboard counters based on task counts and next deadline
+ * @param {Object} taskCounts - Object containing task counts for each category
+ * @param {string|number} nextDeadline - The next upcoming task deadline display value
+ */
 function updateAllCounters(taskCounts, nextDeadline) {
   updateCounter("todoCounter", taskCounts.todoCount);
   updateCounter("doneCounter", taskCounts.doneCount);
@@ -81,6 +87,9 @@ function updateAllCounters(taskCounts, nextDeadline) {
   updateCounter("dueDateCounter", nextDeadline);
 }
 
+/**
+ * Loads and displays user-specific information (time and name) on the summary page
+ */
 function loadUserInfo() {
   showLocalTimeFormUser();
   getUserName();

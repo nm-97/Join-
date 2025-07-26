@@ -45,6 +45,9 @@ function isValidLoginData(email, password) {
   return true;
 }
 
+/**
+ * Clears error indicators and hides error message in login form
+ */
 function clearLoginErrors() {
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
@@ -55,6 +58,10 @@ function clearLoginErrors() {
   errorMessage.classList.add("hide");
 }
 
+/**
+ * Shows login form error message and styles inputs
+ * @param {string} message - The error message to display
+ */
 function showLoginError(message) {
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
@@ -68,6 +75,10 @@ function showLoginError(message) {
   enableAllButtons();
 }
 
+/**
+ * Handles user login submission and authentication flow
+ * @param {Event} event - The form submission event
+ */
 async function loginUser(event) {
   event.preventDefault();
   disableAllButtons();
@@ -87,6 +98,11 @@ async function loginUser(event) {
   enableAllButtons();
 }
 
+/**
+ * Deletes a contact from Firebase (utility function)
+ * @param {string} contactId - The ID of the contact to delete
+ * @returns {Promise<boolean>} True if deletion was successful
+ */
 async function deleteContactFromFirebase(contactId) {
   const currentUser = getCurrentUser();
   const path =
@@ -100,6 +116,9 @@ document.addEventListener("DOMContentLoaded", function () {
   initAllPasswordToggles();
 });
 
+/**
+ * Disables all buttons in the login and related forms
+ */
 function disableAllButtons() {
   const loginButton = document.getElementById("loginButton");
   const guestLoginButton = document.getElementById("guestLoginButton");
@@ -119,6 +138,9 @@ function disableAllButtons() {
   }
 }
 
+/**
+ * Enables all buttons in the login and related forms
+ */
 function enableAllButtons() {
   const loginButton = document.getElementById("loginButton");
   const guestLoginButton = document.getElementById("guestLoginButton");

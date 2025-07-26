@@ -76,6 +76,9 @@ function addTaskToColumn(status) {
   showAddTaskOverlay();
 }
 
+/**
+ * Closes the task detail overlay
+ */
 function closeTaskOverlay() {
   const overlay = document.getElementById("taskOverlay");
   if (overlay) {
@@ -84,6 +87,9 @@ function closeTaskOverlay() {
   }
 }
 
+/**
+ * Shows the Add Task overlay for creating new tasks
+ */
 function showAddTaskOverlay() {
   const overlay = document.getElementById("addTaskOverlay");
   if (overlay) {
@@ -94,6 +100,11 @@ function showAddTaskOverlay() {
   }
 }
 
+/**
+ * Gets the contact name by ID for task assignment display
+ * @param {string} contactId - The ID of the contact
+ * @returns {Promise<string>} The contact name or "Not assigned" if not found
+ */
 async function getContactNameById(contactId) {
   if (!contactId) return "Not assigned";
   try {
@@ -105,6 +116,10 @@ async function getContactNameById(contactId) {
   }
 }
 
+/**
+ * Initiates edit mode for a task by loading data and showing edit overlay
+ * @param {string} taskId - The ID of the task to edit
+ */
 async function editTask(taskId) {
   const task = await loadTaskForEdit(taskId);
   if (task) {
@@ -113,6 +128,11 @@ async function editTask(taskId) {
   }
 }
 
+/**
+ * Loads task data for editing
+ * @param {string} taskId - The ID of the task to load
+ * @returns {Promise<Object|null>} The task object with contact name or null if not found
+ */
 async function loadTaskForEdit(taskId) {
   const tasks = await fetchTaskByUser();
   const task = tasks.find((t) => t.id === taskId);
@@ -122,6 +142,10 @@ async function loadTaskForEdit(taskId) {
   return task;
 }
 
+/**
+ * Opens the edit task overlay with task data
+ * @param {Object} task - The task object to edit
+ */
 function openEditTaskOverlay(task) {
   const overlay = document.getElementById("editTaskOverlay");
   if (overlay) {
@@ -131,6 +155,11 @@ function openEditTaskOverlay(task) {
   }
 }
 
+/**
+ * Initializes edit task functionality with proper timing for DOM elements
+ * @param {string} taskId - The ID of the task being edited
+ * @param {Object} task - The task object being edited
+ */
 function initializeEditTaskFunctionality(taskId, task) {
   setTimeout(() => {
     initializeEditTaskOverlayFunctions();
@@ -141,12 +170,19 @@ function initializeEditTaskFunctionality(taskId, task) {
   }, 100);
 }
 
+/**
+ * Initializes overlay functions specific to task editing
+ */
 function initializeEditTaskOverlayFunctions() {
   if (typeof initializeOverlayAddTask === "function") {
     initializeOverlayAddTask();
   }
 }
 
+/**
+ * Loads task data into the edit form fields
+ * @param {Object} task - Task object containing existing values
+ */
 function loadTaskDataIntoEditForm(task) {
   currentSubtasks = task.subtasks || [];
   window.currentSubtasks = currentSubtasks;
@@ -156,6 +192,10 @@ function loadTaskDataIntoEditForm(task) {
   }
 }
 
+/**
+ * Sets up the save button behavior within the edit overlay
+ * @param {string} taskId - The ID of the task being edited
+ */
 function setupEditTaskSaveButton(taskId) {
   const saveButton = document.getElementById("editSaveBtn");
   if (saveButton) {
@@ -166,6 +206,10 @@ function setupEditTaskSaveButton(taskId) {
   }
 }
 
+/**
+ * Persists edited task data to Firebase
+ * @param {string} taskId - The ID of the task to update
+ */
 async function saveEditTask(taskId) {
   try {
     const updatedTaskData = collectEditTaskFormData();
@@ -176,6 +220,10 @@ async function saveEditTask(taskId) {
   }
 }
 
+/**
+ * Collects and returns form data from the edit task overlay
+ * @returns {Object} Updated task data
+ */
 function collectEditTaskFormData() {
   return {
     title: document.getElementById("editTaskTitle")?.value || "",
@@ -188,22 +236,39 @@ function collectEditTaskFormData() {
   };
 }
 
+/**
+ * Retrieves the currently selected category from the edit form
+ * @returns {string} Category name
+ */
 function getSelectedCategory() {
   return typeof getSelectedCategoryName === "function"
     ? getSelectedCategoryName()
     : selectedCategory || "Technical Task";
 }
 
+/**
+ * Retrieves the currently selected assignee from the edit form
+ * @returns {string} Contact ID of assignee
+ */
 function getSelectedAssignedTo() {
   return typeof getSelectedContactIds === "function"
     ? getSelectedContactIds()[0]
     : "";
 }
 
+/**
+ * Sends updated task object to Firebase
+ * @param {string} taskId - The ID of the task
+ * @param {Object} taskData - The task data to save
+ */
 async function updateTaskInFirebase(taskId, taskData) {
   await updateTaskInFirebaseByUser(taskId, taskData);
 }
 
+/**
+ * Finalizes saving the edit by closing overlay and refreshing view
+ * @param {string} taskId - The ID of the task just saved
+ */
 async function finishEditTaskSave(taskId) {
   closeEditTaskOverlay();
   if (taskId) {
@@ -214,10 +279,16 @@ async function finishEditTaskSave(taskId) {
   }
 }
 
+/**
+ * Closes the edit task overlay UI
+ */
 function closeEditTaskOverlay() {
   hideEditTaskOverlay();
 }
 
+/**
+ * Hides the edit task overlay and clears its content
+ */
 function hideEditTaskOverlay() {
   const overlay = document.getElementById("editTaskOverlay");
   if (overlay) {
@@ -227,10 +298,16 @@ function hideEditTaskOverlay() {
   }
 }
 
+/**
+ * Closes the Add Task overlay
+ */
 function closeAddTaskOverlay() {
   hideAddTaskOverlay();
 }
 
+/**
+ * Hides the Add Task overlay and clears its content
+ */
 function hideAddTaskOverlay() {
   const overlay = document.getElementById("addTaskOverlay");
   if (overlay) {
@@ -240,6 +317,11 @@ function hideAddTaskOverlay() {
   }
 }
 
+/**
+ * Returns a display label for a given category value
+ * @param {string} category - The category key
+ * @returns {string} Display label for the category
+ */
 function getCategoryLabel(category) {
   const categoryMap = {
     "Technical Task": "Technical Task",
@@ -250,6 +332,11 @@ function getCategoryLabel(category) {
   return categoryMap[category] || "Technical Task";
 }
 
+/**
+ * Returns a CSS class name for a given category value
+ * @param {string} category - The category key
+ * @returns {string} CSS class identifier for the category
+ */
 function getCategoryClass(category) {
   const classMap = {
     "Technical Task": "technicalTask",
@@ -260,6 +347,11 @@ function getCategoryClass(category) {
   return classMap[category] || "technicalTask";
 }
 
+/**
+ * Renders a single user avatar for display in task cards
+ * @param {string} assignedTo - Contact ID to render avatar for
+ * @returns {string} HTML snippet for user avatar
+ */
 function renderSingleAssignee(assignedTo) {
   if (!assignedTo) return "";
   const initials = getInitials(assignedTo);
@@ -267,6 +359,11 @@ function renderSingleAssignee(assignedTo) {
   return `<span class="assignee" style="background-color: ${color}">${initials}</span>`;
 }
 
+/**
+ * Toggles completion state of a subtask within a task overlay
+ * @param {string} taskId - Parent task ID
+ * @param {string} subtaskId - Subtask ID to toggle
+ */
 async function toggleSubtask(taskId, subtaskId) {
   try {
     const task = await findAndToggleSubtask(taskId, subtaskId);
@@ -279,6 +376,12 @@ async function toggleSubtask(taskId, subtaskId) {
   }
 }
 
+/**
+ * Finds a task, toggles a subtask's completed flag, and returns updated task
+ * @param {string} taskId - Parent task ID
+ * @param {string} subtaskId - Subtask ID to find and toggle
+ * @returns {Promise<Object|null>} Updated task object or null
+ */
 async function findAndToggleSubtask(taskId, subtaskId) {
   const tasks = await fetchTaskByUser();
   const task = tasks.find((t) => t.id === taskId);

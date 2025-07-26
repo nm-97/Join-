@@ -96,6 +96,9 @@ function showAddContactOverlay() {
   }
 }
 
+/**
+ * Closes and clears the add contact overlay
+ */
 function closeAddContactOverlay() {
   const overlay = document.getElementById("addContactOverlay");
   if (overlay) {
@@ -104,6 +107,10 @@ function closeAddContactOverlay() {
   }
 }
 
+/**
+ * Displays the overlay for editing an existing contact
+ * @param {string} contactId - The ID of the contact to edit
+ */
 async function showEditContactOverlay(contactId) {
   try {
     const contact = await fetchContactByIdAndUser(contactId);
@@ -119,6 +126,9 @@ async function showEditContactOverlay(contactId) {
   }
 }
 
+/**
+ * Closes and clears the edit contact overlay
+ */
 function closeEditContactOverlay() {
   const overlay = document.getElementById("editContactOverlay");
   if (overlay) {
@@ -127,6 +137,11 @@ function closeEditContactOverlay() {
   }
 }
 
+/**
+ * Handles creation of a new contact on form submission
+ * @param {Event} event - The form submission event
+ * @returns {Promise<void>} Resolves after creating the contact and updating the UI
+ */
 async function createContact(event) {
   event.preventDefault();
   if (!validateContactForm()) return;
@@ -143,6 +158,12 @@ async function createContact(event) {
   renderContactsList(contacts);
 }
 
+/**
+ * Handles updating an existing contact on form submission
+ * @param {Event} event - The form submission event
+ * @param {string} contactId - The ID of the contact to update
+ * @returns {Promise<void>} Resolves after updating the contact and refreshing the UI
+ */
 async function updateContact(event, contactId) {
   event.preventDefault();
   const formData = new FormData(event.target);
@@ -160,6 +181,11 @@ async function updateContact(event, contactId) {
   await showFloatingContact(contactId);
 }
 
+/**
+ * Deletes a contact and its assigned tasks, then updates the UI
+ * @param {string} contactId - The ID of the contact to delete
+ * @returns {Promise<void>} Resolves after deletion operations
+ */
 async function deleteContact(contactId) {
   await deleteContactFromFirebase(contactId);
   await deleteAssignedTasks(contactId);
@@ -167,6 +193,11 @@ async function deleteContact(contactId) {
   showSuccessMessage("Contact successfully deleted");
 }
 
+/**
+ * Deletes all tasks assigned to a specific contact
+ * @param {string} contactId - The ID of the contact whose tasks will be deleted
+ * @returns {Promise<void>} Resolves after all assigned tasks are deleted
+ */
 async function deleteAssignedTasks(contactId) {
   const allTasks = await fetchTaskByUser();
   for (const task of allTasks) {
@@ -176,6 +207,10 @@ async function deleteAssignedTasks(contactId) {
   }
 }
 
+/**
+ * Updates the contacts list UI after changes (creation, update, deletion)
+ * @returns {Promise<void>} Resolves after re-rendering the contacts list
+ */
 async function updateContactsUI() {
   closeFloatingContactOverlay();
   const contacts = await fetchContactsByIdAndUser();
@@ -183,6 +218,9 @@ async function updateContactsUI() {
   renderContactsList(contacts);
 }
 
+/**
+ * Closes the floating contact detail overlay
+ */
 function closeFloatingContactOverlay() {
   const floatingContactContainer = document.getElementById(
     "floatingContactOverlay"

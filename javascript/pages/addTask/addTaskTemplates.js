@@ -224,12 +224,20 @@ function getEditTaskOverlay(task) {
     </div>`;
 }
 
+/**
+ * Generates HTML for the success notification when a task is added
+ * @returns {string} HTML string for the task added notification
+ */
 function getSuccessAddTaskMessageTemplate() {
   return `  <div class="ntfcenterS ntfmask" id="taskNotification">Task added to board
    <img src="../assets/icons/summary and sideboard/board.svg" alt="boardIcon"></img>
     </div>`;
 }
 
+/**
+ * Generates the main form HTML content for the Add Task page
+ * @returns {string} HTML string for the add task main content
+ */
 function getaddTaskMainContent() {
   return ` <form>
              <div class="formGroup">

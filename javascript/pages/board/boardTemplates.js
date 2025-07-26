@@ -52,6 +52,11 @@ function getBoardTemplate(tasks = []) {
     </div>`;
 }
 
+/**
+ * Generates HTML for the task detail overlay including title, description, and actions
+ * @param {Object} task - The task object with details
+ * @returns {string} HTML string for the task detail overlay
+ */
 function getTaskDetailOverlay(task) {
   const assignedPersonName = task.assignedToName || "Not assigned";
   const assignedPersonInitials = getInitials(assignedPersonName);
@@ -117,6 +122,12 @@ function getTaskDetailOverlay(task) {
     </div>`;
 }
 
+/**
+ * Renders the subtasks list for the detail overlay or shows a placeholder if empty
+ * @param {Array<Object>} subtasks - Array of subtask objects
+ * @param {string} taskId - ID of the parent task
+ * @returns {string} HTML string for the subtasks list
+ */
 function renderTaskDetailSubtasks(subtasks, taskId) {
   if (!subtasks || subtasks.length === 0) {
     return '<div class="noSubtasks">No subtasks available</div>';
@@ -141,6 +152,12 @@ function renderTaskDetailSubtasks(subtasks, taskId) {
   return html;
 }
 
+/**
+ * Filters tasks by status and renders them for a board column
+ * @param {Array<Object>} tasks - All task objects
+ * @param {string} status - Status key for the column
+ * @returns {string} HTML string for the column content
+ */
 function renderTasksForColumn(tasks, status) {
   const filteredTasks = tasks.filter((task) => task.Status === status);
   if (filteredTasks.length === 0) {
@@ -153,6 +170,11 @@ function renderTasksForColumn(tasks, status) {
   return html;
 }
 
+/**
+ * Returns HTML for an empty state when no tasks are present in a column
+ * @param {string} status - Column status key
+ * @returns {string} HTML string for the empty state message
+ */
 function getEmptyStateTemplate(status) {
   const statusMessages = {
     toDo: "No tasks To do",
@@ -164,6 +186,11 @@ function getEmptyStateTemplate(status) {
   return `<div class="emptyState">${statusMessages[status]}</div>`;
 }
 
+/**
+ * Generates HTML for a single task card element on the board
+ * @param {Object} task - Task object data
+ * @returns {string} HTML string for a task card
+ */
 function getTaskCardTemplate(task) {
   const priority = (task.taskPriority || "medium").toLowerCase();
   const assignedPersonName = task.assignedToName || "";
@@ -208,6 +235,11 @@ function getTaskCardTemplate(task) {
     </div>`;
 }
 
+/**
+ * Maps a category key to its display label
+ * @param {string} category - Category identifier
+ * @returns {string} Display label for the category
+ */
 function getCategoryLabel(category) {
   const categoryMap = {
     "Technical Task": "Technical Task",
@@ -218,6 +250,11 @@ function getCategoryLabel(category) {
   return categoryMap[category] || "Technical Task";
 }
 
+/**
+ * Maps a category key to its CSS class name
+ * @param {string} category - Category identifier
+ * @returns {string} CSS class for the category
+ */
 function getCategoryClass(category) {
   const classMap = {
     "Technical Task": "technicalTask",
@@ -228,6 +265,11 @@ function getCategoryClass(category) {
   return classMap[category] || "technicalTask";
 }
 
+/**
+ * Generates HTML for a single assignee avatar based on their name
+ * @param {string} assignedToName - Name of the assignee
+ * @returns {string} HTML snippet for the assignee avatar
+ */
 function renderSingleAssignee(assignedToName) {
   if (!assignedToName) return "";
   const initials = getInitials(assignedToName);

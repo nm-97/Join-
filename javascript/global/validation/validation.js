@@ -86,6 +86,10 @@ function clearError(inputId) {
   }
 }
 
+/**
+ * Clears all error messages for inputs within a form element
+ * @param {HTMLElement} formElement - The form element containing inputs to clear errors for
+ */
 function clearAllErrors(formElement) {
   const inputs = formElement.querySelectorAll("input");
   for (let i = 0; i < inputs.length; i++) {
@@ -93,6 +97,10 @@ function clearAllErrors(formElement) {
   }
 }
 
+/**
+ * Initializes password visibility toggle for a specific input
+ * @param {string} inputId - The ID of the password input element
+ */
 function initPasswordToggle(inputId) {
   const input = document.getElementById(inputId);
   const icon = input.parentNode.querySelector("img");
@@ -113,6 +121,10 @@ function initPasswordToggle(inputId) {
   updatePasswordIcon(inputId);
 }
 
+/**
+ * Updates the visibility icon based on input value and visibility state
+ * @param {string} inputId - The ID of the password input element
+ */
 function updatePasswordIcon(inputId) {
   const input = document.getElementById(inputId);
   const icon = input.parentNode.querySelector("img");
@@ -137,6 +149,10 @@ function updatePasswordIcon(inputId) {
   }
 }
 
+/**
+ * Toggles the password visibility for a specific input
+ * @param {string} inputId - The ID of the password input element
+ */
 function togglePasswordVisibility(inputId) {
   const input = document.getElementById(inputId);
   const icon = input.parentNode.querySelector("img");
@@ -158,6 +174,9 @@ function togglePasswordVisibility(inputId) {
   }
 }
 
+/**
+ * Initializes password visibility toggles for all relevant inputs
+ */
 function initAllPasswordToggles() {
   const passwordIds = ["password", "confirmPassword"];
 

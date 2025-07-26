@@ -99,6 +99,13 @@ function checkAllSignupFields(
   return { isValid: true };
 }
 
+/**
+ * Marks form inputs with error class based on invalid signup values
+ * @param {string} name - The name value
+ * @param {string} email - The email value
+ * @param {string} password - The password value
+ * @param {string} confirmPassword - The confirmed password value
+ */
 function markErrorInputs(name, email, password, confirmPassword) {
   const nameInput = document.getElementById("name");
   const emailInput = document.getElementById("email");
@@ -122,6 +129,9 @@ function markErrorInputs(name, email, password, confirmPassword) {
   }
 }
 
+/**
+ * Clears all signup form error indicators and messages
+ */
 function clearSignupErrors() {
   const nameInput = document.getElementById("name");
   const emailInput = document.getElementById("email");
@@ -136,6 +146,10 @@ function clearSignupErrors() {
   errorMessage.classList.add("hide");
 }
 
+/**
+ * Displays signup form error message and updates UI
+ * @param {string} text - The error message to show
+ */
 function showSignupError(text) {
   const errorMessage = document.getElementsByClassName("errorMessage")[0];
   errorMessage.textContent = text;
@@ -144,6 +158,10 @@ function showSignupError(text) {
   enableSignUpButton();
 }
 
+/**
+ * Handles user signup form submission and creates account
+ * @param {Event} event - The form submission event
+ */
 async function signupUser(event) {
   event.preventDefault();
 
@@ -162,6 +180,12 @@ async function signupUser(event) {
   await processSignup(name, email, password);
 }
 
+/**
+ * Processes the signup logic and communicates with Firebase
+ * @param {string} name - The user's name
+ * @param {string} email - The user's email
+ * @param {string} password - The user's password
+ */
 async function processSignup(name, email, password) {
   try {
     const userData = { name: name, email: email, password: password };
@@ -178,6 +202,9 @@ async function processSignup(name, email, password) {
   }
 }
 
+/**
+ * Displays success message on successful signup
+ */
 function showSuccessMessage() {
   const errorMessage = document.getElementsByClassName("errorMessage")[0];
   errorMessage.textContent = "Registration successful! You can now log in.";
@@ -189,6 +216,9 @@ function showSuccessMessage() {
   }, 2000);
 }
 
+/**
+ * Displays error when email is already registered
+ */
 function showEmailAlreadyExistsError() {
   const emailInput = document.getElementById("email");
 
@@ -202,6 +232,9 @@ document.addEventListener("DOMContentLoaded", function () {
   initAllPasswordToggles();
 });
 
+/**
+ * Disables the signup button during processing
+ */
 function disableSignUpButton() {
   const signUpButton = document.getElementById("SignUpButton");
 
@@ -211,6 +244,9 @@ function disableSignUpButton() {
   }
 }
 
+/**
+ * Enables the signup button after processing
+ */
 function enableSignUpButton() {
   const signUpButton = document.getElementById("SignUpButton");
 

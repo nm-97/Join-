@@ -97,6 +97,11 @@ async function patchData(path, data) {
  * @param {string} path - The Firebase database path to delete from
  * @returns {Promise<boolean>} True if deletion was successful, false otherwise
  */
+/**
+ * Deletes data from Firebase database
+ * @param {string} path - The Firebase database path to delete from
+ * @returns {Promise<boolean>} True if deletion was successful, false otherwise
+ */
 async function deleteData(path) {
   const response = await fetch(`${firebaseUrl}${path}`, {
     method: "DELETE",
@@ -184,11 +189,20 @@ const postUserData = async (UserData) => {
   return await postData(USERS_PATH, UserData);
 };
 
+/**
+ * Adds user data to Firebase database
+ * @param {Object} userData - User data object to add to Firebase
+ * @returns {Promise<string>} The Firebase-generated user ID
+ */
 async function addUserToFirebase(userData) {
   const result = await postData(USERS_PATH, userData);
   return result.name;
 }
 
+/**
+ * Fetches all tasks for the current user (guest or registered)
+ * @returns {Promise<Array>} Array of task objects
+ */
 async function fetchTaskByUser() {
   const currentUser = getCurrentUser();
   const path =
@@ -202,6 +216,11 @@ async function fetchTaskByUser() {
   );
 }
 
+/**
+ * Adds a new task to Firebase for the current user
+ * @param {Object} taskData - Task data object to add
+ * @returns {Promise<string>} The Firebase-generated task ID
+ */
 async function addTaskToFirebaseByUser(taskData) {
   const currentUser = getCurrentUser();
   const path =
@@ -214,11 +233,21 @@ async function addTaskToFirebaseByUser(taskData) {
   return result.name;
 }
 
+/**
+ * Fetches a specific task by its ID for the current user
+ * @param {string} taskId - The ID of the task to fetch
+ * @returns {Promise<Object|null>} Task object if found, null otherwise
+ */
 async function fetchTaskById(taskId) {
   const tasks = await fetchTaskByUser();
   return tasks.find((task) => task.id === taskId) || null;
 }
 
+/**
+ * Deletes a contact from Firebase and all associated tasks
+ * @param {string} contactId - The ID of the contact to delete
+ * @returns {Promise<boolean>} True if deletion was successful
+ */
 async function deleteContactFromFirebase(contactId) {
   const currentUser = getCurrentUser();
   try {
@@ -242,6 +271,11 @@ async function deleteContactFromFirebase(contactId) {
   }
 }
 
+/**
+ * Deletes a specific task from Firebase for the current user
+ * @param {string} taskId - The ID of the task to delete
+ * @returns {Promise<boolean>} True if deletion was successful
+ */
 async function deleteTaskFromFirebaseByUser(taskId) {
   const currentUser = getCurrentUser();
   const path =
@@ -251,6 +285,12 @@ async function deleteTaskFromFirebaseByUser(taskId) {
   return await deleteData(path);
 }
 
+/**
+ * Updates an existing contact in Firebase for the current user
+ * @param {string} contactId - The ID of the contact to update
+ * @param {Object} contactData - Updated contact data
+ * @returns {Promise<boolean>} True if update was successful
+ */
 async function updateContactInFirebaseByUser(contactId, contactData) {
   const currentUser = getCurrentUser();
   const path =
@@ -261,6 +301,11 @@ async function updateContactInFirebaseByUser(contactId, contactData) {
   return true;
 }
 
+/**
+ * Fetches a specific contact by ID for the current user
+ * @param {string} contactId - The ID of the contact to fetch
+ * @returns {Promise<Object|null>} Contact object if found, null otherwise
+ */
 async function fetchContactByIdAndUser(contactId) {
   const currentUser = getCurrentUser();
   const path =
@@ -274,6 +319,10 @@ async function fetchContactByIdAndUser(contactId) {
   return result;
 }
 
+/**
+ * Fetches all contacts for the current user (guest or registered)
+ * @returns {Promise<Array>} Array of contact objects
+ */
 async function fetchContactsByIdAndUser() {
   const currentUser = getCurrentUser();
   const path =
@@ -287,6 +336,11 @@ async function fetchContactsByIdAndUser() {
   );
 }
 
+/**
+ * Adds a new contact to Firebase for the current user
+ * @param {Object} contactData - Contact data object to add
+ * @returns {Promise<string>} The Firebase-generated contact ID
+ */
 async function addContactToFirebaseByUser(contactData) {
   const currentUser = getCurrentUser();
   const path =
@@ -297,6 +351,12 @@ async function addContactToFirebaseByUser(contactData) {
   return result.name;
 }
 
+/**
+ * Updates an existing task in Firebase for the current user
+ * @param {string} taskId - The ID of the task to update
+ * @param {Object} taskData - Updated task data
+ * @returns {Promise<boolean>} True if update was successful
+ */
 async function updateTaskInFirebaseByUser(taskId, taskData) {
   const currentUser = getCurrentUser();
   const path =
@@ -308,6 +368,11 @@ async function updateTaskInFirebaseByUser(taskId, taskData) {
   return true;
 }
 
+/**
+ * Maps Firebase API task data to application template format
+ * @param {Object} data - Raw task data from Firebase API
+ * @returns {Object} Formatted task object with default values
+ */
 function mapApiTaskToTemplate(data) {
   return {
     id: data.id || null,
@@ -322,6 +387,11 @@ function mapApiTaskToTemplate(data) {
   };
 }
 
+/**
+ * Maps Firebase API contact data to application template format
+ * @param {Object} data - Raw contact data from Firebase API
+ * @returns {Object} Formatted contact object with default values
+ */
 function mapApiContactToTemplate(data) {
   const name = data.name || data["name "] || "";
   const phone = data.phone || data["phone "] || "";
@@ -334,12 +404,22 @@ function mapApiContactToTemplate(data) {
   };
 }
 
+/**
+ * Fetches all registered users from Firebase
+ * @returns {Promise<Array>} Array of user objects with IDs
+ */
 async function fetchAllRegisteredUsers() {
   const data = await fetchData(USERS_PATH);
   if (!data) return [];
   return Object.entries(data).map(([id, userData]) => ({ id, ...userData }));
 }
 
+/**
+ * Checks user credentials against registered users in Firebase
+ * @param {string} email - User email address
+ * @param {string} password - User password
+ * @returns {Promise<Object>} Object with success status and user data if successful
+ */
 async function checkUserCredentials(email, password) {
   try {
     const users = await fetchAllRegisteredUsers();

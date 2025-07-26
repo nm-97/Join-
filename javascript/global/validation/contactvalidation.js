@@ -74,6 +74,12 @@ function validatePhone(phone) {
   return phoneRegex.test(phone);
 }
 
+/**
+ * Marks input fields with error class based on invalid values
+ * @param {string} name - The name input value
+ * @param {string} email - The email input value
+ * @param {string} phone - The phone input value
+ */
 function markContactErrorInputs(name, email, phone) {
   const nameInput = document.querySelector('input[name="name"]');
   const emailInput = document.querySelector('input[name="email"]');
@@ -92,6 +98,9 @@ function markContactErrorInputs(name, email, phone) {
   }
 }
 
+/**
+ * Clears all contact form error states and messages
+ */
 function clearContactErrors() {
   const nameInput = document.querySelector('input[name="name"]');
   const emailInput = document.querySelector('input[name="email"]');
@@ -104,6 +113,10 @@ function clearContactErrors() {
   if (errorMessage) errorMessage.classList.add("hide");
 }
 
+/**
+ * Displays a contact form error message
+ * @param {string} text - The error message to display
+ */
 function showContactError(text) {
   const errorMessage = document.getElementsByClassName("errorMessage")[0];
   if (errorMessage) {
@@ -112,6 +125,9 @@ function showContactError(text) {
   }
 }
 
+/**
+ * Sets up input filter for phone fields to allow valid characters
+ */
 function setupPhoneInputFilter() {
   const phoneInputs = document.querySelectorAll('input[name="phone"]');
 

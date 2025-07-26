@@ -12,6 +12,13 @@ let selectedContacts = [];
 /**
  * Loads contacts from database and sets up dropdown
  */
+/**
+ * Loads contacts from the database and sets up the contacts dropdown
+ * Includes the current user if they are not already in the contacts list
+ * @async
+ * @function loadContacts
+ * @returns {Promise<void>}
+ */
 async function loadContacts() {
   try {
     let contacts = await fetchContactsByIdAndUser();

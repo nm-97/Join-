@@ -92,14 +92,27 @@ function moveTaskToColumn(taskCard, targetColumn) {
   return originalColumn;
 }
 
+/**
+ * Sends a status update request for a dragged task
+ * @param {string} taskId - The ID of the task being dragged
+ * @param {string} newStatus - The new status for the task
+ * @returns {Promise<void>} Resolves when the task status is updated
+ */
 async function updateTaskStatus(taskId, newStatus) {
   await changeStatusforDraggedTask(taskId, { Status: newStatus });
 }
 
+/**
+ * Resets the drag state after completing a drop operation
+ */
 function resetDragState() {
   currentDraggedTaskId = null;
 }
 
+/**
+ * Applies a drop animation to a task card and removes it after animation
+ * @param {HTMLElement} taskCard - The task card element to animate
+ */
 function addDropAnimation(taskCard) {
   taskCard.classList.add("task-dropped");
   setTimeout(() => {
@@ -107,6 +120,10 @@ function addDropAnimation(taskCard) {
   }, 200);
 }
 
+/**
+ * Handles the drop event to move a task card to another column and update its status
+ * @param {Event} ev - The drop event object
+ */
 async function dropToAnotherColumn(ev) {
   ev.preventDefault();
   const columnId = ev.currentTarget.id;
@@ -128,6 +145,12 @@ async function dropToAnotherColumn(ev) {
   resetDragState();
 }
 
+/**
+ * Sends a patch request to update the status of a dragged task
+ * @param {string} taskId - The ID of the task to update
+ * @param {Object} taskData - Object containing the new status field
+ * @returns {Promise<Object>} Result of the patch operation
+ */
 async function changeStatusforDraggedTask(taskId, taskData) {
   const currentUser = getCurrentUser();
   const path =
@@ -138,6 +161,11 @@ async function changeStatusforDraggedTask(taskId, taskData) {
   return await patchData(path, taskData);
 }
 
+/**
+ * Maps a column element ID to its corresponding task status key
+ * @param {string} columnId - The DOM ID of the column element
+ * @returns {string|undefined} Corresponding status key or undefined
+ */
 function getColumnStatus(columnId) {
   const TaskStatus = {
     toDoColumn: "toDo",
@@ -148,6 +176,10 @@ function getColumnStatus(columnId) {
   return TaskStatus[columnId];
 }
 
+/**
+ * Removes the empty state placeholder from a column if it exists
+ * @param {HTMLElement} column - The column element to clear
+ */
 function removeEmptyStateFromColumn(column) {
   const emptyInTarget = column.querySelector(".emptyState");
   if (emptyInTarget) {
@@ -155,6 +187,10 @@ function removeEmptyStateFromColumn(column) {
   }
 }
 
+/**
+ * Adds an empty state placeholder to a column when it has no task cards
+ * @param {HTMLElement} column - The column element to update
+ */
 function addEmptyStateToColumn(column) {
   const tasksLeft = column.querySelectorAll(".taskCard").length;
   if (tasksLeft === 0) {
@@ -165,6 +201,11 @@ function addEmptyStateToColumn(column) {
   }
 }
 
+/**
+ * Updates the empty state UI for both the source and target columns after a drop
+ * @param {HTMLElement} fromColumn - The original column element
+ * @param {HTMLElement} toColumn - The destination column element
+ */
 function updateEmptyStates(fromColumn, toColumn) {
   removeEmptyStateFromColumn(toColumn);
   addEmptyStateToColumn(fromColumn);

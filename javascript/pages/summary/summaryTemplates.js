@@ -104,6 +104,10 @@ function getsummaryTemplate(params) {
         </div>  `;
 }
 
+/**
+ * Generates HTML template for a temporary success message after signup
+ * @returns {string} HTML string for the signup success notification
+ */
 function getSuccessSignUpMessageTempalte() {
   return `
     <div id="signUpSuccess" class="signUpSuccessMessage">
