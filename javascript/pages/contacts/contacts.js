@@ -76,6 +76,10 @@ async function showFloatingContact(contactId) {
   }
 }
 
+/**
+ * Selects a contact item in the UI and removes selection from previously selected item
+ * @param {string} contactId - The ID of the contact to select
+ */
 function selectContactItem(contactId) {
   const previousSelected = document.querySelector(".contactItem.selected");
   if (previousSelected) {
@@ -87,6 +91,9 @@ function selectContactItem(contactId) {
   }
 }
 
+/**
+ * Displays the overlay for adding a new contact
+ */
 function showAddContactOverlay() {
   const overlay = document.getElementById("addContactOverlay");
   if (overlay) {
@@ -231,6 +238,10 @@ function closeFloatingContactOverlay() {
   }
 }
 
+/**
+ * Displays a temporary success message to the user
+ * @param {string} message - The success message to display
+ */
 function showSuccessMessage(message) {
   const successElement = document.createElement("div");
   successElement.innerHTML = getSuccessContactMessageTemplate({ message });
@@ -241,14 +252,3 @@ function showSuccessMessage(message) {
     }
   }, 3000);
 }
-
-window.addEventListener("load", async () => {
-  const contactIdForOverlay = sessionStorage.getItem("contactIdForOverlay");
-  if (contactIdForOverlay) {
-    const contact = await fetchContactByIdAndUser(contactIdForOverlay);
-    if (contact) {
-      showFloatingContact(contact.id);
-    }
-    sessionStorage.removeItem("contactIdForOverlay");
-  }
-});
