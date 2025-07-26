@@ -54,6 +54,15 @@ function validateSignupForm() {
   return true;
 }
 
+/**
+* Validates all signup form fields and returns validation result
+* @param {string} name - The user's name
+* @param {string} email - The user's email address
+* @param {string} password - The user's password
+* @param {string} confirmPassword - The confirmed password
+* @param {boolean} termsAccepted - Whether terms and conditions are accepted
+* @returns {Object} Object with isValid boolean and errorText string
+*/
 function checkAllSignupFields(
   name,
   email,

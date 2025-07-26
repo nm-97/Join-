@@ -128,6 +128,11 @@ function getAddTaskOverlay(params = {}) {
        </div>`;
 }
 
+/**
+* Generates HTML template for the Edit Task overlay
+* @param {Object} task - Task object containing task data for editing
+* @returns {string} HTML string for the Edit Task overlay
+*/
 function getEditTaskOverlay(task) {
   const assignedPersonInitials = getInitials(task.assignedTo || "");
   const assignedPersonColor = getAvatarColor(task.assignedTo || "");

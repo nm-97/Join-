@@ -76,6 +76,10 @@ async function showFloatingContact(contactId) {
   }
 }
 
+/**
+* Selects a contact item in the UI and removes selection from previously selected item
+* @param {string} contactId - The ID of the contact to select
+*/
 function selectContactItem(contactId) {
   const previousSelected = document.querySelector(".contactItem.selected");
   if (previousSelected) {
@@ -87,6 +91,9 @@ function selectContactItem(contactId) {
   }
 }
 
+/**
+* Displays the overlay for adding a new contact
+*/
 function showAddContactOverlay() {
   const overlay = document.getElementById("addContactOverlay");
   if (overlay) {
@@ -231,17 +238,10 @@ function closeFloatingContactOverlay() {
   }
 }
 
-function showSuccessMessage(message) {
-  const successElement = document.createElement("div");
-  successElement.innerHTML = getSuccessContactMessageTemplate({ message });
-  document.body.appendChild(successElement);
-  setTimeout(() => {
-    if (document.body.contains(successElement)) {
-      document.body.removeChild(successElement);
-    }
-  }, 3000);
-}
-
+/**
+* Displays a temporary success message to the user
+* @param {string} message - The success message to display
+*/
 function showSuccessMessage(message) {
   const successElement = document.createElement("div");
   successElement.innerHTML = getSuccessContactMessageTemplate({ message });

@@ -393,10 +393,23 @@ async function findAndToggleSubtask(taskId, subtaskId) {
   return task;
 }
 
+
+/**
+ * Updates a task in Firebase with new data
+ * @param {string} taskId - The ID of the task to update
+ * @param {Object} task - The updated task object
+ * @returns {Promise<void>} Resolves when update is complete
+ */
 async function updateTaskInFirebase(taskId, task) {
   await updateTaskInFirebaseByUser(taskId, task);
 }
 
+
+/**
+ * Updates the subtask list in the task detail overlay UI
+ * @param {Object} task - The task object containing subtasks
+ * @param {string} taskId - The ID of the parent task
+ */
 function updateSubtaskListInOverlay(task, taskId) {
   const overlay = document.getElementById("taskOverlay");
   if (!overlay || overlay.classList.contains("hidden")) return;
