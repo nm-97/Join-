@@ -35,7 +35,6 @@ body {
     justify-content: flex-start; 
     align-items: center;
     padding: 20px 30px;
-
 }
 
 .SignUpbtnPosition {
@@ -44,7 +43,26 @@ body {
 
 .hide {
     opacity: 0;
-    display: none;
+    filter: blur(8px); 
+    transform: translateY(20px); 
+    pointer-events: none;
+}
+
+.content-appear {
+    animation: contentFadeIn 500ms ease-out forwards;
+}
+
+@keyframes contentFadeIn {
+    from {
+        opacity: 0;
+        filter: blur(8px);
+        transform: translateY(20px); 
+    }
+    to {
+        opacity: 1;
+        filter: blur(0px);
+        transform: translateY(0px);
+    }
 }
 
 .mainContent {
@@ -54,7 +72,7 @@ body {
     height: 100vh;
 }
     
-    #loadingScreen {
+#loadingScreen {
     position: absolute;
     left: 50%;
     top: 50%; 
@@ -86,4 +104,3 @@ body {
         opacity: 1;
     }
 }
-
