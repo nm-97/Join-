@@ -80,36 +80,36 @@ header img {
 }
 
 .signUpMainContainer {
-    width: 598px;
-    height: 630px;
-    border-radius: 30px;
-    padding: 48px 115px;
-    gap: 20px;
-    background-color: #FFFFFF;
-    opacity: 1;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+  width: 598px;
+  height: 630px;
+  border-radius: 30px;
+  padding: 48px 115px;
+  gap: 20px;
+  background-color: #ffffff;
+  opacity: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .signUpMainContainer h2 {
-    font-weight: 700;
-    font-size: 68px;
-    font-style: bold;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  font-weight: 700;
+  font-size: 68px;
+  font-style: bold;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .signUpMainContainer h2::after {
-    content: '';
-    display: block;
-    width: 150px;
-    border-bottom: 3px solid #29ABE2;
-    margin-top: 16px;
+  content: "";
+  display: block;
+  width: 150px;
+  border-bottom: 3px solid #29abe2;
+  margin-top: 16px;
 }
 
 form {
@@ -284,69 +284,214 @@ footer a:hover {
 }
 
 .logoPageHeader {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
-    padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
 }
 
 .SignUpbtnPosition {
-    margin-left: auto; 
+  margin-left: auto;
 }
 
 .hide {
-    opacity: 0;
-    filter: blur(8px); 
-    transform: translateY(20px); 
-    pointer-events: none;
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(20px);
+  pointer-events: none;
 }
 
 .content-appear {
-    animation: contentFadeIn 500ms ease-out forwards;
+  animation: contentFadeIn 500ms ease-out forwards;
 }
 
 @keyframes contentFadeIn {
-    from {
-        opacity: 0;
-        filter: blur(8px);
-        transform: translateY(20px); 
-    }
-    to {
-        opacity: 1;
-        filter: blur(0px);
-        transform: translateY(0px);
-    }
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0px);
+  }
 }
-    
+
 #loadingScreen {
-    position: absolute;
-    left: 50%;
-    top: 50%; 
-    inset: 0;
-    z-index: 9999;
-    animation: logo-fly 1600ms ease-in-out forwards;
-    margin-top: 80px;
-    margin-left: 77px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  inset: 0;
+  z-index: 9999;
+  animation: logo-fly 1600ms ease-in-out forwards;
+  margin-top: 80px;
+  margin-left: 77px;
 }
 
 #loadingScreen.hidden {
-    display: none;
+  display: none;
 }
 
 @keyframes logo-fly {
-    0% {
-        width: 274px;
-        height: 334.07px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        opacity: 1;
-    }
+  0% {
+    width: 274px;
+    height: 334.07px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
 
-    100% {
-        width: 100.03px;
-        height: 121.97px;
-        transform: translate(0, 0);
-        opacity: 1;
-    }
+  100% {
+    width: 100.03px;
+    height: 121.97px;
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 428px) {
+  .headerLogin {
+    order: 1;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 35px;
+  }
+
+  .headerSignUp img {
+    width: 64px;
+    height: 78.03px;
+    margin-top: 37px;
+    margin-left: 38px;
+  }
+
+  .signUpbtnPosition p {
+    font-size: 20px;
+    font-style: regular;
+    font-weight: 400;
+  }
+
+  #signUpButton {
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .LogInMainContainer {
+    width: 396px;
+    height: 475px;
+    padding: 32px;
+    margin-top: auto;
+  }
+
+  .LogInMainContainer h2 {
+    font-size: 47px;
+  }
+
+  .LogInMainContainer h2::after {
+    width: 88px;
+  }
+
+  .signUpMainContainer h2::after {
+    width: 88px;
+  }
+
+  .LogInMainContainer input {
+    width: 364px;
+    height: 48px;
+  }
+
+  .LogInInput img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .LogInInput input {
+    padding: 13px 21px;
+    font-size: 20px;
+  }
+
+  .btnPosition {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btnPosition button {
+    font-size: 16px;
+    font-weight: 700;
+    padding: 4px;
+    width: 180px;
+    height: 51px;
+  }
+
+  #loadingScreen {
+    width: 64px;
+    height: 78.03px;
+    margin-top: 37px;
+    margin-left: 38px;
+    gap: 10px;
+  }
+
+  footer {
+    order: 2;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .signUpMainContainer {
+    width: 396px;
+    height: 595px;
+    padding: 32px;
+  }
+
+  .backBtn {
+    position: absolute;
+    top: -180px;
+    left: 52px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .signUpMainContainer h2 {
+    font-size: 47px;
+  }
+
+  .checkboxLabel {
+    font-size: 16px;
+  }
+
+  .checkboxContainer {
+    margin-top: 0;
+  }
+
+  .inputIcon {
+    padding-left: 0;
+  }
+
+  .checkbox {
+    width: 24px;
+    height: 24px;
+    border-radius: 3px;
+  }
+
+  .label {
+    font-size: 16px;
+  }
+
+  .SignUpbtn {
+    max-width: 352px;
+    height: 56px;
+    padding: 4px;
+    font-size: 16px;
+  }
 }
