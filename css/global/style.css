@@ -327,4 +327,15 @@ body {
     width: 98px !important;
     height: 3px !important;
   }
+  .summaryHeaderDevider {
+    width: 98px !important;
+    height: 3px !important;
+  }
+  .headerTitle {
+    display: none;
+  }
+
+  .helpBtn {
+    display: none;
+  }
 }
