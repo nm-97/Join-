@@ -1,4 +1,3 @@
-/* Board Layout Styles */
 .mainContent {
   flex: 1;
   padding: 62px;
@@ -136,8 +135,12 @@
   color: #ffffff;
   margin-bottom: 10px;
 }
-.userStory { background-color: #0038ff; }
-.technicalTask { background-color: #1fd7c1; }
+.userStory {
+  background-color: #0038ff;
+}
+.technicalTask {
+  background-color: #1fd7c1;
+}
 .taskTitle {
   font-size: 16px;
   font-weight: 700;
@@ -202,12 +205,25 @@
   margin-left: -12px;
   position: relative;
 }
-.assignee:first-child { margin-left: 0; z-index: 3; }
-.assignee:nth-child(2) { z-index: 2; }
-.assignee:nth-child(3) { z-index: 1; }
-.todoIcon { background-color: #1e3a8a; }
-.doneIcon { background-color: #2a3f5f; }
-.urgentIcon { background-color: #ff3d00; }
+.assignee:first-child {
+  margin-left: 0;
+  z-index: 3;
+}
+.assignee:nth-child(2) {
+  z-index: 2;
+}
+.assignee:nth-child(3) {
+  z-index: 1;
+}
+.todoIcon {
+  background-color: #1e3a8a;
+}
+.doneIcon {
+  background-color: #2a3f5f;
+}
+.urgentIcon {
+  background-color: #ff3d00;
+}
 .dateTitle {
   font-size: 21px;
   font-weight: 600;

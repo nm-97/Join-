@@ -1,4 +1,3 @@
-/* Overlay and Task Modal Styles */
 .overlay {
   position: fixed;
   top: 0;
@@ -19,9 +18,10 @@
   bottom: 0;
   background: rgba(0, 0, 0, 0.4);
 }
-.overlay.hidden { display: none; }
+.overlay.hidden {
+  display: none;
+}
 
-/* Detail Modal */
 .taskDetailModal {
   background-color: #ffffff;
   border-radius: 30px;
@@ -48,7 +48,8 @@
   color: #ffffff;
   background-color: #0038ff;
 }
-.closeButton, .closeBtn {
+.closeButton,
+.closeBtn {
   background: none;
   border: none;
   cursor: pointer;
@@ -100,7 +101,8 @@
   color: #ffa800;
   font-size: 24px;
 }
-.assignedUsers, .assignedUser {
+.assignedUsers,
+.assignedUser {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -117,13 +119,19 @@
   font-weight: bold;
   border: 1px solid #000000;
 }
-.subtasksSection { margin-top: 40px; }
+.subtasksSection {
+  margin-top: 40px;
+}
 .subtasksTitle {
   font-size: 21px;
   color: #42526e;
   margin-bottom: 15px;
 }
-.subtasksList { display: flex; flex-direction: column; gap: 10px; }
+.subtasksList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .subtaskItem {
   display: flex;
   align-items: center;
@@ -136,7 +144,9 @@
   width: 25px;
   height: 24px;
 }
-.subtaskCheckbox:hover { opacity: 0.8; }
+.subtaskCheckbox:hover {
+  opacity: 0.8;
+}
 .modalActions {
   display: flex;
   justify-content: flex-end;
@@ -153,9 +163,12 @@
   gap: 8px;
   background: none;
 }
-hr { height: 22px; background-color: #000000; margin: 20px 0; }
+hr {
+  height: 22px;
+  background-color: #000000;
+  margin: 20px 0;
+}
 
-/* Add/Edit Overlay */
 .overlayAddTask {
   position: fixed;
   top: 0;
@@ -188,24 +201,39 @@ hr { height: 22px; background-color: #000000; margin: 20px 0; }
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   animation: overlayMoveFromRight 400ms ease-in-out forwards;
 }
+
 @keyframes overlayMoveFromRight {
-  0% { opacity: 0; transform: translate3d(250px, 0, 0); }
-  100% { opacity: 1; transform: translate3d(0); }
+  0% {
+    opacity: 0;
+    transform: translate3d(250px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0);
+  }
 }
+
 @keyframes taskOverlayClose {
-  0% { opacity: 1; transform: translateX(0); }
-  100% { opacity: 0; transform: translateX(250px); }
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(250px);
+  }
 }
+
 #addTaskOverlay.closing .overlayContent,
 #editTaskOverlay.closing .overlayContent,
 #editTaskOverlay.closing .taskDetailModal {
   animation: taskOverlayClose 0.4s ease-in-out forwards !important;
 }
+
 #taskOverlay.closing .taskDetailModal {
   animation: taskOverlayClose 0.2s ease-in-out forwards !important;
 }
 
-/* Add Task Form Within Overlay */
 .addTaskH1 {
   font-weight: 700;
   font-size: 61px;
@@ -216,7 +244,11 @@ hr { height: 22px; background-color: #000000; margin: 20px 0; }
   gap: 32px;
   margin: 60px;
 }
-.addTaskFormsWrapper form { display: flex; flex-direction: column; gap: 16px; }
+.addTaskFormsWrapper form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 .addTaskFormsDivider {
   width: 1px;
   height: 424px;
@@ -224,21 +256,46 @@ hr { height: 22px; background-color: #000000; margin: 20px 0; }
   margin: 0 24px;
   align-self: stretch;
 }
-.formGroup { display: flex; flex-direction: column; gap: 8px; }
-.taskPriorityGroup { display: flex; gap: 8px; align-items: center; }
-.requiredStar { color: #ff0000; font-size: 18px; }
-.requiredStarText { font-size: 14px; text-align: center; }
-input, textarea, select {
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.taskPriorityGroup {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.requiredStar {
+  color: #ff0000;
+  font-size: 18px;
+}
+.requiredStarText {
+  font-size: 14px;
+  text-align: center;
+}
+input,
+textarea,
+select {
   padding: 12px 21px;
   border: 1px solid #d1d1d1;
   border-radius: 8px;
   width: 420px;
   font-size: 16px;
 }
-input::placeholder, textarea::placeholder { color: #d1d1d1; font-size: 20px; }
-label { font-size: 20px; }
-.taskPriorityLabel { font-size: 20px; }
-.addTaskBtn, .cancelTaskBtn {
+input::placeholder,
+textarea::placeholder {
+  color: #d1d1d1;
+  font-size: 20px;
+}
+label {
+  font-size: 20px;
+}
+.taskPriorityLabel {
+  font-size: 20px;
+}
+.addTaskBtn,
+.cancelTaskBtn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -250,8 +307,35 @@ label { font-size: 20px; }
   cursor: pointer;
   height: 56px;
 }
-.addTaskBtn { background-color: #2a3647; color: #ffffff; }
-.cancelTaskBtn { background-color: #f6f7f8; color: #2a3647; border: 1px solid #2a3647; width: 110px; }
-.addTaskBtn img, .cancelTaskBtn img { width: 16px; height: auto; }
-.formActions { display: flex; justify-content: space-between; align-items: flex-end; width: 100%; position: absolute; left: 0; bottom: 0; padding: 0 40px 40px 40px; box-sizing: border-box; }
-.formButtons { display: flex; gap: 16px; width: 100%; justify-content: flex-end; }
+.addTaskBtn {
+  background-color: #2a3647;
+  color: #ffffff;
+}
+.cancelTaskBtn {
+  background-color: #f6f7f8;
+  color: #2a3647;
+  border: 1px solid #2a3647;
+  width: 110px;
+}
+.addTaskBtn img,
+.cancelTaskBtn img {
+  width: 16px;
+  height: auto;
+}
+.formActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0 40px 40px 40px;
+  box-sizing: border-box;
+}
+.formButtons {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  justify-content: flex-end;
+}

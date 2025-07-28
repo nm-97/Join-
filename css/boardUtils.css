@@ -1,26 +1,62 @@
-/* Board Utility Styles */
-/* Visibility & Layout Helpers */
-.hidden { display: none !important; }
-.flexCenter { display: flex; justify-content: center; align-items: center; }
+.hidden {
+  display: none !important;
+}
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.closeButton,
+.closeBtn,
+.addIcon {
+  cursor: pointer;
+}
+.inputIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.inputIcon img {
+  position: absolute;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+.requiredStar {
+  color: #ff0000;
+  font-size: 18px;
+}
+.requiredStarText {
+  font-size: 14px;
+  text-align: center;
+}
+label {
+  font-size: 20px;
+}
 
-/* Icon & Button Helpers */
-.closeButton, .closeBtn, .addIcon { cursor: pointer; }
+.formButtons {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  justify-content: flex-end;
+}
 
-/* Input & Form Helpers */
-.inputIcon { position: relative; display: flex; align-items: center; width: 100%; }
-.inputIcon img { position: absolute; right: 16px; width: 24px; height: 24px; pointer-events: none; }
-.requiredStar { color: #ff0000; font-size: 18px; }
-.requiredStarText { font-size: 14px; text-align: center; }
-label { font-size: 20px; }
-
-/* Form Button Group */
-.formButtons { display: flex; gap: 16px; width: 100%; justify-content: flex-end; }
-
-/* Edit Task Utilities */
-.editFormGroup { margin: 20px 0 25px; }
-.editFormGroupLast { margin-bottom: 40px; }
-.editLabel { font-size: 21px; color: #42526e; margin-bottom: 8px; display: block; }
-.editInput, .editTextarea {
+.editFormGroup {
+  margin: 20px 0 25px;
+}
+.editFormGroupLast {
+  margin-bottom: 40px;
+}
+.editLabel {
+  font-size: 21px;
+  color: #42526e;
+  margin-bottom: 8px;
+  display: block;
+}
+.editInput,
+.editTextarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #d1d1d1;
@@ -28,9 +64,21 @@ label { font-size: 20px; }
   font-size: 16px;
   box-sizing: border-box;
 }
-.editInputIcon { position: relative; }
-.editDateIcon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; }
-.editPriorityGroup { display: flex; gap: 8px; }
+.editInputIcon {
+  position: relative;
+}
+.editDateIcon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+}
+.editPriorityGroup {
+  display: flex;
+  gap: 8px;
+}
 .editPriorityBtn {
   width: 120px;
   height: 40px;
@@ -49,12 +97,40 @@ label { font-size: 20px; }
   color: white;
   border: none;
 }
-.editSubtaskInput { position: relative; margin-bottom: 15px; }
-.editSubtaskAdd { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 20px; color: #42526e; cursor: pointer; }
-.editSubtaskList { display: flex; flex-direction: column; gap: 8px; }
-.editSubtaskItem { display: flex; align-items: center; gap: 12px; font-size: 16px; }
-.editSubtaskBullet { width: 4px; height: 4px; background-color: #42526e; border-radius: 50%; }
-.editButtonContainer { display: flex; justify-content: flex-end; }
+.editSubtaskInput {
+  position: relative;
+  margin-bottom: 15px;
+}
+.editSubtaskAdd {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #42526e;
+  cursor: pointer;
+}
+.editSubtaskList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.editSubtaskItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+}
+.editSubtaskBullet {
+  width: 4px;
+  height: 4px;
+  background-color: #42526e;
+  border-radius: 50%;
+}
+.editButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
 .editOkBtn {
   display: inline-flex;
   align-items: center;
@@ -68,26 +144,30 @@ label { font-size: 20px; }
   background-color: #2a3647;
   color: #ffffff;
 }
-.editOkBtn img { width: 16px; height: auto; filter: brightness(0) invert(1); 
+.editOkBtn img {
+  width: 16px;
+  height: auto;
+  filter: brightness(0) invert(1);
 
-/* Search Highlight Styles */
-.taskCard.hidden { display: none !important; }
-.taskCard.highlight {
-  background-color: #fff3cd;
-  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
-  animation: highlightTask 0.5s ease-in-out;
-}
-@keyframes highlightTask {
-  0% {
-    transform: scale(1);
+  .taskCard.hidden {
+    display: none !important;
+  }
+  .taskCard.highlight {
     background-color: #fff3cd;
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+    animation: highlightTask 0.5s ease-in-out;
   }
-  50% {
-    transform: scale(1.05);
+  @keyframes highlightTask {
+    0% {
+      transform: scale(1);
+      background-color: #fff3cd;
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+      background-color: #fff3cd;
+    }
   }
-  100% {
-    transform: scale(1);
-    background-color: #fff3cd;
-  }
-}
 }
