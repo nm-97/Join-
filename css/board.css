@@ -1085,6 +1085,8 @@ label {
   animation: taskOverlayClose 0.2s ease-in-out forwards !important; 
 }
 
+
+
 @keyframes taskOverlayClose {
   0% {
     opacity: 1;

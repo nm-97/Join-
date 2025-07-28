@@ -1,8 +1,3 @@
-function testFunction() {
-  console.log("TEST FUNCTION WORKS!");
-  alert("Test function called!");
-}
-
 /**
  * @fileoverview Board page functionality for the JOIN application
  * Handles task board display, task management, and column-based task organization
@@ -91,7 +86,6 @@ function addTaskToColumn(status) {
 function closeTaskOverlay() {
   const overlay = document.getElementById("taskOverlay");
   if (overlay) {
-    console.log("Closing Task Detail Overlay"); // DEBUG
     overlay.classList.add("closing");
     setTimeout(() => {
       overlay.style.display = "none";
@@ -317,23 +311,19 @@ async function finishEditTaskSave(taskId) {
  * Closes the edit task overlay UI
  */
 function closeAddTaskOverlay() {
-  console.log("closeAddTaskOverlay called!"); // DEBUG
   const overlay = document.getElementById("addTaskOverlay");
   if (overlay) {
-    console.log("Overlay found, adding animation"); // DEBUG
     overlay.style.animation = "taskOverlayClose 0.4s ease-in-out forwards";
     
     setTimeout(() => {
-      console.log("Hiding overlay after animation"); // DEBUG
       overlay.style.display = "none";
       overlay.classList.add("hidden");
       overlay.innerHTML = "";
       overlay.style.animation = "";
     }, 400);
-  } else {
-    console.log("No overlay found!"); // DEBUG
-  }
+  } 
 }
+
 
 /**
  * Hides the edit task overlay and clears its content
@@ -344,6 +334,22 @@ function hideEditTaskOverlay() {
     overlay.style.display = "none";
     overlay.classList.add("hidden");
     overlay.innerHTML = "";
+  }
+}
+
+/**
+ * Closes the Add Task overlay
+ */
+function closeEditTaskOverlay() {
+  const overlay = document.getElementById("editTaskOverlay");
+  if (overlay) {
+    overlay.classList.add("closing");
+    setTimeout(() => {
+      overlay.style.display = "none";
+      overlay.classList.add("hidden");
+      overlay.innerHTML = "";
+      overlay.classList.remove("closing");
+    }, 400); // TIMING: Anpassbar
   }
 }
 
