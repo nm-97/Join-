@@ -1,0 +1,235 @@
+.mainContent {
+  flex: 1;
+  padding: 62px;
+  overflow-y: auto;
+}
+.boardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+.boardTitle {
+  font-size: 61px;
+  font-weight: 700;
+  margin: 0;
+}
+.boardActions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.searchContainer {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 48px;
+}
+.searchInput {
+  border: none;
+  padding: 12px 20px;
+  font-size: 20px;
+  width: 250px;
+  outline: none;
+}
+.searchButton {
+  background: transparent;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+.searchDivider {
+  width: 1px;
+  height: 28px;
+  background: #d1d1d18a;
+  margin: 0 6px;
+  align-self: center;
+}
+.addTaskButton {
+  background-color: #2a3647;
+  color: #ffffff;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-size: 21px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.boardContainer {
+  display: flex;
+  width: 100%;
+  height: 85%;
+  margin-top: 24px;
+  gap: 30px;
+  overflow: hidden;
+  padding: 12px;
+}
+.boardColumn {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+.columnHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.columnTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #42526e;
+  margin: 0;
+}
+.addIcon {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #2a3f5f;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 24px;
+  color: #2a3f5f;
+}
+.columnContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.emptyState {
+  background-color: #e0e0e0;
+  border: 2px dashed #d1d1d1;
+  border-radius: 10px;
+  padding: 24px;
+  text-align: center;
+  color: #a8a8a8;
+  font-size: 16px;
+}
+.taskCard {
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.taskCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+.taskLabel {
+  display: inline-block;
+  padding: 4px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+.userStory {
+  background-color: #0038ff;
+}
+.technicalTask {
+  background-color: #1fd7c1;
+}
+.taskTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #253347;
+  margin: 0 0 10px 0;
+}
+.taskDescription {
+  font-size: 16px;
+  color: #a8a8a8;
+  margin: 0 0 15px 0;
+  line-height: 1.4;
+}
+.taskFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+.taskFooterTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.progressBar {
+  flex: 1;
+  height: 8px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progressFill {
+  height: 100%;
+  background-color: #4589ff;
+  transition: width 0.3s ease;
+}
+.subtaskInfo {
+  font-size: 12px;
+  color: #253347;
+  margin-left: 5px;
+}
+.taskFooterBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.taskAssignees {
+  display: flex;
+  gap: 0;
+}
+.assignee {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+  margin-left: -12px;
+  position: relative;
+}
+.assignee:first-child {
+  margin-left: 0;
+  z-index: 3;
+}
+.assignee:nth-child(2) {
+  z-index: 2;
+}
+.assignee:nth-child(3) {
+  z-index: 1;
+}
+.todoIcon {
+  background-color: #1e3a8a;
+}
+.doneIcon {
+  background-color: #2a3f5f;
+}
+.urgentIcon {
+  background-color: #ff3d00;
+}
+.dateTitle {
+  font-size: 21px;
+  font-weight: 600;
+  color: #21295c;
+}
+.dateSubtitle {
+  color: #a8a8a8;
+  font-size: 16px;
+}

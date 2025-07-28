@@ -86,8 +86,12 @@ function addTaskToColumn(status) {
 function closeTaskOverlay() {
   const overlay = document.getElementById("taskOverlay");
   if (overlay) {
-    overlay.style.display = "none";
-    overlay.classList.add("hidden");
+    overlay.classList.add("closing");
+    setTimeout(() => {
+      overlay.style.display = "none";
+      overlay.classList.add("hidden");
+      overlay.classList.remove("closing");
+    }, 200); // TIMING: Anpassbar
   }
 }
 
@@ -307,9 +311,20 @@ async function finishEditTaskSave(taskId) {
 /**
  * Closes the edit task overlay UI
  */
-function closeEditTaskOverlay() {
-  hideEditTaskOverlay();
+function closeAddTaskOverlay() {
+  const overlay = document.getElementById("addTaskOverlay");
+  if (overlay) {
+    overlay.style.animation = "taskOverlayClose 0.4s ease-in-out forwards";
+    
+    setTimeout(() => {
+      overlay.style.display = "none";
+      overlay.classList.add("hidden");
+      overlay.innerHTML = "";
+      overlay.style.animation = "";
+    }, 400);
+  } 
 }
+
 
 /**
  * Hides the edit task overlay and clears its content
@@ -326,8 +341,17 @@ function hideEditTaskOverlay() {
 /**
  * Closes the Add Task overlay
  */
-function closeAddTaskOverlay() {
-  hideAddTaskOverlay();
+function closeEditTaskOverlay() {
+  const overlay = document.getElementById("editTaskOverlay");
+  if (overlay) {
+    overlay.classList.add("closing");
+    setTimeout(() => {
+      overlay.style.display = "none";
+      overlay.classList.add("hidden");
+      overlay.innerHTML = "";
+      overlay.classList.remove("closing");
+    }, 400); // TIMING: Anpassbar
+  }
 }
 
 /**

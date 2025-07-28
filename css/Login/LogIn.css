@@ -79,6 +79,39 @@ header img {
   margin-top: 16px;
 }
 
+.signUpMainContainer {
+    width: 598px;
+    height: 630px;
+    border-radius: 30px;
+    padding: 48px 115px;
+    gap: 20px;
+    background-color: #FFFFFF;
+    opacity: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signUpMainContainer h2 {
+    font-weight: 700;
+    font-size: 68px;
+    font-style: bold;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signUpMainContainer h2::after {
+    content: '';
+    display: block;
+    width: 150px;
+    border-bottom: 3px solid #29ABE2;
+    margin-top: 16px;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -248,4 +281,72 @@ footer a {
 footer a:hover {
   color: #29abe2;
   font-weight: 700;
+}
+
+.logoPageHeader {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px 30px;
+}
+
+.SignUpbtnPosition {
+    margin-left: auto; 
+}
+
+.hide {
+    opacity: 0;
+    filter: blur(8px); 
+    transform: translateY(20px); 
+    pointer-events: none;
+}
+
+.content-appear {
+    animation: contentFadeIn 500ms ease-out forwards;
+}
+
+@keyframes contentFadeIn {
+    from {
+        opacity: 0;
+        filter: blur(8px);
+        transform: translateY(20px); 
+    }
+    to {
+        opacity: 1;
+        filter: blur(0px);
+        transform: translateY(0px);
+    }
+}
+    
+#loadingScreen {
+    position: absolute;
+    left: 50%;
+    top: 50%; 
+    inset: 0;
+    z-index: 9999;
+    animation: logo-fly 1600ms ease-in-out forwards;
+    margin-top: 80px;
+    margin-left: 77px;
+}
+
+#loadingScreen.hidden {
+    display: none;
+}
+
+@keyframes logo-fly {
+    0% {
+        width: 274px;
+        height: 334.07px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+
+    100% {
+        width: 100.03px;
+        height: 121.97px;
+        transform: translate(0, 0);
+        opacity: 1;
+    }
 }

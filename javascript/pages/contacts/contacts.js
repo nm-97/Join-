@@ -120,8 +120,12 @@ function showAddContactOverlay() {
 function closeAddContactOverlay() {
   const overlay = document.getElementById("addContactOverlay");
   if (overlay) {
-    overlay.style.display = "none";
-    overlay.innerHTML = "";
+    overlay.classList.add("closing");
+    setTimeout(() => {
+      overlay.style.display = "none";
+      overlay.innerHTML = "";
+      overlay.classList.remove("closing");
+    }, 200); // TIMING: Anpassbar
   }
 }
 
@@ -150,8 +154,12 @@ async function showEditContactOverlay(contactId) {
 function closeEditContactOverlay() {
   const overlay = document.getElementById("editContactOverlay");
   if (overlay) {
-    overlay.style.display = "none";
-    overlay.innerHTML = "";
+    overlay.classList.add("closing");
+    setTimeout(() => {
+      overlay.style.display = "none";
+      overlay.innerHTML = "";
+      overlay.classList.remove("closing");
+    }, 200); // TIMING: Anpassbar
   }
 }
 
