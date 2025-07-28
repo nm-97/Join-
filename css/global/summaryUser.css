@@ -147,11 +147,15 @@
   gap: 20px;
 }
 
-.divider {
-  width: 2px;
-  height: 120px;
-  background-color: #e0e0e0;
-  margin: 0 40px;
+.summaryHeaderDevider.vertical {
+  width: 0px;
+  height: 59px;
+  border: 3px solid #29abe2;
+  margin-left: 20px;
+}
+
+.summaryHeaderDevider.horizontal {
+  display: none;
 }
 
 .cardIcon {
@@ -216,4 +220,83 @@
   font-size: 64px;
   font-weight: 700;
   color: #29abe2;
+}
+
+@media (max-width: 428px) {
+  .welcomeSection {
+    display: none;
+  }
+
+  .mainContent {
+    padding: 20px;
+    justify-content: center;
+  }
+
+  .cardRowsWrapper {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .cardRow {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .card {
+    width: 186px;
+    height: 110px;
+    padding: 14px;
+  }
+
+  .cardMainContent,
+  .cardValueLabelGroup,
+  .urgentSection,
+  .dateSection {
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .cardIcon {
+    margin: 0;
+  }
+
+  .divider {
+    height: 86px;
+    margin: 0;
+  }
+
+  .cardValue {
+    font-size: 36px;
+    text-align: center;
+  }
+
+  .cardLabel,
+  .dateTitle {
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .dateSubtitle {
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .combinedCard {
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+    width: 396px;
+    height: 110px;
+  }
+
+  .headerTitle {
+    display: none;
+  }
+
+  .helpBtn{
+    display: none;
+  }
 }
