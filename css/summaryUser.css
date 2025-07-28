@@ -29,9 +29,6 @@ body {
   display: flex;
   align-items: center;
   gap: 20px;
-}
-
-.pageHeaderWrapper {
   margin-bottom: 30px;
 }
 
@@ -44,16 +41,22 @@ body {
 }
 
 .pageTitle {
-  font-size: 64px;
+  font-size: 61px;
   font-weight: 700;
   margin: 0;
+  margin-right: 30px;
+}
+
+.summaryHeaderDevider {
+  width: 0px;
+  height: 59px;
+  border: 3px solid #29abe2;
 }
 
 .pageSubtitle {
   font-size: 27px;
-  color: black;
-  padding-left: 30px;
-  border-left: 3px solid #3498db;
+  color: #2a3647;
+  margin-left: 30px;
 }
 
 /* Card Section */
@@ -219,7 +222,7 @@ body {
   margin-left: 0;
   min-width: 340px;
   margin-bottom: 350px;
-  margin-top: 281.5px;
+  margin-top: 240px;
 }
 
 .welcomeText {

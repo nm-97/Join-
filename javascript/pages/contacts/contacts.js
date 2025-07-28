@@ -16,6 +16,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+window.addEventListener("load", async () => {
+  const contactIdForOverlay = sessionStorage.getItem("contactIdForOverlay");
+  if (contactIdForOverlay) {
+    const contact = await fetchContactByIdAndUser(contactIdForOverlay);
+    if (contact) {
+      showFloatingContactOverlay(contact);
+    }
+    sessionStorage.removeItem("contactIdForOverlay");
+  }
+});
+
 /**
  * Initializes the contacts page by fetching and rendering contacts
  */

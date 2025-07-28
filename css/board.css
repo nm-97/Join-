@@ -426,12 +426,20 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 999;
-  animation: overlayMoveFromRight 200ms ease-in-out forwards;
+}
+
+.overlay::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .overlay.hidden {
@@ -447,6 +455,7 @@ body {
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
+  animation: overlayMoveFromRight 200ms ease-in-out forwards;
 }
 
 .modalHeader {
@@ -605,12 +614,21 @@ hr {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  animation: overlayMoveFromRight 300ms ease-in-out forwards;
+}
+
+.overlayAddTask::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
 }
 
 .overlayContent {
@@ -622,18 +640,21 @@ hr {
   position: relative;
   overflow-y: auto;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  animation: overlayMoveFromRight 300ms ease-in-out forwards;
+  animation: overlayMoveFromRight 400ms ease-in-out forwards;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 @keyframes overlayMoveFromRight {
   0% {
     opacity: 0;
-    transform: translateX(250px);
+    transform: translate3d(250px, 0, 0);
   }
 
   100% {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate3d(0);
   }
 }
 

@@ -13,15 +13,16 @@
  * @returns {string} HTML string for the complete summary dashboard
  */
 function getsummaryTemplate(params) {
-  return ` <div class="cardSection">
-            <div class="pageHeaderWrapper">
-              <div class="pageHeader">
+  return `
+  <div class="pageHeaderWrapper">
+      <div class="pageHeader">
                 <h1 class="pageTitle">Join 360</h1>
+                <div class="summaryHeaderDevider"></div>
                 <div class="pageSubtitle">Key Matrics at a Glance</div>
               </div>
-            </div>
-            <div class="cardRowsWrapper">
-              <div class="cardRow topRow">
+             <div class="cardSection">
+                <div class="cardRowsWrapper">
+               <div class="cardRow topRow">
                 <div class="card">
                   <div class="cardMainContent">
                     <div class="cardIcon">
@@ -95,7 +96,8 @@ function getsummaryTemplate(params) {
                   <div class="cardLabel">Awaiting<br />Feedback</div>
                 </div>
               </div>
-            </div>
+              </div>
+              </div>
           </div>
           <div class="welcomeSection welcomeSectionSplit">
             <div class="welcomeText" id="welcomeText"></div>

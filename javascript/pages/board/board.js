@@ -417,7 +417,6 @@ async function findAndToggleSubtask(taskId, subtaskId) {
   return task;
 }
 
-
 /**
  * Updates a task in Firebase with new data
  * @param {string} taskId - The ID of the task to update
@@ -427,7 +426,6 @@ async function findAndToggleSubtask(taskId, subtaskId) {
 async function updateTaskInFirebase(taskId, task) {
   await updateTaskInFirebaseByUser(taskId, task);
 }
-
 
 /**
  * Updates the subtask list in the task detail overlay UI

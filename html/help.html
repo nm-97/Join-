@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../css/legal.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <script src="../javascript/global/ui.js" defer></script>
+    <script src="../javascript/global/firebase.js"></script>
+    <script src="../javascript/global/user.js"></script>
     <title>Privacy Policy</title>
   </head>
 
@@ -74,13 +76,11 @@
         <div class="header">
           <div class="headerTitle">Kanban Project Management Tool</div>
           <div class="headerActions">
-            <div>
-              <img
-                src="../assets/icons/summary and sideboard/help.svg"
-                alt=""
-              />
-            </div>
-                    <div class="userAvatar" id="userAvatar" onclick="toggleUserMenu()"></div>
+            <div
+              class="userAvatar"
+              id="userAvatar"
+              onclick="toggleUserMenu()"
+            ></div>
             <div class="dropdown none" id="usermenu">
               <a class="menuItem" href="./legalNotice.html">Legal Notice</a>
               <a class="menuItem" href="./privacyPolicy.html">Privacy Policy</a>
