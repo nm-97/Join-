@@ -14,9 +14,7 @@ function getAddTaskOverlay(params = {}) {
   return `
        <div class="overlayContent">
            <button class="closeBtn" onclick="closeAddTaskOverlay()">&times;</button>
-           
            <h1 class="addTaskH1">Add Task</h1>
-           
            <div class="addTaskFormsWrapper">
                <form>
                  <div class="formGroup">
@@ -29,7 +27,6 @@ function getAddTaskOverlay(params = {}) {
                    <label for="taskDescription">Description</label>
                    <textarea id="taskDescription" placeholder="Enter a description" name="taskDescription"></textarea>
                  </div>
-
                  <div class="formGroup">
                    <label for="taskDueDate" >Due Date <span class="requiredStar">*</span></label>
                    <div class="inputIcon">
@@ -39,7 +36,6 @@ function getAddTaskOverlay(params = {}) {
                    <div class="errorMessage hide" id="taskDueDateError"></div>
                  </div>
                </form>
-
                <div class="addTaskFormsDivider"></div>
                <form>
                  <div class="formGroup">
@@ -60,7 +56,6 @@ function getAddTaskOverlay(params = {}) {
                      <div class="errorMessage hide"></div>
                    </div>
                  </div>
-
                  <div class="formGroup">
                    <label for="taskAssignee">Assigned to <span class="requiredStar">*</span></label>
                    <div class="customDropdownContainer">
@@ -81,7 +76,6 @@ function getAddTaskOverlay(params = {}) {
                    </div>
                    <div class="errorMessage hide"></div>
                  </div>
-
                  <div class="formGroup">
                    <label for="taskCategory"
                      >Category <span class="requiredStar">*</span></label>
@@ -99,7 +93,6 @@ function getAddTaskOverlay(params = {}) {
                              </div>
                    <div class="errorMessage hide"></div>
                  </div>
-
                  <div class="formGroup">
                    <label for="Subtask">Subtask</label>
                    <div class="inputIcon">
@@ -109,7 +102,6 @@ function getAddTaskOverlay(params = {}) {
                      <div id="editableDiv" class="subtaskDisplayContainer">
                   </div>
                  </div>
-
                   <div class="formActions">
                    <span class="requiredStarText">*This field is required</span>
                    <div class="formButtons">
@@ -129,10 +121,10 @@ function getAddTaskOverlay(params = {}) {
 }
 
 /**
-* Generates HTML template for the Edit Task overlay
-* @param {Object} task - Task object containing task data for editing
-* @returns {string} HTML string for the Edit Task overlay
-*/
+ * Generates HTML template for the Edit Task overlay
+ * @param {Object} task - Task object containing task data for editing
+ * @returns {string} HTML string for the Edit Task overlay
+ */
 function getEditTaskOverlay(task) {
   const assignedContacts = task.assignedContacts || [];
   let assignedInfoHtml = "";
@@ -158,21 +150,18 @@ function getEditTaskOverlay(task) {
             <img src="../assets/icons/shared/close.svg" alt="close">
           </button>
         </div>
-        
         <div class="editFormGroup">
           <label class="editLabel">Title</label>
           <input type="text" id="editTaskTitle" placeholder="Title" class="editInput" value="${
             task.title || ""
           }">
         </div>
-        
         <div class="editFormGroup">
           <label class="editLabel">Description</label>
           <textarea id="editTaskDescription" placeholder="Description" class="editTextarea">${
             task.description || ""
           }</textarea>
         </div>
-        
         <div class="editFormGroup">
           <label class="editLabel">Due date</label>
           <div class="editInputIcon">
@@ -182,7 +171,6 @@ function getEditTaskOverlay(task) {
             <img src="../assets/icons/add task/event.svg" class="editDateIcon" alt="calendarIcon">
           </div>
         </div>
-        
         <div class="formGroup">
           <label for="taskPriority" class="taskPriorityLabel">Task Priority</label>
             <div class="taskPriorityGroup">
@@ -200,7 +188,6 @@ function getEditTaskOverlay(task) {
               </button>
             </div>
         </div>
-        
         <div class="editFormGroup">
          <label for="taskAssignee">Assigned to <span class="requiredStar">*</span></label>
                <div class="customDropdownContainer">
@@ -221,7 +208,6 @@ function getEditTaskOverlay(task) {
                </div>
                <div class="errorMessage hide"></div>
         </div>
-        
         <div class="editFormGroup editFormGroupLast">
            <label for="Subtask">Subtask</label>
                <div class="inputIcon">
@@ -231,7 +217,6 @@ function getEditTaskOverlay(task) {
                <div id="editableDiv" class="subtaskDisplayContainer">
                </div>
         </div>
-        
         <div class="editButtonContainer">
           <button class="editOkBtn" id="editSaveBtn">
             Ok

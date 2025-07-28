@@ -114,8 +114,6 @@ body {
   height: 85%;
   margin-top: 24px;
   gap: 30px;
-  overflow-y: hidden;
-  overflow-x: hidden;
   padding: 12px;
 }
 .boardColumn {

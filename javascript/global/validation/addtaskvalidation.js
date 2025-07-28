@@ -13,7 +13,6 @@
 function initializeDateInput() {
   const dueDateInput = document.getElementById("taskDueDate");
   if (!dueDateInput) return;
-
   setupDateFormatting(dueDateInput);
 }
 
@@ -24,14 +23,12 @@ function initializeDateInput() {
 function setupDateFormatting(input) {
   input.addEventListener("input", function (e) {
     let value = e.target.value.replace(/\D/g, "");
-
     if (value.length >= 2) {
       value = value.substring(0, 2) + "/" + value.substring(2);
     }
     if (value.length >= 5) {
       value = value.substring(0, 5) + "/" + value.substring(5);
     }
-
     e.target.value = value.substring(0, 10);
   });
 }
@@ -43,15 +40,12 @@ function setupDateFormatting(input) {
 function validateAddTaskForm() {
   const inputs = getFormInputs();
   let isValid = true;
-
   clearAllTaskErrors();
-
   if (!validateTitle(inputs.titleInput)) isValid = false;
   if (!validateDueDate(inputs.dueDateInput)) isValid = false;
   if (!validateCategory()) isValid = false;
   if (!validateAssignee()) isValid = false;
   if (!validatePriority()) isValid = false;
-
   return isValid;
 }
 
@@ -110,7 +104,6 @@ function validateCategory() {
     typeof getSelectedCategoryName === "function"
       ? getSelectedCategoryName()
       : selectedCategory || "";
-
   if (!categoryValue || categoryValue === "") {
     showCategoryError("This field is required");
     return false;
@@ -135,14 +128,11 @@ function validateAssignee() {
     }
     return true;
   }
-
   const selectedContactIds = getSelectedContactIds();
-
   if (!selectedContactIds || selectedContactIds.length === 0) {
     showCustomDropdownError("This field is required");
     return false;
   }
-
   clearCustomDropdownError();
   return true;
 }
@@ -156,13 +146,11 @@ function showCustomDropdownError(message) {
     ".customDropdownContainer"
   );
   if (!customDropdownContainer) return;
-
   const errorDiv = customDropdownContainer.querySelector(".errorMessage");
   if (errorDiv) {
     errorDiv.textContent = message;
     errorDiv.classList.remove("hide");
   }
-
   const dropdownHeader = document.querySelector(".dropdownHeader");
   if (dropdownHeader) {
     dropdownHeader.style.borderColor = "#ff0000";
@@ -177,13 +165,11 @@ function clearCustomDropdownError() {
     ".customDropdownContainer"
   );
   if (!customDropdownContainer) return;
-
   const errorDiv = customDropdownContainer.querySelector(".errorMessage");
   if (errorDiv) {
     errorDiv.textContent = "";
     errorDiv.classList.add("hide");
   }
-
   const dropdownHeader = document.querySelector(".dropdownHeader");
   if (dropdownHeader) {
     dropdownHeader.style.borderColor = "#d1d1d1";
@@ -197,13 +183,11 @@ function clearCustomDropdownError() {
 function showCategoryError(message) {
   const categoryDropdown = document.getElementById("customCategoryDropdown");
   if (!categoryDropdown) return;
-
   const errorDiv = categoryDropdown.parentNode.querySelector(".errorMessage");
   if (errorDiv) {
     errorDiv.textContent = message;
     errorDiv.classList.remove("hide");
   }
-
   const dropdownHeader = categoryDropdown.querySelector(".dropdownHeader");
   if (dropdownHeader) {
     dropdownHeader.style.borderColor = "#ff0000";
@@ -216,13 +200,11 @@ function showCategoryError(message) {
 function clearCategoryError() {
   const categoryDropdown = document.getElementById("customCategoryDropdown");
   if (!categoryDropdown) return;
-
   const errorDiv = categoryDropdown.parentNode.querySelector(".errorMessage");
   if (errorDiv) {
     errorDiv.textContent = "";
     errorDiv.classList.add("hide");
   }
-
   const dropdownHeader = categoryDropdown.querySelector(".dropdownHeader");
   if (dropdownHeader) {
     dropdownHeader.style.borderColor = "#d1d1d1";
@@ -249,11 +231,9 @@ function validatePriority() {
 function validateDateFormat(dateString) {
   if (dateString.length !== 10) return false;
   if (dateString[2] !== "/" || dateString[5] !== "/") return false;
-
   const day = dateString.substring(0, 2);
   const month = dateString.substring(3, 5);
   const year = dateString.substring(6, 10);
-
   if (day < 1 || day > 31) return false;
   if (month < 1 || month > 12) return false;
   if (year < 2024) return false;
@@ -268,15 +248,12 @@ function validateDateFormat(dateString) {
  */
 function validateTodayOrFutureDate(dateString) {
   if (!validateDateFormat(dateString)) return false;
-
   const day = dateString.substring(0, 2);
   const month = dateString.substring(3, 5);
   const year = dateString.substring(6, 10);
-
   const inputDate = new Date(year, month - 1, day);
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-
   return inputDate >= today;
 }
 
@@ -296,9 +273,7 @@ function validateFutureDate(dateString) {
 function showPriorityError(message) {
   const priorityGroup = document.querySelector(".taskPriorityGroup");
   if (!priorityGroup) return;
-
   clearPriorityError();
-
   const errorDiv = priorityGroup.querySelector(".errorMessage");
   if (errorDiv) {
     errorDiv.textContent = message;
@@ -312,7 +287,6 @@ function showPriorityError(message) {
 function clearPriorityError() {
   const priorityGroup = document.querySelector(".taskPriorityGroup");
   if (!priorityGroup) return;
-
   const errorDiv = priorityGroup.querySelector(".errorMessage");
   if (errorDiv) {
     errorDiv.textContent = "";
@@ -338,7 +312,6 @@ function clearAllTaskErrors() {
 function getFormDataForFirebase() {
   const dueDateInput = document.getElementById("taskDueDate");
   const formattedDueDate = convertDateFormat(dueDateInput);
-
   return createTaskDataObject(formattedDueDate);
 }
 
@@ -349,15 +322,12 @@ function getFormDataForFirebase() {
  */
 function convertDateFormat(dueDateInput) {
   if (!dueDateInput || !dueDateInput.value) return "";
-
   const day = dueDateInput.value.substring(0, 2);
   const month = dueDateInput.value.substring(3, 5);
   const year = dueDateInput.value.substring(6, 10);
-
   if (day && month && year) {
     return year + "-" + month + "-" + day;
   }
-
   return "";
 }
 
@@ -371,7 +341,6 @@ function createTaskDataObject(formattedDueDate) {
     typeof getSelectedCategoryName === "function"
       ? getSelectedCategoryName()
       : selectedCategory || "";
-
   return {
     title: document.getElementById("taskTitle").value,
     description: document.getElementById("taskDescription").value || "",
@@ -413,11 +382,9 @@ function clearAllFormInputs() {
   document.getElementById("taskTitle").value = "";
   document.getElementById("taskDescription").value = "";
   document.getElementById("taskDueDate").value = "";
-
   if (typeof clearContactSelections === "function") {
     clearContactSelections();
   }
-
   const subtaskInput = document.getElementById("taskSubtask");
   if (subtaskInput) subtaskInput.value = "";
 }

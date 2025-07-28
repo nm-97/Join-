@@ -1,0 +1,49 @@
+/**
+ * Overlay Animations
+ * Contains all keyframe animations used by overlay components
+ */
+
+/* Slide in from right animation */
+@keyframes overlayMoveFromRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(250px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Fade in from left animation */
+@keyframes fadeInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-50px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Edit contact overlay close animation */
+@keyframes editContactOverlayClose {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(250px, 0, 0);
+  }
+}
+
+/* Animation classes */
+.editContactOverlay {
+  animation: overlayMoveFromRight 0.2s ease-in-out;
+}
+
+.editContactOverlay.closing {
+  animation: editContactOverlayClose 0.2s ease-in-out forwards;
+}

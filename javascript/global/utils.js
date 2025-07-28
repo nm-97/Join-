@@ -8,14 +8,6 @@
 "use strict";
 
 /**
- * Capitalizes the first letter of a string and makes the rest lowercase
- * @param {string} string - The string to capitalize
- * @returns {string} Capitalized string or empty string if input is falsy
- */
-const capitalizeFirstLetter = (string) =>
-  string ? string.charAt(0).toUpperCase() + string.slice(1).toLowerCase() : "";
-
-/**
  * Formats a date string into a readable format
  * @param {string} dateString - The date string to format
  * @returns {string} Formatted date in "Month Day, Year" format
@@ -27,6 +19,19 @@ function formatDate(dateString) {
     month: "long",
     day: "numeric",
   });
+}
+
+/**
+ * Formats a name to proper case (first letter of each word capitalized)
+ * @param {string} name - The name to format
+ * @returns {string} Properly formatted name
+ */
+function formatName(name) {
+  if (!name || typeof name !== "string") return name;
+  return name
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
 }
 
 /**
@@ -112,7 +117,6 @@ async function getAllContactsFromAssigned(assignedTo) {
   if (!assignedTo) return [];
   const contactIds = Array.isArray(assignedTo) ? assignedTo : [assignedTo];
   const contacts = [];
-  
   for (const contactId of contactIds) {
     try {
       const contact = await fetchContactByIdAndUser(contactId);
@@ -123,7 +127,6 @@ async function getAllContactsFromAssigned(assignedTo) {
       console.warn(`Contact with ID ${contactId} not found:`, error);
     }
   }
-  
   return contacts;
 }
 
@@ -136,3 +139,48 @@ function getAllContactNamesFromAssigned(assignedTo) {
   const contacts = getAllContactsFromAssigned(assignedTo);
   return contacts.map((contact) => contact.name);
 }
+
+/**
+ * Toggles the visibility of the user dropdown menu
+ */
+function toggleUserMenu() {
+  const dropdown = document.getElementById("usermenu");
+  dropdown.style.display =
+    dropdown.style.display === "block" ? "none" : "block";
+}
+
+/**
+ * Closes the user dropdown menu by hiding it
+ */
+function closeUserMenu() {
+  const dropdown = document.getElementById("usermenu");
+  dropdown.style.display = "none";
+}
+
+/**
+ * Initializes the user avatar with appropriate initials and color
+ * Handles both guest and registered user display
+ */
+function initializeUserAvatar() {
+  const user = getCurrentUser();
+  let displayName = "User";
+  if (user.type === "guest") {
+    displayName = "Guest";
+  } else if (user.type === "registered") {
+    displayName = user.name || "User";
+  }
+  const userAvatarElement = document.getElementById("userAvatar");
+  if (userAvatarElement) {
+    const initials = getInitials(displayName);
+    const color = getAvatarColor(displayName);
+    userAvatarElement.textContent = initials;
+    userAvatarElement.style.backgroundColor = color;
+  }
+}
+
+/**
+ * Initializes UI components when DOM content is loaded
+ */
+document.addEventListener("DOMContentLoaded", function () {
+  initializeUserAvatar();
+});

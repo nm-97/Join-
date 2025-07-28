@@ -23,12 +23,10 @@ async function loadContacts() {
   try {
     let contacts = await fetchContactsByIdAndUser();
     const currentUser = getCurrentUser();
-
     if (currentUser.type === "registered") {
       const userAlreadyInContacts = contacts.some(
         (contact) => contact.id === currentUser.id
       );
-
       if (!userAlreadyInContacts) {
         const currentUserContact = {
           id: currentUser.id,
@@ -40,7 +38,6 @@ async function loadContacts() {
         contacts.unshift(currentUserContact);
       }
     }
-
     allContacts = contacts;
     renderContactsDropdown(allContacts);
     setupDropdownEvents("customDropdown", "dropdownInput", "dropdownArrow");
@@ -56,9 +53,7 @@ async function loadContacts() {
 function renderContactsDropdown(contacts) {
   const contactsList = document.getElementById("contactsDropdownList");
   if (!contactsList) return;
-
   let html = "";
-
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
     const initials = getInitials(contact.name);
@@ -67,7 +62,6 @@ function renderContactsDropdown(contacts) {
     const isCurrentUser =
       currentUser.type === "registered" && contact.id === currentUser.id;
     const displayName = isCurrentUser ? `${contact.name} (You)` : contact.name;
-
     html += `
      <div class="contactItem" data-contact-id="${contact.id}">
        <div class="contactAvatar" style="background-color: ${avatarColor};">${initials}</div>
@@ -281,7 +275,6 @@ function clearContactSelections() {
   });
   updateDropdownInput();
 }
-
 let selectedDropdownCategory = "";
 const categories = [
   { id: "technicalTask", name: "Technical Task" },
@@ -315,12 +308,9 @@ function renderCategoriesDropdown(categories) {
   if (!categoriesList) {
     return;
   }
-
   let html = "";
-
   for (let i = 0; i < categories.length; i++) {
     const category = categories[i];
-
     html += `
      <div class="contactItem" data-category-id="${category.id}">
        <div class="contactInfo">
@@ -329,7 +319,6 @@ function renderCategoriesDropdown(categories) {
      </div>
    `;
   }
-
   categoriesList.innerHTML = html;
 }
 
@@ -342,7 +331,6 @@ function setupCategorySelection() {
     item.addEventListener("click", function (e) {
       const categoryId = this.getAttribute("data-category-id");
       const categoryName = this.querySelector(".contactName").textContent;
-
       selectedDropdownCategory = categoryId;
       const categoryDropdownInput = document.getElementById(
         "categoryDropdownInput"

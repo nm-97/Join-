@@ -1,0 +1,14 @@
+/**
+ * Master Overlay CSS Import File
+ * Imports all overlay-related stylesheets in the correct order
+ * Replace overlay.css imports with this single file
+ */
+
+/* Core overlay components */
+@import url("taskDetailOverlay.css");
+@import url("addTaskOverlay.css");
+@import url("contactOverlays.css");
+@import url("floatingContactCard.css");
+
+/* Animations must be loaded last to work properly */
+@import url("overlayAnimations.css");

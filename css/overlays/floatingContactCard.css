@@ -1,0 +1,113 @@
+/**
+ * Floating Contact Card Styles
+ * Handles styling for floating contact detail cards
+ */
+
+.floatingContactMainContent {
+  margin-top: 70px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+}
+
+.floatingContactCard {
+  border-radius: 10px;
+  max-width: 600px;
+  animation: fadeInFromLeft 300ms ease 0s 1 normal forwards;
+}
+
+.floatingContactHeader {
+  display: flex;
+  align-items: center;
+  gap: 54px;
+  margin-bottom: 24px;
+}
+
+.floatingContactAvatar {
+  background: #ff7a00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border: 3px solid #ffffff;
+  font-size: 47px;
+  font-weight: 500;
+  border-radius: 70px;
+  width: 120px;
+  height: 120px;
+}
+
+.floatingContactName span {
+  font-size: 47px;
+  font-weight: 500;
+  color: #000000;
+  display: block;
+  gap: 5px;
+}
+
+.floatingContactName {
+  gap: 8px;
+}
+
+.floatingContactActions {
+  display: flex;
+  gap: 20px;
+  width: 150px;
+  margin-top: 10px;
+}
+
+.editBtn,
+.deleteBtn {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.editBtn img,
+.deleteBtn img {
+  width: 24px;
+  height: 24px;
+}
+
+.floatingContactInfo {
+  gap: 59px;
+  margin-top: 59px;
+}
+
+.floatingContactInfoLabel {
+  font-size: 20px;
+  font-weight: 400;
+  gap: 22px;
+  margin-bottom: 59px;
+}
+
+.floatingContactInfo > div {
+  margin-bottom: 16px;
+}
+
+.floatingContactInfoDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.floatingContactInfoDetails a {
+  font-size: 16px;
+  text-decoration: none;
+  color: #007cee;
+}
+
+.floatingContactInfoDetails span {
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.floatingContactInfoDetails p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+  margin-top: 8px;
+}

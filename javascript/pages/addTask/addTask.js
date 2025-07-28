@@ -178,7 +178,6 @@ function loadCategories() {
     { value: "User Story", label: "User Story" },
     { value: "Technical Task", label: "Technical Task" },
   ];
-
   setupCategoryDropdown(categories);
 }
 
@@ -189,7 +188,6 @@ function loadCategories() {
 function setupCategoryDropdown(categories) {
   const dropdownElements = getCategoryDropdownElements();
   if (!validateCategoryDropdownElements(dropdownElements)) return;
-
   populateCategoryList(categories, dropdownElements.categoryList);
   attachCategoryDropdownEvents(dropdownElements);
 }

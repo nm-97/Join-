@@ -4,23 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico" />
-    <link rel="stylesheet" href="../css/LogIn.css" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/LogInPage.css" />
-    <link rel="stylesheet" href="../css/validation.css" />
+    <link rel="stylesheet" href="../css/global/style.css" />
+    <link rel="stylesheet" href="../css/Login/LogIn.css" />
+    <link rel="stylesheet" href="../css/Login/LogInPage.css" />
+    <link rel="stylesheet" href="../css/global/validation/validation.css" />
     <script src="../javascript/global/firebase.js"></script>
     <script src="../javascript/global/user.js"></script>
     <script src="../javascript/global/utils.js"></script>
     <script src="../javascript/global/loadingscreen.js"></script>
     <script src="../javascript/global/validation/validation.js"></script>
     <script src="../javascript/global/validation/loginvadlidation.js"></script>
-    <script src="../javascript/global/ui.js" defer></script>
     <title>Join</title>
   </head>
 
   <body class="fontStyle">
     <a href="../html/index.html">
-      <img id="loadingScreen" src="../assets/icons/joinlogo_black.png" alt="join_logo"/>
+      <img
+        id="loadingScreen"
+        src="../assets/icons/joinlogo_black.png"
+        alt="join_logo"
+      />
     </a>
     <header class="logoPageHeader hide">
       <div class="SignUpbtnPosition">
@@ -45,7 +48,15 @@
         <div class="errorMessage hide"></div>
         <div class="btnPosition">
           <button class="LogInbtn" #logInButton id="loginButton">Log In</button>
-          <button class="guestLogInButton" type="button" onclick="setGuestLogin()" #guestLogInButton id="guestLoginButton">Guest Log in</button>
+          <button
+            class="guestLogInButton"
+            type="button"
+            onclick="setGuestLogin()"
+            #guestLogInButton
+            id="guestLoginButton"
+          >
+            Guest Log in
+          </button>
         </div>
       </form>
     </main>

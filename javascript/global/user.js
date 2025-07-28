@@ -27,6 +27,37 @@ async function getUserName() {
 }
 
 /**
+ * Sets up guest login by storing guest user data in session storage and redirecting
+ */
+function setGuestLogin() {
+  sessionStorage.setItem(
+    "currentUser",
+    JSON.stringify({
+      type: "guest",
+    })
+  );
+  window.location.href = "../html/summaryUser.html";
+}
+
+/**
+ * Sets up registered user login by storing user data in session storage
+ * @param {Object} params - User parameters (id, name, email, etc.)
+ * @param {boolean} redirect - Whether to redirect after login (default: true)
+ */
+function setUserLogin(params, redirect = true) {
+  sessionStorage.setItem(
+    "currentUser",
+    JSON.stringify({
+      type: "registered",
+      ...params,
+    })
+  );
+  if (redirect) {
+    window.location.href = "../html/summaryUser.html";
+  }
+}
+
+/**
  * Logs out the current user and redirects to login page
  */
 function logoutUserDirectly() {
@@ -53,6 +84,16 @@ function showLocalTimeFormUser() {
 }
 
 /**
+ * Fetches all registered users from Firebase
+ * @returns {Promise<Array>} Array of user objects with IDs
+ */
+async function fetchAllRegisteredUsers() {
+  const data = await fetchData(USERS_PATH);
+  if (!data) return [];
+  return Object.entries(data).map(([id, userData]) => ({ id, ...userData }));
+}
+
+/**
  * Displays a success message after user sign up
  */
 function renderSignUpSuccessMessage() {
@@ -71,6 +112,40 @@ function renderSignUpSuccessMessage() {
  */
 async function initializeUserData() {
   await showContactSideBar();
+}
+
+/**
+ * Checks user credentials against registered users in Firebase
+ * @param {string} email - User email address
+ * @param {string} password - User password
+ * @returns {Promise<Object>} Object with success status and user data if successful
+ */
+async function checkUserCredentials(email, password) {
+  try {
+    const users = await fetchAllRegisteredUsers();
+    for (let i = 0; i < users.length; i++) {
+      const user = users[i];
+      if (user.email === email && user.password === password) {
+        return {
+          success: true,
+          user: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            type: "registered",
+          },
+        };
+      }
+    }
+    return {
+      success: false,
+    };
+  } catch (error) {
+    console.error("Login Fehler:", error);
+    return {
+      success: false,
+    };
+  }
 }
 
 /**
@@ -97,7 +172,6 @@ function getInitials(name) {
  */
 function getAvatarColor(name) {
   if (!name || typeof name !== "string") return "#6B7280";
-
   const colors = [
     "#FF5EB3",
     "#6E52FF",
@@ -120,7 +194,6 @@ function getAvatarColor(name) {
     "#84CC16",
     "#F59E0B",
   ];
-
   const firstChar = name.charCodeAt(0);
   const lastChar = name.charCodeAt(name.length - 1);
   const nameLength = name.length;

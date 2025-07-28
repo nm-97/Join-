@@ -97,47 +97,11 @@ async function patchData(path, data) {
  * @param {string} path - The Firebase database path to delete from
  * @returns {Promise<boolean>} True if deletion was successful, false otherwise
  */
-/**
- * Deletes data from Firebase database
- * @param {string} path - The Firebase database path to delete from
- * @returns {Promise<boolean>} True if deletion was successful, false otherwise
- */
 async function deleteData(path) {
   const response = await fetch(`${firebaseUrl}${path}`, {
     method: "DELETE",
   });
   return response.ok;
-}
-
-/**
- * Sets up guest login by storing guest user data in session storage and redirecting
- */
-function setGuestLogin() {
-  sessionStorage.setItem(
-    "currentUser",
-    JSON.stringify({
-      type: "guest",
-    })
-  );
-  window.location.href = "../html/summaryUser.html";
-}
-
-/**
- * Sets up registered user login by storing user data in session storage
- * @param {Object} params - User parameters (id, name, email, etc.)
- * @param {boolean} redirect - Whether to redirect after login (default: true)
- */
-function setUserLogin(params, redirect = true) {
-  sessionStorage.setItem(
-    "currentUser",
-    JSON.stringify({
-      type: "registered",
-      ...params,
-    })
-  );
-  if (redirect) {
-    window.location.href = "../html/summaryUser.html";
-  }
 }
 
 /**
@@ -180,6 +144,7 @@ async function createUser(userData) {
     userId: userId,
   };
 }
+
 /**
  * Posts user data to Firebase database
  * @param {Object} UserData - User data to post
@@ -397,53 +362,9 @@ function mapApiContactToTemplate(data) {
   const phone = data.phone || data["phone "] || "";
   return {
     id: data.id || null,
-    name: capitalizeFirstLetter(name) || "Unbekannt",
+    name: formatName(name) || "Unbekannt",
     email: data.email || "",
     phone: phone || "",
     address: data.address || "",
   };
-}
-
-/**
- * Fetches all registered users from Firebase
- * @returns {Promise<Array>} Array of user objects with IDs
- */
-async function fetchAllRegisteredUsers() {
-  const data = await fetchData(USERS_PATH);
-  if (!data) return [];
-  return Object.entries(data).map(([id, userData]) => ({ id, ...userData }));
-}
-
-/**
- * Checks user credentials against registered users in Firebase
- * @param {string} email - User email address
- * @param {string} password - User password
- * @returns {Promise<Object>} Object with success status and user data if successful
- */
-async function checkUserCredentials(email, password) {
-  try {
-    const users = await fetchAllRegisteredUsers();
-    for (let i = 0; i < users.length; i++) {
-      const user = users[i];
-      if (user.email === email && user.password === password) {
-        return {
-          success: true,
-          user: {
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            type: "registered",
-          },
-        };
-      }
-    }
-    return {
-      success: false,
-    };
-  } catch (error) {
-    console.error("Login Fehler:", error);
-    return {
-      success: false,
-    };
-  }
 }

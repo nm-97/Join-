@@ -13,15 +13,12 @@ let animationStarted = false;
 document.addEventListener("DOMContentLoaded", () => {
   if (animationStarted) return;
   animationStarted = true;
-  
   const header = document.querySelector(".logoPageHeader");
   const main = document.querySelector(".LogInMainContainer");
   const footer = document.querySelector("footer");
-  
   if (header) header.classList.add("hide");
   if (main) main.classList.add("hide");
   if (footer) footer.classList.add("hide");
-  
   setTimeout(() => {
     if (header) {
       header.classList.remove("hide");

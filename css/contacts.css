@@ -1,226 +1,214 @@
+/* Contacts-specific layout adjustments */
 .pageWrapper,
 .mainContainer {
-    height: 100vh;
-    min-height: 100vh;
-    display: flex;
-}
-
-.pageWrapper {
-    flex-direction: row;
-}
-
-.mainContainer {
-    flex-direction: column;
-    flex: 1;
+  height: 100vh;
 }
 
 .contactsContentWrapper {
-    display: flex;
-    flex-direction: row;
-    flex: 1;
-    background-color: #f8f9fa;
-    overflow: hidden;
-    height: 100%;
-    align-items: flex-start;
-    gap: 40px;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  background-color: #f8f9fa;
+  overflow: hidden;
+  height: 100%;
+  align-items: flex-start;
+  gap: 40px;
 }
 
 .contactsMainContent {
-    width: 400px;
-    padding: 32px 24px;
-    background-color: #ffffff;
-    border-right: 1px solid #d1d1d1;
-    height: 100%;
-    overflow: hidden;
+  width: 400px;
+  padding: 32px 24px;
+  background-color: #ffffff;
+  border-right: 1px solid #d1d1d1;
+  height: 100%;
+  overflow: hidden;
 }
 
 .contactsRightPanel {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 32px 24px;
-    height: 100%;
-    overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 24px;
+  height: 100%;
+  overflow: hidden;
 }
 
 .pageHeader {
-    position: fixed;
-    top: 133px;
-    width: 569px;
-    height: 73px;
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    margin-bottom: 24px;
+  position: fixed;
+  top: 133px;
+  width: 569px;
+  height: 73px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 24px;
 }
 
 .pageHeader h1 {
-    font-weight: 700;
-    font-size: 61px;
-    line-height: 120%;
-    color: #000000;
+  font-weight: 700;
+  font-size: 61px;
+  line-height: 120%;
+  color: #000000;
 }
 
 .pageHeader span {
-    font-weight: 400;
-    font-size: 27px;
-    line-height: 120%;
-    color: #2a3647;
+  font-weight: 400;
+  font-size: 27px;
+  line-height: 120%;
+  color: #2a3647;
 }
 
 .contactsHeaderDivider {
-    width: 0px;
-    height: 59px;
-    border: 3px solid #29abe2;
+  width: 0px;
+  height: 59px;
+  border: 3px solid #29abe2;
 }
 
 .addContactButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background-color: #2a3647;
-    color: #ffffff;
-    border: none;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 352px;
-    height: 56px;
-    padding: 12px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #2a3647;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 352px;
+  height: 56px;
+  padding: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-bottom: 16px;
 }
 
 .addContactButton:hover {
-    background-color: #1a2233;
+  background-color: #1a2233;
 }
 
 .addContactButton img {
-    width: 32px;
-    height: 32px;
+  width: 32px;
+  height: 32px;
 }
 
 .addContactButton span {
-    font-weight: 700;
-    font-size: 21px;
-    line-height: 120%;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 120%;
 }
 
 .contactsList {
-    flex: 1;
-    height: 100%;
-    overflow-y: scroll;
-    border-radius: 10px;
-    padding: 0 8px 8px 0;
+  flex: 1;
+  height: 100%;
+  overflow-y: scroll;
+  border-radius: 10px;
+  padding: 0 8px 8px 0;
 }
 
 .contactsSection {
-    margin-bottom: 24px;
+  margin-bottom: 24px;
 }
 
 .contactsSectionHeader {
-    font-size: 20px;
-    font-weight: 400;
-    color: #000000;
-    margin-bottom: 16px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #d1d1d1;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000000;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #d1d1d1;
 }
 
 .contactItem {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 35px;
-    padding: 15px 24px;
-    cursor: pointer;
-    border-radius: 10px;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 35px;
+  padding: 15px 24px;
+  cursor: pointer;
+  border-radius: 10px;
 }
 
 .contactItem:hover .contactName,
-.contactItem:hover  {
-    color: #ffffff;
+.contactItem:hover {
+  color: #ffffff;
 }
 
 .contactItem:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
-  filter:   brightness(1.0) contrast(1.0);
-    background-color: #2a3647;
-    transition: color 0.2s ease;
-    color: #ffffff;
+  filter: brightness(1) contrast(1);
+  background-color: #2a3647;
+  transition: color 0.2s ease;
+  color: #ffffff;
 }
 
-.contactItem.selected  {
-    background-color: #2a3647;
-    color: #ffffff;
+.contactItem.selected {
+  background-color: #2a3647;
+  color: #ffffff;
 }
 
 .contactItem.selected .contactName {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 .contactItem.selected .contactAvatar {
-    border: 2px solid #ffffff; 
+  border: 2px solid #ffffff;
 }
 
-
 .contactAvatar {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 12px;
-    font-weight: 400;
-    flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 400;
+  flex-shrink: 0;
 }
 
 .contactInfo {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .contactName {
-    font-size: 20px;
-    font-weight: 400;
-    color: #000000;
-    line-height: 1.2;
-    margin-bottom: 2px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000000;
+  line-height: 1.2;
+  margin-bottom: 2px;
 }
 
 .contactEmail {
-    font-size: 16px;
-    color: #007CEE;
-    font-weight: 400;
+  font-size: 16px;
+  color: #007cee;
+  font-weight: 400;
 }
 
 .alphabetSeparator {
-    padding: 8px 0;
-    margin-bottom: 8px;
-    position: sticky;
-    display: flex;
-    flex-direction: column;
+  padding: 8px 0;
+  margin-bottom: 8px;
+  position: sticky;
+  display: flex;
+  flex-direction: column;
 }
 
 .alphabetLetter {
-    font-size: 20px;
-    font-weight: 400;
-    color: #000000;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    margin-left: 39px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000000;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  margin-left: 39px;
 }
 
 .alphabetSeparator::after {
-    content: '';
-    display: block;
-    width: 352px;
-    height: 1px;
-    background-color: #d1d1d1;
+  content: "";
+  display: block;
+  width: 352px;
+  height: 1px;
+  background-color: #d1d1d1;
 }

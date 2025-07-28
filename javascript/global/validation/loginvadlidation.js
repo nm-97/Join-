@@ -15,19 +15,14 @@ function validateLoginForm() {
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
   const errorMessage = document.getElementsByClassName("errorMessage")[0];
-
   if (!emailInput || !passwordInput || !errorMessage) return false;
-
   const email = emailInput.value;
   const password = passwordInput.value;
-
   clearLoginErrors();
-
   if (!isValidLoginData(email, password)) {
     showLoginError("Check your email and password. Please try again.");
     return false;
   }
-
   return true;
 }
 
@@ -52,7 +47,6 @@ function clearLoginErrors() {
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
   const errorMessage = document.getElementsByClassName("errorMessage")[0];
-
   emailInput.classList.remove("errorInput");
   passwordInput.classList.remove("errorInput");
   errorMessage.classList.add("hide");
@@ -66,12 +60,10 @@ function showLoginError(message) {
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
   const errorMessage = document.getElementsByClassName("errorMessage")[0];
-
   emailInput.classList.add("errorInput");
   passwordInput.classList.add("errorInput");
   errorMessage.textContent = message;
   errorMessage.classList.remove("hide");
-
   enableAllButtons();
 }
 
@@ -123,7 +115,6 @@ function disableAllButtons() {
   const loginButton = document.getElementById("loginButton");
   const guestLoginButton = document.getElementById("guestLoginButton");
   const signUpButton = document.getElementById("signUpButton");
-
   if (loginButton) {
     loginButton.disabled = true;
     loginButton.classList.add("buttonDisabled");
@@ -145,7 +136,6 @@ function enableAllButtons() {
   const loginButton = document.getElementById("loginButton");
   const guestLoginButton = document.getElementById("guestLoginButton");
   const signUpButton = document.getElementById("signUpButton");
-
   if (loginButton) {
     loginButton.disabled = false;
     loginButton.classList.remove("buttonDisabled");

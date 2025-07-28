@@ -280,6 +280,7 @@ function getSelectedAssignedTo() {
     ? getSelectedContactIds() // Gibt das komplette Array zurück
     : [];
 }
+
 /**
  * Sends updated task object to Firebase
  * @param {string} taskId - The ID of the task

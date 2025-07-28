@@ -4,15 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico" />
-    <link rel="stylesheet" href="../css/signUp.css" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/validation.css" />
-    <link rel="stylesheet" href="../css/customcheckbox.css">
+    <link rel="stylesheet" href="../css/global/style.css" />
+    <link rel="stylesheet" href="../css/Login/signUp.css" />
+    <link rel="stylesheet" href="../css/global/validation/validation.css" />
+    <link rel="stylesheet" href="../css/customcheckbox.css" />
     <script src="../javascript/global/firebase.js"></script>
     <script src="../javascript/global/user.js"></script>
     <script src="../javascript/global/utils.js"></script>
     <script src="../javascript/global/loadingscreen.js"></script>
-    <script src="../javascript/global/ui.js" defer></script>
     <script src="../javascript/global/validation/validation.js"></script>
     <script src="../javascript/global/validation/signupvalidation.js"></script>
     <script src="../javascript/pages/signUp.js/signUpTemplate.js"></script>
@@ -59,7 +58,11 @@
         <div class="errorMessage hide"></div>
         <div class="checkboxContainer">
           <div class="checkboxLabel">
-            <input class="checkbox customCheckbox" type="checkbox" id="termsCheckbox" />
+            <input
+              class="checkbox customCheckbox"
+              type="checkbox"
+              id="termsCheckbox"
+            />
             <label for="termsCheckbox"
               >I accept the
               <a href="../html/privacyPolicy.html">Privacy Policy</a></label

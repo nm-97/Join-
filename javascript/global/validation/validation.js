@@ -50,12 +50,9 @@ function validateRequired(value) {
 function showError(inputId, message) {
   const input = document.getElementById(inputId);
   if (!input) return;
-
   input.classList.add("errorInput");
-
   const formGroup = input.closest(".formGroup");
   const errorDiv = formGroup.querySelector(".errorMessage");
-
   if (errorDiv) {
     errorDiv.textContent = message;
     errorDiv.classList.remove("hide");
@@ -69,9 +66,7 @@ function showError(inputId, message) {
 function clearError(inputId) {
   const input = document.getElementById(inputId);
   if (!input) return;
-
   input.classList.remove("errorInput");
-
   const errorMessage = document.getElementById(inputId + "Error");
   if (errorMessage) {
     errorMessage.textContent = "";
@@ -104,20 +99,15 @@ function clearAllErrors(formElement) {
 function initPasswordToggle(inputId) {
   const input = document.getElementById(inputId);
   const icon = input.parentNode.querySelector("img");
-
   if (!input || !icon) return;
-
   input.setAttribute("data-visible", "false");
   input.style.webkitTextSecurity = "disc";
-
   input.addEventListener("input", function () {
     updatePasswordIcon(inputId);
   });
-
   icon.addEventListener("click", function () {
     togglePasswordVisibility(inputId);
   });
-
   updatePasswordIcon(inputId);
 }
 
@@ -128,12 +118,9 @@ function initPasswordToggle(inputId) {
 function updatePasswordIcon(inputId) {
   const input = document.getElementById(inputId);
   const icon = input.parentNode.querySelector("img");
-
   if (!input || !icon) return;
-
   if (input.value.length > 0) {
     const isVisible = input.getAttribute("data-visible") === "true";
-
     if (isVisible) {
       icon.src = "../assets/icons/login/visibility.svg";
       icon.alt = "Hide password";
@@ -156,11 +143,8 @@ function updatePasswordIcon(inputId) {
 function togglePasswordVisibility(inputId) {
   const input = document.getElementById(inputId);
   const icon = input.parentNode.querySelector("img");
-
   if (!input || !icon || input.value.length === 0) return;
-
   const isCurrentlyVisible = input.getAttribute("data-visible") === "true";
-
   if (isCurrentlyVisible) {
     input.style.webkitTextSecurity = "disc";
     input.setAttribute("data-visible", "false");
@@ -179,7 +163,6 @@ function togglePasswordVisibility(inputId) {
  */
 function initAllPasswordToggles() {
   const passwordIds = ["password", "confirmPassword"];
-
   for (let i = 0; i < passwordIds.length; i++) {
     const input = document.getElementById(passwordIds[i]);
     if (input) {
