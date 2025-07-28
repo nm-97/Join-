@@ -464,8 +464,13 @@ function showAddTaskOverlay() {
 function closeAddTaskOverlay() {
   const overlay = document.getElementById("addTaskOverlay");
   if (overlay) {
-    overlay.style.display = "none";
-    overlay.innerHTML = "";
+    overlay.classList.add("closing");
+    setTimeout(() => {
+      overlay.style.display = "none";
+      overlay.classList.add("hidden");
+      overlay.innerHTML = "";
+      overlay.classList.remove("closing");
+    }, 400); // TIMING: Anpassbar - Animation-Dauer
   }
 }
 

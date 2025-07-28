@@ -576,17 +576,19 @@ hr {
   animation: overlayMoveFromRight 0.2s ease-in-out;
 }
 
-@keyframes editContactOverlayClose {
+/* Schließ-Animation nur für die Contact Modals */
+@keyframes contactModalClose {
   0% {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: translateX(0);
   }
   100% {
     opacity: 0;
-    transform: translate3d(250px, 0, 0);
+    transform: translateX(250px); /* DISTANCE: Anpassbar */
   }
 }
 
-.editContactOverlay.closing {
-  animation: editContactOverlayClose 0.2s ease-in-out forwards;
+.addContactOverlay.closing .addContactModal,
+.editContactOverlay.closing .editContactModal {
+  animation: contactModalClose 0.2s ease-in-out forwards; /* DURATION: Anpassbar */
 }

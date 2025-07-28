@@ -1056,3 +1056,42 @@ label {
   height: auto;
   filter: brightness(0) invert(1);
 }
+
+/* Schließ-Animation für alle Task Overlays */
+@keyframes taskOverlayClose {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(250px, 0, 0);
+  }
+}
+
+/* Add Task Overlay */
+#addTaskOverlay.closing .overlayContent {
+  animation: taskOverlayClose 0.4s ease-in-out forwards !important;
+}
+
+/* Edit Task Overlay */
+#editTaskOverlay.closing .overlayContent,
+#editTaskOverlay.closing .taskDetailModal {
+  animation: taskOverlayClose 0.4s ease-in-out forwards !important; 
+}
+
+/* Task Detail Overlay */
+#taskOverlay.closing .taskDetailModal {
+  animation: taskOverlayClose 0.2s ease-in-out forwards !important; 
+}
+
+@keyframes taskOverlayClose {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(250px); 
+  }
+}
