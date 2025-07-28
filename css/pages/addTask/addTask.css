@@ -184,11 +184,10 @@ label {
   justify-content: space-between;
   align-items: flex-end;
   width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  padding: 0 40px 40px 40px;
+  position: relative;
+  padding: 40px;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .formButtons {
@@ -248,7 +247,6 @@ label {
 
   .mainContent {
     overflow-y: auto;
-    height: 100%;
     padding-bottom: 100px;
   }
 
@@ -264,30 +262,19 @@ label {
     display: none;
   }
 
-  input,
-  textarea,
-  select {
-    width: 100%;
-    max-width: 364px;
-    font-size: 16px;
-  }
-
   #taskDescription {
-    width: 100%;
-    max-width: 364px;
+    width: 396px;
+    height: 88px;
   }
 
-  .taskPriorityGroup {
-    flex-wrap: wrap;
-    gap: 8px;
+  #taskTitle {
+    width: 396px;
+    height: 40px;
   }
 
-  .taskPriorityBtn,
-  .taskPriorityBtnOrange {
-    width: 110px;
-    height: 48px;
-    font-size: 16px;
-    padding: 12px 8px;
+  #taskDueDate {
+    width: 400px;
+    height: 40px;
   }
 
   .formActions {
@@ -302,19 +289,6 @@ label {
     align-items: center;
   }
 
-  .addTaskBtn,
-  .cancelTaskBtn {
-    width: 100%;
-    max-width: 364px;
-    font-size: 16px;
-    padding: 16px 20px;
-  }
-
-  .cancelTaskBtn {
-    width: 100%;
-    max-width: 364px;
-  }
-
   label {
     font-size: 18px;
   }
@@ -324,6 +298,21 @@ label {
   }
 
   .requiredStarText {
-    font-size: 12px;
+    display: none;
+  }
+
+  .formButtons {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .dropdownInput {
+    width: 396px;
+    height: 40px;
+  }
+
+  .categoryDropdown {
+    width: 396px;
+    height: 40px;
   }
 }
