@@ -230,6 +230,10 @@ label {
 }
 
 @media (max-width: 428px) {
+  .mainContainer {
+    overflow-y: auto;
+  }
+
   .addTaskFormsWrapper {
     flex-direction: column;
     margin: 20px;
@@ -242,16 +246,18 @@ label {
     margin-left: 16px;
   }
 
-  .sticky {
-    position: sticky;
-    bottom: 0;
-    z-index: 10;
-    background: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  .mainContent {
+    overflow-y: auto;
+    height: 100%;
+    padding-bottom: 100px;
   }
 
-  .mainContent {
-    overlay: scroll;
+  .bottomNav {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
   }
 
   .addTaskFormsDivider {
