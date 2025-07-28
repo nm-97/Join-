@@ -8,31 +8,10 @@ body {
     background-color: rgb(229, 229, 229); 
 }
 
-.pageWrapperLogIn {
-    max-width: 1920px;
-    margin: 0 auto; 
-    background-color: rgb(229, 229, 229); 
-    min-height: 100vh;
-    position: relative;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
 
 .logoPageHeader {
     display: flex;
     justify-content: space-between; 
-    align-items: center;
-    padding: 20px 30px;
-}
-
-.SignUpbtnPosition {
-    margin-left: auto; 
-}
-
-.logoPageHeader {
-    display: flex;
-    justify-content: flex-start; 
     align-items: center;
     padding: 20px 30px;
 }
@@ -63,13 +42,6 @@ body {
         filter: blur(0px);
         transform: translateY(0px);
     }
-}
-
-.mainContent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
     
 #loadingScreen {
