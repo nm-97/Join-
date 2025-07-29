@@ -179,8 +179,34 @@ function initializeUserAvatar() {
 }
 
 /**
+ * Handles logo animation with smooth opacity transition
+ */
+function startLogoAnimation() {
+  const logoImg = document.querySelector("img#loadingScreen");
+  if (logoImg) {
+    const isMobile = window.innerWidth <= 428;
+
+    setTimeout(
+      () => {
+        logoImg.style.opacity = "0.95";
+
+        setTimeout(
+          () => {
+            logoImg.src = "../assets/icons/login/Capa 2.png";
+            logoImg.style.opacity = "1";
+          },
+          isMobile ? 300 : 200
+        );
+      },
+      isMobile ? 200 : 300
+    );
+  }
+}
+
+/**
  * Initializes UI components when DOM content is loaded
  */
 document.addEventListener("DOMContentLoaded", function () {
   initializeUserAvatar();
+  startLogoAnimation();
 });
