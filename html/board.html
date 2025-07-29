@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="../css/pages/board/boardAnimation.css">
   <link rel="stylesheet" href="../css/global/validation/validation.css">
   <link rel="stylesheet" href="../css/global/forms.css">
+  <link rel="stylesheet" href="../css/global/validation/customdropdown.css">
   <script src="../javascript/global/firebase.js"></script>
   <script src="../javascript/global/user.js"></script>
   <script src="../javascript/global/utils.js"></script>
@@ -87,6 +88,8 @@
         <div class="mainContent">
           <div class="boardHeader">
             <h1 class="boardTitle">Board</h1>
+            <img class="hideOnMobile" onclick="showAddTaskOverlay()" src="../assets/icons/board/mobileaddtask.svg" alt="">
+            </div>
             <div class="boardActions">
               <div class="searchContainer">
                 <input
@@ -102,7 +105,7 @@
                 <img src="../assets/icons/board/addtask.svg" alt="add task">
               </button>
             </div>
-          </div>
+          
 
             <div class="boardContainer" id="boardContainer"></div>
 
