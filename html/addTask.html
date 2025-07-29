@@ -89,10 +89,12 @@
       <div class="mainContainer">
         <div class="header">
           <div class="headerTitle">Kanban Project Management Tool</div>
-          <div class="mobileLogo"><img src="../assets/icons/joinlogo_black.png" alt="Join"/></div>
           <div class="headerActions">
             <div>
-              <img class="helpBtn" src="../assets/icons/summary and sideboard/help.svg" onclick="location.href='../html/help.html'" alt=""/>
+              <img
+                src="../assets/icons/summary and sideboard/help.svg" onclick="location.href='../html/help.html'"
+                alt="helpIcon"
+              />
             </div>
                     <div class="userAvatar" id="userAvatar" onclick="toggleUserMenu()"></div>
             <div class="dropdown none" id="usermenu">
@@ -124,7 +126,11 @@
       </div>
       <div class="ntfbottom" id="taskNotificationContainer"></div>
     </div>
-    <div id="bottomNav" class="bottomNav">
+  </body>
+</html>
+
+
+    <div id="bottomNav sticky" class="bottomNav">
   <div class="navBtn" onclick="navigateTo('summary')">
     <img src="../assets/icons/summary and sideboard/summary.svg" alt="Summary" />
     <span>Summary</span>

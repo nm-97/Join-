@@ -184,11 +184,10 @@ label {
   justify-content: space-between;
   align-items: flex-end;
   width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  padding: 0 40px 40px 40px;
+  position: relative;
+  padding: 40px;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .formButtons {
@@ -227,4 +226,93 @@ label {
 .taskPriorityBtn,
 .taskPriorityBtnOrange {
   transition: all 0.3s ease;
+}
+
+@media (max-width: 428px) {
+  .mainContainer {
+    overflow-y: auto;
+  }
+
+  .addTaskFormsWrapper {
+    flex-direction: column;
+    margin: 20px;
+    gap: 20px;
+  }
+
+  .addTaskH1 {
+    font-size: 47px;
+    margin-top: 48px;
+    margin-left: 16px;
+  }
+
+  .mainContent {
+    overflow-y: auto;
+    padding-bottom: 100px;
+  }
+
+  .bottomNav {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+  }
+
+  .addTaskFormsDivider {
+    display: none;
+  }
+
+  #taskDescription {
+    width: 396px;
+    height: 88px;
+  }
+
+  #taskTitle {
+    width: 396px;
+    height: 40px;
+  }
+
+  #taskDueDate {
+    width: 400px;
+    height: 40px;
+  }
+
+  .formActions {
+    position: relative;
+    padding: 20px 0;
+    margin-top: 20px;
+  }
+
+  .formButtons {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  label {
+    font-size: 18px;
+  }
+
+  .taskPriorityLabel {
+    font-size: 18px;
+  }
+
+  .requiredStarText {
+    display: none;
+  }
+
+  .formButtons {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .dropdownInput {
+    width: 396px;
+    height: 40px;
+  }
+
+  .categoryDropdown {
+    width: 396px;
+    height: 40px;
+  }
 }

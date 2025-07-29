@@ -306,7 +306,7 @@ body {
     color: white;
   }
 
-    .mobileLogo {
+  .mobileLogo {
     display: flex;
     height: 32px;
   }
@@ -315,24 +315,28 @@ body {
     display: none;
   }
 
-  .header{
+  .header {
     padding: 20px 40px;
   }
 
-  .pageHeader{
+  .pageHeader {
     flex-direction: column;
     align-items: baseline !important;
   }
 
-.summaryHeaderDevider {
-  width: 98px !important;
-  height: 3px !important;
-}
+  .summaryHeaderDevider {
+    width: 98px !important;
+    height: 3px !important;
+  }
+  .summaryHeaderDevider {
+    width: 98px !important;
+    height: 3px !important;
+  }
   .headerTitle {
     display: none;
   }
 
-  .helpBtn{
+  .helpBtn {
     display: none;
   }
 }

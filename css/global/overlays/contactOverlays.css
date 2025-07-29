@@ -114,7 +114,7 @@
   height: 120px;
   border-radius: 50%;
   background: #d1d1d1;
-  margin-bottom: 32px;
+  margin-bottom: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -134,6 +134,14 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-left: 40px;
+}
+
+.addContactFormAvatarPosition {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .addContactInputWrapper,

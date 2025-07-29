@@ -6,8 +6,9 @@
     <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico" />
     <link rel="stylesheet" href="../css/global/style.css" />
     <link rel="stylesheet" href="../css/pages/contact/contacts.css" />
-    <link rel="stylesheet" href="../css/global/overlays/overlays.css" />
+    <link rel="stylesheet" href="../css/global/overlays/contactOverlays.css" />
     <link rel="stylesheet" href="../css/global/validation/validation.css" />
+    <link rel="stylesheet" href="../css/global/overlays/floatingContactCard.css">
     <script src="../javascript/global/firebase.js"></script>
     <script src="../javascript/global/user.js"></script>
     <script src="../javascript/global/utils.js"></script>
@@ -77,10 +78,13 @@
       <div class="mainContainer">
         <div class="header">
           <div class="headerTitle">Kanban Project Management Tool</div>
-          <div class="mobileLogo"><img src="../assets/icons/joinlogo_black.png" alt="Join"/></div>
           <div class="headerActions">
             <div>
-              <img class="helpBtn" src="../assets/icons/summary and sideboard/help.svg" onclick="location.href='../html/help.html'" alt=""/>
+              <img
+                src="../assets/icons/summary and sideboard/help.svg"
+                onclick="location.href='../html/help.html'"
+                alt="helpIcon"
+              />
             </div>
               <div
                 class="userAvatar"
@@ -138,23 +142,8 @@
         </div>
       </div>
     </div>
-        <div id="bottomNav" class="bottomNav">
-  <div class="navBtn" onclick="navigateTo('summary')">
-    <img src="../assets/icons/summary and sideboard/summary.svg" alt="Summary" />
-    <span>Summary</span>
-  </div>
-  <div class="navBtn" onclick="navigateTo('addTask')">
-    <img src="../assets/icons/summary and sideboard/addtask.svg" alt="Add Task" />
-    <span>Add Task</span>
-  </div>
-  <div class="navBtn" onclick="navigateTo('board')">
-    <img src="../assets/icons/summary and sideboard/board.svg" alt="Board" />
-    <span>Board</span>
-  </div>
-  <div class="navBtn" onclick="navigateTo('contacts')">
-    <img src="../assets/icons/summary and sideboard/contact.svg" alt="Contacts" />
-    <span>Contacts</span>
-  </div>
-</div>
+  
+  
+
   </body>
 </html>
