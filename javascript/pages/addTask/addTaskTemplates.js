@@ -178,7 +178,7 @@ function getEditTaskOverlay(task) {
                 <img src="../assets/icons/shared/urgent.svg" alt="urgentIcon">
                 <span>Urgent</span>
                 </button>
-              <button type="button" class="taskPriorityBtnOrange" id="mediumBtn">
+              <button type="button" class="taskPriorityBtn" id="mediumBtn">
                 <img src="../assets/icons/shared/medium.svg" alt="mediumIcon">
                 <span>Medium</span>
               </button>
