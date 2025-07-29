@@ -16,12 +16,10 @@
 }
 
 .contactsMainContent {
-  width: 400px;
   padding: 32px 24px;
-  background-color: #ffffff;
-  border-right: 1px solid #d1d1d1;
   height: 100%;
   overflow: hidden;
+  background-color: #f8f9fa;
 }
 
 .contactsRightPanel {
@@ -211,4 +209,77 @@
   width: 352px;
   height: 1px;
   background-color: #d1d1d1;
+}
+
+@media (max-width: 428px) {
+  .pageHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 500;
+    background-color: #ffffff;
+    padding: 16px 24px;
+    border-bottom: 1px solid #d1d1d1;
+    width: 100%;
+    height: auto;
+  }
+
+  .bottomNav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #2a3647;
+    border-top: 1px solid #d1d1d1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .contactsContentWrapper {
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    gap: 0;
+  }
+
+  .contactsMainContent {
+    overflow-y: scroll;
+  }
+
+  .contactsRightPanel {
+    display: none;
+  }
+
+  .addContactButton {
+    position: fixed;
+    bottom: 100px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    max-width: none;
+    padding: 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .addContactButton span {
+    display: none;
+  }
+
+  .addContactButton img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .contactItem.selected {
+    background-color: #ffffff;
+  }
+
+  .contactItem.selected .contactName {
+    color: #000000;
+  }
 }

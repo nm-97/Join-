@@ -32,8 +32,7 @@ function getContactWithSeparator(contact, showSeparator = false) {
 function getContactTemplate(contact) {
   const initials = getInitials(contact.name);
   const color = getAvatarColor(contact.name);
-
-  return `<div class="contactItem" onclick="showFloatingContact('${contact.id}'); selectContactItem('${contact.id}');" id="${contact.id}" data-id="${contact.id}">
+  return `<div class="contactItem" onclick="handleContactClick('${contact.id}'); selectContactItem('${contact.id}');" id="${contact.id}" data-id="${contact.id}">
     <div class="contactAvatar" style="background-color: ${color};">${initials}</div>
     <div class="contactInfo">
       <div class="contactName">${contact.name}</div>
@@ -54,11 +53,11 @@ function getAddContactOverlay() {
                             <h2 class="addContactTitle">Add contact</h2>
                             <p class="addContactSubtitle">Tasks are better with a team!</p>
                             <div class="addContactUnderline"></div>
-                        </div>
-                        <div class="addContactModalRight">
                             <button class="addContactClose" onclick="closeAddContactOverlay()">
                                 <img src="../assets/icons/shared/close.svg" alt="closeIcon">
                             </button>
+                        </div>
+                        <div class="addContactModalRight">
                             <div class="addContactFormAvatarPosition">
                                 <div class="addContactAvatar">
                                     <img src="../assets/icons/contacts/person.svg" alt="Avatar">
@@ -144,13 +143,18 @@ function getFloatingContact(contact) {
   const color = getAvatarColor(contact.name);
 
   return `<div class="floatingContactMainContent">
+    <button class="floatingContactCloseBtn" onclick="closeFloatingContactOverlayResponsive()">
+      <img src="../assets/icons/shared/backarrow.svg" alt="closeIcon">
+    </button>
     <div class="floatingContactCard">
       <div class="floatingContactHeader">
         <div class="floatingContactAvatar" style="background-color: ${color};">${initials}</div>
         <div class="floatingContactName">
           <span>${contact.name}</span>
           <div class="floatingContactActions">
-            <button onclick="showEditContactOverlay('${contact.id}')" class="editBtn">
+            <button onclick="showEditContactOverlay('${
+              contact.id
+            }')" class="editBtn">
               <img src="../assets/icons/shared/edit.svg" alt="editIcon">
               Edit
             </button>
@@ -173,7 +177,42 @@ function getFloatingContact(contact) {
         </div>
       </div>
     </div>
+    ${getMobileMenuButton(contact.id)}
   </div>`;
+}
+
+/**
+ * Generates HTML for mobile menu button if in mobile view
+ * @param {string} contactId - The contact ID for the menu actions
+ * @returns {string} HTML string for mobile menu button or empty string
+ */
+function getMobileMenuButton(contactId) {
+  const isMobile = window.innerWidth <= 428;
+  return isMobile
+    ? `<button class="floating-menu-button" ontouchstart="showContactMenu('${contactId}')" onclick="showContactMenu('${contactId}')">⋮</button>`
+    : "";
+}
+
+/**
+ * Generates HTML for contact menu dropdown overlay
+ * @param {string} contactId - The contact ID for the menu actions
+ * @returns {string} HTML string for the dropdown overlay
+ */
+function getContactMenuOverlay(contactId) {
+  return `
+    <div class="contact-menu-overlay" ontouchstart="handleOverlayTouch(event)" onclick="handleOverlayClick(event)">
+      <div class="contact-menu-content" ontouchstart="event.stopPropagation()" onclick="event.stopPropagation()">
+        <button class="floatingEditBtn" ontouchstart="showEditContactOverlay('${contactId}'); closeContactMenu()" onclick="showEditContactOverlay('${contactId}'); closeContactMenu()">
+          <img src="../assets/icons/shared/edit.svg" alt="edit">
+          <span>Edit</span>
+        </button>
+        <button class="floatingDeleteBtn" ontouchstart="deleteContact('${contactId}'); closeContactMenu()" onclick="deleteContact('${contactId}'); closeContactMenu()">
+          <img src="../assets/icons/shared/delete.svg" alt="delete">
+          <span>Delete</span>
+        </button>
+      </div>
+    </div>
+  `;
 }
 
 /**

@@ -88,6 +88,176 @@ async function showFloatingContact(contactId) {
 }
 
 /**
+ * Checks if the current viewport is in mobile/responsive mode
+ * @returns {boolean} True if in mobile mode, false otherwise
+ */
+function isMobileView() {
+  return window.matchMedia("(max-width: 428px)").matches;
+}
+
+function handleContactClick(contactId) {
+  if (isMobileView()) {
+    const contact = loadedContacts.find((c) => c.id === contactId);
+    if (contact) {
+      showFloatingContactForResponsive(contact);
+    }
+  } else {
+    showFloatingContact(contactId);
+  }
+}
+
+/**
+ * Checks if the current viewport is in mobile/responsive mode
+ * @returns {boolean} True if in mobile mode, false otherwise
+ */
+function isMobileView() {
+  return window.matchMedia("(max-width: 428px)").matches;
+}
+
+function showFloatingContactForResponsive(contact) {
+  if (isMobileView()) {
+    const floatingContactContainer = document.getElementById(
+      "floatingContactOverlay"
+    );
+    const contactsList = document.getElementById("contactsList");
+    const contactsMainContent = document.querySelector(".contactsMainContent");
+    const addContactButton = document.querySelector(".addContactButton");
+    if (floatingContactContainer && contactsList && contactsMainContent) {
+      contactsList.style.display = "none";
+      if (addContactButton) {
+        addContactButton.style.display = "none";
+      }
+      contactsMainContent.appendChild(floatingContactContainer);
+      floatingContactContainer.innerHTML = getFloatingContact(contact);
+      floatingContactContainer.style.display = "block";
+    }
+  }
+}
+
+/**
+ * Shows the contact menu dropdown for mobile view with delay
+ * @param {string} contactId - The contact ID to generate menu for
+ */
+function showContactMenu(contactId) {
+  setTimeout(() => {
+    createContactMenuOverlay(contactId);
+    setupContactMenuEventListeners();
+  }, 50);
+}
+
+/**
+ * Creates and appends the contact menu overlay to the DOM
+ * @param {string} contactId - The contact ID to generate menu for
+ */
+function createContactMenuOverlay(contactId) {
+  const overlay = getContactMenuOverlay(contactId);
+  document.body.insertAdjacentHTML("beforeend", overlay);
+}
+
+/**
+ * Sets up event listeners for the contact menu overlay
+ */
+function setupContactMenuEventListeners() {
+  const overlayElement = document.querySelector(".contact-menu-overlay");
+  const contentElement = document.querySelector(".contact-menu-content");
+  if (overlayElement) {
+    setupOverlayBackgroundListeners(overlayElement);
+  }
+  if (contentElement) {
+    setupContentEventListeners(contentElement);
+  }
+}
+
+/**
+ * Sets up event listeners for the overlay background (close on outside click/touch)
+ * @param {HTMLElement} overlayElement - The overlay background element
+ */
+function setupOverlayBackgroundListeners(overlayElement) {
+  overlayElement.addEventListener("touchstart", function (e) {
+    if (e.target === overlayElement) {
+      e.preventDefault();
+      closeContactMenu();
+    }
+  });
+  overlayElement.addEventListener("click", function (e) {
+    if (e.target === overlayElement) {
+      e.preventDefault();
+      closeContactMenu();
+    }
+  });
+}
+
+/**
+ * Sets up event listeners for the menu content (prevent event bubbling)
+ * @param {HTMLElement} contentElement - The menu content element
+ */
+function setupContentEventListeners(contentElement) {
+  contentElement.addEventListener("touchstart", function (e) {
+    e.stopPropagation();
+  });
+
+  contentElement.addEventListener("click", function (e) {
+    e.stopPropagation();
+  });
+}
+
+/**
+ * Closes the contact menu overlay with slide-out animation
+ */
+function closeContactMenu() {
+  const overlay = document.querySelector(".contact-menu-overlay");
+  const content = document.querySelector(".contact-menu-content");
+  if (overlay && content) {
+    content.classList.add("closing");
+    setTimeout(() => {
+      if (overlay && overlay.parentNode) {
+        overlay.remove();
+      }
+    }, 50);
+  }
+}
+
+/**
+ * Handles touch events on the overlay background
+ * @param {TouchEvent} event - The touch event
+ */
+function handleOverlayTouch(event) {
+  closeContactMenu();
+}
+
+/**
+ * Handles click events on the overlay background
+ * @param {MouseEvent} event - The click event
+ */
+function handleOverlayClick(event) {
+  closeContactMenu();
+}
+
+/**
+ * Closes the floating contact detail overlay for responsive design
+ */
+function closeFloatingContactOverlayResponsive() {
+  if (isMobileView()) {
+    const floatingContactContainer = document.getElementById(
+      "floatingContactOverlay"
+    );
+    const contactsList = document.getElementById("contactsList");
+    const contactsRightPanel = document.querySelector(".contactsRightPanel");
+    const addContactButton = document.querySelector(".addContactButton");
+    if (floatingContactContainer && contactsList && contactsRightPanel) {
+      floatingContactContainer.style.display = "none";
+      floatingContactContainer.innerHTML = "";
+      contactsList.style.display = "block";
+      if (addContactButton) {
+        addContactButton.style.display = "block";
+      }
+      contactsRightPanel.appendChild(floatingContactContainer);
+    }
+  } else {
+    closeFloatingContactOverlay();
+  }
+}
+/**
  * Selects a contact item in the UI and removes selection from previously selected item
  * @param {string} contactId - The ID of the contact to select
  */
