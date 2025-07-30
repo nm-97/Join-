@@ -167,8 +167,6 @@ function toggleUserMenu() {
   }
 }
 
-
-
 /**
  * Initializes the user avatar with appropriate initials and color
  * Handles both guest and registered user display
@@ -239,10 +237,103 @@ function showGreetingOverlay() {
 }
 
 /**
+ * Checks if device is in mobile/responsive mode
+ * @returns {boolean} True if mobile device (≤428px)
+ */
+function isMobileDevice() {
+  return window.innerWidth <= 428;
+}
+
+/**
+ * Updates navigation button selection state (mobile only)
+ * @param {HTMLElement} clickedElement - The clicked navigation element
+ */
+function updateNavigationSelection(clickedElement) {
+  if (!isMobileDevice()) return;
+
+  document.querySelectorAll(".navBtn").forEach((btn) => {
+    btn.classList.remove("selected");
+  });
+  if (clickedElement) {
+    clickedElement.classList.add("selected");
+  }
+}
+
+/**
+ * Gets the URL for a given page
+ * @param {string} page - The page identifier
+ * @returns {string|null} The URL for the page or null if not found
+ */
+function getPageUrl(page) {
+  const pageMap = {
+    summary: "../html/summaryUser.html",
+    addTask: "../html/addTask.html",
+    board: "../html/board.html",
+    contacts: "../html/contacts.html",
+  };
+  return pageMap[page] || null;
+}
+
+/**
+ * Performs the actual navigation to a URL
+ * @param {string} url - The URL to navigate to
+ */
+function performNavigation(url) {
+  window.location.href = url;
+}
+
+/**
+ * Navigates to the specified page (mobile responsive only)
+ * @param {string} page - The page to navigate to (summary, addTask, board, contacts)
+ */
+function navigateTo(page) {
+  if (!isMobileDevice()) return;
+
+  updateNavigationSelection(event.target);
+  const url = getPageUrl(page);
+  if (url) {
+    performNavigation(url);
+  } else {
+    console.error(`Page '${page}' not found in navigation map`);
+  }
+}
+
+/**
+ * Sets the selected navigation button based on current page
+ * Call this on each page load to maintain selection state
+ */
+function setCurrentPageSelection() {
+  if (!isMobileDevice()) return;
+  const currentPage = window.location.pathname;
+  let pageKey = null;
+  if (currentPage.includes("summaryUser.html")) {
+    pageKey = "summary";
+  } else if (currentPage.includes("addTask.html")) {
+    pageKey = "addTask";
+  } else if (currentPage.includes("board.html")) {
+    pageKey = "board";
+  } else if (currentPage.includes("contacts.html")) {
+    pageKey = "contacts";
+  }
+  if (pageKey) {
+    document.querySelectorAll(".navBtn").forEach((btn) => {
+      btn.classList.remove("selected");
+    });
+    const currentButton = document.querySelector(
+      `[onclick*="navigateTo('${pageKey}')"]`
+    );
+    if (currentButton) {
+      currentButton.classList.add("selected");
+    }
+  }
+}
+
+/**
  * Initializes UI components when DOM content is loaded
  */
 document.addEventListener("DOMContentLoaded", function () {
   initializeLogo();
   initializeUserAvatar();
   startLogoAnimation();
+  setCurrentPageSelection();
 });

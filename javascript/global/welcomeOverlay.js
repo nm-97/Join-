@@ -8,19 +8,11 @@ function getWelcomeOverlayTemplate() {
   return `
     <div class="overlay welcome" id="welcomeOverlay">
       <div class="welcomeGreeting">
-        <div class="welcomeText" id="welcomeText">Good afternoon,</div>
+        <div class="welcomeText" id="welcomeText">Good afternoon</div>
         <div class="userName" id="userName">Guest</div>
       </div>
     </div>
   `;
-}
-
-/**
- * Checks if device is mobile
- * @returns {boolean} True if mobile device
- */
-function isMobileDevice() {
-  return window.innerWidth <= 428;
 }
 
 /**

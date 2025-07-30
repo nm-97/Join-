@@ -225,19 +225,6 @@
     height: auto;
   }
 
-  .bottomNav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background-color: #2a3647;
-    border-top: 1px solid #d1d1d1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .contactsContentWrapper {
     flex-direction: column;
     height: 100vh;
