@@ -152,6 +152,7 @@
   height: 59px;
   border: 3px solid #29abe2;
   margin-left: 20px;
+  display: none;
 }
 
 .summaryHeaderDevider.horizontal {
@@ -206,7 +207,14 @@
   margin-left: 0;
   min-width: 340px;
   margin-bottom: 350px;
-  margin-top: 240px;
+}
+
+.summaryHeaderDevider.horizontal {
+  display: block;
+}
+
+.summaryHeaderDevider.vertical {
+  display: none;
 }
 
 .welcomeText {
