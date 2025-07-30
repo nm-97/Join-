@@ -355,3 +355,18 @@ textarea::placeholder {
   background-color: #42526e;
   border-radius: 50%;
 }
+
+@media (max-width: 428px) {
+
+label{
+  font-size: 16px;
+}
+input::placeholder {
+  font-size: 16px;
+}
+
+.taskPriorityBtn span{
+  margin: 0;
+}
+
+}

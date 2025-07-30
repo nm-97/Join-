@@ -77,12 +77,9 @@ body {
   display: flex;
   align-items: center;
   gap: 15px;
-  padding: 15px 30px;
+  padding: 15px 75px;
   color: #bdc3c7;
   cursor: pointer;
-  transition: all 0.3s ease;
-  padding-left: 75px;
-  padding-right: 75px;
 }
 
 .navItem:hover {
@@ -178,7 +175,15 @@ body {
   transform: none;
   z-index: 1000;
   width: 150px;
-  height: 158px;
+  animation: slideIn 600ms ease 0s 1 normal forwards;
+}
+
+.dropdown.show {
+  animation: slideIn 300ms ease forwards;
+}
+
+.dropdown.hide {
+  animation: slideOut 300ms ease forwards;
 }
 
 .none {
@@ -269,7 +274,40 @@ body {
   display: none;
 }
 
+.hideHref {
+  display: none;
+}
+
+  @keyframes slideIn {
+    0% {
+      opacity: 0;
+      transform: translateX(250px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideOut {
+    0% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translateX(250px);
+    }
+  }
+
 @media (max-width: 428px) {
+
+  .mainContainer{
+    max-width: 428px;
+  }
+
   .sidebar {
     display: none;
   }
@@ -315,12 +353,14 @@ body {
     height: 32px;
   }
 
+  .helpBtn,
   .headerTitle {
     display: none;
   }
 
   .header {
     padding: 20px 40px;
+    max-width: 428px;
   }
 
   .pageHeader {
@@ -336,11 +376,8 @@ body {
     width: 98px !important;
     height: 3px !important;
   }
-  .headerTitle {
-    display: none;
-  }
 
-  .helpBtn {
-    display: none;
+  .hideHref {
+    display: block;
   }
 }

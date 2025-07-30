@@ -143,21 +143,31 @@ function getAllContactNamesFromAssigned(assignedTo) {
 }
 
 /**
- * Toggles the visibility of the user dropdown menu
+ * Toggles the visibility of the user dropdown menu with animation.
+ * Adds or removes CSS classes to animate showing/hiding the menu.
+ * Disables body scroll while menu is visible and restores it after hiding.
+ * @returns {void}
  */
 function toggleUserMenu() {
   const dropdown = document.getElementById("usermenu");
-  dropdown.style.display =
-    dropdown.style.display === "block" ? "none" : "block";
+
+  if (dropdown.classList.contains("show")) {
+    dropdown.classList.remove("show");
+    dropdown.classList.add("hide");
+
+    setTimeout(() => {
+      dropdown.style.display = "none";
+      dropdown.classList.remove("hide");
+      document.body.classList.remove("noScroll");
+    }, 300);
+  } else {
+    dropdown.style.display = "block";
+    dropdown.classList.add("show");
+    document.body.classList.add("noScroll");
+  }
 }
 
-/**
- * Closes the user dropdown menu by hiding it
- */
-function closeUserMenu() {
-  const dropdown = document.getElementById("usermenu");
-  dropdown.style.display = "none";
-}
+
 
 /**
  * Initializes the user avatar with appropriate initials and color

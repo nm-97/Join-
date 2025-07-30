@@ -1,7 +1,6 @@
 .mainContent {
   flex: 1;
   padding: 62px;
-  overflow-y: auto;
 }
 .boardHeader {
   display: flex;
@@ -338,4 +337,8 @@
   .columnContent::-webkit-scrollbar {
     display: none;
   }
+
+  input::placeholder {
+  font-size: 16px;
+}
 }

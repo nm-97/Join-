@@ -78,7 +78,9 @@
             <img src="../assets/icons/joinlogo_black.png" alt="Join" />
           </div>
           <div class="headerActions">
-            <div><img src="../assets/icons/summary and sideboard/help.svg" onclick="location.href='../html/help.html'" alt="helpIcon" /></div>
+            <div>
+              <img class="helpBtn" src="../assets/icons/summary and sideboard/help.svg" onclick="location.href='../html/help.html'" alt=""/>
+            </div>
                     <div class="userAvatar" id="userAvatar" onclick="toggleUserMenu()"></div>
                         <div class="dropdown none" id="usermenu">
                         <a class="menuItem" href="../html/legalNotice.html">Legal Notice</a>
@@ -91,16 +93,13 @@
         <div class="mainContent">
           <div class="boardHeader">
             <h1 class="boardTitle">Board</h1>
-            <img class="hideOnMobile" onclick="showAddTaskOverlay()" src="../assets/icons/board/mobileaddtask.svg" alt="">
+            <a href="../html/addTask.html">
+            <img class="hideOnMobile" src="../assets/icons/board/mobileaddtask.svg" alt="">
+            </a>
             </div>
             <div class="boardActions">
               <div class="searchContainer">
-                <input
-                  type="text"
-                  class="searchInput"
-                  placeholder="Find Task"
-                  id="searchInput"
-                />
+                <input type="text" class="searchInput" placeholder="Find Task" id="searchInput"/>
                 <div class="searchDivider"></div>
                 <button class="searchButton" id="searchButton"><img src="../assets/icons/board/search.svg" alt="searchIcon"></button>
               </div>
