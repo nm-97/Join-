@@ -1,0 +1,54 @@
+/**
+ * Welcome Overlay Styles
+ * Mobile-only welcome overlay for post-login greeting
+ */
+
+#summaryMainContent {
+  position: relative;
+}
+
+.overlay.welcome {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  bottom: 80px;
+  width: 100vw;
+  height: 83.8vh;
+  background-color: #f8f8f8;
+  z-index: 9999 !important;
+  opacity: 1;
+}
+
+.overlay.welcome.closing {
+  opacity: 0;
+  animation: fadeOut 600ms ease-out;
+}
+
+@media (max-width: 428px) {
+  #summaryMainContent.fade-in {
+    animation: fadeIn 600ms ease-in;
+  }
+}
+
+.overlay.welcome .welcomeGreeting {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
+.overlay.welcome .welcomeText {
+  font-size: 36px;
+  font-weight: 400;
+  color: black;
+  visibility: visible;
+}
+
+.overlay.welcome .userName {
+  font-size: 40px;
+  font-weight: 700;
+  color: #29abe2;
+  display: block;
+  visibility: visible;
+}

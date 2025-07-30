@@ -305,26 +305,13 @@ footer a:hover {
   animation: contentFadeIn 500ms ease-out forwards;
 }
 
-@keyframes contentFadeIn {
-  from {
-    opacity: 0;
-    filter: blur(8px);
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    filter: blur(0px);
-    transform: translateY(0px);
-  }
-}
-
 #loadingScreen {
   position: absolute;
   left: 50%;
   top: 50%;
   inset: 0;
   z-index: 9999;
-  animation: logo-fly 1600ms ease-in-out forwards;
+  animation: logoFly 1600ms ease-in-out forwards;
   margin-top: 80px;
   margin-left: 77px;
   transition: opacity 2000ms cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -332,24 +319,6 @@ footer a:hover {
 
 #loadingScreen.hidden {
   display: none;
-}
-
-@keyframes logo-fly {
-  0% {
-    width: 274px;
-    height: 334.07px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 1;
-  }
-
-  100% {
-    width: 100.03px;
-    height: 121.97px;
-    transform: translate(0, 0);
-    opacity: 1;
-  }
 }
 
 @media (max-width: 428px) {
@@ -452,19 +421,6 @@ footer a:hover {
     z-index: 9998;
     animation: backgroundFadeOut 800ms ease-in-out forwards;
     opacity: 1;
-  }
-
-  @keyframes backgroundFadeOut {
-    0% {
-      opacity: 1;
-    }
-    70% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-      visibility: hidden;
-    }
   }
 
   main {

@@ -468,7 +468,7 @@ function closeAddTaskOverlay() {
       overlay.classList.add("hidden");
       overlay.innerHTML = "";
       overlay.classList.remove("closing");
-    }, 400); // TIMING: Anpassbar - Animation-Dauer
+    }, 200);
   }
 }
 

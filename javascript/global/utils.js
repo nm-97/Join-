@@ -8,7 +8,9 @@
 "use strict";
 
 /**
- * Formats a date string into a readable format
+ * async function getGreetingsMessage() {
+  return `
+   <div class="header">`mats a date string into a readable format
  * @param {string} dateString - The date string to format
  * @returns {string} Formatted date in "Month Day, Year" format
  */
@@ -165,8 +167,6 @@ function toggleUserMenu() {
   }
 }
 
-
-
 /**
  * Initializes the user avatar with appropriate initials and color
  * Handles both guest and registered user display
@@ -189,27 +189,142 @@ function initializeUserAvatar() {
 }
 
 /**
+ * Initializes the correct logo based on screen size
+ * Should be called when page loads
+ */
+function initializeLogo() {
+  const logoImg = document.querySelector("img#loadingScreen");
+  if (logoImg) {
+    const isMobile = window.innerWidth <= 428;
+    if (isMobile) {
+      logoImg.src = "../assets/icons/login/Capa 1.png";
+    } else {
+      logoImg.src = "../assets/icons/joinlogo_black.png";
+    }
+  }
+}
+
+/**
  * Handles logo animation with smooth opacity transition
+ * Sets appropriate start logo based on screen size
  */
 function startLogoAnimation() {
   const logoImg = document.querySelector("img#loadingScreen");
   if (logoImg) {
     const isMobile = window.innerWidth <= 428;
-
-    setTimeout(
-      () => {
+    if (isMobile) {
+      logoImg.src = "../assets/icons/login/Capa 1.png";
+      setTimeout(() => {
         logoImg.style.opacity = "0.95";
+        setTimeout(() => {
+          logoImg.src = "../assets/icons/login/Capa 2.png";
+          logoImg.style.opacity = "1";
+        }, 300);
+      }, 200);
+    } else {
+      logoImg.src = "../assets/icons/joinlogo_black.png";
+    }
+  }
+}
 
-        setTimeout(
-          () => {
-            logoImg.src = "../assets/icons/login/Capa 2.png";
-            logoImg.style.opacity = "1";
-          },
-          isMobile ? 300 : 200
-        );
-      },
-      isMobile ? 200 : 300
+/**
+ * Shows greeting overlay before redirecting to summary page
+ * Called after successful login (mobile responsive design)
+ */
+function showGreetingOverlay() {
+  sessionStorage.setItem("justLoggedIn", "true");
+  window.location.href = "../html/summaryUser.html";
+}
+
+/**
+ * Checks if device is in mobile/responsive mode
+ * @returns {boolean} True if mobile device (≤428px)
+ */
+function isMobileDevice() {
+  return window.innerWidth <= 428;
+}
+
+/**
+ * Updates navigation button selection state (mobile only)
+ * @param {HTMLElement} clickedElement - The clicked navigation element
+ */
+function updateNavigationSelection(clickedElement) {
+  if (!isMobileDevice()) return;
+
+  document.querySelectorAll(".navBtn").forEach((btn) => {
+    btn.classList.remove("selected");
+  });
+  if (clickedElement) {
+    clickedElement.classList.add("selected");
+  }
+}
+
+/**
+ * Gets the URL for a given page
+ * @param {string} page - The page identifier
+ * @returns {string|null} The URL for the page or null if not found
+ */
+function getPageUrl(page) {
+  const pageMap = {
+    summary: "../html/summaryUser.html",
+    addTask: "../html/addTask.html",
+    board: "../html/board.html",
+    contacts: "../html/contacts.html",
+  };
+  return pageMap[page] || null;
+}
+
+/**
+ * Performs the actual navigation to a URL
+ * @param {string} url - The URL to navigate to
+ */
+function performNavigation(url) {
+  window.location.href = url;
+}
+
+/**
+ * Navigates to the specified page (mobile responsive only)
+ * @param {string} page - The page to navigate to (summary, addTask, board, contacts)
+ */
+function navigateTo(page) {
+  if (!isMobileDevice()) return;
+
+  updateNavigationSelection(event.target);
+  const url = getPageUrl(page);
+  if (url) {
+    performNavigation(url);
+  } else {
+    console.error(`Page '${page}' not found in navigation map`);
+  }
+}
+
+/**
+ * Sets the selected navigation button based on current page
+ * Call this on each page load to maintain selection state
+ */
+function setCurrentPageSelection() {
+  if (!isMobileDevice()) return;
+  const currentPage = window.location.pathname;
+  let pageKey = null;
+  if (currentPage.includes("summaryUser.html")) {
+    pageKey = "summary";
+  } else if (currentPage.includes("addTask.html")) {
+    pageKey = "addTask";
+  } else if (currentPage.includes("board.html")) {
+    pageKey = "board";
+  } else if (currentPage.includes("contacts.html")) {
+    pageKey = "contacts";
+  }
+  if (pageKey) {
+    document.querySelectorAll(".navBtn").forEach((btn) => {
+      btn.classList.remove("selected");
+    });
+    const currentButton = document.querySelector(
+      `[onclick*="navigateTo('${pageKey}')"]`
     );
+    if (currentButton) {
+      currentButton.classList.add("selected");
+    }
   }
 }
 
@@ -217,6 +332,8 @@ function startLogoAnimation() {
  * Initializes UI components when DOM content is loaded
  */
 document.addEventListener("DOMContentLoaded", function () {
+  initializeLogo();
   initializeUserAvatar();
   startLogoAnimation();
+  setCurrentPageSelection();
 });

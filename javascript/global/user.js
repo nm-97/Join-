@@ -27,7 +27,7 @@ async function getUserName() {
 }
 
 /**
- * Sets up guest login by storing guest user data in session storage and redirecting
+ * Sets up guest login by storing guest user data in session storage and showing greeting overlay
  */
 function setGuestLogin() {
   sessionStorage.setItem(
@@ -36,7 +36,7 @@ function setGuestLogin() {
       type: "guest",
     })
   );
-  window.location.href = "../html/summaryUser.html";
+  showGreetingOverlay();
 }
 
 /**
@@ -53,7 +53,7 @@ function setUserLogin(params, redirect = true) {
     })
   );
   if (redirect) {
-    window.location.href = "../html/summaryUser.html";
+    showGreetingOverlay();
   }
 }
 

@@ -25,6 +25,18 @@
   position: relative;
   overflow-y: auto;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  animation: overlayMoveFromRight 200ms ease-in-out forwards;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.overlayContent.closing {
+  animation: overlayMoveToRight 200ms ease-in-out forwards;
+}
+
+.overlayAddTask.closing .overlayContent {
+  animation: overlayMoveToRight 200ms ease-in-out forwards;
 }
 
 .closeBtn {

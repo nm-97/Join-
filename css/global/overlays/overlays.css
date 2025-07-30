@@ -9,6 +9,4 @@
 @import url("addTaskOverlay.css");
 @import url("contactOverlays.css");
 @import url("floatingContactCard.css");
-
-/* Animations must be loaded last to work properly */
-@import url("overlayAnimations.css");
+@import url("welcomeOverlay.css");

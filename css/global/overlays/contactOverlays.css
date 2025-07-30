@@ -39,10 +39,20 @@
   overflow: hidden;
   height: 592px;
   width: 1212px;
-  animation: overlayMoveFromRight 400ms ease-in-out forwards;
+  animation: overlayMoveFromRight 200ms ease-in-out forwards;
   transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+.addContactModal.closing,
+.editContactModal.closing {
+  animation: overlayMoveToRight 200ms ease-in-out forwards;
+}
+
+.addContactOverlay.closing .addContactModal,
+.editContactOverlay.closing .editContactModal {
+  animation: overlayMoveToRight 200ms ease-in-out forwards;
 }
 
 .addContactModalLeft,
