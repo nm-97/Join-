@@ -2,11 +2,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
+    sans-serif;
   background-color: #e5e5e5;
   min-height: 100vh;
   color: #333;
@@ -16,7 +17,7 @@ body {
   flex: 1;
   padding: 40px;
   overflow-y: auto;
-  background: #f6F7F8;
+  background: #f6f7f8;
 }
 
 .contentWrapper {
@@ -35,7 +36,8 @@ body {
   text-align: left;
 }
 
-.pageHeading, h2 {
+.pageHeading,
+h2 {
   font-size: 28px;
   font-weight: 600;
   margin-top: 48px;
@@ -53,7 +55,8 @@ h3 {
 }
 
 /* Paragraphen */
-.pageParagraph, p {
+.pageParagraph,
+p {
   font-size: 16px;
   line-height: 1.7;
   margin-bottom: 20px;
@@ -62,12 +65,14 @@ h3 {
 }
 
 /* Listen */
-.pageList, ul {
+.pageList,
+ul {
   padding-left: 28px;
   margin-bottom: 20px;
 }
 
-.pageList li, ul li {
+.pageList li,
+ul li {
   margin-bottom: 12px;
   line-height: 1.6;
   color: #555;
@@ -142,4 +147,23 @@ div > strong {
 
 .helpBackArrow:hover {
   opacity: 0.7;
+}
+@media (max-width: 428px) {
+  a {
+    color: white;
+    cursor: pointer;
+  }
+
+  .logout {
+    color: #cdcdcd;
+    display: flex;
+    flex-direction: column;
+  }
+  .navBtn.selected {
+    background-color: #091931;
+    border-radius: 16px;
+    width: 112px;
+    height: 78px;
+    cursor: pointer;
+  }
 }
