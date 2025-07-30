@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.location.pathname.includes("summaryUser.html")) {
     rendersummaryMainContent();
     loadAllDataSimultaneously();
+    initializeWelcomeOverlay();
   }
 });
 

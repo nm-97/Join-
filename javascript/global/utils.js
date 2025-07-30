@@ -8,7 +8,9 @@
 "use strict";
 
 /**
- * Formats a date string into a readable format
+ * async function getGreetingsMessage() {
+  return `
+   <div class="header">`mats a date string into a readable format
  * @param {string} dateString - The date string to format
  * @returns {string} Formatted date in "Month Day, Year" format
  */
@@ -179,34 +181,58 @@ function initializeUserAvatar() {
 }
 
 /**
+ * Initializes the correct logo based on screen size
+ * Should be called when page loads
+ */
+function initializeLogo() {
+  const logoImg = document.querySelector("img#loadingScreen");
+  if (logoImg) {
+    const isMobile = window.innerWidth <= 428;
+    if (isMobile) {
+      logoImg.src = "../assets/icons/login/Capa 1.png";
+    } else {
+      logoImg.src = "../assets/icons/joinlogo_black.png";
+    }
+  }
+}
+
+/**
  * Handles logo animation with smooth opacity transition
+ * Sets appropriate start logo based on screen size
  */
 function startLogoAnimation() {
   const logoImg = document.querySelector("img#loadingScreen");
   if (logoImg) {
     const isMobile = window.innerWidth <= 428;
-
-    setTimeout(
-      () => {
+    if (isMobile) {
+      logoImg.src = "../assets/icons/login/Capa 1.png";
+      setTimeout(() => {
         logoImg.style.opacity = "0.95";
-
-        setTimeout(
-          () => {
-            logoImg.src = "../assets/icons/login/Capa 2.png";
-            logoImg.style.opacity = "1";
-          },
-          isMobile ? 300 : 200
-        );
-      },
-      isMobile ? 200 : 300
-    );
+        setTimeout(() => {
+          logoImg.src = "../assets/icons/login/Capa 2.png";
+          logoImg.style.opacity = "1";
+        }, 300);
+      }, 200);
+    } else {
+      logoImg.src = "../assets/icons/joinlogo_black.png";
+    }
   }
+}
+
+/**
+ * Shows greeting overlay before redirecting to summary page
+ * Called after successful login (mobile responsive design)
+ */
+function showGreetingOverlay() {
+  sessionStorage.setItem("justLoggedIn", "true");
+  window.location.href = "../html/summaryUser.html";
 }
 
 /**
  * Initializes UI components when DOM content is loaded
  */
 document.addEventListener("DOMContentLoaded", function () {
+  initializeLogo();
   initializeUserAvatar();
   startLogoAnimation();
 });

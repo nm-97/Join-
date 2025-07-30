@@ -30,6 +30,18 @@
   overflow-x: scroll;
   overflow-y: scroll;
   position: relative;
+  animation: overlayMoveFromRight 200ms ease-in-out forwards;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.taskDetailModal.closing {
+  animation: overlayMoveToRight 200ms ease-in-out forwards;
+}
+
+.overlay.closing .taskDetailModal {
+  animation: overlayMoveToRight 200ms ease-in-out forwards;
 }
 
 .modalHeader {
@@ -170,19 +182,19 @@ hr {
 }
 
 @media (max-width: 428px) {
-  .taskDetailModal{
+  .taskDetailModal {
     width: 396px;
     height: 640px;
   }
 
-  .modalLabel{
+  .modalLabel {
     display: flex;
     align-items: center;
     padding: 4px 16px;
     font-size: 16px;
   }
 
-  .modalTitle{
+  .modalTitle {
     font-size: 36px;
   }
 
@@ -190,36 +202,36 @@ hr {
   .detailRow,
   .assignedUser,
   .subtasksTitle,
-  .subtaskItem{
+  .subtaskItem {
     font-size: 16px;
   }
 
-  .modalButton img{
+  .modalButton img {
     height: 24px;
     width: 24px;
   }
 
-  .modalActions{
+  .modalActions {
     padding-top: 0;
   }
 
   /*.edit overlay */
-  .editLabel{
+  .editLabel {
     font-size: 16px !important;
   }
 
-  .taskPriorityLabel{
+  .taskPriorityLabel {
     font-size: 16px !important;
   }
 
-  .taskPriorityBtn{
+  .taskPriorityBtn {
     width: 104px !important;
     height: 41px !important;
     padding: 18px 10px !important;
     font-size: 16px !important;
   }
 
-  .customDropdown{
+  .customDropdown {
     width: 100% !important;
   }
 }
