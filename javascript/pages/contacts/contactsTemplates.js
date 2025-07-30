@@ -122,8 +122,8 @@ function getEditContactOverlay(contact) {
                                     <img src="../assets/icons/contacts/call.svg" class="inputIcon" alt="phoneIcon">
                                 </div>
                                 <div class="editContactBtnRow">
-                                    <button type="button" class="editContactDeleteBtn" onclick="closeEditContactOverlay()">Cancel
-                                        <img src="../assets/icons/shared/close.svg" alt="cancelIcon"></button>
+                                    <button type="button" class="editContactDeleteBtn" onclick="closeEditContactOverlay()">Delete
+                                       </button>
                                     <button type="submit" class="editContactSaveBtn">Save
                                         <img src="../assets/icons/add task/check.svg" alt="saveIcon"></button>
                                 </div>

@@ -237,7 +237,8 @@
     height: 760px;
   }
 
-  .addContactLogo {
+  .addContactLogo,
+  .editContactLogo {
     display: none;
   }
 
@@ -271,17 +272,23 @@
   .addContactClose,
   .editContactClose {
     cursor: pointer;
-    color: #2a3647;
-    z-index: 1000;
-
-    img {
-      filter: invert(1);
-      width: 32px;
-      height: 32px;
-    }
+    position: absolute;
+    top: -335px;
+    right: 24px;
+    width: 32px;
+    height: 32px;
+    background: none;
   }
 
-  .addContactInputWrapper .inputIcon {
+  .addContactClose img,
+  .editContactClose img {
+    filter: invert(1);
+    width: 32px;
+    height: 32px;
+  }
+
+  .addContactInputWrapper .inputIcon,
+  .editContactInputWrapper .inputIcon {
     filter: invert(0);
   }
 
@@ -318,15 +325,15 @@
   .editContactBtnRow {
     width: 100%;
     gap: 16px;
+    display: flex;
+    justify-content: center;
   }
 
   .addContactCancelBtn {
     display: none;
   }
 
-  .addContactCreateBtn,
-  .editContactDeleteBtn,
-  .editContactSaveBtn {
+  .editContactCreateBtn {
     align-items: center;
     justify-content: center;
     font-size: 21px;
