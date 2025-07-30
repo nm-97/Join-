@@ -338,4 +338,8 @@
   .columnContent::-webkit-scrollbar {
     display: none;
   }
+
+  input::placeholder {
+  font-size: 16px;
+}
 }
