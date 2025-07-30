@@ -141,9 +141,10 @@ function getAllContactNamesFromAssigned(assignedTo) {
 }
 
 /**
- * Toggles the user dropdown menu with slide-in and slide-out animation.
- * Uses CSS classes 'show' and 'hide' to trigger keyframe animations.
- * Hides the element with display: none after slide-out animation completes.
+ * Toggles the visibility of the user dropdown menu with animation.
+ * Adds or removes CSS classes to animate showing/hiding the menu.
+ * Disables body scroll while menu is visible and restores it after hiding.
+ * @returns {void}
  */
 function toggleUserMenu() {
   const dropdown = document.getElementById("usermenu");
@@ -152,16 +153,18 @@ function toggleUserMenu() {
     dropdown.classList.remove("show");
     dropdown.classList.add("hide");
 
-    // Warte, bis slideOut-Animation fertig ist, dann Element wirklich ausblenden
     setTimeout(() => {
       dropdown.style.display = "none";
       dropdown.classList.remove("hide");
-    }, 300); // Dauer MUSS zu deiner CSS slideOut passen
+      document.body.classList.remove("noScroll");
+    }, 300);
   } else {
     dropdown.style.display = "block";
     dropdown.classList.add("show");
+    document.body.classList.add("noScroll");
   }
 }
+
 
 
 /**
