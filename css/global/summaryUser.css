@@ -123,6 +123,12 @@ body.noScroll {
   max-width: 560px;
 }
 
+.divider {
+  width: 2px;
+  background-color: #D1D1D1;
+  height: 102px;
+}
+
 .cardContent {
   display: flex;
   align-items: center;
@@ -235,13 +241,13 @@ body.noScroll {
   color: #29abe2;
 }
 
-@media (max-width: 428px) {
+@media (max-width: 786px) {
   .welcomeSection {
     display: none;
   }
 
   .mainContent {
-    padding: 20px;
+    padding: 0;
     justify-content: center;
   }
 
@@ -249,6 +255,8 @@ body.noScroll {
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    max-width: 396px;
+    max-height: 110px;
   }
 
   .cardRow {
@@ -277,8 +285,8 @@ body.noScroll {
   }
 
   .divider {
-    height: 86px;
-    margin: 0;
+    height: 68px;
+    margin: 0px 8px;
   }
 
   .cardValue {
@@ -301,7 +309,123 @@ body.noScroll {
     flex-direction: column;
     padding: 20px;
     gap: 10px;
-    width: 396px;
-    height: 110px;
+    max-width: 396px;
+    max-height: 110px;
   }
 }
+
+
+@media (max-width: 428px) {
+  .welcomeSection {
+    display: none;
+  }
+
+  .mainContent {
+    padding: 0;
+    justify-content: center;
+  }
+
+  .cardRowsWrapper {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    max-width: 396px;
+    max-height: 110px;
+  }
+
+  .cardRow {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .card {
+    width: 186px;
+    height: 110px;
+    padding: 14px;
+  }
+
+  .cardMainContent,
+  .cardValueLabelGroup,
+  .urgentSection,
+  .dateSection {
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .cardIcon {
+    margin: 0;
+  }
+
+  .divider {
+    height: 68px;
+    margin: 0px 8px;
+  }
+
+  .cardValue {
+    font-size: 36px;
+    text-align: center;
+  }
+
+  .cardLabel,
+  .dateTitle {
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .dateSubtitle {
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .combinedCard {
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+    max-width: 396px;
+    max-height: 110px;
+  }
+}
+
+@media (max-width: 400px) {
+  .cardRowsWrapper {
+    padding: 12px;
+  }
+
+  .topRow {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .topRow .card {
+    width: 100%;
+    max-width: 560px;
+    flex: 1;
+    padding: 20px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cardContent,
+  .cardMainContent {
+    flex-direction: row;
+  }
+
+  .cardValueLabelGroup {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .cardValue {
+    text-align: left;
+  }
+
+  .cardIcon {
+    margin-right: 16px;
+  }
+
+
+} 
