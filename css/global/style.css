@@ -267,6 +267,11 @@ body {
 }
 
 @media (max-width: 428px) {
+
+  .mainContainer{
+    max-width: 428px;
+  }
+
   .sidebar {
     display: none;
   }
@@ -318,6 +323,7 @@ body {
 
   .header {
     padding: 20px 40px;
+    max-width: 428px;
   }
 
   .pageHeader {

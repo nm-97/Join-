@@ -17,9 +17,9 @@ function getsummaryTemplate(params) {
   <div class="pageHeaderWrapper">
       <div class="pageHeader">
                 <h1 class="pageTitle">Join 360</h1>
-                <div class="summaryHeaderDevider vertical"></div>
-                <div class="pageSubtitle">Key Matrics at a Glance</div>
                 <div class="summaryHeaderDevider horizontal"></div>
+                <div class="pageSubtitle">Key Matrics at a Glance</div>
+                <div class="summaryHeaderDevider vertical"></div>
               </div>
              <div class="cardSection">
                 <div class="cardRowsWrapper">
