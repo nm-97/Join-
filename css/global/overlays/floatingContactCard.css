@@ -6,12 +6,11 @@
 .floatingContactMainContent {
   margin-top: 70px;
   background-color: #f8f9fa;
-  border-radius: 10px;
 }
 
 .floatingContactCard {
   border-radius: 10px;
-  max-width: 600px;
+  max-width: 350px;
   animation: fadeInFromLeft 300ms ease 0s 1 normal forwards;
 }
 
@@ -114,6 +113,179 @@
 
 .floatingContactCloseBtn {
   display: none;
+}
+
+@media (max-width: 1350px) {
+  .floatingContactMainConten {
+    border-top: 3px solid #29abe2;
+  }
+
+  .contacts;
+}
+
+@media (max-width: 786px) {
+  #floatingContactOverlay {
+    position: relative;
+  }
+
+  #floatingContactOverlay::before {
+    content: "Contacts";
+    display: block;
+    font-size: 47px;
+    font-weight: 700;
+    color: #2a3647;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  #floatingContactOverlay .floatingContactMainContent::before {
+    content: "Better with a team";
+    font-size: 20px;
+    color: #2a3647;
+    z-index: 1;
+    border-bottom: 3px solid #29abe2;
+    padding-bottom: 8px;
+  }
+
+  .floatingContactMainContent {
+    width: 100%;
+    padding: 0;
+    margin-top: 0;
+    position: relative;
+  }
+
+  .floatingContactCard {
+    margin-top: 60px;
+  }
+
+  .floatingContactInfo {
+    margin: 0;
+  }
+
+  .floatingContactName {
+    font-size: 38px;
+  }
+
+  .floatingContactHeader {
+    gap: 20px;
+  }
+
+  .floatingContactAvatar {
+    font-size: 27px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .floatingContactInfoDetails span {
+    margin-top: 22px;
+    margin-bottom: 22px;
+  }
+
+  .floating .floatingContactInfoLabel p {
+    font-size: 20px;
+  }
+
+  .floatingContactActions {
+    display: none;
+  }
+
+  .floatingContactCloseBtn {
+    display: block !important;
+    position: fixed;
+    top: 120px;
+    right: 24px;
+    cursor: pointer;
+    background-color: #f8f9fa;
+    border: none;
+  }
+
+  .floatingContactCloseBtn img {
+    width: 32px;
+    height: 32px;
+    display: block;
+    filter: invert(0);
+  }
+
+  .floatingContactCard::after {
+    display: none;
+  }
+
+  .floating-menu-button {
+    position: fixed;
+    bottom: 100px;
+    right: 32px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #2a3647;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+  }
+
+  .contact-menu-overlay {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 10000;
+    margin-bottom: 87px;
+    margin-right: 10px;
+  }
+
+  .contact-menu-content {
+    background: white;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.15);
+    width: 116px;
+    height: 100px;
+    animation: slideIn 600ms ease 0s 1 normal forwards;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .contact-menu-content.closing {
+    animation: overlayMoveToRight 200ms ease-in-out forwards;
+  }
+
+  .contact-menu-content button {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    background: #f6f7f8;
+    cursor: pointer;
+    font-size: 16px;
+    color: #2a3647;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: background-color 0.2s ease;
+  }
+
+  .floatingEditBtn {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+  }
+
+  .floatingDeleteBtn {
+    border-bottom-left-radius: 20px;
+  }
+
+  .contact-menu-content button img {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 @media (max-width: 428px) {
@@ -228,13 +400,13 @@
     bottom: 0;
     right: 0;
     z-index: 10000;
-    margin-bottom: 80px;
+    margin-bottom: 87px;
     margin-right: 10px;
   }
 
   .contact-menu-content {
     background: white;
-    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.15);
@@ -253,7 +425,6 @@
   .contact-menu-content button {
     width: 100%;
     padding: 16px;
-    margin-bottom: 16px;
     border: none;
     border-radius: 8px;
     background: #f6f7f8;
