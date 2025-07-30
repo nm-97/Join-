@@ -141,21 +141,28 @@ function getAllContactNamesFromAssigned(assignedTo) {
 }
 
 /**
- * Toggles the visibility of the user dropdown menu
+ * Toggles the user dropdown menu with slide-in and slide-out animation.
+ * Uses CSS classes 'show' and 'hide' to trigger keyframe animations.
+ * Hides the element with display: none after slide-out animation completes.
  */
 function toggleUserMenu() {
   const dropdown = document.getElementById("usermenu");
-  dropdown.style.display =
-    dropdown.style.display === "block" ? "none" : "block";
+
+  if (dropdown.classList.contains("show")) {
+    dropdown.classList.remove("show");
+    dropdown.classList.add("hide");
+
+    // Warte, bis slideOut-Animation fertig ist, dann Element wirklich ausblenden
+    setTimeout(() => {
+      dropdown.style.display = "none";
+      dropdown.classList.remove("hide");
+    }, 300); // Dauer MUSS zu deiner CSS slideOut passen
+  } else {
+    dropdown.style.display = "block";
+    dropdown.classList.add("show");
+  }
 }
 
-/**
- * Closes the user dropdown menu by hiding it
- */
-function closeUserMenu() {
-  const dropdown = document.getElementById("usermenu");
-  dropdown.style.display = "none";
-}
 
 /**
  * Initializes the user avatar with appropriate initials and color
