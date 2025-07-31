@@ -1,3 +1,4 @@
+/* ===== BASE FORM STYLES ===== */
 .formGroup {
   display: flex;
   flex-direction: column;
@@ -22,6 +23,7 @@ label {
   text-align: center;
 }
 
+/* ===== INPUT STYLES ===== */
 input,
 textarea,
 select {
@@ -64,6 +66,11 @@ textarea::placeholder {
   font-size: 20px;
 }
 
+.dropdownInput::placeholder {
+  color: #d1d1d1;
+  font-size: 20px;
+}
+
 #taskDescription {
   height: 120px;
   border-radius: 10px;
@@ -74,6 +81,7 @@ textarea::placeholder {
   margin-bottom: 10px;
 }
 
+/* ===== INPUT ICON STYLES ===== */
 .inputIcon {
   position: relative;
   display: flex;
@@ -107,6 +115,7 @@ textarea::placeholder {
   height: 20px;
 }
 
+/* ===== TASK PRIORITY STYLES ===== */
 .taskPriorityGroup {
   display: flex;
   gap: 8px;
@@ -161,6 +170,7 @@ textarea::placeholder {
   margin-right: 8px;
 }
 
+/* ===== EDIT PRIORITY STYLES ===== */
 .editPriorityGroup {
   display: flex;
   gap: 8px;
@@ -195,6 +205,7 @@ textarea::placeholder {
   height: 16px;
 }
 
+/* ===== BUTTON STYLES ===== */
 .addTaskBtn,
 .cancelTaskBtn {
   display: inline-flex;
@@ -251,6 +262,7 @@ textarea::placeholder {
   filter: brightness(0) invert(1);
 }
 
+/* ===== FORM LAYOUT STYLES ===== */
 .formActions {
   display: flex;
   justify-content: space-between;
@@ -270,7 +282,6 @@ textarea::placeholder {
   justify-content: flex-end;
 }
 
-/* Edit Button Container */
 .editButtonContainer {
   display: flex;
   justify-content: flex-end;
@@ -291,6 +302,7 @@ textarea::placeholder {
   display: block;
 }
 
+/* ===== AVATAR STYLES ===== */
 .editAvatarGroup {
   display: flex;
   gap: 8px;
@@ -321,6 +333,7 @@ textarea::placeholder {
   background-color: #0038FF;
 }
 
+/* ===== SUBTASK STYLES ===== */
 .editSubtaskInput {
   position: relative;
   margin-bottom: 15px;
@@ -356,17 +369,203 @@ textarea::placeholder {
   border-radius: 50%;
 }
 
+/* ===== TASK CARD STYLES ===== */
+.taskCard.hidden {
+  display: none !important;
+}
+
+.taskCard.highlight {
+  background-color: #fff3cd;
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+  animation: taskHighlight 0.5s ease-in-out;
+}
+
+/* ===== DROPDOWN STYLES ===== */
+.customDropdownContainer {
+  position: relative;
+}
+
+.customDropdown {
+  position: relative;
+  width: 100%;
+}
+
+.dropdownHeader {
+  position: relative;
+}
+
+.dropdownInput {
+  width: 100%;
+  padding: 12px 21px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.dropdownArrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+
+.dropdownContent {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.contactsList {
+  padding: 8px 0;
+}
+
+.selectedContactsDisplay {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ===== ERROR STYLES ===== */
+.errorMessage {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.errorMessage.hide {
+  display: none;
+}
+
+/* ===== OVERLAY FORM STYLES ===== */
+.addTaskFormsWrapper {
+  display: flex;
+  gap: 32px;
+  margin: 60px;
+}
+
+.addTaskFormsWrapper form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.addTaskFormsDivider {
+  width: 1px;
+  height: 424px;
+  background: #d1d1d1;
+  margin: 0 24px;
+  align-self: stretch;
+}
+
+/* ===== MEDIA QUERIES ===== */
+
+/* Large Desktop - 1350px */
+@media (max-width: 1350px) {
+  /* Keep existing rules */
+}
+
+/* Desktop - 1024px */
+@media (max-width: 1024px) {
+  /* Keep existing rules */
+}
+
+/* Tablet - 786px */
+@media (max-width: 786px) {
+  /* Keep existing rules */
+}
+
+/* Small Tablet - 600px */
+@media (max-width: 600px) {
+  .taskPriorityGroup {
+    gap: 6px;
+    justify-content: space-between;
+  }
+  
+  .taskPriorityBtn {
+    max-width: 100px;
+    height: 38px;
+    padding: 10px 6px;
+    font-size: 15px;
+    gap: 3px;
+  }
+  
+  .taskPriorityBtn img {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+/* Mobile - 428px */
 @media (max-width: 428px) {
+  label {
+    font-size: 16px;
+  }
 
-label{
-  font-size: 16px;
-}
-input::placeholder {
-  font-size: 16px;
-}
+  .taskPriorityLabel {
+    font-size: 16px !important;
+  }
 
-.taskPriorityBtn span{
-  margin: 0;
-}
+  .editLabel {
+    font-size: 16px !important;
+  }
+  
+  input::placeholder,
+  textarea::placeholder {
+    font-size: 16px;
+  }
 
+  .dropdownInput::placeholder {
+    font-size: 16px;
+  }
+
+  .taskPriorityBtn span {
+    margin: 0;
+  }
+
+  .taskPriorityGroup {
+    gap: 4px;
+    justify-content: space-between;
+  }
+
+  .taskPriorityBtn {
+    width: auto;
+    max-width: 104px;
+    height: 41px;
+    padding: 12px 8px;
+    font-size: 16px;
+    gap: 4px;
+    flex: 1;
+  }
+  
+  .taskPriorityBtn img {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .taskPriorityBtn span {
+    margin-right: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .customDropdown {
+    width: 100% !important;
+  }
 }
