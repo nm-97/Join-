@@ -376,15 +376,6 @@ body {
     align-items: baseline;
   }
 
-  .summaryHeaderDevider {
-    width: 98px !important;
-    height: 3px !important;
-  }
-  .summaryHeaderDevider {
-    width: 98px !important;
-    height: 3px !important;
-  }
-
   .hideHref {
     display: block;
   }

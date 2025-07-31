@@ -187,7 +187,7 @@ function getFloatingContact(contact) {
  * @returns {string} HTML string for mobile menu button or empty string
  */
 function getMobileMenuButton(contactId) {
-  const isMobile = window.innerWidth <= 428;
+  const isMobile = window.innerWidth <= 1024;
   return isMobile
     ? `<button class="floating-menu-button" ontouchstart="showContactMenu('${contactId}')" onclick="showContactMenu('${contactId}')">⋮</button>`
     : "";

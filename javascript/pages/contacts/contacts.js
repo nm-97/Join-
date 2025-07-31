@@ -87,16 +87,8 @@ async function showFloatingContact(contactId) {
   }
 }
 
-/**
- * Checks if the current viewport is in mobile/responsive mode
- * @returns {boolean} True if in mobile mode, false otherwise
- */
-function isMobileView() {
-  return window.matchMedia("(max-width: 428px)").matches;
-}
-
 function handleContactClick(contactId) {
-  if (isMobileView()) {
+  if (isMobileDevice()) {
     const contact = loadedContacts.find((c) => c.id === contactId);
     if (contact) {
       showFloatingContactForResponsive(contact);
@@ -106,16 +98,8 @@ function handleContactClick(contactId) {
   }
 }
 
-/**
- * Checks if the current viewport is in mobile/responsive mode
- * @returns {boolean} True if in mobile mode, false otherwise
- */
-function isMobileView() {
-  return window.matchMedia("(max-width: 428px)").matches;
-}
-
 function showFloatingContactForResponsive(contact) {
-  if (isMobileView()) {
+  if (isMobileDevice()) {
     const floatingContactContainer = document.getElementById(
       "floatingContactOverlay"
     );
@@ -237,7 +221,7 @@ function handleOverlayClick(event) {
  * Closes the floating contact detail overlay for responsive design
  */
 function closeFloatingContactOverlayResponsive() {
-  if (isMobileView()) {
+  if (isMobileDevice()) {
     const floatingContactContainer = document.getElementById(
       "floatingContactOverlay"
     );

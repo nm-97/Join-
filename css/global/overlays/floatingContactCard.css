@@ -116,36 +116,39 @@
 }
 
 @media (max-width: 1350px) {
-  .floatingContactMainConten {
-    border-top: 3px solid #29abe2;
+  .floatingContactMainContent {
+    margin-top: 130px;
+    margin-left: 20px;
   }
 
-  .contacts;
+  .floatingContactHeader {
+    gap: 24px;
+  }
+
+  .pageHeader {
+    gap: 8px;
+    width: 240px;
+    margin-left: 32px;
+  }
+
+  .floatingContactInfo {
+    margin-top: 40px;
+  }
+
+  .floatingContactAvatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .floatingContactName {
+    font-size: 32px;
+  }
 }
 
-@media (max-width: 786px) {
+@media (max-width: 1024px) {
   #floatingContactOverlay {
     position: relative;
-  }
-
-  #floatingContactOverlay::before {
-    content: "Contacts";
-    display: block;
-    font-size: 47px;
-    font-weight: 700;
-    color: #2a3647;
-    margin-bottom: 8px;
-    position: relative;
-    z-index: 1;
-  }
-
-  #floatingContactOverlay .floatingContactMainContent::before {
-    content: "Better with a team";
-    font-size: 20px;
-    color: #2a3647;
-    z-index: 1;
-    border-bottom: 3px solid #29abe2;
-    padding-bottom: 8px;
+    padding-top: 60px;
   }
 
   .floatingContactMainContent {
@@ -193,8 +196,8 @@
   .floatingContactCloseBtn {
     display: block !important;
     position: fixed;
-    top: 120px;
-    right: 24px;
+    top: 155px;
+    right: 40px;
     cursor: pointer;
     background-color: #f8f9fa;
     border: none;
@@ -209,6 +212,26 @@
 
   .floatingContactCard::after {
     display: none;
+  }
+
+  #floatingContactOverlay::before {
+    content: "Contacts";
+    display: block;
+    font-size: 47px;
+    font-weight: 700;
+    color: #2a3647;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  #floatingContactOverlay .floatingContactMainContent::before {
+    content: "Better with a team";
+    font-size: 20px;
+    color: #2a3647;
+    z-index: 1;
+    border-bottom: 3px solid #29abe2;
+    padding-bottom: 8px;
   }
 
   .floating-menu-button {
@@ -358,8 +381,8 @@
   .floatingContactCloseBtn {
     display: block !important;
     position: fixed;
-    top: 120px;
-    right: 24px;
+    top: 155px;
+    right: 40px;
     cursor: pointer;
     background-color: #f8f9fa;
     border: none;
