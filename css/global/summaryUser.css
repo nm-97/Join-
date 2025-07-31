@@ -37,6 +37,23 @@ body.noScroll {
   border: 3px solid #29abe2;
 }
 
+.summaryHeaderDevider.vertical {
+  width: 90px;
+  height: 0px;
+  border: 3px solid #29abe2;
+  margin-left: 20px;
+  display: none;
+  margin-top: 12px;
+}
+
+.summaryHeaderDevider.horizontal {
+  display: block;
+}
+
+.summaryHeaderDevider.vertical {
+  display: none;
+}
+
 .pageSubtitle {
   font-size: 27px;
   color: #2a3647;
@@ -157,18 +174,6 @@ body.noScroll {
   gap: 20px;
 }
 
-.summaryHeaderDevider.vertical {
-  width: 0px;
-  height: 59px;
-  border: 3px solid #29abe2;
-  margin-left: 20px;
-  display: none;
-}
-
-.summaryHeaderDevider.horizontal {
-  display: none;
-}
-
 .cardIcon {
   display: flex;
   align-items: center;
@@ -220,16 +225,8 @@ body.noScroll {
   margin-left: 26px;
 }
 
-.summaryHeaderDevider.horizontal {
-  display: block;
-}
-
-.summaryHeaderDevider.vertical {
-  display: none;
-}
-
 .welcomeText {
-  font-size: 47px;
+  font-size: 2.9rem;
   font-weight: 500;
   color: #2a3f5f;
   margin-bottom: 10px;
@@ -237,26 +234,94 @@ body.noScroll {
 }
 
 .userName {
-  font-size: 64px;
+  font-size: 4rem;
   font-weight: 700;
   color: #29abe2;
 }
 
 @media (max-width: 1334px) {
+  .mainContent {
+    padding: 0;
+    margin: 28px;
+  }
 
+  .welcomeText {
+    font-size: 2.9rem;
+  }
+
+  .userName {
+    font-size: 4rem;
+  }
+
+  .pageTitle {
+    font-size: 3.8rem;
+    margin-right: 15px;
+  }
+
+  .pageSubtitle {
+    font-size: 1.7rem;
+    margin-left: 15px;
+  }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1241px) {
+  .mainContent {
+    padding: 0;
+  }
+
+  .welcomeSection {
+    min-width: 0;
+  }
+
+    .welcomeText {
+    font-size: 1.9rem;
+  }
+
+  .userName {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 1110px) {
+  .pageTitle {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 1025px) {
   .welcomeSection {
     display: none;
   }
 
   .mainContent {
     padding: 0;
-    margin-top: 36px;
+    margin: 0;
     justify-content: center;
   }
 
+  .pageHeaderWrapper{
+    display: flex;
+    margin-top: 26px;
+    flex-direction: column;
+  }
+
+  .pageHeader {
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+
+  .summaryHeaderDevider.horizontal{
+    display: none;
+  }
+
+  .summaryHeaderDevider.vertical {
+    display: block;
+  }
+
+  .pageSubtitle {
+    margin: 0;
+  }
 }
 
 
@@ -267,6 +332,7 @@ body.noScroll {
 
   .mainContent {
     padding: 0;
+
     justify-content: center;
   }
 
@@ -301,6 +367,10 @@ body.noScroll {
 
   .cardIcon {
     margin: 0;
+  }
+
+  .cardIcon img{
+    width: 60px;
   }
 
   .divider {
