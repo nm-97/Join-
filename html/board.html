@@ -79,7 +79,9 @@
           </div>
           <div class="headerActions">
             <div>
-              <img class="helpBtn" src="../assets/icons/summary and sideboard/help.svg" onclick="location.href='../html/help.html'" alt=""/>
+              <button class="helpBtn" onclick="location.href='../html/help.html'" aria-label="Help">
+                <img src="../assets/icons/summary and sideboard/help.svg" alt="help icon"/>
+              </button>
             </div>
                     <div class="userAvatar" id="userAvatar" onclick="toggleUserMenu()"></div>
                         <div class="dropdown none" id="usermenu">
@@ -93,17 +95,20 @@
         <div class="mainContent">
           <div class="boardHeader">
             <h1 class="boardTitle">Board</h1>
-            <a href="../html/addTask.html">
-            <img class="hideOnMobile" src="../assets/icons/board/mobileaddtask.svg" alt="">
+            <a href="../html/addTask.html" aria-label="Add new task">
+              <img class="hideOnMobile" src="../assets/icons/board/mobileaddtask.svg" alt="add task icon">
             </a>
             </div>
             <div class="boardActions">
               <div class="searchContainer">
+                <label for="searchInput" class="sr-only">Search tasks</label>
                 <input type="text" class="searchInput" placeholder="Find Task" id="searchInput"/>
                 <div class="searchDivider"></div>
-                <button class="searchButton" id="searchButton"><img src="../assets/icons/board/search.svg" alt="searchIcon"></button>
+                <button class="searchButton" id="searchButton" aria-label="Search tasks">
+                  <img src="../assets/icons/board/search.svg" alt="searchIcon">
+                </button>
               </div>
-              <button class="addTaskButton" id="addTaskButton" onclick="showAddTaskOverlay()">Add Task
+              <button class="addTaskButton" type="button" id="addTaskButton" onclick="showAddTaskOverlay()">Add Task
                 <img src="../assets/icons/board/addtask.svg" alt="add task">
               </button>
             </div>
