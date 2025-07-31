@@ -130,7 +130,6 @@ body {
   align-items: center;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   position: relative;
-  margin: auto;
   width: 100%;
 }
 
@@ -284,6 +283,10 @@ body {
   display: none;
 }
 
+.desktopOnly {
+  display: block;
+}
+
 @keyframes slideIn {
   0% {
     opacity: 0;
@@ -420,7 +423,7 @@ body {
   }
 
   .header {
-    padding: 20px 40px;
+    margin: auto;
   }
 
   .hideHref {
@@ -555,7 +558,7 @@ body {
     height: 32px;
   }
 
-  .helpBtn,
+  .pageHeader .helpBtn,
   .headerTitle {
     display: none;
   }
@@ -586,6 +589,10 @@ body {
     color: #a8a8a8;
     text-decoration: none;
     display: block;
+  }
+
+  .desktopOnly {
+    display: none;
   }
 
   .bottomNav.legal-responsive {
