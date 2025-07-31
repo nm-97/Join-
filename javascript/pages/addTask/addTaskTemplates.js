@@ -57,7 +57,7 @@ function getAddTaskOverlay(params = {}) {
                    </div>
                  </div>
                  <div class="formGroup">
-                   <label for="taskAssignee">Assigned to <span class="requiredStar">*</span></label>
+                   <label for="dropdownInput">Assigned to <span class="requiredStar">*</span></label>
                    <div class="customDropdownContainer">
                      <div class="customDropdown" id="customDropdown">
                        <div class="dropdownHeader">
@@ -77,7 +77,7 @@ function getAddTaskOverlay(params = {}) {
                    <div class="errorMessage hide"></div>
                  </div>
                  <div class="formGroup">
-                   <label for="taskCategory"
+                   <label for="categoryDropdownInput"
                      >Category <span class="requiredStar">*</span></label>
                    <div class="customDropdownContainer">
                    <div class="customDropdown" id="customCategoryDropdown">
@@ -189,7 +189,7 @@ function getEditTaskOverlay(task) {
             </div>
         </div>
         <div class="editFormGroup">
-         <label for="taskAssignee">Assigned to <span class="requiredStar">*</span></label>
+         <label for="dropdownInput">Assigned to <span class="requiredStar">*</span></label>
                <div class="customDropdownContainer">
                  <div class="customDropdown" id="customDropdown">
                    <div class="dropdownHeader">
@@ -285,7 +285,7 @@ function getaddTaskMainContent() {
              </div>
 
              <div class="formGroup">
-               <label for="taskAssignee">Assigned to <span class="requiredStar">*</span></label>
+               <label for="dropdownInput">Assigned to <span class="requiredStar">*</span></label>
                <div class="customDropdownContainer">
                  <div class="customDropdown" id="customDropdown">
                    <div class="dropdownHeader">
@@ -306,7 +306,7 @@ function getaddTaskMainContent() {
              </div>
 
              <div class="formGroup">
-               <label for="taskCategory"
+               <label for="categoryDropdownInput"
                  >Category <span class="requiredStar">*</span></label>
                <div class="customDropdownContainer">
                  <div class="customDropdown" id="customCategoryDropdown">
