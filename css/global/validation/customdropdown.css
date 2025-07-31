@@ -10,7 +10,6 @@
   align-items: center;
   gap: 8px;
   margin-top: 12px;
-  flex-wrap: wrap;
 }
 
 .selectedContactAvatar {
@@ -55,7 +54,8 @@
 
 .customDropdown {
   position: relative;
-  width: 420px;
+  max-width: 425px;
+  width: 100%;
 }
 
 .dropdownHeader {
@@ -245,6 +245,45 @@
   background: #a1a1a1;
 }
 
+@media (max-width: 786px) {
+  .taskPriorityBtn{
+    max-height: 41px;
+    width: 100%;
+    padding: 12px 8px;
+    font-size: 16px;
+    gap: 4px;
+  }
+  
+  .taskPriorityBtn img {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .taskPriorityBtn span {
+    margin-right: 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .taskPriorityGroup {
+    gap: 6px;
+    justify-content: space-between;
+  }
+  
+  .taskPriorityBtn {
+    max-width: 110px;
+    height: 38px;
+    padding: 10px 6px;
+    font-size: 15px;
+    gap: 3px;
+  }
+  
+  .taskPriorityBtn img {
+    width: 15px;
+    height: 15px;
+  }
+}
+
 @media (max-width: 428px) {
   .customDropdownContainer {
     gap: 0px;
@@ -252,5 +291,32 @@
 
   .customDropdown {
     width: 396px;
+  }
+  
+  .taskPriorityGroup {
+    gap: 4px;
+    justify-content: space-between;
+  }
+  
+  .taskPriorityBtn {
+    width: auto;
+    max-width: 100px;
+    height: 36px;
+    padding: 8px 6px;
+    font-size: 14px;
+    gap: 2px;
+    flex: 1;
+  }
+  
+  .taskPriorityBtn img {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .taskPriorityBtn span {
+    margin-right: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

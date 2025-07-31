@@ -130,7 +130,7 @@ body {
   align-items: center;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   position: relative;
-  margin: auto;
+  margin: 0 auto;
   width: 100%;
 }
 
@@ -352,10 +352,6 @@ body {
   .helpBtn,
   .headerTitle {
     display: none;
-  }
-
-  .header {
-    padding: 20px 40px;
   }
 
   .hideHref {
