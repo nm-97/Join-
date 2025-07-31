@@ -130,6 +130,8 @@ body {
   align-items: center;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   position: relative;
+  margin: auto;
+  width: 100%;
 }
 
 .headerTitle {
@@ -278,6 +280,10 @@ body {
   display: none;
 }
 
+.mobileOnly {
+  display: none;
+}
+
 @keyframes slideIn {
   0% {
     opacity: 0;
@@ -296,11 +302,171 @@ body {
     transform: translateX(0);
   }
 
-    100% {
-      opacity: 0;
-      transform: translateX(250px);
-    }
+  100% {
+    opacity: 0;
+    transform: translateX(250px);
   }
+}
+@media (max-width: 1350px) {
+  .sidebar {
+    width: 250px;
+    min-width: 250px;
+  }
+
+  .navItem.active {
+    max-width: 265px;
+  }
+
+  .joinLogo {
+    width: 89px;
+  }
+
+  .bottomNav {
+    display: flex;
+    position: fixed !important;
+    bottom: 0 !important;
+    width: 100%;
+    height: 72px;
+    background-color: #2a3647;
+    z-index: 1000 !important;
+    border-top: 1px solid #1f2a3c;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+  }
+
+  .navBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #bdc3c7;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 6px;
+    flex: 1;
+  }
+
+  .navBtn img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 4px;
+  }
+
+  .navBtn.active,
+  .navBtn:hover {
+    color: white;
+  }
+
+  .mobileLogo {
+    display: flex;
+    height: 32px;
+  }
+
+  .helpBtn,
+  .headerTitle {
+    display: none;
+  }
+
+  .header {
+    padding: 20px 40px;
+  }
+
+  .pageHeader {
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+  .summaryHeaderDevider {
+    width: 98px !important;
+    height: 3px !important;
+  }
+  .summaryHeaderDevider {
+    width: 98px !important;
+    height: 3px !important;
+  }
+
+  .hideHref {
+    display: block;
+  }
+}
+
+@media (max-width: 1024px) {
+  .mainContainer {
+    max-width: 1024px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .bottomNav {
+    display: flex;
+    position: fixed !important;
+    bottom: 0 !important;
+    width: 100%;
+    height: 72px;
+    background-color: #2a3647;
+    z-index: 1000 !important;
+    border-top: 1px solid #1f2a3c;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+  }
+
+  .navBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #bdc3c7;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 6px;
+    flex: 1;
+  }
+
+  .navBtn img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 4px;
+  }
+
+  .navBtn.active,
+  .navBtn:hover {
+    color: white;
+  }
+
+  .mobileLogo {
+    display: flex;
+    height: 32px;
+  }
+
+  .helpBtn,
+  .headerTitle {
+    display: none;
+  }
+
+  .header {
+    padding: 20px 40px;
+  }
+
+  .pageHeader {
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+  .summaryHeaderDevider {
+    width: 98px !important;
+    height: 3px !important;
+  }
+  .summaryHeaderDevider {
+    width: 98px !important;
+    height: 3px !important;
+  }
+
+  .hideHref {
+    display: block;
+  }
+}
 
 
 @media (max-width: 1024px) {
@@ -383,7 +549,7 @@ body {
 }
 
 @media (max-width: 786px) {
-  .mainContainer{
+  .mainContainer {
     max-width: 786px;
   }
 
@@ -438,7 +604,7 @@ body {
   }
 
   .header {
-    padding: 10px 40px;
+    padding: 20px 40px;
     max-width: 786px;
   }
 
@@ -461,14 +627,13 @@ body {
   }
 }
 
-
-
 @media (max-width: 428px) {
-
-  .mainContainer{
+  .mainContainer {
     max-width: 428px;
+    height: 100vh;
+    overflow-y: auto;
   }
-  
+
   .sidebar {
     display: none;
   }
@@ -531,10 +696,11 @@ body {
 
   .header {
     padding: 20px 40px;
-    max-width: 428px;
     position: sticky;
     top: 0;
     z-index: 1000;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
   .pageHeader {
@@ -553,5 +719,31 @@ body {
 
   .hideHref {
     display: block;
+  }
+
+  footer a {
+    display: none;
+  }
+
+  .mobileOnly {
+    gap: 8px;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 120%;
+    color: #a8a8a8;
+    text-decoration: none;
+    display: block;
+  }
+
+  .bottomNav.legal-responsive {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+
+  .bottomNav.legal-responsive .navBtn {
+    flex: none;
+    min-width: 120px;
   }
 }
