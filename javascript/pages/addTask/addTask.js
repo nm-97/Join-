@@ -450,6 +450,7 @@ function clearForm() {
 function showAddTaskOverlay() {
   const overlay = document.getElementById("addTaskOverlay");
   if (overlay) {
+    overlay.classList.remove("hidden");
     overlay.innerHTML = getAddTaskOverlay();
     overlay.style.display = "flex";
     initializeOverlayAddTask();
