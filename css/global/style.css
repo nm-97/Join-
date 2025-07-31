@@ -307,6 +307,7 @@ body {
     transform: translateX(250px);
   }
 }
+
 @media (max-width: 1350px) {
   .sidebar {
     width: 250px;
@@ -319,20 +320,6 @@ body {
 
   .joinLogo {
     width: 89px;
-  }
-
-  .bottomNav {
-    display: flex;
-    position: fixed !important;
-    bottom: 0 !important;
-    width: 100%;
-    height: 72px;
-    background-color: #2a3647;
-    z-index: 1000 !important;
-    border-top: 1px solid #1f2a3c;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 1000 !important;
   }
 
   .navBtn {
@@ -369,11 +356,6 @@ body {
 
   .header {
     padding: 20px 40px;
-  }
-
-  .pageHeader {
-    flex-direction: column;
-    align-items: baseline;
   }
 
   .hideHref {
@@ -392,6 +374,7 @@ body {
 
   .bottomNav {
     display: flex;
+    align-items: center;
     position: fixed !important;
     bottom: 0 !important;
     width: 100%;
@@ -438,20 +421,6 @@ body {
 
   .header {
     padding: 20px 40px;
-  }
-
-  .pageHeader {
-    flex-direction: column;
-    align-items: baseline;
-  }
-
-  .summaryHeaderDevider {
-    width: 98px !important;
-    height: 3px !important;
-  }
-  .summaryHeaderDevider {
-    width: 98px !important;
-    height: 3px !important;
   }
 
   .hideHref {
@@ -473,7 +442,7 @@ body {
     position: fixed !important;
     bottom: 0 !important;
     width: 100%;
-    height: 72px;
+    height: 58px;
     background-color: #2a3647;
     z-index: 1000 !important;
     border-top: 1px solid #1f2a3c;
@@ -516,20 +485,7 @@ body {
 
   .header {
     padding: 20px 40px;
-  }
-
-  .pageHeader {
-    flex-direction: column;
-    align-items: baseline !important;
-  }
-
-  .summaryHeaderDevider {
-    width: 98px !important;
-    height: 3px !important;
-  }
-  .summaryHeaderDevider {
-    width: 98px !important;
-    height: 3px !important;
+    max-width: 786px;
   }
 
   .hideHref {
@@ -611,20 +567,6 @@ body {
     z-index: 1000;
     background-color: white;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-
-  .pageHeader {
-    flex-direction: column;
-    align-items: baseline !important;
-  }
-
-  .summaryHeaderDevider {
-    width: 98px !important;
-    height: 3px !important;
-  }
-  .summaryHeaderDevider {
-    width: 98px !important;
-    height: 3px !important;
   }
 
   .hideHref {

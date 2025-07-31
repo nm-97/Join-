@@ -3,10 +3,6 @@
  * Mobile-only welcome overlay for post-login greeting
  */
 
-#summaryMainContent {
-  position: relative;
-}
-
 .overlay.welcome {
   position: fixed;
   top: 80px;
