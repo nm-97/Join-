@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: 168px;
   margin-bottom: 40px;
 }
 .boardTitle {
@@ -234,6 +235,144 @@
 }
 .hideOnMobile {
   display: none;
+}
+@media (max-width: 1545px) {
+  .mainContent {
+    padding: 32px;
+  }
+
+  .boardContainer {
+    padding: 0;
+    gap: 15px;
+    overflow: visible;
+  }
+
+  .boardActions {
+    max-width: 509px;
+  }
+}
+
+@media (max-width: 1390px) {
+  .boardColumn{
+    min-width: 0;
+  }
+
+  .columnHeader {
+    justify-content: flex-start;
+    gap: 16px;
+  }
+
+  .boardHeader {
+    gap: 16px;
+  }
+}
+
+
+@media (max-width: 1200px) {
+
+  .mainContainer{
+    width: 100%;
+  }
+ .mainContent {
+  padding: 16px;
+  overflow-y: hidden;
+  height: auto;
+  margin-bottom: 100px;
+}
+.searchContainer{
+  width: 100%;
+  justify-content: center;
+}
+
+.searchInput{
+  width: 100%;
+}
+
+  .boardTitle {
+    font-size: 56px;
+    text-align: left;
+  }
+
+  .boardActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .addTaskButton {
+    display: none;
+  }
+
+  .hideOnMobile {
+    display: inline;
+    cursor: pointer;
+  }
+
+.boardContainer {
+  flex-direction: column;
+  gap: 32px;
+  padding: 0;
+  height: auto;
+}
+
+  .boardColumn {
+    width: 100%;
+  }
+
+  .columnContent {
+    display: flex;
+    gap: 12px;
+    flex-direction: row;
+  }
+
+  .taskCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    max-width: 252px !important;
+    max-height: 244px !important;
+    min-width: 220px;
+    min-height: 212px;
+    padding: 16px;
+  }
+
+  .taskFooter{
+    margin-top: auto;
+  }
+  #boardScrollContainer {
+  display: flex;
+  gap: 16px; 
+  overflow-x: auto;
+  padding: 16px;
+}
+
+.emptyState{
+  width: 100%;
+  height: 48px;
+  padding: 12px;
+}
+
+.taskSection {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+.columnContent {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin: -20px 0 -20px 0;
+    padding: 20px 0 20px 0;
+  }
+
+  .columnContent::-webkit-scrollbar {
+    display: none;
+  }
+
+  input::placeholder {
+  font-size: 16px;
+}
 }
 
 @media (max-width: 428px) {

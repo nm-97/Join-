@@ -215,34 +215,4 @@ hr {
   .modalActions {
     padding-top: 0;
   }
-
-  /*.edit overlay */
-  .editLabel {
-    font-size: 16px !important;
-  }
-
-  .taskPriorityLabel {
-    font-size: 16px !important;
-  }
-
-  .taskPriorityBtn {
-    width: 104px;
-    height: 41px;
-    padding: 18px 10px;
-    font-size: 16px;
-    gap: 0;
-  }
-
-  .customDropdown {
-    width: 100% !important;
-  }
-
-  input::placeholder,
-  textarea::placeholder {
-    font-size: 16px;
-  }
-
-  .dropdownInput::placeholder {
-    font-size: 16px;
-  }
 }
