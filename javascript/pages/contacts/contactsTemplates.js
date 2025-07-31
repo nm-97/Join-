@@ -188,8 +188,9 @@ function getFloatingContact(contact) {
  */
 function getMobileMenuButton(contactId) {
   const isMobile = window.innerWidth <= 1024;
+
   return isMobile
-    ? `<button class="floating-menu-button" ontouchstart="showContactMenu('${contactId}')" onclick="showContactMenu('${contactId}')">⋮</button>`
+    ? `<button class="floating-menu-button" onclick="showContactMenu('${contactId}')">⋮</button>`
     : "";
 }
 
@@ -200,13 +201,13 @@ function getMobileMenuButton(contactId) {
  */
 function getContactMenuOverlay(contactId) {
   return `
-    <div class="contact-menu-overlay" ontouchstart="handleOverlayTouch(event)" onclick="handleOverlayClick(event)">
-      <div class="contact-menu-content" ontouchstart="event.stopPropagation()" onclick="event.stopPropagation()">
-        <button class="floatingEditBtn" ontouchstart="showEditContactOverlay('${contactId}'); closeContactMenu()" onclick="showEditContactOverlay('${contactId}'); closeContactMenu()">
+    <div class="contact-menu-overlay" onclick="closeContactMenu()">
+      <div class="contact-menu-content">
+        <button class="floatingEditBtn" onclick="showEditContactOverlay('${contactId}'); closeContactMenu()">
           <img src="../assets/icons/shared/edit.svg" alt="edit">
           <span>Edit</span>
         </button>
-        <button class="floatingDeleteBtn" ontouchstart="deleteContact('${contactId}'); closeContactMenu()" onclick="deleteContact('${contactId}'); closeContactMenu()">
+        <button class="floatingDeleteBtn" onclick="deleteContact('${contactId}'); closeContactMenu()">
           <img src="../assets/icons/shared/delete.svg" alt="delete">
           <span>Delete</span>
         </button>

@@ -225,8 +225,15 @@
     gap: 8px;
   }
 
+  .pageHeader {
+    flex-direction: column;
+  }
+
   .addContactButton {
     max-width: 310px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .contactsList {

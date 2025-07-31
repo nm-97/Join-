@@ -106,6 +106,7 @@ function showFloatingContactForResponsive(contact) {
     const contactsList = document.getElementById("contactsList");
     const contactsMainContent = document.querySelector(".contactsMainContent");
     const addContactButton = document.querySelector(".addContactButton");
+
     if (floatingContactContainer && contactsList && contactsMainContent) {
       contactsList.style.display = "none";
       if (addContactButton) {
@@ -114,7 +115,82 @@ function showFloatingContactForResponsive(contact) {
       contactsMainContent.appendChild(floatingContactContainer);
       floatingContactContainer.innerHTML = getFloatingContact(contact);
       floatingContactContainer.style.display = "block";
+
+      // Add event listeners for close button and overlay after DOM is updated
+      setTimeout(() => {
+        setupFloatingContactCloseListeners();
+        setupFloatingContactOverlayListener();
+      }, 100);
     }
+  }
+}
+
+/**
+ * Sets up event listeners for the floating contact close button
+ */
+function setupFloatingContactCloseListeners() {
+  const closeBtn = document.querySelector(".floatingContactCloseBtn");
+
+  if (closeBtn) {
+    // Touch Events
+    closeBtn.addEventListener(
+      "touchstart",
+      function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      },
+      { passive: false }
+    );
+
+    closeBtn.addEventListener(
+      "touchend",
+      function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        closeFloatingContactOverlayResponsive();
+      },
+      { passive: false }
+    );
+
+    // Click Event (backup)
+    closeBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeFloatingContactOverlayResponsive();
+    });
+  }
+}
+
+/**
+ * Sets up event listener for closing floating contact overlay when tapping on it
+ */
+function setupFloatingContactOverlayListener() {
+  const overlay = document.getElementById("floatingContactOverlay");
+  if (overlay) {
+    overlay.addEventListener("click", function (e) {
+      // Close overlay when clicking on the background (not on buttons or content)
+      if (
+        e.target === overlay ||
+        e.target.classList.contains("floatingContactMainContent")
+      ) {
+        closeFloatingContactOverlayResponsive();
+      }
+    });
+
+    overlay.addEventListener(
+      "touchstart",
+      function (e) {
+        // Close overlay when touching on the background (not on buttons or content)
+        if (
+          e.target === overlay ||
+          e.target.classList.contains("floatingContactMainContent")
+        ) {
+          e.preventDefault();
+          closeFloatingContactOverlayResponsive();
+        }
+      },
+      { passive: false }
+    );
   }
 }
 
@@ -134,6 +210,12 @@ function showContactMenu(contactId) {
  * @param {string} contactId - The contact ID to generate menu for
  */
 function createContactMenuOverlay(contactId) {
+  // Check if overlay already exists to prevent duplicates
+  const existingOverlay = document.querySelector(".contact-menu-overlay");
+  if (existingOverlay) {
+    existingOverlay.remove();
+  }
+
   const overlay = getContactMenuOverlay(contactId);
   document.body.insertAdjacentHTML("beforeend", overlay);
 }
@@ -142,79 +224,32 @@ function createContactMenuOverlay(contactId) {
  * Sets up event listeners for the contact menu overlay
  */
 function setupContactMenuEventListeners() {
-  const overlayElement = document.querySelector(".contact-menu-overlay");
-  const contentElement = document.querySelector(".contact-menu-content");
-  if (overlayElement) {
-    setupOverlayBackgroundListeners(overlayElement);
-  }
-  if (contentElement) {
-    setupContentEventListeners(contentElement);
-  }
-}
-
-/**
- * Sets up event listeners for the overlay background (close on outside click/touch)
- * @param {HTMLElement} overlayElement - The overlay background element
- */
-function setupOverlayBackgroundListeners(overlayElement) {
-  overlayElement.addEventListener("touchstart", function (e) {
-    if (e.target === overlayElement) {
-      e.preventDefault();
-      closeContactMenu();
+  setTimeout(() => {
+    const overlayElement = document.querySelector(".contact-menu-overlay");
+    if (overlayElement) {
+      overlayElement.removeAttribute("onclick");
+      const closeMenuHandler = function (e) {
+        const overlay = document.querySelector(".contact-menu-overlay");
+        if (overlay) {
+          closeContactMenu();
+          document.removeEventListener("touchstart", closeMenuHandler, true);
+          document.removeEventListener("click", closeMenuHandler, true);
+        }
+      };
+      document.addEventListener("touchstart", closeMenuHandler, true);
+      document.addEventListener("click", closeMenuHandler, true);
     }
-  });
-  overlayElement.addEventListener("click", function (e) {
-    if (e.target === overlayElement) {
-      e.preventDefault();
-      closeContactMenu();
-    }
-  });
+  }, 100);
 }
 
 /**
- * Sets up event listeners for the menu content (prevent event bubbling)
- * @param {HTMLElement} contentElement - The menu content element
- */
-function setupContentEventListeners(contentElement) {
-  contentElement.addEventListener("touchstart", function (e) {
-    e.stopPropagation();
-  });
-
-  contentElement.addEventListener("click", function (e) {
-    e.stopPropagation();
-  });
-}
-
-/**
- * Closes the contact menu overlay with slide-out animation
+ * Closes the contact menu overlay
  */
 function closeContactMenu() {
   const overlay = document.querySelector(".contact-menu-overlay");
-  const content = document.querySelector(".contact-menu-content");
-  if (overlay && content) {
-    content.classList.add("closing");
-    setTimeout(() => {
-      if (overlay && overlay.parentNode) {
-        overlay.remove();
-      }
-    }, 50);
+  if (overlay) {
+    overlay.remove();
   }
-}
-
-/**
- * Handles touch events on the overlay background
- * @param {TouchEvent} event - The touch event
- */
-function handleOverlayTouch(event) {
-  closeContactMenu();
-}
-
-/**
- * Handles click events on the overlay background
- * @param {MouseEvent} event - The click event
- */
-function handleOverlayClick(event) {
-  closeContactMenu();
 }
 
 /**
@@ -226,21 +261,22 @@ function closeFloatingContactOverlayResponsive() {
       "floatingContactOverlay"
     );
     const contactsList = document.getElementById("contactsList");
-    const contactsRightPanel = document.querySelector(".contactsRightPanel");
     const addContactButton = document.querySelector(".addContactButton");
-    if (floatingContactContainer && contactsList && contactsRightPanel) {
+    if (floatingContactContainer) {
       floatingContactContainer.style.display = "none";
       floatingContactContainer.innerHTML = "";
+    }
+    if (contactsList) {
       contactsList.style.display = "block";
-      if (addContactButton) {
-        addContactButton.style.display = "block";
-      }
-      contactsRightPanel.appendChild(floatingContactContainer);
+    }
+    if (addContactButton) {
+      addContactButton.style.display = "block";
     }
   } else {
     closeFloatingContactOverlay();
   }
 }
+
 /**
  * Selects a contact item in the UI and removes selection from previously selected item
  * @param {string} contactId - The ID of the contact to select
@@ -265,6 +301,7 @@ function showAddContactOverlay() {
     overlay.innerHTML = getAddContactOverlay();
     overlay.style.display = "flex";
     setupPhoneInputFilter();
+    setupAddContactOverlayEventListeners();
   }
 }
 
@@ -279,7 +316,28 @@ function closeAddContactOverlay() {
       overlay.style.display = "none";
       overlay.innerHTML = "";
       overlay.classList.remove("closing");
-    }, 200); // TIMING: Anpassbar
+    }, 200);
+  }
+}
+
+/**
+ * Sets up event listeners for the add contact overlay to close on outside click
+ */
+function setupAddContactOverlayEventListeners() {
+  const overlay = document.getElementById("addContactOverlay");
+  if (overlay) {
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay) {
+        closeAddContactOverlay();
+      }
+    });
+
+    overlay.addEventListener("touchstart", function (e) {
+      if (e.target === overlay) {
+        e.preventDefault();
+        closeAddContactOverlay();
+      }
+    });
   }
 }
 
@@ -290,12 +348,18 @@ function closeAddContactOverlay() {
 async function showEditContactOverlay(contactId) {
   try {
     const contact = await fetchContactByIdAndUser(contactId);
-    if (!contact) return;
+
+    if (!contact) {
+      return;
+    }
+
     const overlay = document.getElementById("editContactOverlay");
+
     if (overlay) {
       overlay.innerHTML = getEditContactOverlay(contact);
       overlay.style.display = "flex";
       setupPhoneInputFilter();
+      setupEditContactOverlayEventListeners();
     }
   } catch (error) {
     console.error("Error showing edit contact overlay:", error);
@@ -313,7 +377,28 @@ function closeEditContactOverlay() {
       overlay.style.display = "none";
       overlay.innerHTML = "";
       overlay.classList.remove("closing");
-    }, 200); // TIMING: Anpassbar
+    }, 200);
+  }
+}
+
+/**
+ * Sets up event listeners for the edit contact overlay to close on outside click
+ */
+function setupEditContactOverlayEventListeners() {
+  const overlay = document.getElementById("editContactOverlay");
+  if (overlay && window.innerWidth > 428) {
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay) {
+        closeEditContactOverlay();
+      }
+    });
+
+    overlay.addEventListener("touchstart", function (e) {
+      if (e.target === overlay) {
+        e.preventDefault();
+        closeEditContactOverlay();
+      }
+    });
   }
 }
 
