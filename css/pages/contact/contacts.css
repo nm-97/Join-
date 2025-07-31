@@ -215,141 +215,68 @@
   display: none;
 }
 
-@media (max-width: 1350px) {
+@media (max-width: 1350px) and (min-width: 1025px) {
   .contactsMainContent {
-    overflow-y: scroll;
-    margin: 0;
     background-color: #ffffff;
+    padding: 20px 5px;
   }
 
-  .contactsHeaderDivider {
-    display: none;
-  }
-
-  .contactsRightPanelDivider {
-    border: 2px solid #;
-    width: 150px;
-    display: block;
-    margin-top: 8px;
+  .contactsContentWrapper {
+    gap: 8px;
   }
 
   .pageHeader {
-    top: 115px;
     flex-direction: column;
+  }
+
+  .addContactButton {
+    max-width: 310px;
+    display: flex;
     align-items: center;
-    width: 200px;
-    gap: 10px;
+    justify-content: center;
+  }
+
+  .contactsList {
+    max-width: 310px;
+  }
+
+  .contactEmail {
+    font-size: 13px;
+  }
+
+  .contactItem {
+    gap: 20px;
   }
 
   .bottomNav {
     display: none;
   }
 
-  .pageHeader h1 {
-    font-size: 57px;
-  }
-
-  .pageHeader span {
-    font-size: 22px;
-  }
-
-  .addContactButton {
-    position: fixed;
-    bottom: 100px;
-    right: 24px;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    max-width: none;
-    padding: 0;
-    z-index: 100;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  .addContactButton span {
+  .contactsHeaderDivider {
     display: none;
   }
 
-  .addContactButton img {
-    width: 24px;
-    height: 24px;
-  }
-
-  .contactItem.selected {
-    background-color: #ffffff;
-  }
-
-  .contactItem.selected .contactName {
-    color: #000000;
+  .contactsRightPanelDivider {
+    display: block;
+    border: 1px solid #29abe2;
+    width: 160px;
   }
 }
 
 @media (max-width: 1024px) {
   .contactsMainContent {
     overflow-y: scroll;
-    margin: 0;
-    background-color: #ffffff;
-  }
-
-  .pageHeader {
-    top: 127px;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .contactsRightPanelDivider {
-    border: 3px solid #29abe2;
-    width: 10px;
-  }
-
-  .pageHeader h1 {
-    font-size: 57px;
-  }
-
-  .pageHeader span {
-    font-size: 22px;
-  }
-
-  .contactsHeaderDivider {
-    border: 2px solid #29abe2;
-  }
-
-  .addContactButton {
-    position: fixed;
-    bottom: 100px;
-    right: 24px;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    max-width: none;
-    padding: 0;
-    z-index: 100;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  .addContactButton img {
-    width: 24px;
-    height: 24px;
-  }
-
-  .contactItem.selected {
-    background-color: #ffffff;
-  }
-
-  .contactItem.selected .contactName {
-    color: #000000;
-  }
-}
-
-@media (max-width: 785px) {
-  .contactsMainContent {
-    overflow-y: scroll;
     margin: auto;
-    background-color: #ffffff;
+    padding: 0px 15px;
   }
 
   .contactsRightPanel {
     display: none;
+  }
+
+  .contactsList {
+    background-color: #ffffff;
+    padding-top: 40px;
   }
 
   .addContactButton {
@@ -380,6 +307,56 @@
 
   .contactItem.selected .contactName {
     color: #000000;
+  }
+
+  .bottomNav {
+    display: flex;
+  }
+
+  .contactsList {
+    padding: 40px 70px;
+  }
+
+  .alphabetSeparator {
+    padding: 20px;
+  }
+
+  .alphabetLetter {
+    font-size: 24px;
+  }
+
+  .contactAvatar {
+    width: 50px;
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .contactName {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 786px) {
+  .contactsList {
+    padding: 40px 26px;
+  }
+
+  .alphabetSeparator {
+    padding: 16px;
+  }
+
+  .alphabetLetter {
+    font-size: 20px;
+  }
+
+  .contactAvatar {
+    width: 42px;
+    height: 42px;
+    font-size: 12px;
+  }
+
+  .contactName {
+    font-size: 20px;
   }
 }
 
@@ -406,6 +383,7 @@
 
   .contactsMainContent {
     overflow-y: scroll;
+    padding: 0px;
   }
 
   .contactsRightPanel {
@@ -434,6 +412,28 @@
     height: 24px;
   }
 
+  .contactsList {
+    padding: 40px 0px;
+  }
+
+  .alphabetSeparator {
+    padding: 10px;
+  }
+
+  .alphabetLetter {
+    font-size: 16px;
+  }
+
+  .contactAvatar {
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
+  }
+
+  .contactName {
+    font-size: 16px;
+  }
+
   .contactItem.selected {
     background-color: #ffffff;
   }
@@ -448,9 +448,13 @@
     gap: 20px;
   }
 
+  .contactsList {
+    padding: 40px 0px;
+  }
+
   .contactsMainContent {
     overflow-y: scroll;
-    padding: 32px 7px;
+    padding: 0px;
   }
 }
 
@@ -461,6 +465,6 @@
 
   .contactsMainContent {
     overflow-y: scroll;
-    padding: 32px 3px;
+    padding: 0px;
   }
 }

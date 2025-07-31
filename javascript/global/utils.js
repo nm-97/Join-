@@ -241,7 +241,7 @@ function showGreetingOverlay() {
  * @returns {boolean} True if mobile device (≤428px)
  */
 function isMobileDevice() {
-  return window.innerWidth <= 428;
+  return window.innerWidth <= 1024;
 }
 
 /**

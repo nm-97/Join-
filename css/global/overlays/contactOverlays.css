@@ -234,7 +234,25 @@
   background: #1a2233;
 }
 
-@media (max-width: 428px) {
+@media (max-width: 1280px) and (min-width: 1024px) {
+  .editContactTitle {
+    font-size: 51px;
+  }
+
+  .floatingEditBtn,
+  .floatingDeleteBtn {
+    display: none;
+  }
+
+  .contact-menu.overlay {
+    display: none;
+  }
+  .editContactModalLeft {
+    width: auto;
+  }
+}
+
+@media (max-width: 1024px) {
   .addContactOverlay,
   .editContactOverlay {
     height: 100vh;
@@ -245,6 +263,9 @@
     border-radius: 30px;
     flex-direction: column;
     height: 760px;
+    max-width: 480px;
+    min-width: 320px;
+    margin: 10px;
   }
 
   .addContactLogo,
@@ -254,15 +275,19 @@
 
   .addContactModalLeft,
   .editContactModalLeft {
-    width: 396px;
+    width: auto;
     height: 352px;
     border-bottom-left-radius: 0;
-    padding: 54px 30px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
   .addContactModalRight,
   .editContactModalRight {
-    width: 396px;
+    width: auto;
     height: 408px;
     position: relative;
     padding: 0px 25px 24px 20px;
@@ -283,7 +308,6 @@
   .editContactClose {
     cursor: pointer;
     position: absolute;
-    top: -335px;
     right: 24px;
     width: 32px;
     height: 32px;
@@ -315,12 +339,13 @@
     margin-bottom: -18px;
     border: 4px solid #ffffff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
 
-    img {
-      width: 64px;
-      height: 64px;
-      margin: 38.67px;
-    }
+  .addContactAvatar img,
+  .editContactAvatar img {
+    width: 64px;
+    height: 64px;
+    margin: 38.67px;
   }
 
   .addContactForm,
