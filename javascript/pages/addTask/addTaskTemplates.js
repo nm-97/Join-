@@ -39,7 +39,7 @@ function getAddTaskOverlay(params = {}) {
                <div class="addTaskFormsDivider"></div>
                <form>
                  <div class="formGroup">
-                   <label for="taskPriority" class="taskPriorityLabel">Task Priority</label>
+                   <label class="taskPriorityLabel">Task Priority</label>
                    <div class="taskPriorityGroup">
                      <button type="button" class="taskPriorityBtn" id="urgentBtn">
                        <img src="../assets/icons/shared/urgent.svg" alt="urgentIcon"/>
@@ -94,7 +94,7 @@ function getAddTaskOverlay(params = {}) {
                    <div class="errorMessage hide"></div>
                  </div>
                  <div class="formGroup">
-                   <label for="Subtask">Subtask</label>
+                   <label for="taskSubtask">Subtask</label>
                    <div class="inputIcon">
                      <input type="text" placeholder="Add new subtask" id="taskSubtask" name="taskSubtask" multiple/>
                      <img src="../assets/icons/board/addtask.svg" alt="addSubtask" id="createSubtaskButton"/>
@@ -172,7 +172,7 @@ function getEditTaskOverlay(task) {
           </div>
         </div>
         <div class="formGroup">
-          <label for="taskPriority" class="taskPriorityLabel">Task Priority</label>
+          <label class="taskPriorityLabel">Task Priority</label>
             <div class="taskPriorityGroup">
                 <button type="button" class="taskPriorityBtn" id="urgentBtn">
                 <img src="../assets/icons/shared/urgent.svg" alt="urgentIcon">
@@ -209,7 +209,7 @@ function getEditTaskOverlay(task) {
                <div class="errorMessage hide"></div>
         </div>
         <div class="editFormGroup editFormGroupLast">
-           <label for="Subtask">Subtask</label>
+           <label for="taskSubtask">Subtask</label>
                <div class="inputIcon">
                  <input type="text" placeholder="Add new subtask" id="taskSubtask" name="taskSubtask" multiple/>
                  <img src="../assets/icons/board/addtask.svg" alt="addSubtask" id="createSubtaskButton"/>
@@ -266,7 +266,7 @@ function getaddTaskMainContent() {
            <div class="addTaskFormsDivider"></div>
            <form>
              <div class="formGroup">
-               <label for="taskPriority" class="taskPriorityLabel">Task Priority</label>
+               <label class="taskPriorityLabel">Task Priority</label>
                <div class="taskPriorityGroup">
                  <button type="button" class="taskPriorityBtn" id="urgentBtn">
                    <img src="../assets/icons/shared/urgent.svg" alt="urgentIcon"/>
@@ -325,7 +325,7 @@ function getaddTaskMainContent() {
              </div>
 
              <div class="formGroup">
-               <label for="Subtask">Subtask</label>
+               <label for="taskSubtask">Subtask</label>
                <div class="inputIcon">
                  <input type="text" placeholder="Add new subtask" id="taskSubtask" name="taskSubtask" multiple/>
                  <img src="../assets/icons/board/addtask.svg" alt="addSubtask" id="createSubtaskButton"/>

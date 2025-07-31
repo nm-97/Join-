@@ -284,6 +284,10 @@ body {
   display: none;
 }
 
+.desktopOnly {
+  display: block;
+}
+
 @keyframes slideIn {
   0% {
     opacity: 0;
@@ -416,7 +420,7 @@ body {
   }
 
   .header {
-    padding: 20px 40px;
+    margin: auto;
   }
 
   .hideHref {
@@ -551,7 +555,7 @@ body {
     height: 32px;
   }
 
-  .helpBtn,
+  .pageHeader .helpBtn,
   .headerTitle {
     display: none;
   }
@@ -582,6 +586,10 @@ body {
     color: #a8a8a8;
     text-decoration: none;
     display: block;
+  }
+
+  .desktopOnly {
+    display: none;
   }
 
   .bottomNav.legal-responsive {

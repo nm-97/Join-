@@ -321,7 +321,7 @@ footer a:hover {
   display: none;
 }
 
-@media (max-width: 428px) {
+@media (max-width: 1024px) {
   .headerLogin {
     order: 1;
     margin-top: 20px;
@@ -357,7 +357,6 @@ footer a:hover {
     width: 396px;
     height: 475px;
     padding: 32px;
-    margin-top: auto;
   }
 
   .LogInMainContainer h2 {
@@ -407,25 +406,6 @@ footer a:hover {
     margin-top: 15px;
     margin-left: 20px;
     gap: 10px;
-    transition: opacity 1000ms cubic-bezier(0.25, 0.1, 0.25, 1);
-  }
-
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #2a3647;
-    z-index: 9998;
-    animation: backgroundFadeOut 800ms ease-in-out forwards;
-    opacity: 1;
-  }
-
-  main {
-    animation: contentFadeIn 500ms ease-out 800ms forwards;
-    opacity: 0;
   }
 
   footer {
@@ -445,7 +425,6 @@ footer a:hover {
 
   .backBtn {
     position: absolute;
-    top: -180px;
     left: 52px;
     width: 32px;
     height: 32px;
@@ -482,5 +461,46 @@ footer a:hover {
     height: 56px;
     padding: 4px;
     font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .LogInMainContainer {
+    width: 90vw;
+    min-width: 280px;
+    padding: 24px 16px;
+  }
+
+  .LogInMainContainer h2 {
+    font-size: 32px;
+  }
+
+  .LogInMainContainer input,
+  .LogInInput input {
+    width: 100%;
+    min-width: 240px;
+    height: 44px;
+    font-size: 16px;
+    padding: 12px 40px 12px 16px;
+  }
+
+  .inputIcon img {
+    width: 20px;
+    height: 20px;
+    right: 12px;
+  }
+
+  .btnPosition button {
+    height: 48px;
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+
+  .signUpMainContainer {
+    width: 90vw;
+    min-width: 280px;
+    height: auto;
+    padding: 24px 16px;
+    margin: 20px auto;
   }
 }

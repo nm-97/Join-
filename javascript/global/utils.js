@@ -329,6 +329,28 @@ function setCurrentPageSelection() {
 }
 
 /**
+ * Redirects to the appropriate privacy policy page based on screen size
+ */
+function redirectToPrivacyPolicy() {
+  if (window.innerWidth <= 1024) {
+    window.location.href = "../html/privacyPoliceResponisve.html";
+  } else {
+    window.location.href = "../html/privacyPolicy.html";
+  }
+}
+
+/**
+ * Redirects to the appropriate legal notice page based on screen size
+ */
+function redirectToLegalNotice() {
+  if (window.innerWidth <= 1024) {
+    window.location.href = "../html/legalNoticeResponsive.html";
+  } else {
+    window.location.href = "../html/legalNotice.html";
+  }
+}
+
+/**
  * Initializes UI components when DOM content is loaded
  */
 document.addEventListener("DOMContentLoaded", function () {
