@@ -87,22 +87,27 @@ function setupDropdownEvents(dropdownId, inputId, arrowId) {
   const dropdownInput = document.getElementById(inputId);
   const dropdownArrow = document.getElementById(arrowId);
   if (!dropdown || !dropdownInput || !dropdownArrow) return;
+  
   dropdownArrow.addEventListener("click", function (e) {
     e.preventDefault();
     e.stopPropagation();
     toggleDropdown(dropdownId);
   });
+  
   dropdownInput.addEventListener("focus", function () {
     openDropdown(dropdownId);
   });
+  
   dropdownInput.addEventListener("click", function () {
     openDropdown(dropdownId);
   });
+  
   document.addEventListener("click", function (e) {
     if (!dropdown.contains(e.target)) {
       closeDropdown(dropdownId);
     }
   });
+  
   dropdown.addEventListener("click", function (e) {
     e.stopPropagation();
   });
@@ -275,6 +280,7 @@ function clearContactSelections() {
   });
   updateDropdownInput();
 }
+
 let selectedDropdownCategory = "";
 const categories = [
   { id: "technicalTask", name: "Technical Task" },
@@ -285,17 +291,11 @@ const categories = [
  * Initializes and loads the categories dropdown with predefined categories
  */
 function loadCategories() {
-  const categoriesDropdownList = document.getElementById(
-    "categoriesDropdownList"
-  );
+  const categoriesDropdownList = document.getElementById("categoriesDropdownList");
   if (!categoriesDropdownList) return;
 
   renderCategoriesDropdown(categories);
-  setupDropdownEvents(
-    "customCategoryDropdown",
-    "categoryDropdownInput",
-    "categoryDropdownArrow"
-  );
+  setupDropdownEvents("customCategoryDropdown", "categoryDropdownInput", "categoryDropdownArrow");
   setupCategorySelection();
 }
 
@@ -329,13 +329,18 @@ function setupCategorySelection() {
   const categoryItems = document.querySelectorAll("[data-category-id]");
   categoryItems.forEach((item) => {
     item.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
       const categoryId = this.getAttribute("data-category-id");
       const categoryName = this.querySelector(".contactName").textContent;
       selectedDropdownCategory = categoryId;
-      const categoryDropdownInput = document.getElementById(
-        "categoryDropdownInput"
-      );
-      categoryDropdownInput.value = categoryName;
+      
+      const categoryDropdownInput = document.getElementById("categoryDropdownInput");
+      if (categoryDropdownInput) {
+        categoryDropdownInput.value = categoryName;
+      }
+      
       closeDropdown("customCategoryDropdown");
     });
   });
@@ -354,8 +359,6 @@ function getSelectedCategoryId() {
  * @returns {string} The selected category name or empty string if not found
  */
 function getSelectedCategoryName() {
-  const categoryDropdownInput = document.getElementById(
-    "categoryDropdownInput"
-  );
+  const categoryDropdownInput = document.getElementById("categoryDropdownInput");
   return categoryDropdownInput ? categoryDropdownInput.value : "";
 }

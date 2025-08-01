@@ -37,7 +37,7 @@ select {
 .addTaskFormsWrapper input,
 .addTaskFormsWrapper textarea,
 .addTaskFormsWrapper select {
-  width: 420px;
+  width: 423px;
 }
 
 .editInput {
@@ -87,6 +87,7 @@ textarea::placeholder {
   display: flex;
   align-items: center;
   width: 100%;
+  max-width: 423px;
 }
 
 .inputIcon input {
@@ -97,8 +98,8 @@ textarea::placeholder {
 .inputIcon img {
   position: absolute;
   right: 16px;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   pointer-events: none;
   filter: invert(1);
 }
@@ -398,7 +399,6 @@ textarea::placeholder {
 .dropdownInput {
   width: 100%;
   padding: 12px 21px;
-  border: 1px solid #d1d1d1;
   border-radius: 8px;
   font-size: 16px;
   box-sizing: border-box;
@@ -410,7 +410,6 @@ textarea::placeholder {
   right: 16px;
   top: 50%;
   transform: translateY(-50%);
-  background: none;
   border: none;
   cursor: pointer;
   width: 24px;
@@ -428,7 +427,7 @@ textarea::placeholder {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   max-height: 200px;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 .contactsList {
