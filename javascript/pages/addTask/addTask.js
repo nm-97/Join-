@@ -242,10 +242,25 @@ function getFormData() {
     taskPriority: selectedPriority,
     assignedTo: selectedContacts,
     Category: mapCategoryToFirebase(categoryValue),
-    Status: "toDo",
+    Status: mapStatusToFirebase(selectedStatus),
     subtasks: currentSubtasks,
   };
   return formData;
+}
+
+/**
+ * Maps UI status value to Firebase status string
+ * @param {string} status - UI status value
+ * @returns {string} Firebase status string
+ */
+function mapStatusToFirebase(status) {
+  const statusMap = {
+    toDo: "toDo",
+    inProgress: "inProgress",
+    awaitFeedback: "awaitFeedback",
+    done: "done",
+  };
+  return statusMap[status] || "toDo";
 }
 
 /**
@@ -378,7 +393,7 @@ async function createOverlayTask() {
  * @param {string} status - The task status to preselect
  */
 function addTaskToColumn(status) {
-  selectedCategory = status;
+  selectedStatus = status;
   showAddTaskOverlay();
 }
 

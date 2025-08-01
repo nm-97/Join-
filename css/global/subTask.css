@@ -37,6 +37,31 @@
   font-size: 16px;
   transition: all 0.2s ease;
   min-width: 200px;
+  position: relative;
+}
+
+.subtaskHoverActions {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.subtaskText:hover .subtaskHoverActions {
+  opacity: 1;
+  visibility: visible;
+}
+
+.subtaskHoverActions:hover {
+  opacity: 1;
+  visibility: visible;
 }
 
 .subtaskActions {
@@ -49,6 +74,32 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.subtaskText[contenteditable="true"] .subtaskHoverActions {
+  display: none;
+}
+
+.actionImg {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.actionImg:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.1);
+}
+
+.hoverEditImg:hover {
+  background-color: #e3f2fd;
+}
+
+.hoverDeleteImg:hover {
+  background-color: #ffebee;
 }
 
 .deleteBtn {
@@ -72,45 +123,10 @@
   border: none;
 }
 
-.noSubtasks {
-  text-align: center;
-  color: #666;
-  font-style: italic;
-  padding: 16px;
-}
-
 .subTaskDevider {
   width: 1px;
   height: 24px;
   background: #a8a8a8;
-}
-
-.subtaskText:hover {
-  border-color: #bbb;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-}
-
-.subtaskText[contenteditable="true"] {
-  border-bottom: 1px solid #29abe2;
-  cursor: text;
-  background-color: #ffffff;
-  outline: none;
-}
-
-.subtaskText[contenteditable="false"] {
-  border-color: #e0e0e0;
-  cursor: pointer;
-}
-
-.subtaskText:empty::before {
-  content: "Subtask bearbeiten...";
-  color: #ffffff;
-  font-style: italic;
-}
-
-.subtaskText[contenteditable="true"]:empty::before {
-  content: "Text eingeben...";
 }
 
 .hidden {
