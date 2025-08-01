@@ -7,6 +7,7 @@
 
 let selectedPriority = "Medium";
 let selectedCategory = "";
+let selectedStatus = "toDo"; // Hinzugefügt für Status-Management
 let currentSubtasks = [];
 
 /**
