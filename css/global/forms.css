@@ -477,7 +477,10 @@ textarea::placeholder {
 
 /* Large Desktop - 1350px */
 @media (max-width: 1350px) {
-  /* Keep existing rules */
+  
+  .addTaskFormsDivider {
+    margin: 0;
+  }
 }
 
 /* Desktop - 1024px */

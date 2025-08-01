@@ -103,17 +103,16 @@ function getAddTaskOverlay(params = {}) {
                   </div>
                  </div>
                   <div class="formActions">
-                   <span class="requiredStarText">*This field is required</span>
-                   <div class="formButtons">
-                     <button type="button" class="cancelTaskBtn" id="clearTaskBtn">
-                       Clear
-                       <img src="../assets/icons/shared/close.svg" alt="cancel icon"/>
-                     </button>
-                     <button type="button" class="addTaskBtn" id="createTaskBtn">
-                       Create Task
-                       <img src="../assets/icons/add task/check.svg" alt="check icon"/>
-                     </button>
-                   </div>
+                  <span class="requiredStarText">* This field is required</span>
+                  <div class="formButtons">
+                    <button type="button" class="cancelTaskBtn" id="clearTaskBtn">Clear
+                    <img src="../assets/icons/shared/close.svg" alt="cancel icon"/>
+                  </button>
+                  <button type="button" class="addTaskBtn" id="createTaskBtn">
+                    Create Task
+                    <img src="../assets/icons/add task/check.svg" alt="check icon"/>
+                  </button>
+                  </div>
                  </div>
                </form>
            </div>
@@ -334,6 +333,8 @@ function getaddTaskMainContent() {
                </div>
              </div>
 
+             <div class="formActions">
+             <span class="requiredStarText">*This field is required</span>
              <div class="formButtons">
              <button type="button" class="cancelTaskBtn" id="clearTaskBtn">
              Clear
@@ -343,7 +344,7 @@ function getaddTaskMainContent() {
              Create Task
              <img src="../assets/icons/add task/check.svg" alt="check icon"/>
              </button>
-             <span class="requiredStarText">*This field is required</span>
+               </div>
                </div>
              </div>
            </form>`;
