@@ -332,8 +332,24 @@ body {
     min-width: 250px;
   }
 
+  .navItem {
+    padding: 15px 60px;
+  }
+
+  .navItem:hover {
+    padding: 15px 60px;
+    background-color: #34495e;
+    color: white;
+  }
+
   .navItem.active {
-    max-width: 265px;
+    padding: 15px 60px;
+    background-color: #0a1931;
+    color: white;
+  }
+
+  .navItem.selected {
+    padding: 15px 60px;
   }
 
   .joinLogo {
