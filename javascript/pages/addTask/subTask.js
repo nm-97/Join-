@@ -68,7 +68,6 @@ function setupContainerDoubleClickEvents(container) {
     if (e.target.classList.contains("subtaskText")) {
       e.target.contentEditable = true;
       e.target.focus();
-      hideSubtaskBtn();
     }
   });
 }
@@ -108,22 +107,6 @@ function handleCheckButtonClick(e) {
   const index = subtaskItem.dataset.index;
   editSubtaskText(parseInt(index), subtaskText.textContent.trim());
   subtaskText.contentEditable = false;
-  hideSubtaskBtn();
-}
-
-/**
- * Shows or hides the subtask action buttons
- * @param {boolean} params - Whether to show the buttons
- */
-function showSubTaskBtn(params) {
-  const editableDiv = document.getElementById("editableDiv");
-  if (!editableDiv) {
-    subtaskBtn.classList.add = "";
-    const subtaskBtn = document.getElementById("subtaskBtn");
-    if (subtaskBtn) {
-      subtaskBtn.style.display = params ? "block" : "none";
-    }
-  }
 }
 
 /**
@@ -174,6 +157,27 @@ function editSubtaskText(index, newText) {
 }
 
 /**
+ * Starts editing mode for a subtask (triggered by hover edit button)
+ * @param {number} index - The index of the subtask to edit
+ */
+function startEditingSubtask(index) {
+  const subtaskItem = document.querySelector(`[data-index="${index}"]`);
+  if (subtaskItem) {
+    const subtaskText = subtaskItem.querySelector(".subtaskText");
+    if (subtaskText) {
+      subtaskText.contentEditable = true;
+      subtaskText.focus();
+      const range = document.createRange();
+      const selection = window.getSelection();
+      range.selectNodeContents(subtaskText);
+      range.collapse(false);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+  }
+}
+
+/**
  * Renders the subtasks list in the DOM
  * @param {Array} subtasks - Array of subtask objects to render
  */
@@ -182,27 +186,5 @@ function renderSubtasks(subtasks = []) {
   const editableDiv = document.getElementById("editableDiv");
   if (editableDiv) {
     editableDiv.innerHTML = subtaskData;
-  }
-}
-
-/**
- * Shows or hides subtask action buttons based on editing state
- */
-function hideSubtaskBtn() {
-  const subtaskActionsContainers = document.querySelectorAll(".subtaskActions");
-  const editableDiv = document.getElementById("editableDiv");
-  const bulletPoints = document.querySelectorAll(".subtaskBullet");
-  const isEditing =
-    editableDiv && editableDiv.querySelector('[contenteditable="true"]');
-  if (isEditing) {
-    subtaskActionsContainers.forEach((container) =>
-      container.classList.remove("hidden")
-    );
-    bulletPoints.forEach((bullet) => bullet.classList.add("hidden"));
-  } else {
-    subtaskActionsContainers.forEach((container) =>
-      container.classList.add("hidden")
-    );
-    bulletPoints.forEach((bullet) => bullet.classList.remove("hidden"));
   }
 }
