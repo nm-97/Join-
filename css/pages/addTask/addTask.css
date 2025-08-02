@@ -57,11 +57,13 @@
 input,
 textarea,
 select {
+  width: 100%;
+  max-width: 423px;
   padding: 12px 21px;
   border: 1px solid #d1d1d1;
   border-radius: 8px;
-  width: 420px;
   font-size: 16px;
+  box-sizing: border-box;
 }
 
 input::placeholder,
@@ -246,6 +248,113 @@ label {
   transition: all 0.3s ease;
 }
 
+/* Large Desktop - 1350px */
+@media (max-width: 1361px) {
+  
+  .addTaskFormsDivider {
+    margin: 0;
+  }
+}
+
+@media (max-width: 1283px) {
+  .addTaskFormsWrapper {
+    flex-direction: column;
+  }
+
+  .addTaskFormsDivider {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .mainContent{
+    width: fit-content;
+    padding-bottom: 20px;
+  }
+
+  .formActions {
+    position: static;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    padding: 20px 0;
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .formButtons {
+    position: static;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    padding: 0;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 786px) {
+  input,
+  textarea,
+  select {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .taskPriorityBtn{
+    width: 100%;
+    padding: 12px 8px;
+    font-size: 16px;
+    gap: 4px;
+  }
+  
+  .taskPriorityBtn img {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .taskPriorityBtn span {
+    margin-right: 4px;
+  }
+
+  .inputIcon {
+    max-width: 100%;
+  }
+
+  .inputIcon input {
+    padding-right: 40px;
+  }
+
+  .inputIcon img {
+    right: 19px;
+  }
+}
+
+@media (max-width: 545px) {
+  .pageHeader {
+    margin-left: 0;
+  }
+
+  .addTaskH1{
+    margin-left: 32px;
+  }
+
+  .addTaskFormsWrapper {
+    margin: 32px;
+  }
+
+  .inputIcon {
+    max-width: 100%;
+  }
+
+  .inputIcon input {
+    padding-right: 39px;
+  }
+
+  .inputIcon img {
+    right: 18px;
+  }
+}
 
 
 @media (max-width: 428px) {
@@ -272,7 +381,8 @@ label {
   }
 
   .customDropdown {
-    width: 396px;
+    width: 100%;
+    max-width: 396px;
     gap: 0px;
   }
 
@@ -281,17 +391,20 @@ label {
   }
 
   #taskDescription {
-    width: 396px;
+    max-width: 100%;
+    width: 100%;
     height: 88px;
   }
 
   #taskTitle {
-    width: 396px;
+    max-width: 100%;
+    width: 100%;
     height: 40px;
   }
 
   #taskDueDate {
-    width: 400px;
+    max-width: 100%;
+    width: 100%;
     height: 40px;
   }
 
@@ -310,15 +423,126 @@ label {
   .formButtons {
     display: flex;
     flex-direction: row;
+    position: static !important;
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    margin-top: 16px;
   }
 
   .dropdownInput {
-    width: 396px;
+    width: 100%;
+    max-width: 396px;
     height: 40px;
+    padding: 12px 17px;
+    font-size: 15px;
   }
 
   .categoryDropdown {
-    width: 396px;
+    width: 100%;
+    max-width: 396px;
     height: 40px;
+  }
+}
+
+/* Extra small screens - works down to 320px */
+@media (max-width: 360px) {
+  .addTaskFormsWrapper {
+    margin: 16px;
+    gap: 16px;
+  }
+
+  .addTaskH1 {
+    font-size: 32px;
+    margin-left: 16px;
+    margin-top: 32px;
+  }
+
+  #taskDescription {
+    max-width: 100%;
+    width: 100%;
+    height: 80px;
+  }
+
+  #taskTitle {
+    max-width: 100%;
+    width: 100%;
+    height: 40px;
+  }
+
+  #taskDueDate {
+    max-width: 100%;
+    width: 100%;
+    height: 40px;
+  }
+
+  label {
+    font-size: 16px;
+  }
+
+  .taskPriorityLabel {
+    font-size: 16px;
+  }
+
+  .taskPriorityBtn {
+    width: 100%;
+    padding: 8px 4px;
+    font-size: 12px;
+    height: 40px;
+    flex: 1;
+  }
+
+  .taskPriorityGroup {
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .dropdownInput {
+    width: 100%;
+    max-width: none;
+    height: 40px;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  .inputIcon {
+    max-width: 100%;
+  }
+
+  .inputIcon input {
+    padding-right: 42px;
+  }
+
+  .inputIcon img {
+    width: 20px;
+    height: 20px;
+    right: 20px;
+  }
+
+  .customDropdown {
+    width: 100%;
+    max-width: none;
+  }
+
+  .customDropdownContainer {
+    width: 100%;
+  }
+
+  .categoryDropdown {
+    width: 100%;
+    max-width: none;
+    height: 40px;
+  }
+
+  .formButtons {
+    position: static;
+    width: 100%;
+    justify-content: center;
+    padding: 0;
+    margin-top: 16px;
   }
 }

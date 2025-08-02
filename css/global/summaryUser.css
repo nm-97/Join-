@@ -252,10 +252,8 @@ body.noScroll {
   .userName {
     font-size: 4rem;
   }
-
   .pageTitle {
-    font-size: 3.8rem;
-    margin-right: 15px;
+    font-size: 3rem;
   }
 
   .pageSubtitle {
@@ -279,12 +277,6 @@ body.noScroll {
 
   .userName {
     font-size: 3rem;
-  }
-}
-
-@media (max-width: 1110px) {
-  .pageTitle {
-    font-size: 3.5rem;
   }
 }
 
@@ -317,6 +309,10 @@ body.noScroll {
 
   .summaryHeaderDevider.vertical {
     display: block;
+  }
+
+  .pageHeader {
+    font-size: 3.4rem;
   }
 
   .pageSubtitle {

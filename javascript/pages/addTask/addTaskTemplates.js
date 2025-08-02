@@ -344,7 +344,6 @@ function getaddTaskMainContent() {
              Create Task
              <img src="../assets/icons/add task/check.svg" alt="check icon"/>
              </button>
-             <span class="requiredStarText">*This field is required</span>
                </div>
              </div>
            </form>`;

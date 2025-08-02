@@ -1,4 +1,3 @@
-/* ===== BASE FORM STYLES ===== */
 .formGroup {
   display: flex;
   flex-direction: column;
@@ -37,7 +36,8 @@ select {
 .addTaskFormsWrapper input,
 .addTaskFormsWrapper textarea,
 .addTaskFormsWrapper select {
-  width: 423px;
+  width: 100%;
+  max-width: 423px;
 }
 
 .editInput {
@@ -71,16 +71,6 @@ textarea::placeholder {
   font-size: 20px;
 }
 
-#taskDescription {
-  height: 120px;
-  border-radius: 10px;
-  border: 1px solid #d1d1d1;
-  padding: 18px 16px;
-  font-size: 16px;
-  resize: none;
-  margin-bottom: 10px;
-}
-
 /* ===== INPUT ICON STYLES ===== */
 .inputIcon {
   position: relative;
@@ -88,6 +78,13 @@ textarea::placeholder {
   align-items: center;
   width: 100%;
   max-width: 423px;
+}
+
+/* Responsive .inputIcon rules */
+@media (max-width: 786px) {
+  .inputIcon {
+    max-width: 100%;
+  }
 }
 
 .inputIcon input {
@@ -382,54 +379,6 @@ textarea::placeholder {
   animation: taskHighlight 0.5s ease-in-out;
 }
 
-/* ===== DROPDOWN STYLES ===== */
-.customDropdownContainer {
-  position: relative;
-}
-
-.customDropdown {
-  position: relative;
-  width: 100%;
-}
-
-.dropdownHeader {
-  position: relative;
-}
-
-.dropdownInput {
-  width: 100%;
-  padding: 12px 21px;
-  border-radius: 8px;
-  font-size: 16px;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-.dropdownArrow {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-}
-
-.dropdownContent {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: white;
-  border: 1px solid #d1d1d1;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  max-height: 200px;
-  overflow-y: hidden;
-}
-
 .contactsList {
   padding: 8px 0;
 }
@@ -441,7 +390,6 @@ textarea::placeholder {
   gap: 8px;
 }
 
-/* ===== ERROR STYLES ===== */
 .errorMessage {
   color: #ff0000;
   font-size: 14px;
@@ -452,7 +400,6 @@ textarea::placeholder {
   display: none;
 }
 
-/* ===== OVERLAY FORM STYLES ===== */
 .addTaskFormsWrapper {
   display: flex;
   gap: 32px;
@@ -473,27 +420,19 @@ textarea::placeholder {
   align-self: stretch;
 }
 
-/* ===== MEDIA QUERIES ===== */
-
-/* Large Desktop - 1350px */
-@media (max-width: 1350px) {
-  
-  .addTaskFormsDivider {
-    margin: 0;
-  }
-}
-
-/* Desktop - 1024px */
 @media (max-width: 1024px) {
-  /* Keep existing rules */
+    .formActions {
+        position: static;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        padding: 20px 0;
+        margin-top: 20px;
+        width: 100%;
+    }
 }
 
-/* Tablet - 786px */
-@media (max-width: 786px) {
-  /* Keep existing rules */
-}
 
-/* Small Tablet - 600px */
 @media (max-width: 600px) {
   .taskPriorityGroup {
     gap: 6px;
@@ -514,7 +453,22 @@ textarea::placeholder {
   }
 }
 
-/* Mobile - 428px */
+@media (max-width: 545px) {
+  .addTaskFormsWrapper {
+    margin: 32px;
+  }
+}
+
+@media (max-width: 500px) {
+  .addTaskFormsWrapper input,
+  .addTaskFormsWrapper textarea,
+  .addTaskFormsWrapper select {
+    max-width: 423px;
+    width: none;
+}
+}
+
+
 @media (max-width: 428px) {
   label {
     font-size: 16px;
@@ -570,5 +524,50 @@ textarea::placeholder {
 
   .customDropdown {
     width: 100% !important;
+  }
+}
+
+/* Responsive rules for AddTask inputs */
+@media (max-width: 786px) {
+  .addTaskFormsWrapper input,
+  .addTaskFormsWrapper textarea,
+  .addTaskFormsWrapper select {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 19px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 545px) {
+  .addTaskFormsWrapper input,
+  .addTaskFormsWrapper textarea,
+  .addTaskFormsWrapper select {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 18px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 428px) {
+  .addTaskFormsWrapper input,
+  .addTaskFormsWrapper textarea,
+  .addTaskFormsWrapper select {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 17px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .addTaskFormsWrapper input,
+  .addTaskFormsWrapper textarea,
+  .addTaskFormsWrapper select {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 20px;
+    font-size: 14px;
   }
 }

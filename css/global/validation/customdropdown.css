@@ -73,6 +73,7 @@
 }
 
 .dropdownInput {
+  width: 100%;
   flex: 1;
   padding: 12px 21px;
   border: none;
@@ -90,19 +91,23 @@
 }
 
 .dropdownArrow {
-  width: 24px;
-  height: 24px;
-  border: none;
   background: transparent;
-  cursor: pointer;
-  margin-right: 16px;
   background-image: url("../assets/icons/add task/droparrow down.svg");
   background-image: url("/assets/icons/add task/droparrow\ down.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   transition: background-image 0.2s ease;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
 }
+
 
 .dropdownArrow:hover {
   background-image: url("../assets/icons/add task/droparrow down hover.svg");
@@ -124,6 +129,8 @@
   top: 100%;
   left: 0;
   right: 0;
+  max-height: 200px;
+  overflow-y: hidden;
   background: #ffffff;
   border: 1px solid #d1d1d1;
   border-top: none;
@@ -245,44 +252,6 @@
   background: #a1a1a1;
 }
 
-@media (max-width: 786px) {
-  .taskPriorityBtn{
-    max-height: 41px;
-    width: 100%;
-    padding: 12px 8px;
-    font-size: 16px;
-    gap: 4px;
-  }
-  
-  .taskPriorityBtn img {
-    width: 16px;
-    height: 16px;
-  }
-  
-  .taskPriorityBtn span {
-    margin-right: 4px;
-  }
-}
-
-@media (max-width: 600px) {
-  .taskPriorityGroup {
-    gap: 6px;
-    justify-content: space-between;
-  }
-  
-  .taskPriorityBtn {
-    max-width: 110px;
-    height: 38px;
-    padding: 10px 6px;
-    font-size: 15px;
-    gap: 3px;
-  }
-  
-  .taskPriorityBtn img {
-    width: 15px;
-    height: 15px;
-  }
-}
 
 @media (max-width: 428px) {
   .customDropdownContainer {
