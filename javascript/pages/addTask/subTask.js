@@ -107,6 +107,7 @@ function handleCheckButtonClick(e) {
   const index = subtaskItem.dataset.index;
   editSubtaskText(parseInt(index), subtaskText.textContent.trim());
   subtaskText.contentEditable = false;
+  // CSS übernimmt automatisch das Hide/Show der Buttons
 }
 
 /**

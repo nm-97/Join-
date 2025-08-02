@@ -21,8 +21,8 @@ function selectSubtask(subtasks = []) {
       <div class="subtaskItem" data-index="${index}">
         <div class="subtaskContent">
           <span class="subtaskBullet">•</span>
-          <span class="subtaskText" contenteditable="false">
-            ${subtask.text}
+          <div class="subtaskTextWrapper">
+            <span class="subtaskText" contenteditable="false">${subtask.text}</span>
             <div class="subtaskHoverActions">
               <img src="../assets/icons/shared/edit.svg" 
                    alt="Edit" 
@@ -35,8 +35,6 @@ function selectSubtask(subtasks = []) {
                    title="Löschen"
                    onclick="deleteSubtask(${index})">
             </div>
-            
-            <!-- Bestehende Double-Click Actions struktur beibehalten -->
             <div class="subtaskActions">
               <button class="deleteBtn" data-action="delete" title="deleteSubtask">
                   <img src="../assets/icons/shared/delete.svg" alt="deleteIcon">
@@ -46,8 +44,7 @@ function selectSubtask(subtasks = []) {
                 <img src="../assets/icons/add task/check.svg" alt="acceptIcon" class="hover-icon">
               </button>
             </div>
-            </div>
-          </span>
+          </div>
         </div>
       </div>
     `;
