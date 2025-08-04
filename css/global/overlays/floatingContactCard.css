@@ -140,12 +140,16 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: clamp(120px, 15vh, 160px);
+    height: clamp(140px, 31vh, 423px);
     z-index: 1001;
     padding: clamp(16px, 4vw, 24px) clamp(12px, 3vw, 20px);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    max-width: clamp(280px, 90vw, 673px);
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .mobileContactHeader h1 {
@@ -196,11 +200,11 @@
   }
 
   #floatingContactOverlay.mobile-fullscreen .floatingContactCard {
-    margin-top: clamp(140px, 18vh, 200px);
-    margin-left: auto;
-    margin-right: auto;
-    max-width: clamp(280px, 90vw, 500px);
+    margin-top: clamp(140px, 24vh, 330px);
+    max-width: clamp(280px, 90vw, 673px);
     width: 100%;
+    margin-right: auto;
+    margin-left: auto;
     padding: clamp(16px, 4vw, 24px);
   }
 
@@ -280,12 +284,9 @@
     position: fixed;
     top: clamp(140px, 17vh, 180px);
     right: clamp(20px, 5vw, 40px);
-    background-color: #f6f7f8;
+    background-color: #f8f9fa;
     cursor: pointer;
     border: none;
-    border-radius: 50%;
-    padding: clamp(6px, 1.5vw, 8px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
   .floatingContactCloseBtn:not(.mobileContactHeader .floatingContactCloseBtn)

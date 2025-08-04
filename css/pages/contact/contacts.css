@@ -229,6 +229,7 @@
     flex-direction: column;
     width: 280px;
     top: 150px;
+    gap: 6px;
   }
 
   .pageHeader span {
