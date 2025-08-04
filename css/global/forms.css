@@ -402,8 +402,6 @@ textarea::placeholder {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  flex: 1;
-  min-width: 0;
 }
 
 .addTaskFormsDivider {
@@ -489,14 +487,18 @@ textarea::placeholder {
     max-width: 104px;
     height: 41px;
     padding: 12px 8px;
-    font-size: 16px;
+    font-size: 14px;
     gap: 4px;
     flex: 1;
   }
 
+  .taskPriorityBtnOrange img {
+    width: 13px;
+  }
+
   .taskPriorityBtn img {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
   }
 
   .taskPriorityBtn span {

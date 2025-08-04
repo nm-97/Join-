@@ -143,7 +143,7 @@ function getEditTaskOverlay(task) {
   }
   return `
     <div class="overlay">
-      <div class="taskDetailModal">
+      <div class="taskDetailModal scroll">
         <div class="modalHeader">
           <button class="closeButton" onclick="closeEditTaskOverlay()">
             <img src="../assets/icons/shared/close.svg" alt="close">
