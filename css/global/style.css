@@ -376,11 +376,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     color: #bdc3c7;
     font-size: 12px;
     cursor: pointer;
     padding: 6px;
     flex: 1;
+    min-width: 112px;
+    height: 72px;
+    transition: all 0.2s ease;
   }
 
   .navBtn img {
@@ -399,10 +403,6 @@ body {
     background-color: #091931;
     border-radius: 16px;
     color: white;
-    width: 112px !important;
-    height: 72px !important;
-    max-width: 112px;
-    max-height: 72px;
   }
 }
 
@@ -434,11 +434,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     color: #bdc3c7;
     font-size: 12px;
     cursor: pointer;
     padding: 6px;
     flex: 1;
+    min-width: 112px;
+    height: 72px;
+    transition: all 0.2s ease;
   }
 
   .navBtn img {
@@ -457,10 +461,6 @@ body {
     background-color: #091931;
     border-radius: 16px;
     color: white;
-    width: 112px !important;
-    height: 72px !important;
-    max-width: 112px;
-    max-height: 72px;
   }
 
   .mobileLogo {

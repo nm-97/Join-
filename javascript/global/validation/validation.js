@@ -8,9 +8,12 @@
 "use strict";
 
 /**
- * Validates email format with basic checks
- * @param {string} email - The email address to validate
- * @returns {boolean} True if email format is valid, false otherwise
+ * Validates email format using basic structure checks for @ symbol and domain presence
+ * Performs minimum length validation and checks for essential email components
+ * Provides fundamental email format validation for form input validation systems
+ * @function validateEmail
+ * @param {string} email - The email address string to validate for basic format compliance
+ * @returns {boolean} True if email format meets basic validation criteria, false if format is invalid
  */
 function validateEmail(email) {
   if (email.length < 5) return false;
@@ -20,10 +23,13 @@ function validateEmail(email) {
 }
 
 /**
- * Validates password meets minimum length requirement
- * @param {string} password - The password to validate
- * @param {number} minLength - Minimum required length
- * @returns {boolean} True if password meets requirements, false otherwise
+ * Validates password meets minimum length security requirement for user authentication
+ * Checks password existence and validates against specified minimum character length
+ * Provides essential password strength validation for secure user account creation
+ * @function validatePassword
+ * @param {string} password - The password string to validate for length requirements
+ * @param {number} minLength - Minimum required character length for password security compliance
+ * @returns {boolean} True if password meets minimum length requirements, false if password is too short or empty
  */
 function validatePassword(password, minLength) {
   if (!password) return false;
@@ -32,9 +38,12 @@ function validatePassword(password, minLength) {
 }
 
 /**
- * Validates that a value is present and not empty
- * @param {string} value - The value to validate
- * @returns {boolean} True if value is present and not empty, false otherwise
+ * Validates that a form field value is present and contains meaningful content
+ * Checks for value existence and ensures trimmed content is not empty or whitespace-only
+ * Provides essential required field validation for form input completion verification
+ * @function validateRequired
+ * @param {string} value - The form field value string to validate for required field completion
+ * @returns {boolean} True if value is present and contains non-whitespace content, false if empty or whitespace-only
  */
 function validateRequired(value) {
   if (!value) return false;
@@ -43,9 +52,13 @@ function validateRequired(value) {
 }
 
 /**
- * Shows error message for a specific input field
- * @param {string} inputId - The ID of the input field
- * @param {string} message - The error message to display
+ * Displays validation error message for specific input field with visual styling and error text
+ * Applies error CSS class to input field and shows error message in associated form group
+ * Provides immediate visual feedback when form field validation fails with contextual error information
+ * @function showError
+ * @param {string} inputId - The unique identifier of the input field element to mark with error styling
+ * @param {string} message - The validation error message text to display to the user for correction guidance
+ * @returns {void} No return value, updates DOM elements to show error styling and message
  */
 function showError(inputId, message) {
   const input = document.getElementById(inputId);
@@ -60,8 +73,12 @@ function showError(inputId, message) {
 }
 
 /**
- * Clears error state and message for a specific input field
- * @param {string} inputId - The ID of the input field to clear errors for
+ * Clears validation error state and message for specific input field to reset form validation
+ * Removes error CSS class from input field and hides error message in form group or dedicated error element
+ * Provides comprehensive error state cleanup for form field revalidation or successful correction
+ * @function clearError
+ * @param {string} inputId - The unique identifier of the input field element to clear error state from
+ * @returns {void} No return value, removes error styling and hides error messages from specified input field
  */
 function clearError(inputId) {
   const input = document.getElementById(inputId);
@@ -82,8 +99,12 @@ function clearError(inputId) {
 }
 
 /**
- * Clears all error messages for inputs within a form element
- * @param {HTMLElement} formElement - The form element containing inputs to clear errors for
+ * Clears all validation error messages for input fields within specified form element
+ * Iterates through all input elements in form and removes error states using clearError function
+ * Provides comprehensive form-wide error state reset for complete form validation cleanup
+ * @function clearAllErrors
+ * @param {HTMLElement} formElement - The form DOM element containing input fields to clear error states from
+ * @returns {void} No return value, removes error styling and messages from all input fields in form
  */
 function clearAllErrors(formElement) {
   const inputs = formElement.querySelectorAll("input");
@@ -93,8 +114,12 @@ function clearAllErrors(formElement) {
 }
 
 /**
- * Initializes password visibility toggle for a specific input
- * @param {string} inputId - The ID of the password input element
+ * Initializes password visibility toggle functionality for specific password input field
+ * Sets up event listeners for input changes and icon clicks to manage password visibility state
+ * Provides secure password input with user-controlled visibility toggle for better user experience
+ * @function initPasswordToggle
+ * @param {string} inputId - The unique identifier of the password input element to initialize toggle functionality for
+ * @returns {void} No return value, configures password visibility toggle with event listeners and initial state
  */
 function initPasswordToggle(inputId) {
   const input = document.getElementById(inputId);
@@ -112,8 +137,12 @@ function initPasswordToggle(inputId) {
 }
 
 /**
- * Updates the visibility icon based on input value and visibility state
- * @param {string} inputId - The ID of the password input element
+ * Updates password visibility icon based on current input value and visibility state
+ * Changes icon source and accessibility attributes based on password content and visibility status
+ * Provides dynamic visual feedback for password input state with appropriate accessibility labeling
+ * @function updatePasswordIcon
+ * @param {string} inputId - The unique identifier of the password input element to update icon for
+ * @returns {void} No return value, updates icon source, alt text, and cursor styling based on password state
  */
 function updatePasswordIcon(inputId) {
   const input = document.getElementById(inputId);
@@ -137,8 +166,12 @@ function updatePasswordIcon(inputId) {
 }
 
 /**
- * Toggles the password visibility for a specific input
- * @param {string} inputId - The ID of the password input element
+ * Toggles password visibility state between hidden and visible with appropriate icon and styling updates
+ * Switches between masked and plain text display while updating visibility icon and accessibility attributes
+ * Provides secure password input control allowing users to verify password content when needed
+ * @function togglePasswordVisibility
+ * @param {string} inputId - The unique identifier of the password input element to toggle visibility for
+ * @returns {void} No return value, switches password masking state and updates icon styling accordingly
  */
 function togglePasswordVisibility(inputId) {
   const input = document.getElementById(inputId);
@@ -159,7 +192,11 @@ function togglePasswordVisibility(inputId) {
 }
 
 /**
- * Initializes password visibility toggles for all relevant inputs
+ * Initializes password visibility toggle functionality for all password-related input fields on the page
+ * Iterates through predefined password field IDs and applies toggle functionality to existing elements
+ * Provides comprehensive password input enhancement for forms with multiple password fields
+ * @function initAllPasswordToggles
+ * @returns {void} No return value, configures password visibility toggles for all relevant password input fields
  */
 function initAllPasswordToggles() {
   const passwordIds = ["password", "confirmPassword"];

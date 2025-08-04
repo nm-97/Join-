@@ -8,7 +8,11 @@
 "use strict";
 
 /**
- * Initializes date input formatting for the task due date field
+ * Initializes date input formatting for the task due date field on page load
+ * Finds the due date input element and applies DD/MM/YYYY formatting behavior
+ * Early return if input element is not found to prevent errors
+ * @function initializeDateInput
+ * @returns {void} No return value, sets up input formatting or exits gracefully
  */
 function initializeDateInput() {
   const dueDateInput = document.getElementById("taskDueDate");
@@ -17,8 +21,12 @@ function initializeDateInput() {
 }
 
 /**
- * Sets up date formatting for input field with DD/MM/YYYY pattern
- * @param {HTMLElement} input - The date input element to format
+ * Sets up real-time date formatting for input field with DD/MM/YYYY pattern
+ * Automatically adds slashes as user types and limits input to 10 characters
+ * Removes non-digit characters and formats into DD/MM/YYYY structure
+ * @function setupDateFormatting
+ * @param {HTMLInputElement} input - The date input element to apply formatting to
+ * @returns {void} No return value, attaches input event listener for real-time formatting
  */
 function setupDateFormatting(input) {
   input.addEventListener("input", function (e) {
@@ -34,8 +42,11 @@ function setupDateFormatting(input) {
 }
 
 /**
- * Validates the entire Add Task form
- * @returns {boolean} True if all validations pass, false otherwise
+ * Validates the entire Add Task form by checking all required fields and constraints
+ * Performs comprehensive validation including title, due date, category, assignee, and priority
+ * Clears previous errors before validation and shows specific error messages for failures
+ * @function validateAddTaskForm
+ * @returns {boolean} True if all form validations pass and form can be submitted, false if any validation fails
  */
 function validateAddTaskForm() {
   const inputs = getFormInputs();
@@ -50,8 +61,13 @@ function validateAddTaskForm() {
 }
 
 /**
- * Gets form input elements for validation
- * @returns {Object} Object containing title and due date input elements
+ * Retrieves and organizes form input elements needed for Add Task validation
+ * Centralizes DOM element access to reduce repeated getElementById calls
+ * Returns structured object with named properties for easy access
+ * @function getFormInputs
+ * @returns {Object} Object containing form input elements for validation
+ * @returns {HTMLInputElement|null} returns.titleInput - Task title input element
+ * @returns {HTMLInputElement|null} returns.dueDateInput - Task due date input element
  */
 function getFormInputs() {
   return {
@@ -61,9 +77,12 @@ function getFormInputs() {
 }
 
 /**
- * Validates the task title input
- * @param {HTMLElement} titleInput - The title input element to validate
- * @returns {boolean} True if title is valid, false otherwise
+ * Validates the task title input field for required content
+ * Checks if title input exists and contains valid, non-empty content
+ * Displays appropriate error message if validation fails
+ * @function validateTitle
+ * @param {HTMLInputElement|null} titleInput - The task title input element to validate
+ * @returns {boolean} True if title is valid and not empty, false if missing or empty
  */
 function validateTitle(titleInput) {
   if (!titleInput || !validateRequired(titleInput.value)) {
@@ -74,9 +93,12 @@ function validateTitle(titleInput) {
 }
 
 /**
- * Validates the due date input including required, format, and date constraints
- * @param {HTMLElement} dueDateInput - The due date input element to validate
- * @returns {boolean} True if due date is valid, false otherwise
+ * Validates the due date input with comprehensive checks for format and date constraints
+ * Performs multiple validation layers: required field, DD/MM/YYYY format, and future date rules
+ * Shows specific error messages for each type of validation failure
+ * @function validateDueDate
+ * @param {HTMLInputElement|null} dueDateInput - The due date input element to validate
+ * @returns {boolean} True if due date passes all validation checks, false for any validation failure
  */
 function validateDueDate(dueDateInput) {
   if (!dueDateInput || !validateRequired(dueDateInput.value)) {
@@ -95,8 +117,11 @@ function validateDueDate(dueDateInput) {
 }
 
 /**
- * Validates the task category selection
- * @returns {boolean} True if a category is selected, false otherwise
+ * Validates the task category selection using custom dropdown system
+ * Integrates with customdropdown.js system for reliable category value retrieval
+ * Falls back to global selectedCategory variable if custom dropdown function unavailable
+ * @function validateCategory
+ * @returns {boolean} True if a valid category is selected, false if no category chosen
  */
 function validateCategory() {
   // Use the customdropdown.js system which is more reliable
@@ -113,8 +138,11 @@ function validateCategory() {
 }
 
 /**
- * Validates the assignee selection using custom dropdown or select element
- * @returns {boolean} True if assignee is selected, false otherwise
+ * Validates the assignee selection with support for both custom dropdown and standard select
+ * Checks custom dropdown system first, falls back to standard select element
+ * Ensures at least one contact is assigned to the task before submission
+ * @function validateAssignee
+ * @returns {boolean} True if at least one assignee is selected, false if no assignee chosen
  */
 function validateAssignee() {
   if (typeof getSelectedContactIds !== "function") {
@@ -138,8 +166,12 @@ function validateAssignee() {
 }
 
 /**
- * Displays an error message for the custom contacts dropdown
- * @param {string} message - The error message to show
+ * Displays validation error message for the custom contacts dropdown interface
+ * Finds custom dropdown container and shows error with red border styling
+ * Removes hidden class from error message element to make it visible
+ * @function showCustomDropdownError
+ * @param {string} message - The validation error message to display to user
+ * @returns {void} No return value, updates DOM to show error state
  */
 function showCustomDropdownError(message) {
   const customDropdownContainer = document.querySelector(
@@ -158,7 +190,11 @@ function showCustomDropdownError(message) {
 }
 
 /**
- * Clears the error message for the custom contacts dropdown
+ * Clears validation error message and styling for the custom contacts dropdown
+ * Hides error message by adding hidden class and resets border color to default
+ * Restores dropdown to normal visual state after successful validation
+ * @function clearCustomDropdownError
+ * @returns {void} No return value, updates DOM to clear error state
  */
 function clearCustomDropdownError() {
   const customDropdownContainer = document.querySelector(
@@ -177,8 +213,12 @@ function clearCustomDropdownError() {
 }
 
 /**
- * Displays an error message for the category dropdown
- * @param {string} message - The error message to show
+ * Displays validation error message for the category dropdown with visual feedback
+ * Locates category dropdown container and shows error message with red border
+ * Provides immediate visual feedback when category selection is required
+ * @function showCategoryError
+ * @param {string} message - The validation error message to display for category selection
+ * @returns {void} No return value, updates DOM elements to show category error state
  */
 function showCategoryError(message) {
   const categoryDropdown = document.getElementById("customCategoryDropdown");
@@ -195,7 +235,11 @@ function showCategoryError(message) {
 }
 
 /**
- * Clears the error message for the category dropdown
+ * Clears validation error state from category dropdown and removes error styling
+ * Locates category dropdown container and hides error message with border reset
+ * Restores normal visual state when category validation passes
+ * @function clearCategoryError
+ * @returns {void} No return value, updates DOM elements to remove category error state
  */
 function clearCategoryError() {
   const categoryDropdown = document.getElementById("customCategoryDropdown");
@@ -212,8 +256,11 @@ function clearCategoryError() {
 }
 
 /**
- * Validates that a priority has been selected
- * @returns {boolean} True if priority is selected, false otherwise
+ * Validates task priority selection and ensures user has selected a priority level
+ * Checks if selectedPriority global variable contains a valid priority value
+ * Displays error message if no priority is selected, validation passes if priority exists
+ * @function validatePriority
+ * @returns {boolean} True if a priority is selected and validation passes, false if no priority selected
  */
 function validatePriority() {
   if (!selectedPriority || selectedPriority === "") {
@@ -224,9 +271,12 @@ function validatePriority() {
 }
 
 /**
- * Checks if a date string matches DD/MM/YYYY format
- * @param {string} dateString - The date string to check
- * @returns {boolean} True if format is valid, false otherwise
+ * Validates date string format against DD/MM/YYYY pattern using regular expression
+ * Checks if provided date string matches exact DD/MM/YYYY format requirements
+ * Used for client-side date format validation before form submission
+ * @function validateDateFormat
+ * @param {string} dateString - The date string to validate against DD/MM/YYYY format
+ * @returns {boolean} True if date string matches DD/MM/YYYY format exactly, false if format is invalid
  */
 function validateDateFormat(dateString) {
   if (dateString.length !== 10) return false;
@@ -242,9 +292,12 @@ function validateDateFormat(dateString) {
 }
 
 /**
- * Checks if the given date string represents today or a future date
- * @param {string} dateString - The date string to validate
- * @returns {boolean} True if date is today or in the future, false otherwise
+ * Validates that given date string represents today or a future date (not past)
+ * First validates date format using validateDateFormat, then compares against current date
+ * Ensures tasks cannot be assigned due dates in the past for logical task management
+ * @function validateTodayOrFutureDate
+ * @param {string} dateString - The date string in DD/MM/YYYY format to validate against current date
+ * @returns {boolean} True if date is today or in the future, false if date is in the past or invalid format
  */
 function validateTodayOrFutureDate(dateString) {
   if (!validateDateFormat(dateString)) return false;
@@ -258,17 +311,24 @@ function validateTodayOrFutureDate(dateString) {
 }
 
 /**
- * Alias for validateTodayOrFutureDate to ensure due date is not in the past
- * @param {string} dateString - The date string to validate
- * @returns {boolean} True if date is valid, false otherwise
+ * Alias function for validateTodayOrFutureDate providing semantic naming for due date validation
+ * Ensures due date is not in the past by delegating to comprehensive date validation logic
+ * Provides clear function name indicating future date requirement for task due dates
+ * @function validateFutureDate
+ * @param {string} dateString - The date string in DD/MM/YYYY format to validate as future date
+ * @returns {boolean} True if date is today or in the future, false if date is in the past or invalid format
  */
 function validateFutureDate(dateString) {
   return validateTodayOrFutureDate(dateString);
 }
 
 /**
- * Displays an error message for the priority group
- * @param {string} message - The error message to show
+ * Displays validation error message for the priority selection group with visual feedback
+ * Locates priority error container and shows error message with red styling
+ * Provides immediate visual feedback when priority selection is required for task creation
+ * @function showPriorityError
+ * @param {string} message - The validation error message to display for priority selection requirement
+ * @returns {void} No return value, updates DOM elements to show priority error state
  */
 function showPriorityError(message) {
   const priorityGroup = document.querySelector(".taskPriorityGroup");
@@ -282,7 +342,11 @@ function showPriorityError(message) {
 }
 
 /**
- * Clears the error message for the priority group
+ * Clears validation error state from priority selection group and removes error styling
+ * Locates priority error container and hides error message by adding hide class
+ * Restores normal visual state when priority validation passes or needs to be reset
+ * @function clearPriorityError
+ * @returns {void} No return value, updates DOM elements to remove priority error state
  */
 function clearPriorityError() {
   const priorityGroup = document.querySelector(".taskPriorityGroup");
@@ -295,7 +359,11 @@ function clearPriorityError() {
 }
 
 /**
- * Clears all validation error messages for the Add Task form
+ * Clears all validation error messages for the entire Add Task form comprehensively
+ * Removes error states from title, due date, assignee dropdown, category dropdown, and priority selection
+ * Used to reset form to clean state before new validation or after successful submission
+ * @function clearAllTaskErrors
+ * @returns {void} No return value, resets all form validation error states to clean state
  */
 function clearAllTaskErrors() {
   clearError("taskTitle");
@@ -306,8 +374,11 @@ function clearAllTaskErrors() {
 }
 
 /**
- * Collects and formats form data for Firebase submission
- * @returns {Object} Task data object ready for Firebase
+ * Collects and formats all form data for Firebase submission with proper date conversion
+ * Retrieves due date input, converts to Firebase format, and creates complete task data object
+ * Handles date format conversion and delegates to createTaskDataObject for final data structure
+ * @function getFormDataForFirebase
+ * @returns {Object} Complete task data object formatted and ready for Firebase database submission
  */
 function getFormDataForFirebase() {
   const dueDateInput = document.getElementById("taskDueDate");
@@ -316,9 +387,12 @@ function getFormDataForFirebase() {
 }
 
 /**
- * Converts input date from DD/MM/YYYY to YYYY-MM-DD
- * @param {HTMLElement} dueDateInput - The date input element
- * @returns {string} Date string in YYYY-MM-DD format or empty string
+ * Converts due date input from DD/MM/YYYY display format to YYYY-MM-DD Firebase format
+ * Extracts day, month, year components from user input and reorders for database storage
+ * Handles empty or invalid input by returning empty string for safe database operations
+ * @function convertDateFormat
+ * @param {HTMLInputElement} dueDateInput - The date input element containing DD/MM/YYYY formatted date
+ * @returns {string} Date string in YYYY-MM-DD format for Firebase, or empty string if invalid input
  */
 function convertDateFormat(dueDateInput) {
   if (!dueDateInput || !dueDateInput.value) return "";
@@ -332,9 +406,12 @@ function convertDateFormat(dueDateInput) {
 }
 
 /**
- * Creates a task data object from form inputs
- * @param {string} formattedDueDate - Due date in YYYY-MM-DD format
- * @returns {Object} New task data object
+ * Creates comprehensive task data object from all form inputs for database storage
+ * Assembles title, description, assignees, due date, category, priority, and subtasks into structured object
+ * Handles category name resolution and ensures all required fields are properly formatted
+ * @function createTaskDataObject
+ * @param {string} formattedDueDate - Due date in YYYY-MM-DD format ready for Firebase storage
+ * @returns {Object} Complete task data object with all form fields properly structured for database
  */
 function createTaskDataObject(formattedDueDate) {
   const categoryValue =
@@ -353,9 +430,12 @@ function createTaskDataObject(formattedDueDate) {
 }
 
 /**
- * Maps the selected category name to Firebase category value
- * @param {string} category - The selected category name
- * @returns {string} Firebase-compatible category name
+ * Maps selected category name to Firebase-compatible category value with fallback
+ * Provides standardized category mapping for consistent database storage format
+ * Returns default "Technical Task" for unmapped categories to ensure data integrity
+ * @function mapCategoryToFirebase
+ * @param {string} category - The selected category name from dropdown selection
+ * @returns {string} Firebase-compatible category name, defaults to "Technical Task" if unmapped
  */
 function mapCategoryToFirebase(category) {
   const categoryMap = {
@@ -366,7 +446,11 @@ function mapCategoryToFirebase(category) {
 }
 
 /**
- * Resets the Add Task form inputs and validation states
+ * Resets the entire Add Task form to clean state with all inputs cleared and validation reset
+ * Clears all form input values and resets priority selection to default medium state
+ * Provides complete form reset functionality for new task creation or form cleanup
+ * @function clearFormWithValidation
+ * @returns {void} No return value, resets form inputs and priority selection to initial state
  */
 function clearFormWithValidation() {
   clearAllFormInputs();
@@ -376,7 +460,11 @@ function clearFormWithValidation() {
 }
 
 /**
- * Clears all input fields in the Add Task form
+ * Clears all individual input fields in the Add Task form to empty state
+ * Resets title, description, due date, contact selections, and subtask input values
+ * Delegates contact clearing to external function if available for modular functionality
+ * @function clearAllFormInputs
+ * @returns {void} No return value, empties all form input field values
  */
 function clearAllFormInputs() {
   document.getElementById("taskTitle").value = "";
@@ -390,7 +478,11 @@ function clearAllFormInputs() {
 }
 
 /**
- * Resets the selected priority to its default value
+ * Resets the selected priority to its default value using external priority management function
+ * Delegates to clearPrioritySelection function if available for consistent priority state management
+ * Provides fallback behavior if priority management function is not available in current context
+ * @function resetPriorityToDefault
+ * @returns {void} No return value, resets priority selection to default state
  */
 function resetPriorityToDefault() {
   if (typeof clearPrioritySelection === "function") {
@@ -400,7 +492,11 @@ function resetPriorityToDefault() {
 }
 
 /**
- * Resets the selected category to its default state
+ * Resets the selected category to its default empty state with placeholder restoration
+ * Clears selected category variable and resets dropdown input to initial placeholder state
+ * Provides clean category selection state for new task creation or form reset
+ * @function resetCategoryToDefault
+ * @returns {void} No return value, resets category selection and dropdown display to default state
  */
 function resetCategoryToDefault() {
   selectedCategory = "";
@@ -412,7 +508,11 @@ function resetCategoryToDefault() {
 }
 
 /**
- * Clears the Add Task form completely
+ * Clears the Add Task form completely by delegating to comprehensive form reset function
+ * Provides simplified interface to clearFormWithValidation for complete form cleanup
+ * Ensures all form inputs, validation states, and selections are reset to initial state
+ * @function clearForm
+ * @returns {void} No return value, performs complete form reset including inputs and validation
  */
 function clearForm() {
   clearFormWithValidation();
