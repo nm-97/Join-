@@ -184,17 +184,6 @@ div > strong {
     flex-direction: column;
   }
 
-  .navBtn.selected,
-  .navBtn.active {
-    background-color: #091931;
-    border-radius: 16px;
-    color: white;
-    width: 112px !important;
-    height: 78px !important;
-    max-width: 112px;
-    max-height: 78px;
-  }
-
   .navBtn {
     display: flex;
     flex-direction: column;

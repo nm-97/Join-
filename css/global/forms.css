@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-bottom: 25px;
 }
 
 label {
@@ -121,8 +122,8 @@ textarea::placeholder {
   height: 56px;
   border-radius: 10px;
   padding: 16px 10px;
+  border: 1px solid #d1d1d1;
   gap: 8px;
-  border: none;
   display: flex;
   align-items: center;
   justify-content: center;

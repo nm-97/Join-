@@ -12,13 +12,10 @@
 
 input:focus,
 textarea:focus {
-  border: 2px solid #29ABE2 !important;
   outline: none;
-  box-shadow: 0 0 0 2px rgba(41, 171, 226, 0.2);
 }
 
 select:focus {
-  border: 2px solid #29ABE2 !important;
   outline: none;
   box-shadow: 0 0 0 2px rgba(41, 171, 226, 0.2);
 }

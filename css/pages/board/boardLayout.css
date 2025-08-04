@@ -50,6 +50,11 @@
   padding: 10px;
   cursor: pointer;
 }
+.iconHover:hover {
+  background-color: #d1d1d1;
+  border-radius: 70%;
+  transition: 120ms;
+}
 .searchDivider {
   width: 1px;
   height: 28px;
@@ -76,7 +81,6 @@
   height: 85%;
   margin-top: 24px;
   gap: 30px;
-  overflow: hidden;
   padding: 12px;
 }
 .boardColumn {
@@ -91,10 +95,10 @@
   align-items: center;
   margin-bottom: 20px;
 }
-.columnHeader img{
+.columnHeader img {
   cursor: pointer;
 }
-.columnHeader img:hover{
+.columnHeader img:hover {
   content: url(/assets/icons/board/plus\ hover.svg);
 }
 .columnTitle {
@@ -312,9 +316,9 @@
   }
 
   .boardTopBar {
-  flex-direction: column;
-  align-items: stretch;
-  gap: 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
   }
 
   .addTaskButton {
