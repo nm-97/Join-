@@ -36,8 +36,9 @@ select {
 .addTaskFormsWrapper input,
 .addTaskFormsWrapper textarea,
 .addTaskFormsWrapper select {
-  width: 100%;
+  width: 423px;
   max-width: 423px;
+  flex: 1;
 }
 
 .editInput {
@@ -451,7 +452,7 @@ textarea::placeholder {
   }
 }
 
-@media (max-width: 428px) {
+@media (max-width: 470px) {
   label {
     font-size: 16px;
   }

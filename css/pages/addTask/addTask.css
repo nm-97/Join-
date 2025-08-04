@@ -384,7 +384,7 @@ label {
   }
 }
 
-@media (max-width: 428px) {
+@media (max-width: 470px) {
   .mainContainer {
     overflow-y: auto;
   }
