@@ -1,14 +1,11 @@
-/**
- * @fileoverview Loading screen functionality for the JOIN application
- * Handles the display and hiding of loading animations and login elements
- * @author Join Project Team
- * @version 1.0.0
- */
-
 let animationStarted = false;
 
 /**
- * Initializes the loading screen animation when DOM content is loaded
+ * Initializes the loading screen animation when DOM content is loaded with element hiding and reveal
+ * Manages page element visibility states during loading sequence with CSS class manipulation
+ * Provides smooth page transition experience with timed animation for header, main, and footer elements
+ * @function
+ * @returns {void}
  */
 document.addEventListener("DOMContentLoaded", () => {
   if (animationStarted) return;

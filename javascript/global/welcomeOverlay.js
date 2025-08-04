@@ -1,7 +1,10 @@
 "use strict";
 
 /**
- * Generates welcome overlay template using existing user greeting system
+ * Generates welcome overlay template using existing user greeting system with predefined HTML structure
+ * Creates overlay template with greeting elements and user name display for welcome presentation
+ * Provides reusable template generation for consistent welcome overlay appearance across application
+ * @function getWelcomeOverlayTemplate
  * @returns {string} HTML string for welcome overlay
  */
 function getWelcomeOverlayTemplate() {
@@ -16,7 +19,11 @@ function getWelcomeOverlayTemplate() {
 }
 
 /**
- * Hides the summary content children (but keeps container visible)
+ * Hides the summary content children while keeping container visible for overlay presentation
+ * Iterates through summary content child elements and sets display to none for each
+ * Provides clean canvas for welcome overlay display without affecting page container structure
+ * @function hideSummaryContent
+ * @returns {void}
  */
 function hideSummaryContent() {
   const summaryContent = document.getElementById("summaryMainContent");
@@ -29,7 +36,11 @@ function hideSummaryContent() {
 }
 
 /**
- * Inserts welcome overlay template into DOM
+ * Inserts welcome overlay template into DOM with fallback container selection
+ * Targets summary main content container or falls back to body for template injection
+ * Provides flexible overlay insertion ensuring welcome display regardless of page structure
+ * @function insertWelcomeOverlay
+ * @returns {void}
  */
 function insertWelcomeOverlay() {
   const summaryMainContent = document.getElementById("summaryMainContent");
@@ -44,7 +55,11 @@ function insertWelcomeOverlay() {
 }
 
 /**
- * Sets up auto-close timer for welcome overlay
+ * Sets up auto-close timer for welcome overlay with automatic dismissal functionality
+ * Creates timed callback to close overlay after 1 second if still present in DOM
+ * Provides automatic user experience flow ensuring overlay doesn't persist indefinitely
+ * @function setupAutoCloseTimer
+ * @returns {void}
  */
 function setupAutoCloseTimer() {
   setTimeout(() => {
@@ -55,9 +70,11 @@ function setupAutoCloseTimer() {
 }
 
 /**
- * Shows welcome overlay after successful login
- * Displays for 1 second then fades out to show main content
- * Only shows on mobile devices (responsive design)
+ * Shows welcome overlay after successful login with mobile device detection and timed display
+ * Displays overlay for 1 second then fades out to show main content on mobile devices only
+ * Provides personalized post-login experience with responsive design and automatic progression
+ * @function showWelcomeOverlay
+ * @returns {void}
  */
 function showWelcomeOverlay() {
   if (!isMobileDevice()) {
@@ -73,7 +90,11 @@ function showWelcomeOverlay() {
 }
 
 /**
- * Shows the summary content children that were hidden
+ * Shows the summary content children that were hidden during overlay presentation
+ * Restores display properties of summary content elements while preserving overlay exclusion
+ * Provides clean transition back to main content after welcome overlay dismissal
+ * @function showSummaryContent
+ * @returns {void}
  */
 function showSummaryContent() {
   const summaryContent = document.getElementById("summaryMainContent");
@@ -88,7 +109,11 @@ function showSummaryContent() {
 }
 
 /**
- * Closes welcome overlay with smooth animation and shows main content
+ * Closes welcome overlay with smooth animation and shows main content with timed transitions
+ * Adds closing CSS class for animation effects and removes overlay after animation completes
+ * Provides polished user experience with smooth visual transitions and content restoration
+ * @function closeWelcomeOverlay
+ * @returns {void}
  */
 function closeWelcomeOverlay() {
   const overlay = document.getElementById("welcomeOverlay");
@@ -102,8 +127,11 @@ function closeWelcomeOverlay() {
 }
 
 /**
- * Initializes welcome overlay if user just logged in
- * Call this on pages where welcome should be shown
+ * Initializes welcome overlay if user just logged in with session state validation
+ * Call this on pages where welcome should be shown by checking login session flags
+ * Provides controlled welcome display ensuring overlay appears only for fresh login sessions
+ * @function initializeWelcomeOverlay
+ * @returns {void}
  */
 function initializeWelcomeOverlay() {
   const justLoggedIn = sessionStorage.getItem("justLoggedIn");

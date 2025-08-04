@@ -461,6 +461,8 @@ body {
     height: 72px !important;
     max-width: 112px;
     max-height: 72px;
+    align-items: center;
+    justify-content: center;
   }
 
   .mobileLogo {
