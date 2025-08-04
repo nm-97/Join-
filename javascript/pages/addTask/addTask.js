@@ -258,11 +258,12 @@ function mapStatusToFirebase(status) {
   const statusMap = {
     toDo: "toDo",
     inProgress: "inProgress",
-    awaitFeedback: "awaitFeedback",
+    awaitingFeedback: "awaitingFeedback",
     done: "done",
   };
   return statusMap[status] || "toDo";
 }
+
 
 /**
  * Maps UI category value to Firebase category string
