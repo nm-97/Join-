@@ -232,20 +232,24 @@ function createTask() {
 function getFormData() {
   const selectedContacts =
     typeof getSelectedContactIds === "function" ? getSelectedContactIds() : [];
-  const categoryValue =
-    typeof getSelectedCategoryName === "function"
-      ? getSelectedCategoryName()
+
+  // Use getSelectedCategoryId() instead of getSelectedCategoryName()
+  const categoryId =
+    typeof getSelectedCategoryId === "function"
+      ? getSelectedCategoryId()
       : selectedCategory || "";
+
   const formData = {
     title: document.getElementById("taskTitle")?.value || "",
     description: document.getElementById("taskDescription")?.value || "",
     dueDate: document.getElementById("taskDueDate")?.value || "",
     taskPriority: selectedPriority,
     assignedTo: selectedContacts,
-    Category: mapCategoryToFirebase(categoryValue),
+    Category: mapCategoryToFirebase(categoryId),
     Status: mapStatusToFirebase(selectedStatus),
     subtasks: currentSubtasks,
   };
+
   return formData;
 }
 
@@ -262,19 +266,6 @@ function mapStatusToFirebase(status) {
     done: "done",
   };
   return statusMap[status] || "toDo";
-}
-
-/**
- * Maps UI category value to Firebase category string
- * @param {string} category - UI category value
- * @returns {string} Firebase category string
- */
-function mapCategoryToFirebase(category) {
-  const categoryMap = {
-    "User Story": "User Story",
-    "Technical Task": "Technical Task",
-  };
-  return categoryMap[category] || "Technical Task";
 }
 
 /**
