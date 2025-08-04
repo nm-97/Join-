@@ -344,9 +344,53 @@ function getSelectedContactsData() {
  * @returns {string} Selected category ID or empty string if no category selected
  */
 function getSelectedCategoryData() {
-  return typeof getSelectedCategoryId === "function"
-    ? getSelectedCategoryId()
-    : selectedCategory || "";
+  // Prüfe zuerst das Category Dropdown Input Feld (most reliable)
+  const categoryInput = document.getElementById("categoryDropdownInput");
+
+  if (categoryInput && categoryInput.value) {
+    const inputValue = categoryInput.value;
+
+    // Versuche die Kategorie-ID basierend auf dem Namen zu finden
+    if (inputValue === "User Story") {
+      return "userStory";
+    } else if (inputValue === "Technical Task") {
+      return "technicalTask";
+    }
+
+    // Falls der Input bereits eine ID ist
+    if (inputValue === "userStory" || inputValue === "technicalTask") {
+      return inputValue;
+    }
+
+    return inputValue;
+  }
+
+  // Fallback: Versuche die Funktion zu verwenden, falls verfügbar
+  if (typeof getSelectedCategoryId === "function") {
+    const categoryId = getSelectedCategoryId();
+
+    // Überprüfe, ob die Funktion einen anderen Wert als den Default zurückgibt
+    if (categoryId && categoryId !== "technicalTask") {
+      return categoryId;
+    }
+
+    // Prüfe, ob das Input-Feld eine andere Auswahl zeigt
+    if (
+      categoryInput &&
+      categoryInput.value &&
+      categoryInput.value !== "Technical Task"
+    ) {
+      const inputValue = categoryInput.value;
+      if (inputValue === "User Story") {
+        return "userStory";
+      }
+    }
+
+    if (categoryId) return categoryId;
+  }
+
+  // Fallback: Verwende die globale selectedCategory Variable
+  return selectedCategory || "";
 }
 
 /**
@@ -553,7 +597,22 @@ function loadOverlayData() {
   }
   setTimeout(() => {
     loadCategories();
+    setupCategoryChangeListener();
   }, 100);
+}
+
+/**
+ * Sets up event listener for category dropdown changes
+ * @function setupCategoryChangeListener
+ * @returns {void} No return value, sets up category selection listener
+ */
+function setupCategoryChangeListener() {
+  const categoryDropdown = document.getElementById("categoryDropdownInput");
+  if (categoryDropdown) {
+    categoryDropdown.addEventListener("change", function () {
+      selectedCategory = this.value;
+    });
+  }
 }
 
 /**
@@ -580,6 +639,7 @@ function setupOverlayFormSubmission() {
 async function createOverlayTask() {
   if (!validateAddTaskForm()) return;
   const taskData = getFormData();
+
   try {
     await addTaskToFirebaseByUser(taskData);
     clearForm();
@@ -587,7 +647,9 @@ async function createOverlayTask() {
     if (typeof refreshBoard === "function") {
       await refreshBoard();
     }
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error creating task:", error);
+  }
 }
 
 /**
@@ -602,6 +664,10 @@ function addTaskToColumn(status) {
   selectedStatus = status;
   showAddTaskOverlay();
 }
+
+// Mache die Funktionen global verfügbar für board.js
+window.addTaskToColumn = addTaskToColumn;
+window.showAddTaskOverlay = showAddTaskOverlay;
 
 document.addEventListener("DOMContentLoaded", function () {
   if (window.location.pathname.includes("addTask.html")) {

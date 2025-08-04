@@ -124,7 +124,6 @@ function validateDueDate(dueDateInput) {
  * @returns {boolean} True if a valid category is selected, false if no category chosen
  */
 function validateCategory() {
-  // Use the customdropdown.js system which is more reliable
   const categoryValue =
     typeof getSelectedCategoryName === "function"
       ? getSelectedCategoryName()
@@ -430,18 +429,21 @@ function createTaskDataObject(formattedDueDate) {
 }
 
 /**
- * Maps selected category name to Firebase-compatible category value with fallback
- * Provides standardized category mapping for consistent database storage format
+ * Maps both category IDs and names to Firebase display names with comprehensive input support
+ * Accepts both category IDs (userStory, technicalTask) and display names (User Story, Technical Task)
  * Returns default "Technical Task" for unmapped categories to ensure data integrity
  * @function mapCategoryToFirebase
- * @param {string} category - The selected category name from dropdown selection
+ * @param {string} category - The selected category ID or name from dropdown selection
  * @returns {string} Firebase-compatible category name, defaults to "Technical Task" if unmapped
  */
 function mapCategoryToFirebase(category) {
   const categoryMap = {
+    userStory: "User Story",
+    technicalTask: "Technical Task",
     "User Story": "User Story",
     "Technical Task": "Technical Task",
   };
+
   return categoryMap[category] || "Technical Task";
 }
 

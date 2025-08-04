@@ -113,6 +113,16 @@ async function refreshBoard() {
  * @returns {void} No return value, opens Add Task overlay for new task creation
  */
 function addTaskToColumn(status) {
+  // Prüfe, ob die addTask.js addTaskToColumn Funktion verfügbar ist
+  if (typeof window.addTaskToColumn === "function") {
+    window.addTaskToColumn(status);
+    return;
+  }
+  
+  // Fallback: Setze Status und zeige Overlay
+  if (typeof window.selectedStatus !== "undefined") {
+    window.selectedStatus = status;
+  }
   showAddTaskOverlay();
 }
 
@@ -143,12 +153,21 @@ function closeTaskOverlay() {
  * @returns {void} No return value, displays and initializes Add Task overlay interface
  */
 function showAddTaskOverlay() {
+  // Prüfe, ob die addTask.js showAddTaskOverlay Funktion verfügbar ist
+  if (typeof window.showAddTaskOverlay === "function" && window.showAddTaskOverlay !== showAddTaskOverlay) {
+    window.showAddTaskOverlay();
+    return;
+  }
+  
+  // Fallback für lokale Implementierung
   const overlay = document.getElementById("addTaskOverlay");
   if (overlay) {
     overlay.innerHTML = getAddTaskOverlay();
     overlay.style.display = "flex";
     overlay.classList.remove("hidden");
-    initializeOverlayAddTask();
+    if (typeof initializeOverlayAddTask === "function") {
+      initializeOverlayAddTask();
+    }
   }
 }
 
