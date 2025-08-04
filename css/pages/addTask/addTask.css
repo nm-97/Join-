@@ -250,7 +250,6 @@ label {
 
 /* Large Desktop - 1350px */
 @media (max-width: 1361px) {
-  
   .addTaskFormsDivider {
     margin: 0;
   }
@@ -267,80 +266,93 @@ label {
 }
 
 @media (max-width: 1024px) {
-  .mainContent{
-    width: fit-content;
-    padding-bottom: 20px;
+  .addTaskFormsWrapper {
+    flex-direction: column;
   }
 
-  .formActions {
-    position: static;
-    bottom: auto;
-    left: auto;
-    right: auto;
-    padding: 20px 0;
-    margin-top: 20px;
-    width: 100%;
-  }
-
-  .formButtons {
-    position: static;
-    bottom: auto;
-    left: auto;
-    right: auto;
-    padding: 0;
-    width: 100%;
-    justify-content: center;
+  .addTaskFormsDivider {
+    display: none;
   }
 }
-
-@media (max-width: 786px) {
-  input,
-  textarea,
-  select {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .taskPriorityBtn{
-    width: 100%;
-    padding: 12px 8px;
-    font-size: 16px;
-    gap: 4px;
-  }
-  
-  .taskPriorityBtn img {
-    width: 16px;
-    height: 16px;
-  }
-  
-  .taskPriorityBtn span {
-    margin-right: 4px;
-  }
-
-  .inputIcon {
-    max-width: 100%;
-  }
-
-  .inputIcon input {
-    padding-right: 40px;
-  }
-
-  .inputIcon img {
-    right: 19px;
-  }
-}
-
 @media (max-width: 545px) {
   .pageHeader {
     margin-left: 0;
   }
 
-  .addTaskH1{
+  .addTaskH1 {
     margin-left: 32px;
+    font-size: 42px;
   }
 
   .addTaskFormsWrapper {
     margin: 32px;
+    gap: 16px;
+  }
+
+  input,
+  textarea,
+  select {
+    height: 36px;
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  textarea {
+    height: 80px;
+  }
+
+  label,
+  .taskPriorityLabel {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  .customDropdown {
+    width: 100%;
+    max-width: 100%;
+    gap: 0px;
+  }
+
+  .dropdownInput {
+    width: 100%;
+    max-width: 100%;
+    height: 36px;
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .categoryDropdown {
+    width: 100%;
+    max-width: 100%;
+    height: 36px;
+  }
+
+  .taskPriorityBtn {
+    width: 100%;
+    padding: 10px 6px;
+    font-size: 14px;
+    gap: 3px;
+  }
+
+  .taskPriorityBtn img {
+    width: 14px;
+    height: 14px;
+  }
+
+  .taskPriorityBtn span {
+    margin-right: 3px;
+  }
+
+  .mediumBtn {
+    height: 36px;
+    padding: 10px 15px;
+    font-size: 14px;
+    gap: 3px;
+  }
+
+  .mediumBtn img {
+    width: 14px;
+    height: 14px;
   }
 
   .inputIcon {
@@ -348,14 +360,29 @@ label {
   }
 
   .inputIcon input {
-    padding-right: 39px;
+    padding-right: 35px;
+    height: 36px;
   }
 
   .inputIcon img {
-    right: 18px;
+    right: 15px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .formButtons {
+    gap: 12px;
+  }
+
+  .formButtons button {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .formGroup {
+    margin-bottom: 16px;
   }
 }
-
 
 @media (max-width: 428px) {
   .mainContainer {
@@ -448,7 +475,6 @@ label {
   }
 }
 
-/* Extra small screens - works down to 320px */
 @media (max-width: 360px) {
   .addTaskFormsWrapper {
     margin: 16px;

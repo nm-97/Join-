@@ -6,6 +6,11 @@
  */
 
 let currentDraggedTaskId = null;
+let touchTimer = null;
+let touchStart = null;
+let isDragging = false;
+let lastScrollTime = 0;
+let animationFrame = null;
 
 /**
  * Initiates dragging process by storing the task ID being dragged
@@ -13,6 +18,251 @@ let currentDraggedTaskId = null;
  */
 function startDragging(taskId) {
   currentDraggedTaskId = taskId;
+  setBodyScrollState("disabled");
+}
+
+/**
+ * Starts the touch drag system for mobile devices (screen width ≤ 1024px)
+ * @param {TouchEvent} event - The touch start event
+ * @param {string} taskId - The ID of the touched task card
+ */
+function handleTouchStart(event, taskId) {
+  if (!isMobileDevice()) return;
+  event.preventDefault();
+  initializeTouchSession(event, taskId);
+  startDraggingTimer(event.currentTarget);
+}
+
+/**
+ * Initializes a new touch session with start position and task ID
+ * @param {TouchEvent} event - The touch start event
+ * @param {string} taskId - The ID of the touched task card
+ */
+function initializeTouchSession(event, taskId) {
+  const touch = event.touches[0];
+  touchStart = {
+    x: touch.clientX,
+    y: touch.clientY,
+  };
+  currentDraggedTaskId = taskId;
+  isDragging = false;
+}
+
+/**
+ * Starts the timer for dragging (50ms delay)
+ * @param {HTMLElement} taskCard - The touched task card
+ */
+function startDraggingTimer(taskCard) {
+  touchTimer = setTimeout(() => {
+    activateDragging(taskCard);
+  }, 50);
+}
+
+/**
+ * Activates the dragging system and all drop zones
+ * @param {HTMLElement} taskCard - The task card being dragged
+ */
+function activateDragging(taskCard) {
+  isDragging = true;
+  taskCard.classList.add("drag-over");
+  setBodyScrollState("disabled");
+  activateAllDropZones(taskCard.parentElement.id);
+}
+
+/**
+ * Activates all columns except the current one as drop zones
+ * @param {string} currentColumnId - ID of the current column (will be skipped)
+ */
+function activateAllDropZones(currentColumnId) {
+  document.querySelectorAll('[id$="Column"]').forEach((column) => {
+    if (column.id !== currentColumnId) {
+      activateDropZone(column);
+    }
+  });
+}
+
+/**
+ * Processes finger movement during touch dragging
+ * @param {TouchEvent} event - The touch move event with finger coordinates
+ */
+function handleTouchMove(event) {
+  if (!isMobileDevice() || !touchStart) return;
+  const touch = event.touches[0];
+  if (shouldCancelDragging(touch)) {
+    handleTouchEnd();
+    return;
+  }
+  optimizeAnimationFrame(() => {
+    if (isDragging) {
+      processTouchDragging(touch);
+    }
+  });
+}
+
+/**
+ * Checks if dragging should be cancelled (too much movement before dragging starts)
+ * @param {Touch} touch - The current touch position
+ * @returns {boolean} True if dragging should be cancelled
+ */
+function shouldCancelDragging(touch) {
+  const deltaX = touch.clientX - touchStart.x;
+  const deltaY = touch.clientY - touchStart.y;
+  const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+  return distance > 80 && !isDragging;
+}
+
+/**
+ * Optimizes animation performance through requestAnimationFrame
+ * @param {Function} callback - The function to execute
+ */
+function optimizeAnimationFrame(callback) {
+  if (animationFrame) {
+    cancelAnimationFrame(animationFrame);
+  }
+  animationFrame = requestAnimationFrame(callback);
+}
+
+/**
+ * Processes active touch dragging (auto-scroll and drop zone detection)
+ * @param {Touch} touch - The current touch position
+ */
+function processTouchDragging(touch) {
+  const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+  const column = elementBelow?.closest('[id$="Column"]');
+  handleAutoScroll(touch);
+  handleDropZoneDetection(column);
+}
+
+/**
+ * Handles automatic scrolling at screen edges
+ * @param {Touch} touch - The current touch position
+ */
+function handleAutoScroll(touch) {
+  const now = Date.now();
+  const scrollThreshold = 120;
+  const windowHeight = window.innerHeight;
+  if (now - lastScrollTime > 16) {
+    if (touch.clientY > windowHeight - scrollThreshold) {
+      enableScrolling();
+      window.scrollBy({ top: 8, behavior: "smooth" });
+    } else if (touch.clientY < scrollThreshold) {
+      enableScrolling();
+      window.scrollBy({ top: -8, behavior: "smooth" });
+    } else {
+      disableScrolling();
+    }
+    lastScrollTime = now;
+  }
+}
+
+/**
+ * Enables scrolling for auto-scroll functionality
+ */
+function enableScrolling() {
+  setBodyScrollState("enabled");
+}
+
+/**
+ * Disables scrolling during dragging
+ */
+function disableScrolling() {
+  setBodyScrollState("disabled");
+}
+
+/**
+ * Handles drop zone detection under the finger
+ * @param {HTMLElement|null} column - The column under the finger (or null)
+ */
+function handleDropZoneDetection(column) {
+  if (column) {
+    clearOtherDragOverEffects(column);
+    if (!column.classList.contains("drag-over")) {
+      activateDropZone(column);
+    }
+  } else {
+    clearAllDragOverEffects();
+  }
+}
+
+/**
+ * Handles the end of touch event and executes drop operation
+ * @param {TouchEvent} event - Touch end event
+ */
+function handleTouchEnd(event) {
+  if (!isMobileDevice()) return;
+  cleanupTouchTimer();
+  cleanupTaskCard();
+  executeDropIfActive();
+  cleanupTouchSession();
+  restoreScrolling();
+}
+
+/**
+ * Cleans up the touch timer
+ */
+function cleanupTouchTimer() {
+  if (touchTimer) {
+    clearTimeout(touchTimer);
+    touchTimer = null;
+  }
+}
+
+/**
+ * Finds a task card by its ID
+ * @param {string} taskId - The ID of the task card
+ * @returns {HTMLElement|null} The found task card or null
+ */
+function findTaskCardById(taskId) {
+  return document.querySelector(`[data-task-id="${taskId}"]`);
+}
+
+/**
+ * Removes visual feedback from the task card
+ */
+function cleanupTaskCard() {
+  if (currentDraggedTaskId) {
+    const taskCard = findTaskCardById(currentDraggedTaskId);
+    if (taskCard) {
+      taskCard.classList.remove("drag-over");
+    }
+  }
+}
+
+/**
+ * Executes drop operation if dragging was active
+ */
+function executeDropIfActive() {
+  if (isDragging) {
+    const activeDropZone = document.querySelector(".drag-over[id$='Column']");
+    if (activeDropZone && currentDraggedTaskId) {
+      const fakeEvent = {
+        preventDefault: () => {},
+        currentTarget: activeDropZone,
+      };
+      dropToAnotherColumn(fakeEvent);
+    }
+  }
+}
+
+/**
+ * Cleans up all touch session data and animations
+ */
+function cleanupTouchSession() {
+  if (animationFrame) {
+    cancelAnimationFrame(animationFrame);
+    animationFrame = null;
+  }
+  clearAllDragOverEffects();
+  touchStart = null;
+  isDragging = false;
+  currentDraggedTaskId = null;
+}
+
+/**
+ * Restores normal scroll behavior
+ */
+function restoreScrolling() {
+  setBodyScrollState("restore");
 }
 
 /**
@@ -20,8 +270,7 @@ function startDragging(taskId) {
  */
 function clearAllDragOverEffects() {
   document.querySelectorAll(".drag-over").forEach((col) => {
-    col.classList.remove("drag-over");
-    col.style.animation = "";
+    removeDragOverClasses(col);
   });
 }
 
@@ -32,8 +281,7 @@ function clearAllDragOverEffects() {
 function clearOtherDragOverEffects(currentColumn) {
   document.querySelectorAll(".drag-over").forEach((col) => {
     if (col !== currentColumn) {
-      col.classList.remove("drag-over");
-      col.style.animation = "";
+      removeDragOverClasses(col);
     }
   });
 }
@@ -44,10 +292,7 @@ function clearOtherDragOverEffects(currentColumn) {
  */
 function activateDropZone(column) {
   column.classList.add("drag-over");
-  column.style.animation = "dropZoneActivate 0.3s ease-out";
-  setTimeout(() => {
-    column.style.animation = "";
-  }, 50);
+  addTemporaryClass(column, "drop-zone-active", 400);
 }
 
 /**
@@ -68,8 +313,9 @@ function moveToAnotherColumn(ev) {
  * @param {HTMLElement} column - The column element to deactivate
  */
 function deactivateDropZone(column) {
+  addTemporaryClass(column, "drop-zone-deactivate", 200);
   column.classList.remove("drag-over");
-  column.style.animation = "";
+  column.classList.remove("drop-zone-active");
 }
 
 /**
@@ -103,10 +349,81 @@ async function updateTaskStatus(taskId, newStatus) {
 }
 
 /**
- * Resets the drag state after completing a drop operation
+ * Resets all drag states after a drop operation
  */
 function resetDragState() {
+  resetBasicDragStates();
+  cleanupTouchTimer();
+  removeTaskCardVisualFeedback();
+  cleanupAnimations();
+  restoreScrolling();
+}
+
+/**
+ * Resets basic drag states
+ */
+function resetBasicDragStates() {
   currentDraggedTaskId = null;
+  touchStart = null;
+  isDragging = false;
+}
+
+/**
+ * Sets the scroll state of the body element
+ * @param {string} scrollState - "disabled", "enabled" or "restore"
+ */
+function setBodyScrollState(scrollState) {
+  document.body.classList.remove(
+    "drag-scroll-disabled",
+    "drag-scroll-enabled",
+    "drag-scroll-restore"
+  );
+  if (scrollState !== "restore") {
+    document.body.classList.add(`drag-scroll-${scrollState}`);
+  } else {
+    addTemporaryClass(document.body, "drag-scroll-restore", 300);
+  }
+}
+
+/**
+ * Removes drag-over classes from an element
+ * @param {HTMLElement} element - The element to remove classes from
+ */
+function removeDragOverClasses(element) {
+  element.classList.remove("drag-over", "drop-zone-active");
+}
+
+/**
+ * Adds CSS classes to an element and removes them after a delay
+ * @param {HTMLElement} element - The element
+ * @param {string} className - The CSS class
+ * @param {number} duration - Duration in milliseconds
+ */
+function addTemporaryClass(element, className, duration) {
+  element.classList.add(className);
+  setTimeout(() => {
+    element.classList.remove(className);
+  }, duration);
+}
+
+/**
+ * Removes visual feedback from all task cards with smooth animation
+ */
+function removeTaskCardVisualFeedback() {
+  document.querySelectorAll(".taskCard.drag-over").forEach((card) => {
+    addTemporaryClass(card, "task-card-smooth-transition", 200);
+    card.classList.remove("drag-over");
+  });
+}
+
+/**
+ * Stops and cleans up all running animations
+ */
+function cleanupAnimations() {
+  if (animationFrame) {
+    cancelAnimationFrame(animationFrame);
+    animationFrame = null;
+  }
 }
 
 /**
@@ -114,35 +431,60 @@ function resetDragState() {
  * @param {HTMLElement} taskCard - The task card element to animate
  */
 function addDropAnimation(taskCard) {
-  taskCard.classList.add("task-dropped");
-  setTimeout(() => {
-    taskCard.classList.remove("task-dropped");
-  }, 200);
+  addTemporaryClass(taskCard, "task-dropped", 200);
 }
 
 /**
- * Handles the drop event to move a task card to another column and update its status
+ * Processes the drop event and moves task card between columns
  * @param {Event} ev - The drop event object
  */
 async function dropToAnotherColumn(ev) {
   ev.preventDefault();
+  const dropInfo = extractDropInformation(ev);
+  deactivateDropZone(dropInfo.column);
+  await executeTaskMove(dropInfo);
+  cleanupAfterDrop();
+  resetDragState();
+}
+
+/**
+ * Extracts all relevant information for the drop operation
+ * @param {Event} ev - The drop event object
+ * @returns {Object} Drop information (columnId, newStatus, column)
+ */
+function extractDropInformation(ev) {
   const columnId = ev.currentTarget.id;
   const newStatus = getColumnStatus(columnId);
   const column = ev.currentTarget;
-  deactivateDropZone(column);
-  if (currentDraggedTaskId && newStatus) {
-    const taskCard = document.querySelector(
-      `[data-task-id="${currentDraggedTaskId}"]`
-    );
-    const taskColumn = document.getElementById(columnId);
-    if (taskCard && taskColumn) {
-      const originalColumn = moveTaskToColumn(taskCard, taskColumn);
-      updateEmptyStates(originalColumn, taskColumn);
-      addDropAnimation(taskCard);
-      await updateTaskStatus(currentDraggedTaskId, newStatus);
-    }
+  return {
+    columnId,
+    newStatus,
+    column,
+  };
+}
+
+/**
+ * Executes the actual task movement between columns
+ * @param {Object} dropInfo - Drop information (columnId, newStatus)
+ */
+async function executeTaskMove(dropInfo) {
+  if (!currentDraggedTaskId || !dropInfo.newStatus) return;
+  const taskCard = findTaskCardById(currentDraggedTaskId);
+  const taskColumn = document.getElementById(dropInfo.columnId);
+  if (taskCard && taskColumn) {
+    const originalColumn = moveTaskToColumn(taskCard, taskColumn);
+    updateEmptyStates(originalColumn, taskColumn);
+    addDropAnimation(taskCard);
+    await updateTaskStatus(currentDraggedTaskId, dropInfo.newStatus);
   }
-  resetDragState();
+}
+
+/**
+ * Cleans up after a drop operation (scroll restoration and animations)
+ */
+function cleanupAfterDrop() {
+  restoreScrolling();
+  cleanupAnimations();
 }
 
 /**
@@ -157,7 +499,6 @@ async function changeStatusforDraggedTask(taskId, taskData) {
     currentUser.type === "registered"
       ? getUserTaskPath(currentUser.id, taskId)
       : getGuestTaskPath(taskId);
-
   return await patchData(path, taskData);
 }
 

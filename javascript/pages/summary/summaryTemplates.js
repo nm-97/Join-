@@ -23,7 +23,7 @@ function getsummaryTemplate(params) {
               </div>
              <div class="cardSection">
                 <div class="cardRowsWrapper">
-               <div class="cardRow topRow">
+               <div  onclick="goToBoard()" class="cardRow topRow">
                 <div class="card">
                   <div class="cardMainContent">
                     <div class="cardIcon">
@@ -33,7 +33,7 @@ function getsummaryTemplate(params) {
                       />
                     </div>
                     <div class="cardValueLabelGroup">
-                      <div class="cardValue" id="todoCounter">1</div>
+                      <div onclick="goToBoard()"  class="cardValue" id="todoCounter">1</div>
                       <div class="cardLabel">To Do</div>
                     </div>
                   </div>
@@ -57,7 +57,7 @@ function getsummaryTemplate(params) {
 
               <div class="cardRow">
                 <div class="card combinedCard">
-                  <div class="cardContent">
+                  <div  onclick="goToBoard()" class="cardContent">
                     <div class="urgentSection">
                       <div class="cardMainContent">
                         <div class="urgentCardIcon">
@@ -68,14 +68,14 @@ function getsummaryTemplate(params) {
                         </div>
                         <div class="cardValueLabelGroup">
                           <div class="cardValue" id="highPriorityCounter"></div>
-                          <div class="cardLabel">Urgent</div>
+                          <div  onclick="goToBoard()" class="cardLabel">Urgent</div>
                         </div>
                       </div>
                     </div>
                     <div class="divider"></div>
                     <div class="dateSection">
                       <div class="dateTitle" id="dueDateCounter"></div>
-                      <div class="dateSubtitle">Upcoming Deadline</div>
+                      <div  onclick="goToBoard()" class="dateSubtitle">Upcoming Deadline</div>
                     </div>
                   </div>
                 </div>
@@ -84,24 +84,24 @@ function getsummaryTemplate(params) {
               <div class="cardRow bottomRow">
                 <div class="card largeCard">
                   <div class="cardValue" id="boardCounter">5</div>
-                  <div class="cardLabel">Tasks in<br />Board</div>
+                  <div  onclick="goToBoard()" class="cardLabel">Tasks in<br />Board</div>
                 </div>
 
                 <div class="card largeCard">
                   <div class="cardValue" id="inProgressCounter"></div>
-                  <div class="cardLabel">Tasks in<br />Progress</div>
+                  <div  onclick="goToBoard()" class="cardLabel">Tasks in<br />Progress</div>
                 </div>
 
                 <div class="card largeCard">
                   <div class="cardValue" id="awaitFeedbackCounter"></div>
-                  <div class="cardLabel">Awaiting<br />Feedback</div>
+                  <div  onclick="goToBoard()" class="cardLabel">Awaiting<br />Feedback</div>
                 </div>
               </div>
               </div>
               </div>
           </div>
           <div class="welcomeSection welcomeSectionSplit">
-            <div class="welcomeText" id="welcomeText"></div>
+            <div class="welcomeText" id="welcomeText" ></div>
             <div class="userName" id="userName"></div>
           </div>
         </div>  `;

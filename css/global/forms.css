@@ -80,13 +80,6 @@ textarea::placeholder {
   max-width: 423px;
 }
 
-/* Responsive .inputIcon rules */
-@media (max-width: 786px) {
-  .inputIcon {
-    max-width: 100%;
-  }
-}
-
 .inputIcon input {
   width: 100%;
   padding-right: 44px;
@@ -321,15 +314,15 @@ textarea::placeholder {
 }
 
 .editAvatar1 {
-  background-color: #1FD7C1;
+  background-color: #1fd7c1;
 }
 
 .editAvatar2 {
-  background-color: #9327FF;
+  background-color: #9327ff;
 }
 
 .editAvatar3 {
-  background-color: #0038FF;
+  background-color: #0038ff;
 }
 
 /* ===== SUBTASK STYLES ===== */
@@ -421,32 +414,22 @@ textarea::placeholder {
 }
 
 @media (max-width: 1024px) {
-    .formActions {
-        position: static;
-        bottom: auto;
-        left: auto;
-        right: auto;
-        padding: 20px 0;
-        margin-top: 20px;
-        width: 100%;
-    }
+  .formActions {
+    position: static;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    padding: 20px 0;
+    margin-top: 20px;
+    width: 100%;
+  }
 }
-
 
 @media (max-width: 600px) {
   .taskPriorityGroup {
     gap: 6px;
-    justify-content: space-between;
   }
-  
-  .taskPriorityBtn {
-    max-width: 100px;
-    height: 38px;
-    padding: 10px 6px;
-    font-size: 15px;
-    gap: 3px;
-  }
-  
+
   .taskPriorityBtn img {
     width: 15px;
     height: 15px;
@@ -465,9 +448,8 @@ textarea::placeholder {
   .addTaskFormsWrapper select {
     max-width: 423px;
     width: none;
+  }
 }
-}
-
 
 @media (max-width: 428px) {
   label {
@@ -481,7 +463,7 @@ textarea::placeholder {
   .editLabel {
     font-size: 16px !important;
   }
-  
+
   input::placeholder,
   textarea::placeholder {
     font-size: 16px;
@@ -500,7 +482,8 @@ textarea::placeholder {
     justify-content: space-between;
   }
 
-  .taskPriorityBtn {
+  .taskPriorityBtn,
+  .taskPriorityBtnOrange {
     width: auto;
     max-width: 104px;
     height: 41px;
@@ -509,12 +492,12 @@ textarea::placeholder {
     gap: 4px;
     flex: 1;
   }
-  
+
   .taskPriorityBtn img {
     width: 16px;
     height: 16px;
   }
-  
+
   .taskPriorityBtn span {
     margin-right: 4px;
     white-space: nowrap;
@@ -524,50 +507,5 @@ textarea::placeholder {
 
   .customDropdown {
     width: 100% !important;
-  }
-}
-
-/* Responsive rules for AddTask inputs */
-@media (max-width: 786px) {
-  .addTaskFormsWrapper input,
-  .addTaskFormsWrapper textarea,
-  .addTaskFormsWrapper select {
-    width: 100%;
-    max-width: 100%;
-    padding: 12px 19px;
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 545px) {
-  .addTaskFormsWrapper input,
-  .addTaskFormsWrapper textarea,
-  .addTaskFormsWrapper select {
-    width: 100%;
-    max-width: 100%;
-    padding: 12px 18px;
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 428px) {
-  .addTaskFormsWrapper input,
-  .addTaskFormsWrapper textarea,
-  .addTaskFormsWrapper select {
-    width: 100%;
-    max-width: 100%;
-    padding: 12px 17px;
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 360px) {
-  .addTaskFormsWrapper input,
-  .addTaskFormsWrapper textarea,
-  .addTaskFormsWrapper select {
-    width: 100%;
-    max-width: 100%;
-    padding: 12px 20px;
-    font-size: 14px;
   }
 }

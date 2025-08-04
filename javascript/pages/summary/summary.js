@@ -95,3 +95,7 @@ function loadUserInfo() {
   showLocalTimeFormUser();
   getUserName();
 }
+
+function goToBoard() {
+  window.location.href = "board.html";
+}

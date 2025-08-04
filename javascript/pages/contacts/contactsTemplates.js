@@ -133,52 +133,59 @@ function getEditContactOverlay(contact) {
                 </div>`;
 }
 
-/**
- * Generates HTML for the floating contact detail overlay
- * @param {Object} contact - The contact object with details to display
- * @returns {string} HTML string for the floating contact content
- */
-function getFloatingContact(contact) {
+function getFloatingContact(contact, isMobile = false) {
   const initials = getInitials(contact.name);
   const color = getAvatarColor(contact.name);
+  const mobileHeader = isMobile
+    ? `
+    <div class="mobileContactHeader">
+      <h1>Contacts</h1>
+      <span class="mobileContactSubtitle">Better with a team</span>
+      <button class="floatingContactCloseBtn" onclick="closeFloatingContactOverlayResponsive()">
+        <img src="../assets/icons/shared/close.svg" alt="Close">
+      </button>
+    </div>
+  `
+    : "";
 
-  return `<div class="floatingContactMainContent">
-    <button class="floatingContactCloseBtn" onclick="closeFloatingContactOverlayResponsive()">
-      <img src="../assets/icons/shared/backarrow.svg" alt="closeIcon">
-    </button>
-    <div class="floatingContactCard">
-      <div class="floatingContactHeader">
-        <div class="floatingContactAvatar" style="background-color: ${color};">${initials}</div>
-        <div class="floatingContactName">
-          <span>${contact.name}</span>
-          <div class="floatingContactActions">
-            <button onclick="showEditContactOverlay('${
-              contact.id
-            }')" class="editBtn">
-              <img src="../assets/icons/shared/edit.svg" alt="editIcon">
-              Edit
-            </button>
-            <button onclick="deleteContact('${contact.id}')" class="deleteBtn">
-              <img src="../assets/icons/shared/delete.svg" alt="deleteIcon">
-              Delete
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="floatingContactInfo">
-        <div class="floatingContactInfoLabel">
-          <p>Contact Information</p>
-        </div>
-        <div class="floatingContactInfoDetails">
-          <span>Email</span><br>
-          <a href="mailto:${contact.email}">${contact.email}</a><br><br>
-          <span>Phone</span><br>
-          <p>${contact.phone}</p>
-        </div>
+  return `
+${mobileHeader}
+<button class="floatingContactCloseBtn" onclick="closeFloatingContactOverlayResponsive()">
+  <img src="../assets/icons/shared/backarrow.svg" alt="closeIcon">
+</button>
+<div class="floatingContactCard">
+  <div class="floatingContactHeader">
+    <div class="floatingContactAvatar" style="background-color: ${color};">${initials}</div>
+    <div class="floatingContactName">
+      <span>${contact.name}</span>
+      <div class="floatingContactActions">
+        <button onclick="showEditContactOverlay('${
+          contact.id
+        }')" class="editBtn">
+          <img src="../assets/icons/shared/edit.svg" alt="editIcon">
+          Edit
+        </button>
+        <button onclick="deleteContact('${contact.id}')" class="deleteBtn">
+          <img src="../assets/icons/shared/delete.svg" alt="deleteIcon">
+          Delete
+        </button>
       </div>
     </div>
-    ${getMobileMenuButton(contact.id)}
-  </div>`;
+  </div>
+  <div class="floatingContactInfo">
+    <div class="floatingContactInfoLabel">
+      <p>Contact Information</p>
+    </div>
+    <div class="floatingContactInfoDetails">
+      <span>Email</span><br>
+      <a href="mailto:${contact.email}">${contact.email}</a><br><br>
+      <span>Phone</span><br>
+      <p>${contact.phone}</p>
+    </div>
+  </div>
+</div>
+${getMobileMenuButton(contact.id)}
+  `;
 }
 
 /**

@@ -211,7 +211,7 @@
   background-color: #d1d1d1;
 }
 
-.contactsRightPanelDivider {
+.contactsHeaderDividerResponsive {
   display: none;
 }
 
@@ -227,6 +227,12 @@
 
   .pageHeader {
     flex-direction: column;
+    width: 280px;
+    top: 150px;
+  }
+
+  .pageHeader span {
+    font-size: 20px;
   }
 
   .addContactButton {
@@ -256,10 +262,10 @@
     display: none;
   }
 
-  .contactsRightPanelDivider {
+  .contactsHeaderDividerResponsive {
     display: block;
-    border: 1px solid #29abe2;
-    width: 160px;
+    border: 2px solid #29abe2;
+    width: 120px;
   }
 }
 
@@ -267,7 +273,7 @@
   .contactsMainContent {
     overflow-y: scroll;
     margin: auto;
-    padding: 0px 15px;
+    padding: 0px 50px;
   }
 
   .contactsRightPanel {
