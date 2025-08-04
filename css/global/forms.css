@@ -136,19 +136,18 @@ textarea::placeholder {
   border: 1px solid #d1d1d1;
 }
 
-.taskPriorityBtnOrange {
-  background: #ffa800;
-  color: white;
-}
-
 .taskPriorityBtn.selected {
   background: #ff0000;
   color: white;
 }
 
 .taskPriorityBtn.selected img,
-.taskPriorityBtnOrange img {
+.taskPriorityBtnOrange.selected img {
   filter: brightness(0) invert(1);
+}
+
+.taskPriorityBtnOrange:not(.selected) img {
+  filter: sepia(1) saturate(2) hue-rotate(15deg);
 }
 
 .taskPriorityBtn img,
@@ -162,7 +161,6 @@ textarea::placeholder {
   margin-right: 8px;
 }
 
-/* ===== EDIT PRIORITY STYLES ===== */
 .editPriorityGroup {
   display: flex;
   gap: 8px;
@@ -403,6 +401,8 @@ textarea::placeholder {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  flex: 1;
+  min-width: 0;
 }
 
 .addTaskFormsDivider {

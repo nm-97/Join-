@@ -588,13 +588,13 @@ function setupEditContactOverlayEventListeners() {
 async function createContact(event) {
   event.preventDefault();
   if (!validateContactForm()) return;
-  
+
   const contactData = extractContactFormData(event.target);
   await addContactToFirebaseByUser(contactData);
-  
+
   closeAddContactOverlay();
   showSuccessMessage("Contact successfully created");
-  
+
   await refreshContactsAfterCreation();
 }
 
@@ -620,7 +620,7 @@ async function refreshContactsAfterCreation() {
   const contacts = await fetchContactsByIdAndUser();
   loadedContacts = contacts;
   renderContactsList(contacts);
-  
+
   await refreshFloatingContactIfVisible();
 }
 
@@ -629,10 +629,12 @@ async function refreshContactsAfterCreation() {
  * @returns {Promise<void>} Resolves after refreshing the overlay
  */
 async function refreshFloatingContactIfVisible() {
-  const floatingContactContainer = document.getElementById("floatingContactOverlay");
-  
+  const floatingContactContainer = document.getElementById(
+    "floatingContactOverlay"
+  );
+
   if (!isFloatingContactVisible(floatingContactContainer)) return;
-  
+
   const currentContactId = getCurrentlyDisplayedContactId();
   if (currentContactId) {
     await showFloatingContact(currentContactId);
@@ -654,7 +656,9 @@ function isFloatingContactVisible(container) {
  */
 function getCurrentlyDisplayedContactId() {
   const currentContactElement = document.querySelector(".contactItem.selected");
-  return currentContactElement ? currentContactElement.getAttribute("data-contact-id") : null;
+  return currentContactElement
+    ? currentContactElement.getAttribute("data-contact-id")
+    : null;
 }
 
 /**

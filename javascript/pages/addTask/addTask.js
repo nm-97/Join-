@@ -268,7 +268,6 @@ function mapStatusToFirebase(status) {
   return statusMap[status] || "toDo";
 }
 
-
 /**
  * Shows a temporary success notification for task creation
  */

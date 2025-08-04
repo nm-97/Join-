@@ -163,6 +163,22 @@ body {
   cursor: pointer;
 }
 
+.helpBtn {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.helpBtn:hover {
+  background: none !important;
+  border: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
 .userAvatar {
   width: 40px;
   height: 40px;
