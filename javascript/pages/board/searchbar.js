@@ -6,7 +6,11 @@
  */
 
 /**
- * Handles search input events and triggers task filtering
+ * Handles search input events and triggers task filtering with input validation
+ * Gets search input element, extracts and processes search value, triggers filtering or shows all tasks
+ * Provides search input event handling with proper value processing and conditional filtering logic
+ * @function handleSearchInput
+ * @returns {void} No return value, performs search input processing and task filtering operations
  */
 function handleSearchInput() {
   const searchInput = document.getElementById("searchInput");
@@ -21,9 +25,12 @@ function handleSearchInput() {
 }
 
 /**
- * Filters tasks based on search input value
- * @param {string} searchValue - The search term to filter tasks by
- * @returns {Promise<void>} Resolves after tasks are filtered
+ * Filters tasks based on search input value with comprehensive matching and visibility control
+ * Fetches user tasks, checks each task for search matches, and shows/hides tasks based on criteria
+ * Provides complete task filtering functionality with search matching and visual feedback management
+ * @function filterTaskbySearchInput
+ * @param {string} searchValue - The search term to filter tasks by, should be lowercase and trimmed
+ * @returns {Promise<void>} Promise that resolves after all tasks are filtered and visibility is updated
  */
 async function filterTaskbySearchInput(searchValue) {
   const tasks = await fetchTaskByUser();
@@ -39,10 +46,13 @@ async function filterTaskbySearchInput(searchValue) {
 }
 
 /**
- * Checks if a task matches the search criteria
- * @param {Object} task - The task object to check
- * @param {string} searchValue - The search term
- * @returns {boolean} True if task matches search criteria, false otherwise
+ * Checks if a task matches the search criteria using title and description comparison
+ * Performs title and description matching against search value and returns combined result
+ * Provides comprehensive task search matching functionality with multiple field comparison
+ * @function isTaskMatchingSearch
+ * @param {Object} task - The task object to check containing title and description properties
+ * @param {string} searchValue - The search term to match against task fields
+ * @returns {boolean} True if task matches search criteria in title or description, false otherwise
  */
 function isTaskMatchingSearch(task, searchValue) {
   const titleMatches = doesTitleMatch(task, searchValue);
@@ -51,20 +61,26 @@ function isTaskMatchingSearch(task, searchValue) {
 }
 
 /**
- * Checks if task title matches search value
- * @param {Object} task - The task object
- * @param {string} searchValue - The search term
- * @returns {boolean} True if title matches, false otherwise
+ * Checks if task title matches search value with case-insensitive comparison
+ * Validates task title existence and performs lowercase substring matching against search value
+ * Provides title-specific search matching functionality with null safety and case handling
+ * @function doesTitleMatch
+ * @param {Object} task - The task object containing title property to check
+ * @param {string} searchValue - The search term to match against task title
+ * @returns {boolean} True if title exists and contains search value, false otherwise
  */
 function doesTitleMatch(task, searchValue) {
   return task.title && task.title.toLowerCase().includes(searchValue);
 }
 
 /**
- * Checks if task description matches search value
- * @param {Object} task - The task object
- * @param {string} searchValue - The search term
- * @returns {boolean} True if description matches, false otherwise
+ * Checks if task description matches search value with case-insensitive comparison
+ * Validates task description existence and performs lowercase substring matching against search value
+ * Provides description-specific search matching functionality with null safety and case handling
+ * @function doesDescriptionMatch
+ * @param {Object} task - The task object containing description property to check
+ * @param {string} searchValue - The search term to match against task description
+ * @returns {boolean} True if description exists and contains search value, false otherwise
  */
 function doesDescriptionMatch(task, searchValue) {
   return (
@@ -73,8 +89,12 @@ function doesDescriptionMatch(task, searchValue) {
 }
 
 /**
- * Hides a task element from view
- * @param {string} taskId - The ID of the task to hide
+ * Hides a task element from view with CSS class management and highlight removal
+ * Finds task element by ID, adds hidden class for visibility control, and removes highlight styling
+ * Provides task hiding functionality with proper CSS class management for search filtering
+ * @function hideTask
+ * @param {string} taskId - The unique identifier of the task to hide from view
+ * @returns {void} No return value, performs task element hiding with CSS class updates
  */
 function hideTask(taskId) {
   const taskElement = getTaskElement(taskId);
@@ -85,8 +105,12 @@ function hideTask(taskId) {
 }
 
 /**
- * Shows and highlights a task element
- * @param {string} taskId - The ID of the task to show and highlight
+ * Shows and highlights a task element with CSS class management and visibility control
+ * Finds task element by ID, removes hidden class for visibility, and adds highlight styling
+ * Provides task showing and highlighting functionality for search result display
+ * @function showHighlightTask
+ * @param {string} taskId - The unique identifier of the task to show and highlight
+ * @returns {void} No return value, performs task element showing with highlight styling
  */
 function showHighlightTask(taskId) {
   const taskElement = getTaskElement(taskId);
@@ -97,7 +121,11 @@ function showHighlightTask(taskId) {
 }
 
 /**
- * Shows all tasks by removing hidden and highlight classes
+ * Shows all tasks by removing hidden and highlight classes with comprehensive reset
+ * Finds all task elements and removes both hidden and highlight classes for clean state
+ * Provides complete task visibility reset functionality for clearing search filters
+ * @function showAllTasks
+ * @returns {void} No return value, performs visibility reset for all task elements
  */
 function showAllTasks() {
   const allTasks = document.querySelectorAll("[data-task-id]");
@@ -107,16 +135,23 @@ function showAllTasks() {
 }
 
 /**
- * Gets the DOM element for a given task ID
- * @param {string} taskId - The ID of the task
- * @returns {Element|null} The task element or null if not found
+ * Gets the DOM element for a given task ID using data attribute selector
+ * Searches DOM for element with matching data-task-id attribute value
+ * Provides task element retrieval functionality for search operations and visibility control
+ * @function getTaskElement
+ * @param {string} taskId - The unique identifier of the task to find in DOM
+ * @returns {Element|null} The task element with matching data-task-id or null if not found
  */
 function getTaskElement(taskId) {
   return document.querySelector(`[data-task-id="${taskId}"]`);
 }
 
 /**
- * Initializes search input event listener on DOMContentLoaded
+ * Initializes search input event listener on DOMContentLoaded with element validation
+ * Finds search input element and attaches input event listener for search functionality
+ * Provides search functionality initialization with proper event listener setup
+ * @function initializeSearch
+ * @returns {void} No return value, performs search input event listener initialization
  */
 function initializeSearch() {
   const searchInput = document.getElementById("searchInput");

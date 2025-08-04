@@ -8,8 +8,11 @@
 "use strict";
 
 /**
- * Validates the login form including email and password fields
- * @returns {boolean} True if all validations pass, false otherwise
+ * Validates the complete login form by checking email and password field requirements
+ * Retrieves email and password input elements and validates their values comprehensively
+ * Clears previous errors, performs validation checks, and displays error messages if validation fails
+ * @function validateLoginForm
+ * @returns {boolean} True if all login form validations pass successfully, false if any validation fails
  */
 function validateLoginForm() {
   const emailInput = document.getElementById("email");
@@ -27,10 +30,13 @@ function validateLoginForm() {
 }
 
 /**
- * Validates login credentials for completeness and format
- * @param {string} email - The email address to validate
- * @param {string} password - The password to validate
- * @returns {boolean} True if both email and password are valid, false otherwise
+ * Validates login credentials for completeness, format compliance, and minimum security requirements
+ * Checks email field for required status and valid format, validates password for required status and minimum length
+ * Performs comprehensive credential validation ensuring both fields meet authentication standards
+ * @function isValidLoginData
+ * @param {string} email - The email address string to validate for required status and proper email format
+ * @param {string} password - The password string to validate for required status and minimum length requirements
+ * @returns {boolean} True if both email and password meet all validation criteria, false if any validation fails
  */
 function isValidLoginData(email, password) {
   if (!validateRequired(email)) return false;
@@ -41,7 +47,11 @@ function isValidLoginData(email, password) {
 }
 
 /**
- * Clears error indicators and hides error message in login form
+ * Clears all error indicators and hides error message in login form to reset validation state
+ * Removes errorInput CSS classes from email and password fields and hides error message display
+ * Provides comprehensive error state reset for login form revalidation or fresh login attempts
+ * @function clearLoginErrors
+ * @returns {void} No return value, removes error styling and hides error messages from login form
  */
 function clearLoginErrors() {
   const emailInput = document.getElementById("email");
@@ -53,8 +63,12 @@ function clearLoginErrors() {
 }
 
 /**
- * Shows login form error message and styles inputs
- * @param {string} message - The error message to display
+ * Displays login form error message with visual styling and re-enables form buttons
+ * Applies error styling to email and password inputs, shows error message, and restores button functionality
+ * Provides immediate visual feedback when login validation fails and ensures user can retry login
+ * @function showLoginError
+ * @param {string} message - The login error message text to display to the user for validation feedback
+ * @returns {void} No return value, updates DOM to show error styling and message while enabling buttons
  */
 function showLoginError(message) {
   const emailInput = document.getElementById("email");
@@ -68,8 +82,12 @@ function showLoginError(message) {
 }
 
 /**
- * Handles user login submission and authentication flow
- * @param {Event} event - The form submission event
+ * Handles complete user login submission process including validation, authentication, and state management
+ * Prevents default form submission, validates credentials, authenticates with backend, and manages user session
+ * Provides comprehensive login flow with button state management and error handling throughout process
+ * @function loginUser
+ * @param {Event} event - The form submission event object containing login form data and preventing default behavior
+ * @returns {Promise<void>} No return value, handles async login process with credential validation and user authentication
  */
 async function loginUser(event) {
   event.preventDefault();
@@ -91,9 +109,12 @@ async function loginUser(event) {
 }
 
 /**
- * Deletes a contact from Firebase (utility function)
- * @param {string} contactId - The ID of the contact to delete
- * @returns {Promise<boolean>} True if deletion was successful
+ * Deletes a contact from Firebase database with user context handling for registered and guest users
+ * Determines appropriate Firebase path based on current user type and deletes contact data
+ * Provides contact deletion functionality integrated with user authentication system
+ * @function deleteContactFromFirebase
+ * @param {string} contactId - The unique identifier of the contact to delete from Firebase database
+ * @returns {Promise<boolean>} Promise resolving to true if contact deletion was successful, false if deletion failed
  */
 async function deleteContactFromFirebase(contactId) {
   const currentUser = getCurrentUser();
@@ -109,7 +130,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /**
- * Disables all buttons in the login and related forms
+ * Disables all authentication-related buttons to prevent multiple submissions during login process
+ * Applies disabled state and visual styling to login, guest login, and sign up buttons
+ * Provides user interface protection against double-clicks and concurrent authentication attempts
+ * @function disableAllButtons
+ * @returns {void} No return value, updates button states to disabled with appropriate CSS styling
  */
 function disableAllButtons() {
   const loginButton = document.getElementById("loginButton");
@@ -130,7 +155,11 @@ function disableAllButtons() {
 }
 
 /**
- * Enables all buttons in the login and related forms
+ * Enables all authentication-related buttons to restore normal form functionality after login process
+ * Removes disabled state and visual styling from login, guest login, and sign up buttons
+ * Provides user interface restoration allowing users to retry authentication or navigate between forms
+ * @function enableAllButtons
+ * @returns {void} No return value, updates button states to enabled with normal CSS styling restored
  */
 function enableAllButtons() {
   const loginButton = document.getElementById("loginButton");
