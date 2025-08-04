@@ -1,14 +1,10 @@
-/**
- * @fileoverview User management utilities for the JOIN application
- * Handles user display, authentication, greetings, and avatar generation
- * @author Join Project Team
- * @version 1.0.0
- */
-
 "use strict";
 
 /**
- * Gets and displays the current user's name
+ * Gets and displays the current user's name with type-based fallback handling
+ * Retrieves user data from session storage and updates DOM element with display name
+ * Provides consistent user identification across application interface with guest support
+ * @function getUserName
  * @returns {Promise<string>} The display name of the current user
  */
 async function getUserName() {
@@ -28,6 +24,10 @@ async function getUserName() {
 
 /**
  * Sets up guest login by storing guest user data in session storage and showing greeting overlay
+ * Creates guest user session without authentication requirements and triggers welcome sequence
+ * Provides immediate application access for users who prefer not to register or login
+ * @function setGuestLogin
+ * @returns {void}
  */
 function setGuestLogin() {
   sessionStorage.setItem(
@@ -40,9 +40,13 @@ function setGuestLogin() {
 }
 
 /**
- * Sets up registered user login by storing user data in session storage
+ * Sets up registered user login by storing user data in session storage with optional redirection
+ * Creates authenticated user session with complete profile information and login state management
+ * Provides secure user authentication workflow with customizable post-login behavior control
+ * @function setUserLogin
  * @param {Object} params - User parameters (id, name, email, etc.)
  * @param {boolean} redirect - Whether to redirect after login (default: true)
+ * @returns {void}
  */
 function setUserLogin(params, redirect = true) {
   sessionStorage.setItem(
@@ -58,7 +62,11 @@ function setUserLogin(params, redirect = true) {
 }
 
 /**
- * Logs out the current user and redirects to login page
+ * Logs out the current user and redirects to login page with session cleanup
+ * Removes user data from session storage and navigates back to authentication interface
+ * Provides secure logout functionality ensuring complete session termination and user privacy
+ * @function logoutUserDirectly
+ * @returns {void}
  */
 function logoutUserDirectly() {
   sessionStorage.removeItem("currentUser");
@@ -66,7 +74,10 @@ function logoutUserDirectly() {
 }
 
 /**
- * Shows time-appropriate greeting based on current hour
+ * Shows time-appropriate greeting based on current hour with DOM element update
+ * Determines greeting message using time-of-day logic and updates welcome text display
+ * Provides personalized user experience with contextual time-based messaging
+ * @function showLocalTimeFormUser
  * @returns {string} The greeting message
  */
 function showLocalTimeFormUser() {
@@ -84,7 +95,10 @@ function showLocalTimeFormUser() {
 }
 
 /**
- * Fetches all registered users from Firebase
+ * Fetches all registered users from Firebase database with ID mapping and data transformation
+ * Retrieves complete user collection from Firebase and converts to application-ready format
+ * Provides centralized user data access for authentication and user management operations
+ * @function fetchAllRegisteredUsers
  * @returns {Promise<Array>} Array of user objects with IDs
  */
 async function fetchAllRegisteredUsers() {
@@ -94,7 +108,11 @@ async function fetchAllRegisteredUsers() {
 }
 
 /**
- * Displays a success message after user sign up
+ * Displays a success message after user sign up with automatic toast notification and cleanup
+ * Injects success message template into DOM and manages timed removal for user feedback
+ * Provides positive user experience confirmation for successful registration completion
+ * @function renderSignUpSuccessMessage
+ * @returns {void}
  */
 function renderSignUpSuccessMessage() {
   document.body.insertAdjacentHTML(
@@ -108,14 +126,21 @@ function renderSignUpSuccessMessage() {
 }
 
 /**
- * Initializes user-related data and UI components
+ * Initializes user-related data and UI components for application startup
+ * Sets up contact sidebar and other user interface elements during page load
+ * Provides foundational user experience setup ensuring proper application state initialization
+ * @function initializeUserData
+ * @returns {Promise<void>}
  */
 async function initializeUserData() {
   await showContactSideBar();
 }
 
 /**
- * Checks user credentials against registered users in Firebase
+ * Checks user credentials against registered users in Firebase with secure validation
+ * Compares provided email and password against stored user data for authentication
+ * Provides secure login verification with comprehensive error handling and user data return
+ * @function checkUserCredentials
  * @param {string} email - User email address
  * @param {string} password - User password
  * @returns {Promise<Object>} Object with success status and user data if successful
@@ -149,7 +174,10 @@ async function checkUserCredentials(email, password) {
 }
 
 /**
- * Generates initials from a person's name
+ * Generates initials from a person's name with intelligent parsing and fallback handling
+ * Extracts first letters from name components or uses single name character pairs
+ * Provides consistent avatar text generation for user interface display elements
+ * @function getInitials
  * @param {string} name - The full name to generate initials from
  * @returns {string} Two-character initials or "?" if invalid input
  */
@@ -166,7 +194,10 @@ function getInitials(name) {
 }
 
 /**
- * Generates a color for user avatar based on name
+ * Generates a color for user avatar based on name with deterministic algorithm
+ * Calculates unique color from name characteristics using character codes and length
+ * Provides consistent visual identity for users with diverse color palette selection
+ * @function getAvatarColor
  * @param {string} name - The name to generate color for
  * @returns {string} Hexadecimal color code
  */
