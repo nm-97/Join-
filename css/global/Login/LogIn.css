@@ -504,3 +504,13 @@ footer a:hover {
     margin: 20px auto;
   }
 }
+
+@media (max-width: 407px) {
+  #signUpButton {
+    padding: 2px 8px;
+  }
+
+  .SignUpbtn a{
+    padding: 0 !important;
+  }
+}
