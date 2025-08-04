@@ -447,7 +447,7 @@ function closeFloatingContactOverlayResponsive() {
       addContactButton.style.display = "block";
       addContactButton.classList.remove("floating-hidden");
     }
-    
+
     // Remove body class when closing overlay
     document.body.classList.remove("floating-overlay-open");
   } else {
@@ -588,17 +588,73 @@ function setupEditContactOverlayEventListeners() {
 async function createContact(event) {
   event.preventDefault();
   if (!validateContactForm()) return;
-  const formData = new FormData(event.target);
-  const contactData = {
+  
+  const contactData = extractContactFormData(event.target);
+  await addContactToFirebaseByUser(contactData);
+  
+  closeAddContactOverlay();
+  showSuccessMessage("Contact successfully created");
+  
+  await refreshContactsAfterCreation();
+}
+
+/**
+ * Extracts contact data from the form
+ * @param {HTMLFormElement} form - The form element
+ * @returns {Object} Contact data object
+ */
+function extractContactFormData(form) {
+  const formData = new FormData(form);
+  return {
     name: formData.get("name"),
     email: formData.get("email"),
     phone: formData.get("phone"),
   };
-  await addContactToFirebaseByUser(contactData);
-  closeAddContactOverlay();
-  showSuccessMessage("Contact successfully created");
+}
+
+/**
+ * Refreshes contacts list and floating overlay after contact creation
+ * @returns {Promise<void>} Resolves after refreshing the UI
+ */
+async function refreshContactsAfterCreation() {
   const contacts = await fetchContactsByIdAndUser();
+  loadedContacts = contacts;
   renderContactsList(contacts);
+  
+  await refreshFloatingContactIfVisible();
+}
+
+/**
+ * Refreshes the floating contact overlay if it's currently visible
+ * @returns {Promise<void>} Resolves after refreshing the overlay
+ */
+async function refreshFloatingContactIfVisible() {
+  const floatingContactContainer = document.getElementById("floatingContactOverlay");
+  
+  if (!isFloatingContactVisible(floatingContactContainer)) return;
+  
+  const currentContactId = getCurrentlyDisplayedContactId();
+  if (currentContactId) {
+    await showFloatingContact(currentContactId);
+  }
+}
+
+/**
+ * Checks if the floating contact overlay is currently visible
+ * @param {HTMLElement} container - The floating contact container
+ * @returns {boolean} True if the overlay is visible
+ */
+function isFloatingContactVisible(container) {
+  return container && container.style.display === "block";
+}
+
+/**
+ * Gets the ID of the currently displayed contact in the floating overlay
+ * @returns {string|null} The contact ID or null if none selected
+ */
+function getCurrentlyDisplayedContactId() {
+  const currentContactElement = document.querySelector(".contactItem.selected");
+  return currentContactElement ? currentContactElement.getAttribute("data-contact-id") : null;
 }
 
 /**
@@ -620,6 +676,7 @@ async function updateContact(event, contactId) {
   closeEditContactOverlay();
   showSuccessMessage("Contact successfully updated");
   const contacts = await fetchContactsByIdAndUser();
+  loadedContacts = contacts;
   renderContactsList(contacts);
   await showFloatingContact(contactId);
 }

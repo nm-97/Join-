@@ -87,27 +87,27 @@ function setupDropdownEvents(dropdownId, inputId, arrowId) {
   const dropdownInput = document.getElementById(inputId);
   const dropdownArrow = document.getElementById(arrowId);
   if (!dropdown || !dropdownInput || !dropdownArrow) return;
-  
+
   dropdownArrow.addEventListener("click", function (e) {
     e.preventDefault();
     e.stopPropagation();
     toggleDropdown(dropdownId);
   });
-  
+
   dropdownInput.addEventListener("focus", function () {
     openDropdown(dropdownId);
   });
-  
+
   dropdownInput.addEventListener("click", function () {
     openDropdown(dropdownId);
   });
-  
+
   document.addEventListener("click", function (e) {
     if (!dropdown.contains(e.target)) {
       closeDropdown(dropdownId);
     }
   });
-  
+
   dropdown.addEventListener("click", function (e) {
     e.stopPropagation();
   });
@@ -291,12 +291,24 @@ const categories = [
  * Initializes and loads the categories dropdown with predefined categories
  */
 function loadCategories() {
-  const categoriesDropdownList = document.getElementById("categoriesDropdownList");
-  if (!categoriesDropdownList) return;
+  // Wait for DOM to be ready
+  setTimeout(() => {
+    const categoriesDropdownList = document.getElementById(
+      "categoriesDropdownList"
+    );
+    if (!categoriesDropdownList) {
+      console.warn("categoriesDropdownList element not found, retrying...");
+      return;
+    }
 
-  renderCategoriesDropdown(categories);
-  setupDropdownEvents("customCategoryDropdown", "categoryDropdownInput", "categoryDropdownArrow");
-  setupCategorySelection();
+    renderCategoriesDropdown(categories);
+    setupDropdownEvents(
+      "customCategoryDropdown",
+      "categoryDropdownInput",
+      "categoryDropdownArrow"
+    );
+    setupCategorySelection();
+  }, 100);
 }
 
 /**
@@ -326,24 +338,34 @@ function renderCategoriesDropdown(categories) {
  * Sets up click event listeners for category selection in the dropdown
  */
 function setupCategorySelection() {
-  const categoryItems = document.querySelectorAll("[data-category-id]");
-  categoryItems.forEach((item) => {
-    item.addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const categoryId = this.getAttribute("data-category-id");
-      const categoryName = this.querySelector(".contactName").textContent;
-      selectedDropdownCategory = categoryId;
-      
-      const categoryDropdownInput = document.getElementById("categoryDropdownInput");
-      if (categoryDropdownInput) {
-        categoryDropdownInput.value = categoryName;
-      }
-      
-      closeDropdown("customCategoryDropdown");
+  // Use setTimeout to ensure DOM is ready
+  setTimeout(() => {
+    const categoryItems = document.querySelectorAll("[data-category-id]");
+
+    categoryItems.forEach((item) => {
+      // Remove any existing event listeners
+      item.removeEventListener("click", handleCategoryClick);
+      item.addEventListener("click", handleCategoryClick);
     });
-  });
+  }, 150);
+}
+
+function handleCategoryClick(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  const categoryId = this.getAttribute("data-category-id");
+  const categoryName = this.querySelector(".contactName").textContent;
+  selectedDropdownCategory = categoryId;
+
+  const categoryDropdownInput = document.getElementById(
+    "categoryDropdownInput"
+  );
+  if (categoryDropdownInput) {
+    categoryDropdownInput.value = categoryName;
+  }
+
+  closeDropdown("customCategoryDropdown");
 }
 
 /**
@@ -359,6 +381,24 @@ function getSelectedCategoryId() {
  * @returns {string} The selected category name or empty string if not found
  */
 function getSelectedCategoryName() {
-  const categoryDropdownInput = document.getElementById("categoryDropdownInput");
-  return categoryDropdownInput ? categoryDropdownInput.value : "";
+  const categoryDropdownInput = document.getElementById(
+    "categoryDropdownInput"
+  );
+  const inputValue = categoryDropdownInput ? categoryDropdownInput.value : "";
+
+  // If we have an input value, return it
+  if (inputValue) {
+    return inputValue;
+  }
+
+  // If no input value but we have a selected ID, map it to name
+  if (selectedDropdownCategory) {
+    const category = categories.find(
+      (cat) => cat.id === selectedDropdownCategory
+    );
+    const categoryName = category ? category.name : "";
+    return categoryName;
+  }
+
+  return "";
 }
