@@ -114,6 +114,37 @@
 .floatingContactCloseBtn {
   display: none;
 }
+@media (max-width: 1350px) and (min-width: 1025px) {
+  #floatingContactOverlay.desktop-mode {
+    position: static;
+    margin-top: 180px;
+    border-radius: 24px;
+  }
+  #floatingContactOverlay {
+    margin-top: 180px;
+  }
+
+  .floatingContactMainContent {
+    margin-left: 20px;
+  }
+
+  .floatingContactHeader {
+    gap: 24px;
+  }
+
+  .floatingContactInfo {
+    margin-top: 40px;
+  }
+
+  .floatingContactAvatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .floatingContactName {
+    font-size: 32px;
+  }
+}
 
 @media (max-width: 1024px) {
   :root {
@@ -150,6 +181,11 @@
     margin: 0 auto;
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  /* Show mobile header for both mobile-fullscreen and regular responsive view */
+  #floatingContactOverlay:not(.mobile-fullscreen) .mobileContactHeader {
+    display: flex;
   }
 
   .mobileContactHeader h1 {
@@ -375,40 +411,5 @@
   .contact-menu-content button img {
     width: 16px;
     height: 16px;
-  }
-}
-
-@media (min-width: 1025px) {
-  #floatingContactOverlay.desktop-mode {
-    position: static;
-    margin-top: 136px;
-    border-radius: 24px;
-  }
-}
-
-@media (max-width: 1350px) and (min-width: 1025px) {
-  #floatingContactOverlay {
-    margin-top: 180px;
-  }
-
-  .floatingContactMainContent {
-    margin-left: 20px;
-  }
-
-  .floatingContactHeader {
-    gap: 24px;
-  }
-
-  .floatingContactInfo {
-    margin-top: 40px;
-  }
-
-  .floatingContactAvatar {
-    width: 100px;
-    height: 100px;
-  }
-
-  .floatingContactName {
-    font-size: 32px;
   }
 }

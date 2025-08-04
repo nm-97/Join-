@@ -36,10 +36,44 @@ window.addEventListener("resize", () => {
   );
 
   if (floatingContactContainer && floatingContactContainer.innerHTML) {
-    // If there's content in the floating overlay, handle the resize
+    if (shouldAutoCloseOverlayOnResize()) {
+      closeFloatingContactOverlayResponsive();
+      return;
+    }
+
     handleFloatingOverlayResize();
   }
 });
+
+/**
+ * Determines if the floating overlay should be automatically closed on resize
+ * @returns {boolean} True if overlay should be closed
+ */
+function shouldAutoCloseOverlayOnResize() {
+  const currentWidth = window.innerWidth;
+  const wasMobile = document.body.classList.contains("was-mobile-overlay");
+  const wasDesktop = document.body.classList.contains("was-desktop-overlay");
+  const isNowMobile = currentWidth <= 1024;
+  const isNowDesktop = currentWidth > 1024;
+  if ((wasMobile && isNowDesktop) || (wasDesktop && isNowMobile)) {
+    document.body.classList.remove("was-mobile-overlay", "was-desktop-overlay");
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Tracks the current overlay mode for resize detection
+ */
+function trackOverlayMode() {
+  const isMobile = window.innerWidth <= 1024;
+  document.body.classList.remove("was-mobile-overlay", "was-desktop-overlay");
+  if (isMobile) {
+    document.body.classList.add("was-mobile-overlay");
+  } else {
+    document.body.classList.add("was-desktop-overlay");
+  }
+}
 
 function handleFloatingOverlayResize() {
   const floatingContactContainer = document.getElementById(
@@ -52,7 +86,7 @@ function handleFloatingOverlayResize() {
   const addContactButton = document.getElementById("addContactButton");
   const contactsMainContent = document.getElementById("contactsMainContent");
   const contactsRightPanel = document.getElementById("contactsRightPanel");
-
+  handleMobileHeaderVisibility(floatingContactContainer);
   if (isMobile) {
     configureMobileFloatingContact(
       floatingContactContainer,
@@ -67,6 +101,52 @@ function handleFloatingOverlayResize() {
       addContactButton,
       contactsRightPanel
     );
+  }
+}
+
+/**
+ * Adds mobile header to the floating contact container
+ * @param {HTMLElement} floatingContactContainer - The floating contact container
+ */
+function addMobileHeader(floatingContactContainer) {
+  const headerHTML = `
+    <div class="mobileContactHeader">
+      <h1>Contacts</h1>
+      <span class="mobileContactSubtitle">Better with a team</span>
+      <button class="floatingContactCloseBtn" onclick="closeFloatingContactOverlayResponsive()">
+        <img src="../assets/icons/shared/close.svg" alt="Close">
+      </button>
+    </div>
+  `;
+  floatingContactContainer.insertAdjacentHTML("afterbegin", headerHTML);
+}
+
+/**
+ * Removes mobile header from the floating contact container
+ * @param {HTMLElement} floatingContactContainer - The floating contact container
+ */
+function removeMobileHeader(floatingContactContainer) {
+  const existingHeader = floatingContactContainer.querySelector(
+    ".mobileContactHeader"
+  );
+  if (existingHeader) {
+    existingHeader.remove();
+  }
+}
+
+/**
+ * Handles mobile header visibility based on screen size
+ * @param {HTMLElement} floatingContactContainer - The floating contact container
+ */
+function handleMobileHeaderVisibility(floatingContactContainer) {
+  const shouldShowHeader = window.innerWidth <= 1024;
+  const existingHeader = floatingContactContainer.querySelector(
+    ".mobileContactHeader"
+  );
+  if (shouldShowHeader && !existingHeader) {
+    addMobileHeader(floatingContactContainer);
+  } else if (!shouldShowHeader && existingHeader) {
+    removeMobileHeader(floatingContactContainer);
   }
 }
 
@@ -127,6 +207,7 @@ async function showFloatingContact(contactId) {
   if (floatingContactContainer) {
     floatingContactContainer.innerHTML = getFloatingContact(contact);
     floatingContactContainer.style.display = "block";
+    trackOverlayMode();
   }
 }
 
@@ -154,23 +235,15 @@ function configureMobileFloatingContact(
   addContactButton,
   contactsMainContent
 ) {
-  // Hide contacts list and add button in mobile view
   if (contactsList) contactsList.style.display = "none";
   if (addContactButton) {
     addContactButton.style.display = "none";
     addContactButton.classList.add("floating-hidden");
   }
-
-  // Add class to body for additional targeting
   document.body.classList.add("floating-overlay-open");
-
-  // Move overlay to body for mobile (fullscreen)
   document.body.appendChild(floatingContactContainer);
-
-  // Add CSS class for mobile fullscreen behavior
   floatingContactContainer.classList.add("mobile-fullscreen");
   floatingContactContainer.classList.remove("desktop-mode");
-
   console.log("Overlay configured for mobile with CSS classes");
 }
 
@@ -180,25 +253,16 @@ function configureDesktopFloatingContact(
   addContactButton,
   contactsRightPanel
 ) {
-  // Add CSS class for desktop behavior
   floatingContactContainer.classList.add("desktop-mode");
   floatingContactContainer.classList.remove("mobile-fullscreen");
-
-  // Hide add button for desktop too
   if (addContactButton) {
     addContactButton.style.display = "none";
     addContactButton.classList.add("floating-hidden");
   }
-
-  // Add class to body for additional targeting
   document.body.classList.add("floating-overlay-open");
-
-  // Ensure overlay is in the right panel
   if (contactsRightPanel) {
     contactsRightPanel.appendChild(floatingContactContainer);
   }
-
-  // Keep contacts list visible in desktop view
   if (contactsList) contactsList.style.display = "block";
 }
 
@@ -220,14 +284,12 @@ function showFloatingContactForResponsive(contact) {
   const floatingContactContainer = document.getElementById(
     "floatingContactOverlay"
   );
-
   const contactsList = document.getElementById("contactsList");
   const addContactButton = document.getElementById("addContactButton");
   const contactsMainContent = document.getElementById("contactsMainContent");
   const contactsRightPanel = document.getElementById("contactsRightPanel");
-
   floatingContactContainer.innerHTML = getFloatingContact(contact, isMobile);
-
+  trackOverlayMode();
   if (isMobile) {
     configureMobileFloatingContact(
       floatingContactContainer,
@@ -243,19 +305,7 @@ function showFloatingContactForResponsive(contact) {
       contactsRightPanel
     );
   }
-
   setupFloatingContactContent(floatingContactContainer, contact);
-
-  // DEBUG: CSS-Styles überprüfen
-  console.log("Container styles:", {
-    display: floatingContactContainer.style.display,
-    visibility: getComputedStyle(floatingContactContainer).visibility,
-    opacity: getComputedStyle(floatingContactContainer).opacity,
-    zIndex: getComputedStyle(floatingContactContainer).zIndex,
-    position: getComputedStyle(floatingContactContainer).position,
-    height: getComputedStyle(floatingContactContainer).height,
-    width: getComputedStyle(floatingContactContainer).width,
-  });
 }
 
 /**
@@ -384,12 +434,10 @@ function showContactMenu(contactId) {
  * @param {string} contactId - The contact ID to generate menu for
  */
 function createContactMenuOverlay(contactId) {
-  // Check if overlay already exists to prevent duplicates
   const existingOverlay = document.querySelector(".contact-menu-overlay");
   if (existingOverlay) {
     existingOverlay.remove();
   }
-
   const overlay = getContactMenuOverlay(contactId);
   document.body.insertAdjacentHTML("beforeend", overlay);
 }
@@ -430,6 +478,7 @@ function closeContactMenu() {
  * Closes the floating contact detail overlay for responsive design
  */
 function closeFloatingContactOverlayResponsive() {
+  document.body.classList.remove("was-mobile-overlay", "was-desktop-overlay");
   if (isMobileDevice()) {
     const floatingContactContainer = document.getElementById(
       "floatingContactOverlay"
@@ -447,8 +496,6 @@ function closeFloatingContactOverlayResponsive() {
       addContactButton.style.display = "block";
       addContactButton.classList.remove("floating-hidden");
     }
-
-    // Remove body class when closing overlay
     document.body.classList.remove("floating-overlay-open");
   } else {
     closeFloatingContactOverlay();
@@ -526,13 +573,10 @@ function setupAddContactOverlayEventListeners() {
 async function showEditContactOverlay(contactId) {
   try {
     const contact = await fetchContactByIdAndUser(contactId);
-
     if (!contact) {
       return;
     }
-
     const overlay = document.getElementById("editContactOverlay");
-
     if (overlay) {
       overlay.innerHTML = getEditContactOverlay(contact);
       overlay.style.display = "flex";
@@ -588,13 +632,10 @@ function setupEditContactOverlayEventListeners() {
 async function createContact(event) {
   event.preventDefault();
   if (!validateContactForm()) return;
-
   const contactData = extractContactFormData(event.target);
   await addContactToFirebaseByUser(contactData);
-
   closeAddContactOverlay();
   showSuccessMessage("Contact successfully created");
-
   await refreshContactsAfterCreation();
 }
 
@@ -620,7 +661,6 @@ async function refreshContactsAfterCreation() {
   const contacts = await fetchContactsByIdAndUser();
   loadedContacts = contacts;
   renderContactsList(contacts);
-
   await refreshFloatingContactIfVisible();
 }
 
@@ -632,9 +672,7 @@ async function refreshFloatingContactIfVisible() {
   const floatingContactContainer = document.getElementById(
     "floatingContactOverlay"
   );
-
   if (!isFloatingContactVisible(floatingContactContainer)) return;
-
   const currentContactId = getCurrentlyDisplayedContactId();
   if (currentContactId) {
     await showFloatingContact(currentContactId);
@@ -726,6 +764,7 @@ async function updateContactsUI() {
  * Closes the floating contact detail overlay
  */
 function closeFloatingContactOverlay() {
+  document.body.classList.remove("was-mobile-overlay", "was-desktop-overlay");
   const floatingContactContainer = document.getElementById(
     "floatingContactOverlay"
   );

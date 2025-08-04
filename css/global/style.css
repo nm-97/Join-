@@ -393,6 +393,17 @@ body {
   .navBtn:hover {
     color: white;
   }
+
+  .navBtn.selected,
+  .navBtn.active {
+    background-color: #091931;
+    border-radius: 16px;
+    color: white;
+    width: 112px !important;
+    height: 72px !important;
+    max-width: 112px;
+    max-height: 72px;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -439,6 +450,17 @@ body {
   .navBtn.active,
   .navBtn:hover {
     color: white;
+  }
+
+  .navBtn.selected,
+  .navBtn.active {
+    background-color: #091931;
+    border-radius: 16px;
+    color: white;
+    width: 112px !important;
+    height: 72px !important;
+    max-width: 112px;
+    max-height: 72px;
   }
 
   .mobileLogo {

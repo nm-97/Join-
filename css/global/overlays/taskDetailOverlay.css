@@ -73,6 +73,9 @@
   cursor: pointer;
   padding: 0;
   color: #2a3f5f;
+  position: absolute;
+  top: 48px;
+  right: 36px;
 }
 
 .modalTitle {

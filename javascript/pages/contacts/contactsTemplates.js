@@ -136,7 +136,10 @@ function getEditContactOverlay(contact) {
 function getFloatingContact(contact, isMobile = false) {
   const initials = getInitials(contact.name);
   const color = getAvatarColor(contact.name);
-  const mobileHeader = isMobile
+
+  const shouldShowMobileHeader = isMobile || window.innerWidth <= 1024;
+
+  const mobileHeader = shouldShowMobileHeader
     ? `
     <div class="mobileContactHeader">
       <h1>Contacts</h1>
