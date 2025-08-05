@@ -25,10 +25,12 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  max-width: 1920px;
+  margin: 0 auto;
 }
 @font-face {
   font-family: "Inter";
-  src: url("../assets/fonts/Inter/Inter-VariableFont_opsz,wght.ttf")
+  src: url("../../assets/fonts/Inter/Inter-VariableFont_opsz,wght.ttf")
     format("truetype");
   font-display: swap;
 }

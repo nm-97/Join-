@@ -8,8 +8,7 @@ html,
 body {
   height: 100vh;
   min-height: 100vh;
-  width: 100vw;
-  min-width: 100vw;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -18,7 +17,9 @@ body {
   flex-direction: column;
   min-height: 100vh;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
   overflow: hidden;
   background: #f6f7f8;
 }
@@ -266,7 +267,8 @@ footer {
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  width: 100vw;
+  width: 100%;
+  max-width: 1920px;
 }
 
 footer a {
@@ -510,7 +512,7 @@ footer a:hover {
     padding: 2px 8px;
   }
 
-  .SignUpbtn a{
+  .SignUpbtn a {
     padding: 0 !important;
   }
 }
