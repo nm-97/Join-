@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/global/style.css" />
     <link rel="stylesheet" href="../css/global/Login/LogIn.css" />
     <link rel="stylesheet" href="../css/global/validation/validation.css" />
-    <link rel="stylesheet" href="../css/global/forms.css">
+    <link rel="stylesheet" href="../css/global/forms.css" />
     <script src="../javascript/global/firebase.js"></script>
     <script src="../javascript/global/user.js"></script>
     <script src="../javascript/global/utils.js"></script>
@@ -18,10 +18,10 @@
   </head>
 
   <body class="fontStyle">
-    <a id="loadingScreen" href="../html/index.html">
-      <img id="loadingScreen" src="" alt="join_logo" />
-    </a>
     <header class="logoPageHeader headerLogin hide">
+      <a id="loadingScreen" href="../html/index.html">
+        <img id="loadingScreen" src="" alt="join_logo" />
+      </a>
       <div class="SignUpbtnPosition">
         <p>Not a Join user?</p>
         <button class="SignUpbtn" id="signUpButton">
@@ -58,8 +58,12 @@
     </main>
 
     <footer class="hide">
-      <a href="#" onclick="redirectToPrivacyPolicy()" class="desktopOnly">Privacy Policy</a>
-      <a href="#" onclick="redirectToLegalNotice()" class="desktopOnly">Legal Notice</a>
+      <a href="#" onclick="redirectToPrivacyPolicy()" class="desktopOnly"
+        >Privacy Policy</a
+      >
+      <a href="#" onclick="redirectToLegalNotice()" class="desktopOnly"
+        >Legal Notice</a
+      >
       <a href="../html/privacyPoliceResponisve.html" class="mobileOnly"
         >Privacy Policy</a
       >

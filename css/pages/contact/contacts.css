@@ -18,7 +18,7 @@
 .contactsMainContent {
   padding: 32px 24px;
   height: 100%;
-  overflow: hidden;
+  overflow: scroll;
   background-color: #f8f9fa;
 }
 
@@ -97,8 +97,6 @@
 
 .contactsList {
   flex: 1;
-  height: 100%;
-  overflow-y: scroll;
   border-radius: 10px;
   padding: 0 8px 8px 0;
 }
@@ -126,16 +124,10 @@
   border-radius: 10px;
 }
 
-.contactItem:hover .contactName,
 .contactItem:hover {
-  color: #ffffff;
-}
-
-.contactItem:hover {
-  transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
   filter: brightness(1) contrast(1);
-  background-color: #2a3647;
+  background-color: #f8f9fa;
   transition: color 0.2s ease;
   color: #ffffff;
 }
@@ -284,6 +276,8 @@
   .contactsList {
     background-color: #ffffff;
     padding-top: 40px;
+    overflow: scroll;
+    margin-bottom: 70px;
   }
 
   .addContactButton {
