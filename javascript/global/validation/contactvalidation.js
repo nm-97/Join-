@@ -1,14 +1,7 @@
-/**
- * @fileoverview Contact form validation functions
- * Handles validation for contact creation and editing forms
- * @author Join Project Team
- * @version 1.0.0
- */
-
 "use strict";
 
 /**
- * Validates the complete contact form by checking all required and optional fields
+ * Validates the complete contact form by checking all required fields
  * Retrieves name, email, and phone input elements and validates their values comprehensively
  * Clears previous errors, performs validation, and displays appropriate error messages if validation fails
  * @function validateContactForm
@@ -35,65 +28,136 @@ function validateContactForm() {
 
 /**
  * Performs comprehensive validation checks on all contact form fields with detailed error reporting
- * Validates required name field, optional email format, and optional phone number format and length
+ * Validates required name, email, and phone fields and creates appropriate combined error messages
  * Returns structured validation result object with success status and specific error messages
  * @function checkAllContactFields
  * @param {string} name - The contact name string to validate for required field completion
- * @param {string} email - The email address string to validate for proper format (optional field)
- * @param {string} phone - The phone number string to validate for format and length constraints (optional field)
+ * @param {string} email - The email address string to validate for proper format (required field)
+ * @param {string} phone - The phone number string to validate for format and length constraints (required field)
  * @returns {Object} Validation result object containing isValid boolean and errorText string for user feedback
  */
 function checkAllContactFields(name, email, phone) {
+  const missingFields = [];
+  const invalidFields = [];
+  
   if (!validateRequired(name)) {
-    return { isValid: false, errorText: "Please enter a name." };
+    missingFields.push("name");
   }
-  if (email && !validateEmail(email)) {
-    return { isValid: false, errorText: "Please enter a valid email address." };
+  
+  if (!validateRequired(email)) {
+    missingFields.push("email address");
+  } else if (!validateEmail(email)) {
+    invalidFields.push("email address");
   }
-  if (phone && !validatePhone(phone)) {
-    return {
-      isValid: false,
-      errorText: "Phone number is too long or contains invalid characters.",
-    };
+  
+  if (!validateRequired(phone)) {
+    missingFields.push("phone number");
+  } else if (!validatePhone(phone)) {
+    invalidFields.push("phone number");
   }
+  
+  if (missingFields.length > 0) {
+    return { isValid: false, errorText: createMissingFieldsMessage(missingFields) };
+  }
+  
+  if (invalidFields.length > 0) {
+    return { isValid: false, errorText: createInvalidFieldsMessage(invalidFields) };
+  }
+  
   return { isValid: true };
 }
 
 /**
+ * Creates appropriate error message for missing required fields
+ * @function createMissingFieldsMessage
+ * @param {Array} missingFields - Array of missing field names
+ * @returns {string} Formatted error message for missing fields
+ */
+function createMissingFieldsMessage(missingFields) {
+  if (missingFields.length === 1) {
+    return `Please enter a ${missingFields[0]}.`;
+  } else if (missingFields.length === 2) {
+    return `Please enter a ${missingFields[0]} and ${missingFields[1]}.`;
+  } else {
+    return `Please enter a ${missingFields[0]}, ${missingFields[1]} and ${missingFields[2]}.`;
+  }
+}
+
+/**
+ * Creates appropriate error message for invalid field formats
+ * @function createInvalidFieldsMessage
+ * @param {Array} invalidFields - Array of invalid field names
+ * @returns {string} Formatted error message for invalid fields
+ */
+function createInvalidFieldsMessage(invalidFields) {
+  if (invalidFields.length === 1) {
+    return `Please enter a valid ${invalidFields[0]}.`;
+  } else if (invalidFields.length === 2) {
+    return `Please enter a valid ${invalidFields[0]} and ${invalidFields[1]}.`;
+  } else {
+    return `Please enter a valid ${invalidFields[0]}, ${invalidFields[1]} and ${invalidFields[2]}.`;
+  }
+}
+
+/**
  * Validates phone number format and length constraints for contact form submission
- * Checks maximum length of 15 characters and validates against allowed phone number characters
- * Uses regex pattern to ensure only numbers, plus signs, hyphens, spaces, and parentheses are allowed
+ * Checks maximum length of 15 characters and validates that only one plus sign at the beginning is allowed, followed by numbers only
  * @function validatePhone
  * @param {string} phone - The phone number string to validate for format and length compliance
  * @returns {boolean} True if phone number meets format and length requirements, false if validation fails
  */
 function validatePhone(phone) {
   if (phone.length > 15) return false;
-  const phoneRegex = /^[0-9+\-\s()]+$/;
+  const phoneRegex = /^\+?[0-9]+$/;
   return phoneRegex.test(phone);
+}
+
+/**
+ * Validates email address format including proper domain structure with top-level domain
+ * Checks for valid email format with @ symbol, domain name, and TLD with at least 2 characters
+ * @function validateEmail
+ * @param {string} email - The email address string to validate
+ * @returns {boolean} True if email has valid format with proper TLD, false if validation fails
+ */
+function validateEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(email);
+}
+
+/**
+ * Validates that a required field contains a non-empty value
+ * @function validateRequired
+ * @param {string} value - The field value to check
+ * @returns {boolean} True if field has content, false if empty or whitespace only
+ */
+function validateRequired(value) {
+  return value && value.trim().length > 0;
 }
 
 /**
  * Applies error styling to contact form input fields based on validation failures
  * Adds errorInput class to fields that fail validation for visual feedback to user
- * Handles name required validation, email format validation, and phone format validation independently
+ * Handles name, email, and phone required validation and format validation independently
  * @function markContactErrorInputs
  * @param {string} name - The name input value to check for required field validation
- * @param {string} email - The email input value to check for format validation
- * @param {string} phone - The phone input value to check for format and length validation
+ * @param {string} email - The email input value to check for required field and format validation
+ * @param {string} phone - The phone input value to check for required field and format validation
  * @returns {void} No return value, applies CSS error classes to invalid input elements
  */
 function markContactErrorInputs(name, email, phone) {
   const nameInput = document.querySelector('input[name="name"]');
   const emailInput = document.querySelector('input[name="email"]');
   const phoneInput = document.querySelector('input[name="phone"]');
+  
   if (!validateRequired(name)) {
     nameInput.classList.add("errorInput");
   }
-  if (email && !validateEmail(email)) {
+  
+  if (!validateRequired(email) || !validateEmail(email)) {
     emailInput.classList.add("errorInput");
   }
-  if (phone && !validatePhone(phone)) {
+  
+  if (!validateRequired(phone) || !validatePhone(phone)) {
     phoneInput.classList.add("errorInput");
   }
 }
@@ -135,7 +199,7 @@ function showContactError(text) {
 /**
  * Sets up real-time input filtering for phone number fields to allow only valid characters
  * Adds event listeners to all phone input fields to filter out invalid characters as user types
- * Automatically removes any characters not matching phone number pattern (numbers, +, -, spaces, parentheses)
+ * Automatically removes any characters not matching phone number pattern (optional plus at start, then numbers only)
  * @function setupPhoneInputFilter
  * @returns {void} No return value, configures input event listeners for phone number validation filtering
  */
@@ -145,7 +209,17 @@ function setupPhoneInputFilter() {
     const phoneInput = phoneInputs[i];
     phoneInput.addEventListener("input", function (e) {
       let value = e.target.value;
-      let filteredValue = value.replace(/[^0-9+\-\s()]/g, "");
+      let filteredValue = "";
+      
+      for (let j = 0; j < value.length && filteredValue.length < 15; j++) {
+        const char = value.charAt(j);
+        if (j === 0 && char === '+') {
+          filteredValue += char;
+        } else if (char >= '0' && char <= '9') {
+          filteredValue += char;
+        }
+      }
+      
       if (value !== filteredValue) {
         e.target.value = filteredValue;
       }
