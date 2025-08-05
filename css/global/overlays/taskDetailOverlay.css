@@ -27,8 +27,7 @@
   max-width: 525px;
   width: 90%;
   max-height: 90vh;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  overflow-y: auto;
   position: relative;
   animation: overlayMoveFromRight 200ms ease-in-out forwards;
   transform: translateZ(0);

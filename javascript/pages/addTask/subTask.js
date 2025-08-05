@@ -48,11 +48,11 @@ function setupSubtaskIconEvents() {
 }
 
 /**
- * Sets up double-click events for the subtask input field to enable quick subtask creation
- * Attaches double-click event handler to subtask input for alternative subtask creation method
- * Provides convenient double-click subtask creation functionality as alternative to button click
+ * Sets up double-click events and Enter key events for the subtask input field to enable quick subtask creation
+ * Attaches double-click event handler and Enter key handler to subtask input for alternative subtask creation methods
+ * Provides convenient double-click and Enter key subtask creation functionality as alternative to button click
  * @function setupSubtaskInputEvents
- * @returns {void} No return value, configures subtask input field double-click event handling
+ * @returns {void} No return value, configures subtask input field double-click and Enter key event handling
  */
 function setupSubtaskInputEvents() {
   const subtaskInput = document.getElementById("taskSubtask");
@@ -60,6 +60,14 @@ function setupSubtaskInputEvents() {
     subtaskInput.addEventListener("dblclick", function (e) {
       e.preventDefault();
       addSubtaskToTask();
+    });
+
+    // Add Enter key event listener
+    subtaskInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        addSubtaskToTask();
+      }
     });
   }
 }
