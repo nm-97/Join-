@@ -8,7 +8,6 @@
   font-family: "Inter", sans-serif;
 }
 
-/* Screen reader only - visually hidden but accessible */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -29,8 +28,7 @@ body {
 }
 @font-face {
   font-family: "Inter";
-  src: url("/assets/fonts/Inter/Inter-VariableFont_opsz\,wght.ttf")
-    /*src: url("../assets/fonts/Inter/Inter-VariableFont_opsz,wght.ttf")*/
+  src: url("../assets/fonts/Inter/Inter-VariableFont_opsz,wght.ttf")
     format("truetype");
   font-display: swap;
 }
