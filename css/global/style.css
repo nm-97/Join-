@@ -382,7 +382,6 @@ body {
     cursor: pointer;
     padding: 6px;
     flex: 1;
-    min-width: 112px;
     height: 72px;
     transition: all 0.2s ease;
   }
@@ -440,7 +439,6 @@ body {
     cursor: pointer;
     padding: 6px;
     flex: 1;
-    min-width: 112px;
     height: 72px;
     transition: all 0.2s ease;
   }
@@ -461,9 +459,7 @@ body {
     background-color: #091931;
     border-radius: 16px;
     color: white;
-    width: 112px !important;
     height: 72px !important;
-    max-width: 112px;
     max-height: 72px;
     align-items: center;
     justify-content: center;
@@ -524,6 +520,5 @@ body {
 
   .bottomNav.legal-responsive .navBtn {
     flex: none;
-    min-width: 120px;
   }
 }
