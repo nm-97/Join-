@@ -23,7 +23,7 @@
   max-width: 1100px;
   height: 65vh;
   position: relative;
-  overflow-y: auto;
+  overflow: scroll;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   animation: overlayMoveFromRight 200ms ease-in-out forwards;
   transform: translateZ(0);
