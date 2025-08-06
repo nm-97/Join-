@@ -26,7 +26,6 @@ body {
   display: flex;
   justify-content: center;
   max-width: 1920px;
-  margin: 0 auto;
 }
 @font-face {
   font-family: "Inter";
