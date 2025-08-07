@@ -225,7 +225,6 @@ function configureMobileFloatingContact(
   document.body.appendChild(floatingContactContainer);
   floatingContactContainer.classList.add("mobile-fullscreen");
   floatingContactContainer.classList.remove("desktop-mode");
-  console.log("Overlay configured for mobile with CSS classes");
 }
 
 /**
