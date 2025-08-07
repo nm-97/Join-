@@ -14,8 +14,10 @@ function getAddTaskOverlay(params = {}) {
   return `
        <div class="overlayContent">
            <button class="closeBtn" onclick="closeAddTaskOverlay()">&times;</button>
-           <h1 class="addTaskH1">Add Task</h1>
            <div class="addTaskFormsWrapper">
+           <div class="testMal">
+           <h1 class="addTaskH1">Add Task</h1>
+            <div class="formContent">
                <form>
                  <div class="formGroup">
                    <label for="taskTitle"
@@ -116,6 +118,9 @@ function getAddTaskOverlay(params = {}) {
                  </div>
                </form>
            </div>
+           </div>
+           
+       </div>
        </div>`;
 }
 

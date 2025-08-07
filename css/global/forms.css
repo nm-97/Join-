@@ -5,6 +5,10 @@
   margin-bottom: 25px;
 }
 
+.formContent{
+  display: flex;
+}
+
 label {
   font-size: 20px;
 }
@@ -420,8 +424,7 @@ textarea::placeholder {
     bottom: auto;
     left: auto;
     right: auto;
-    padding: 20px 0;
-    margin-top: 20px;
+    justify-content: center;
     width: 100%;
   }
 }
@@ -437,7 +440,7 @@ textarea::placeholder {
   }
 }
 
-@media (max-width: 470px) {
+@media (max-width: 890px) {
   label {
     font-size: 16px;
   }
@@ -497,5 +500,33 @@ textarea::placeholder {
 
   .customDropdown {
     width: 100% !important;
+  }
+}
+
+@media (max-width: 765px) {
+  .formContent {
+    flex-direction: column;
+  }
+
+    .addTaskFormsDivider {
+    display: none;
+  }
+
+  .cancelTaskBtn,
+  .addTaskBtn{
+    padding: 9px !important;
+  }
+
+  .addTaskFormsWrapper{
+    margin: 32px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 428px) {
+  .addTaskFormsWrapper{
+    display: block;
+    justify-content: flex-start;
   }
 }
