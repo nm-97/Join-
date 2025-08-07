@@ -267,6 +267,11 @@
     overflow-y: scroll;
     margin: auto;
     padding: 0px 50px;
+    background-color: white;
+  }
+
+  .alphabetSeparator::after{
+    width: 673px;
   }
 
   .contactsRightPanel {
