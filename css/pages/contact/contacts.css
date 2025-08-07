@@ -266,7 +266,7 @@
   .contactsMainContent {
     overflow-y: scroll;
     margin: auto;
-    padding: 0px 50px;
+    padding: 0px 16px;
     background-color: white;
   }
 
