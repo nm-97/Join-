@@ -14,7 +14,7 @@
   margin-bottom: 52px;
 }
 
-.formContent{
+.formContent {
   display: flex;
 }
 
@@ -259,8 +259,7 @@ label {
 } */
 
 @media (max-width: 1267px) {
-
-  .mainContent{
+  .mainContent {
     display: flex;
     justify-content: center;
   }
@@ -269,23 +268,22 @@ label {
     flex-direction: column;
   }
 
-    .addTaskFormsDivider {
+  .addTaskFormsDivider {
     display: none;
   }
 
-  .addTaskFormsWrapper{
+  .addTaskFormsWrapper {
     margin: 0 !important;
     margin-top: 26px !important;
   }
 }
 
 @media (max-width: 1024px) {
-
-  .addTaskH1{
+  .addTaskH1 {
     margin-left: 0;
     margin-top: 0;
   }
-  }
+}
 
 @media (max-width: 545px) {
   .pageHeader {
@@ -392,7 +390,6 @@ label {
     overflow-y: auto;
   }
 
-
   .customDropdown {
     width: 100%;
     max-width: 396px;
@@ -466,8 +463,6 @@ label {
     width: 100%;
     height: 80px;
   }
-
-
 
   #taskDueDate {
     max-width: 100%;
