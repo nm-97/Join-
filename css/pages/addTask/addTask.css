@@ -247,7 +247,6 @@ label {
   transition: all 0.3s ease;
 }
 
-/* Large Desktop - 1350px */
 @media (max-width: 1361px) {
   .addTaskFormsDivider {
     margin: 0;
