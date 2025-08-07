@@ -241,7 +241,12 @@ function getSuccessAddTaskMessageTemplate() {
  * @returns {string} HTML string for the add task main content
  */
 function getaddTaskMainContent() {
-  return ` <form>
+  return `<div class="pageHeader">
+            <h1 class="addTaskH1">Add Task</h1>
+          </div>
+
+          <div class="formContent">
+            <form>
              <div class="formGroup">
                <label for="taskTitle">Title <span class="requiredStar">*</span></label>
                <input type="text" placeholder="Enter a title" id="taskTitle" name="taskTitle"/>
@@ -346,5 +351,6 @@ function getaddTaskMainContent() {
              </button>
                </div>
              </div>
-           </form>`;
+           </form>
+           </div>`;
 }
