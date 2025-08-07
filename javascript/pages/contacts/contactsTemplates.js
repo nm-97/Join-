@@ -211,13 +211,13 @@ function getMobileMenuButton(contactId) {
  */
 function getContactMenuOverlay(contactId) {
   return `
-    <div class="contact-menu-overlay" onclick="closeContactMenu()">
+    <div class="contact-menu-overlay">
       <div class="contact-menu-content">
-        <button class="floatingEditBtn" onclick="showEditContactOverlay('${contactId}'); closeContactMenu()">
+        <button class="floatingEditBtn" data-contact-id="${contactId}">
           <img src="../assets/icons/shared/edit.svg" alt="edit">
           <span>Edit</span>
         </button>
-        <button class="floatingDeleteBtn" onclick="deleteContact('${contactId}'); closeContactMenu()">
+        <button class="floatingDeleteBtn" data-contact-id="${contactId}">
           <img src="../assets/icons/shared/delete.svg" alt="delete">
           <span>Delete</span>
         </button>
