@@ -5,16 +5,17 @@
 }
 
 .addTaskFormsWrapper {
-  display: flex;
   gap: 32px;
   margin: 60px;
 }
 
 .addTaskH1 {
-  font-weight: 700;
   font-size: 61px;
-  margin-top: 60px;
-  margin-left: 60px;
+  margin-bottom: 52px;
+}
+
+.formContent{
+  display: flex;
 }
 
 .addTaskFormsWrapper form {
@@ -247,45 +248,48 @@ label {
   transition: all 0.3s ease;
 }
 
-/* Large Desktop - 1350px */
-@media (max-width: 1361px) {
-  .addTaskFormsDivider {
-    margin: 0;
-  }
-}
-
-@media (max-width: 1283px) {
+/* @media (max-width: 1283px) {
   .addTaskFormsWrapper {
     flex-direction: column;
   }
 
   .addTaskFormsDivider {
     display: none;
+  }
+} */
+
+@media (max-width: 1267px) {
+
+  .mainContent{
+    display: flex;
+    justify-content: center;
+  }
+
+  .formContent {
+    flex-direction: column;
+  }
+
+    .addTaskFormsDivider {
+    display: none;
+  }
+
+  .addTaskFormsWrapper{
+    margin: 0 !important;
+    margin-top: 26px !important;
   }
 }
 
 @media (max-width: 1024px) {
-  .addTaskFormsWrapper {
-    flex-direction: column;
+
+  .addTaskH1{
+    margin-left: 0;
+    margin-top: 0;
+  }
   }
 
-  .addTaskFormsDivider {
-    display: none;
-  }
-}
 @media (max-width: 545px) {
   .pageHeader {
     margin-left: 0;
-  }
-
-  .addTaskH1 {
-    margin-left: 32px;
-    font-size: 42px;
-  }
-
-  .addTaskFormsWrapper {
-    margin: 32px;
-    gap: 16px;
   }
 
   input,
@@ -388,23 +392,6 @@ label {
     overflow-y: auto;
   }
 
-  .addTaskFormsWrapper {
-    flex-direction: column;
-    margin: 20px;
-    gap: 20px;
-  }
-
-  .addTaskH1 {
-    font-size: 47px;
-    margin-top: 48px;
-    margin-left: 16px;
-    margin-bottom: 16px;
-  }
-
-  .mainContent {
-    overflow-y: auto;
-    padding-bottom: 100px;
-  }
 
   .customDropdown {
     width: 100%;
@@ -420,12 +407,6 @@ label {
     max-width: 100%;
     width: 100%;
     height: 88px;
-  }
-
-  #taskTitle {
-    max-width: 100%;
-    width: 100%;
-    height: 40px;
   }
 
   #taskDueDate {
@@ -480,23 +461,13 @@ label {
     gap: 16px;
   }
 
-  .addTaskH1 {
-    font-size: 32px;
-    margin-left: 16px;
-    margin-top: 32px;
-  }
-
   #taskDescription {
     max-width: 100%;
     width: 100%;
     height: 80px;
   }
 
-  #taskTitle {
-    max-width: 100%;
-    width: 100%;
-    height: 40px;
-  }
+
 
   #taskDueDate {
     max-width: 100%;
