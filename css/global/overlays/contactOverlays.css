@@ -239,6 +239,14 @@
     font-size: 51px;
   }
 
+  .addContactModalLeft {
+    padding: 64px 25px;
+  }
+
+  .addContactModalRight {
+    padding: 37px;
+  }
+
   .floatingEditBtn,
   .floatingDeleteBtn {
     display: none;
@@ -332,6 +340,8 @@
     margin-bottom: 32px;
     margin-top: -60px;
     z-index: 1;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .addContactAvatar,
@@ -373,5 +383,8 @@
     justify-content: center;
     font-size: 21px;
     margin: auto;
+  }
+  .editContactInputWrapper input {
+    font-size: 16px;
   }
 }
