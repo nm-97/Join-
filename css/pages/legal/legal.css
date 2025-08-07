@@ -15,7 +15,6 @@ body {
 
 .mainContent {
   flex: 1;
-  padding: 40px;
   overflow-y: auto;
   background: #f6f7f8;
 }

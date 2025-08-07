@@ -19,11 +19,11 @@
 .overlayContent {
   background-color: #f5f5f7;
   border-radius: 30px;
-  width: 90%;
+  width: 100%;
   max-width: 1100px;
-  height: 65vh;
   position: relative;
   overflow: scroll;
+  margin: 16px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   animation: overlayMoveFromRight 200ms ease-in-out forwards;
   transform: translateZ(0);
@@ -55,28 +55,17 @@
 .addTaskH1 {
   font-weight: 700;
   font-size: 61px;
-  margin-top: 60px;
-  margin-left: 60px;
+  margin-bottom: 52px;
 }
 
 @media (max-width: 545px) {
-  .addTaskH1 {
-    margin-left: 32px;
-  }
-
   .addTaskFormsWrapper {
     margin: 32px;
   }
 }
 
 @media (max-width: 428px) {
-  .addTaskH1 {
-    margin-left: 20px;
-    font-size: 48px;
-  }
-
   .overlayContent {
-    height: 90vh;
     width: 95%;
   }
 }
