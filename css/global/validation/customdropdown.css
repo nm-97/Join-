@@ -93,7 +93,6 @@
 .dropdownArrow {
   background: transparent;
   background-image: url("../../../assets/icons/add task/droparrow down.svg");
-  background-image: url("../../../assets/icons/add task/droparrow\ down.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -108,20 +107,16 @@
   height: 24px;
 }
 
-
 .dropdownArrow:hover {
   background-image: url("../../../assets/icons/add task/droparrow down hover.svg");
-  background-image: url("../../../assets/icons/add task/droparrow\ down\ hover.svg");
 }
 
 .customDropdown.open .dropdownArrow {
   background-image: url("../../../assets/icons/add task/dropdown up.svg");
-  background-image: url("../../../assets/icons/add task/dropdown\ up.svg");
 }
 
 .customDropdown.open .dropdownArrow:hover {
   background-image: url("../../../assets/icons/add task/dropdown up hover.svg");
-  background-image: url("../../../assets/icons/add task/dropdown\ up\ hover.svg");
 }
 
 .dropdownContent {
@@ -204,8 +199,7 @@
   content: "";
   width: 22px;
   height: 22px;
-  background-image: url("../../../assets/icons/board/check\ button\ hover.svg");
-  background-image: url("../../../assets/icons/board/check\ button.svg");
+  background-image: url("../../../assets/icons/board/check button.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -215,17 +209,14 @@
 
 .contactItem:hover .customCheckbox + label::before {
   background-image: url("../../../assets/icons/board/check button hover.svg");
-  background-image: url("../../../assets/icons/board/check\ button\ hover.svg");
 }
 
 .contactItem .customCheckbox:checked + label::before {
   background-image: url("../../../assets/icons/board/checked button.svg");
-  background-image: url("../../,,/assets/icons/board/checked\ button.svg");
 }
 
 .contactItem:hover .customCheckbox:checked + label::before {
   background-image: url("../../../assets/icons/board/checked button hover.svg");
-  background-image: url("../../../assets/icons/board/checked\ button\ hover.svg");
 }
 
 .contactItem .customCheckbox:focus,
