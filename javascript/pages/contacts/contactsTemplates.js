@@ -121,6 +121,7 @@ function getEditContactOverlay(contact) {
                                     <input name="phone" placeholder="Phone" value="${contact.phone}">
                                     <img src="../assets/icons/contacts/call.svg" class="inputIcon" alt="phoneIcon">
                                 </div>
+                                  <div class="errorMessage hide"></div>
                                 <div class="editContactBtnRow">
                                     <button type="button" class="editContactDeleteBtn" onclick="closeEditContactOverlay()">Delete
                                        </button>

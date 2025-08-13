@@ -577,6 +577,7 @@ function getCurrentlyDisplayedContactId() {
  */
 async function updateContact(event, contactId) {
   event.preventDefault();
+  if (!validateContactForm()) return;
   const contactData = extractContactFormData(event.target);
   await performContactUpdate(contactId, contactData);
   await finalizeContactUpdate(contactId);
