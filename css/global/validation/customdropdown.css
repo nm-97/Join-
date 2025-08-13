@@ -93,7 +93,6 @@
 .dropdownArrow {
   background: transparent;
   background-image: url("../../../assets/icons/add task/droparrow down.svg");
-  background-image: url("../../../assets/icons/add task/droparrow down.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -108,19 +107,15 @@
   height: 24px;
 }
 
-
 .dropdownArrow:hover {
-  background-image: url("../../../assets/icons/add task/droparrow down hover.svg");
   background-image: url("../../../assets/icons/add task/droparrow down hover.svg");
 }
 
 .customDropdown.open .dropdownArrow {
   background-image: url("../../../assets/icons/add task/dropdown up.svg");
-  background-image: url("../../../assets/icons/add task/dropdown up.svg");
 }
 
 .customDropdown.open .dropdownArrow:hover {
-  background-image: url("../../../assets/icons/add task/dropdown up hover.svg");
   background-image: url("../../../assets/icons/add task/dropdown up hover.svg");
 }
 
