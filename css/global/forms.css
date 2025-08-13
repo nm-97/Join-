@@ -103,8 +103,9 @@ textarea::placeholder {
   right: 16px;
   width: 20px;
   height: 20px;
-  pointer-events: none;
+  pointer-events: auto;
   filter: invert(1);
+  cursor: pointer;
 }
 
 .editInputIcon {

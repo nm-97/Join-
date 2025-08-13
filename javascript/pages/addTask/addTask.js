@@ -669,6 +669,20 @@ function addTaskToColumn(status) {
 window.addTaskToColumn = addTaskToColumn;
 window.showAddTaskOverlay = showAddTaskOverlay;
 
+/**
+ * Simple date picker function
+ */
+function openDatePicker() {
+  const picker = document.getElementById('hiddenDatePicker');
+  const input = document.getElementById('taskDueDate');
+  
+  picker.showPicker();
+  picker.onchange = () => {
+    const date = new Date(picker.value);
+    input.value = `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+  };
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   if (window.location.pathname.includes("addTask.html")) {
     setTimeout(() => {

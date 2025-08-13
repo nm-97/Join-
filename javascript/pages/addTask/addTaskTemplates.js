@@ -32,8 +32,9 @@ function getAddTaskOverlay(params = {}) {
                  <div class="formGroup">
                    <label for="taskDueDate" >Due Date <span class="requiredStar">*</span></label>
                    <div class="inputIcon">
-                     <input placeholder="dd/mm/yyyy" id="taskDueDate" name="taskDueDate" maxlength="10" autocomplete="off"/>
-                     <img src="../assets/icons/add task/event.svg" alt="calendarIcon"/>
+                     <input type="text" placeholder="dd/mm/yyyy" id="taskDueDate" name="taskDueDate" maxlength="10"/>
+                     <input type="date" id="hiddenDatePicker" style="position: absolute; opacity: 0; pointer-events: none;"/>
+                     <img src="../assets/icons/add task/event.svg" alt="calendarIcon" onclick="openDatePicker()"/>
                    </div>
                    <div class="errorMessage hide" id="taskDueDateError"></div>
                  </div>
@@ -265,8 +266,9 @@ function getaddTaskMainContent() {
              <div class="formGroup">
                <label for="taskDueDate" >Due Date <span class="requiredStar">*</span></label>
                <div class="inputIcon">
-                 <input placeholder="dd/mm/yyyy" id="taskDueDate" name="taskDueDate" maxlength="10" autocomplete="off"/>
-                 <img src="../assets/icons/add task/event.svg" alt="calendarIcon"/>
+                 <input type="text" placeholder="dd/mm/yyyy" id="taskDueDate" name="taskDueDate" maxlength="10"/>
+                 <input type="date" id="hiddenDatePicker" style="position: absolute; opacity: 0; pointer-events: none;"/>
+                 <img src="../assets/icons/add task/event.svg" alt="calendarIcon" onclick="openDatePicker()"/>
                </div>
                <div class="errorMessage hide" id="taskDueDateError"></div>
              </div>
