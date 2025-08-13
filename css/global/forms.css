@@ -38,6 +38,13 @@ select {
   box-sizing: border-box;
 }
 
+textarea {
+  height: 120px;
+  padding: 0;
+  resize: vertical;
+  min-height: 120px;
+}
+
 .addTaskFormsWrapper input,
 .addTaskFormsWrapper textarea,
 .addTaskFormsWrapper select {
