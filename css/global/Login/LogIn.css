@@ -28,7 +28,7 @@ body {
 /* ===== LAYOUT COMPONENTS ===== */
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -164,14 +164,6 @@ input {
   display: flex;
   align-items: center;
   padding-left: 10px;
-}
-
-.inputIcon img {
-  position: absolute;
-  right: 16px;
-  width: 16px;
-  height: 21px;
-  pointer-events: none;
 }
 
 /* ===== CHECKBOX COMPONENTS ===== */
@@ -331,6 +323,10 @@ input {
 
 .mobileOnly {
   display: none;
+}
+
+.logoContainer {
+  max-width: 1920px;
 }
 
 /* ===== LOADING & ANIMATION COMPONENTS ===== */
@@ -574,9 +570,10 @@ input {
   }
 
   .inputIcon img {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     right: 12px;
+    object-fit: contain;
   }
 
   .btnPosition button {
