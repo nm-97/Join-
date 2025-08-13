@@ -1,6 +1,7 @@
 .mainContent {
   flex: 1;
   padding: 62px;
+  max-width: 1690px;
 }
 .boardHeader {
   display: flex;

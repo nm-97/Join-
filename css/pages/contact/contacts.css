@@ -19,7 +19,7 @@
   padding: 32px 24px;
   height: 100%;
   overflow: scroll;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
 }
 
 .contactsRightPanel {
@@ -210,7 +210,7 @@
 @media (max-width: 1350px) and (min-width: 1025px) {
   .contactsMainContent {
     background-color: #ffffff;
-    padding: 20px 5px;
+    padding: 20px 11px;
   }
 
   .contactsContentWrapper {
@@ -270,12 +270,12 @@
     background-color: white;
   }
 
-  .mainContainer{
+  .mainContainer {
     max-width: 1640px;
     width: 100%;
   }
 
-  .alphabetSeparator::after{
+  .alphabetSeparator::after {
     width: 673px;
   }
 

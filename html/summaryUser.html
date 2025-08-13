@@ -33,7 +33,7 @@
           <div class="navi">
             <div
               onclick="location.href='../html/summaryUser.html'"
-              class="navItem active"
+              class="navItem"
             >
               <span class="navIcon iconDashboard"></span>
               <img
@@ -42,7 +42,10 @@
               />
               <span>Summary</span>
             </div>
-            <div onclick="location.href='../html/addTask.html'" class="navItem">
+            <div
+              onclick="location.href='../html/addTask.html'"
+              class="navItem active"
+            >
               <span class="navIcon iconTask"></span>
               <img
                 src="../assets/icons/summary and sideboard/addtask.svg"
@@ -52,10 +55,7 @@
             </div>
             <div onclick="location.href='../html/board.html'" class="navItem">
               <span class="navIcon iconBoard"></span>
-              <img
-                src="../assets/icons/summary and sideboard/board.svg"
-                alt=""
-              />
+              <img src="../assets/icons/shared/board.svg" alt="" />
               <span>Board</span>
             </div>
             <div
@@ -100,9 +100,15 @@
             ></div>
             <div class="dropdown none" id="usermenu">
               <a class="menuItem hideHref" href="../html/help.html">Help</a>
-              <a class="menuItem" href="../html/legalNotice.html">Legal Notice</a>
-              <a class="menuItem" href="../html/privacyPolicy.html">Privacy Policy</a>
-              <a class="menuItem" onclick="logoutUserDirectly()" href="#">Log out</a>
+              <a class="menuItem" href="../html/legalNotice.html"
+                >Legal Notice</a
+              >
+              <a class="menuItem" href="../html/privacyPolicy.html"
+                >Privacy Policy</a
+              >
+              <a class="menuItem" onclick="logoutUserDirectly()" href="#"
+                >Log out</a
+              >
             </div>
           </div>
         </div>
