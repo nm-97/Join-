@@ -197,6 +197,19 @@ function setupContactCheckboxes() {
       updateDropdownInput();
     });
   });
+
+  const contactItems = document.querySelectorAll(".contactItem");
+  contactItems.forEach(function (contactItem) {
+    contactItem.addEventListener("click", function (e) {
+      const checkbox = this.querySelector(".customCheckbox");
+      if (checkbox && e.target !== checkbox) {
+        e.preventDefault();
+        checkbox.checked = !checkbox.checked;
+        updateSelectedContacts();
+        updateDropdownInput();
+      }
+    });
+  });
 }
 
 /**
