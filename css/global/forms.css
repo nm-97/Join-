@@ -5,7 +5,7 @@
   margin-bottom: 25px;
 }
 
-.formContent{
+.formContent {
   display: flex;
 }
 
@@ -508,24 +508,22 @@ textarea::placeholder {
     flex-direction: column;
   }
 
-    .addTaskFormsDivider {
+  .addTaskFormsDivider {
     display: none;
   }
 
   .cancelTaskBtn,
-  .addTaskBtn{
+  .addTaskBtn {
     padding: 9px !important;
   }
 
-  .addTaskFormsWrapper{
+  .addTaskFormsWrapper {
     margin: 32px;
-    display: flex;
-    justify-content: center;
   }
 }
 
 @media (max-width: 428px) {
-  .addTaskFormsWrapper{
+  .addTaskFormsWrapper {
     display: block;
     justify-content: flex-start;
   }
