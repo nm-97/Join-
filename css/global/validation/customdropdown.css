@@ -179,7 +179,6 @@
   font-weight: 400;
 }
 
-
 .contactItem .customCheckbox {
   opacity: 0;
   position: absolute;
@@ -265,7 +264,6 @@
   background: #a1a1a1;
 }
 
-
 @media (max-width: 428px) {
   .customDropdownContainer {
     gap: 0px;
@@ -274,12 +272,12 @@
   .customDropdown {
     width: 396px;
   }
-  
+
   .taskPriorityGroup {
     gap: 4px;
     justify-content: space-between;
   }
-  
+
   .taskPriorityBtn {
     width: auto;
     max-width: 100px;
@@ -289,12 +287,12 @@
     gap: 2px;
     flex: 1;
   }
-  
+
   .taskPriorityBtn img {
     width: 14px;
     height: 14px;
   }
-  
+
   .taskPriorityBtn span {
     margin-right: 2px;
     white-space: nowrap;
