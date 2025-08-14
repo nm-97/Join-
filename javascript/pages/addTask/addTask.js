@@ -19,10 +19,14 @@ let currentSubtasks = [];
  */
 function initializeAddTask() {
   renderAddTaskMainContent();
-  initializeFormComponents();
+  initializeDateInput();
+  setupPriorityButtons();
+  setupSubtaskEvents();
+  setupFormSubmission(); 
   initializePageState();
   loadPageData();
 }
+
 
 /**
  * Initializes core form components for task creation functionality
@@ -234,16 +238,23 @@ function setDefaultPriority() {
 function setupFormSubmission() {
   const createButton = document.getElementById("createTaskBtn");
   const clearButton = document.getElementById("clearTaskBtn");
-  if (!createButton || !clearButton) {
-    return;
-  }
-  createButton.onclick = function (e) {
+
+  if (!createButton || !clearButton) return;
+
+  createButton.onclick = (e) => {
     e.preventDefault();
     createTask();
   };
-  clearButton.onclick = function (e) {
+
+  clearButton.onclick = (e) => {
     e.preventDefault();
-    clearForm();
+    clearFormInputs();
+    resetFormSelections();
+    resetFormState();
+    clearExternalSelections();
+    if (typeof window.deleteAllSubtasks === "function") {
+      window.deleteAllSubtasks();
+    }
   };
 }
 
@@ -450,6 +461,20 @@ function showTaskCreatedNotification() {
 }
 
 /**
+ * Deletes all currently created subtasks from the global state and re-renders the subtask list
+ * Clears the window.currentSubtasks array and updates the UI accordingly
+ * Used when resetting the Add Task form to its initial state
+ * @function deleteAllSubtasks
+ * @returns {void} No return value, clears subtasks and updates the subtask UI
+ */
+window.deleteAllSubtasks = function () {
+  if (Array.isArray(window.currentSubtasks)) {
+    window.currentSubtasks = [];
+    renderSubtasks(window.currentSubtasks);
+  }
+};
+
+/**
  * Clears all input fields and resets state for the Add Task form to initial conditions
  * Resets form fields, priority selection, category selection, and subtask state
  * Provides comprehensive form reset functionality for new task creation or form clearing
@@ -461,6 +486,12 @@ function clearForm() {
   resetFormSelections();
   resetFormState();
   clearExternalSelections();
+
+  if (typeof window.deleteAllSubtasks === "function") {
+    window.deleteAllSubtasks();
+  }
+
+  clearPriorityStyles();
 }
 
 /**
