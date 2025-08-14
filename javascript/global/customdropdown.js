@@ -94,22 +94,25 @@ function setupDropdownEvents(dropdownId, inputId, arrowId) {
     toggleDropdown(dropdownId);
   });
 
-  dropdownInput.addEventListener("focus", function () {
-    openDropdown(dropdownId);
-  });
-
-  dropdownInput.addEventListener("click", function () {
-    openDropdown(dropdownId);
+  dropdownInput.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleDropdown(dropdownId);
   });
 
   document.addEventListener("click", function (e) {
-    if (!dropdown.contains(e.target)) {
-      closeDropdown(dropdownId);
-    }
+    const dropdowns = document.querySelectorAll(".customDropdown");
+    dropdowns.forEach(d => {
+      if (!d.contains(e.target)) {
+        d.classList.remove("open");
+      }
+    });
   });
 
   dropdown.addEventListener("click", function (e) {
-    e.stopPropagation();
+    if (!dropdownInput.contains(e.target) && !dropdownArrow.contains(e.target)) {
+      e.stopPropagation();
+    }
   });
 }
 

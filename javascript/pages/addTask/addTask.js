@@ -321,6 +321,9 @@ function createTask() {
     }
     clearForm();
     showTaskCreatedNotification();
+    setTimeout(() => {
+      window.location.href = "../html/board.html";
+    }, 1000);
   } catch (error) {}
 }
 
