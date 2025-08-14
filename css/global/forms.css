@@ -436,6 +436,11 @@ textarea::placeholder {
     justify-content: center;
     width: 100%;
   }
+
+  input::placeholder,
+  textarea::placeholder {
+    font-size: 21px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -464,7 +469,7 @@ textarea::placeholder {
 
   input::placeholder,
   textarea::placeholder {
-    font-size: 16px;
+    font-size: 21px;
   }
 
   .dropdownInput::placeholder {
@@ -540,6 +545,11 @@ textarea::placeholder {
   .emailIcon {
     height: 12px;
     width: 12px;
+  }
+
+  input::placeholder,
+  texteara::placeholder {
+    font-size: 12px;
   }
 }
 

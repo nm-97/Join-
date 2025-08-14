@@ -135,8 +135,8 @@ function addMobileHeader(floatingContactContainer) {
     <div class="mobileContactHeader">
       <h1>Contacts</h1>
       <span class="mobileContactSubtitle">Better with a team</span>
-      <button class="floatingContactCloseBtn" onclick="closeFloatingContactOverlayResponsive()">
-        <img src="../assets/icons/shared/close.svg" alt="Close">
+      <button class="floatingContactCloseBtn">
+        <img src="../assets/icons/shared/close.svg" alt="Close" onclick="closeFloatingContactOverlayResponsive()">
       </button>
     </div>
   `;
