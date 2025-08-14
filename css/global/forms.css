@@ -129,8 +129,7 @@ textarea::placeholder {
   align-items: center;
 }
 
-.taskPriorityBtn,
-.taskPriorityBtnOrange {
+.taskPriorityBtn {
   width: 136px;
   height: 56px;
   border-radius: 10px;
@@ -144,25 +143,41 @@ textarea::placeholder {
   flex-direction: row-reverse;
   box-shadow: 0px 0px 4px 0px #0000001a;
   font-size: 20px;
-}
-
-.taskPriorityBtn {
   background: #ffffff;
-  border: 1px solid #d1d1d1;
+  transition: all 0.2s ease;
 }
 
-.taskPriorityBtn.selected {
-  background: #ff0000;
+/* Specific styles for urgent priority */
+.taskPriorityBtnUrgentSelected {
+  background: #ff3d00;
   color: white;
+  border: none;
 }
 
-.taskPriorityBtn.selected img,
-.taskPriorityBtnOrange.selected img {
+.taskPriorityBtnUrgentSelected img {
   filter: brightness(0) invert(1);
 }
 
-.taskPriorityBtnOrange:not(.selected) img {
-  filter: sepia(1) saturate(2) hue-rotate(15deg);
+/* Specific styles for medium priority */
+.taskPriorityBtnMediumSelected {
+  background: #ffa800;
+  color: white;
+  border: none;
+}
+
+.taskPriorityBtnMediumSelected img {
+  filter: brightness(0) invert(1);
+}
+
+/* Specific styles for low priority */
+.taskPriorityBtnLowSelected {
+  background: #7ae229;
+  color: white;
+  border: none;
+}
+
+.taskPriorityBtnLowSelected img {
+  filter: brightness(0) invert(1);
 }
 
 .taskPriorityBtn img,
@@ -213,16 +228,16 @@ textarea::placeholder {
 /* ===== BUTTON STYLES ===== */
 .addTaskBtn,
 .cancelTaskBtn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 20px;
-    font-weight: 700;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  height: 56px;
 }
 
 .addTaskBtn {
@@ -269,11 +284,11 @@ textarea::placeholder {
 
 /* ===== FORM LAYOUT STYLES ===== */
 .formActions {
-max-width: 893px;
-display: flex;
-justify-content: space-between;
-margin-bottom: 80px;
-align-items: center;
+  max-width: 893px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 80px;
+  align-items: center;
 }
 
 .formButtons {
@@ -447,7 +462,7 @@ align-items: center;
     height: 15px;
   }
 
-  .requiredStarText{
+  .requiredStarText {
     display: none;
   }
 }

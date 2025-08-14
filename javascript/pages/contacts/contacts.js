@@ -661,8 +661,18 @@ async function deleteContact(contactId) {
 async function deleteAssignedTasks(contactId) {
   const allTasks = await fetchTaskByUser();
   for (const task of allTasks) {
-    if (task.assignedTo === contactId) {
-      await deleteTaskFromFirebaseByUser(task.id);
+    if (Array.isArray(task.assignedTo) && task.assignedTo.includes(contactId)) {
+      if (task.assignedTo.length === 1) {
+        await deleteTaskFromFirebaseByUser(task.id);
+      } else {
+        const updatedAssignedTo = task.assignedTo.filter(
+          (id) => id !== contactId
+        );
+        await updateTaskInFirebaseByUser(task.id, {
+          ...task,
+          assignedTo: updatedAssignedTo,
+        });
+      }
     }
   }
 }
