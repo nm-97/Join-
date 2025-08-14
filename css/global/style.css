@@ -480,6 +480,13 @@ body {
   .hideHref {
     display: block;
   }
+
+  .ntfcenter {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 @media (max-width: 786px) {

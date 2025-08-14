@@ -349,12 +349,14 @@
     margin-bottom: -18px;
     border: 4px solid #ffffff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 90px;
+    height: 90px;
   }
 
   .addContactAvatar img,
   .editContactAvatar img {
-    width: 64px;
-    height: 64px;
+    width: 32px;
+    height: 32px;
     margin: 38.67px;
   }
 
@@ -385,6 +387,343 @@
     margin: auto;
   }
   .editContactInputWrapper input {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 412px) and (max-height: 915px) {
+  .addContactCreateBtn,
+  .editContactSaveBtn,
+  .editContactDeleteBtn {
+    font-size: 19px;
+    padding: 21px;
+  }
+
+  .addContactInputWrapper input {
+    padding: 12px 21px;
+    font-size: 21px;
+  }
+
+  .addContactFormAvatarPosition {
+    margin-bottom: 41px;
+    margin-top: -50px;
+  }
+
+  .editContactForm {
+    margin-top: 70px;
+  }
+
+  .addContactForm {
+    margin-top: 66px;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 412px) and (max-height: 823px) {
+  .addContactCreateBtn,
+  .editContactSaveBtn,
+  .editContactDeleteBtn {
+    font-size: 19px;
+    padding: 21px;
+  }
+
+  .addContactInputWrapper input {
+    padding: 12px 21px;
+    font-size: 21px;
+  }
+
+  .addContactFormAvatarPosition {
+    margin-bottom: 41px;
+    margin-top: -26px;
+  }
+
+  .addContactForm,
+  .editContactForm {
+    margin-top: 66px;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 414px) and (max-height: 736px) {
+  .addContactCreateBtn,
+  .editContactSaveBtn,
+  .editContactDeleteBtn {
+    font-size: 19px;
+    padding: 21px;
+  }
+
+  .addContactInputWrapper input {
+    padding: 12px 21px;
+    font-size: 21px;
+  }
+
+  .addContactFormAvatarPosition {
+    margin-bottom: 26px;
+    margin-top: -39px;
+  }
+
+  .addContactForm,
+  .editContactForm {
+    margin-top: 66px;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 384px) and (max-height: 854px) {
+  .addContactCreateBtn,
+  .editContactSaveBtn,
+  .editContactDeleteBtn {
+    font-size: 19px;
+    padding: 21px;
+  }
+
+  .addContactInputWrapper input {
+    padding: 12px 21px;
+    font-size: 21px;
+  }
+
+  .addContactFormAvatarPosition {
+    margin-bottom: 20px;
+    margin-top: -50px;
+  }
+
+  .addContactForm,
+  .editContactForm {
+    margin-top: 66px;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 390px) and (max-height: 854px) {
+  .addContactCreateBtn,
+  .editContactSaveBtn,
+  .editContactDeleteBtn {
+    font-size: 19px;
+    padding: 21px;
+  }
+
+  .addContactInputWrapper input {
+    padding: 12px 21px;
+    font-size: 21px;
+  }
+
+  .addContactFormAvatarPosition {
+    margin-bottom: 13px;
+    margin-top: -50px;
+  }
+
+  .addContactForm,
+  .editContactForm {
+    margin-top: 66px;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 375px) and (max-height: 667px) {
+  .addContactCreateBtn,
+  .editContactSaveBtn,
+  .editContactDeleteBtn {
+    font-size: 19px;
+    padding: 21px;
+  }
+
+  .addContactInputWrapper input {
+    padding: 12px 21px;
+    font-size: 21px;
+  }
+
+  .addContactFormAvatarPosition {
+    margin-bottom: 13px;
+    margin-top: -44px;
+  }
+
+  .addContactForm,
+  .editContactForm {
+    margin-top: 66px;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 400px) and (max-height: 800px) {
+  .addContactCreateBtn,
+  .editContactSaveBtn,
+  .editContactDeleteBtn {
+    font-size: 19px;
+    padding: 21px;
+  }
+
+  .addContactInputWrapper input {
+    padding: 12px 21px;
+    font-size: 21px;
+  }
+
+  .addContactFormAvatarPosition {
+    margin-bottom: 41px;
+    margin-top: -50px;
+  }
+
+  .addContactForm,
+  .editContactForm {
+    margin-top: 66px;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 360px) and (max-height: 800px) {
+  .addContactCreateBtn,
+  .editContactSaveBtn,
+  .editContactDeleteBtn {
+    font-size: 19px;
+    padding: 21px;
+  }
+
+  .addContactInputWrapper input {
+    padding: 12px 21px;
+    font-size: 21px;
+  }
+
+  .addContactFormAvatarPosition {
+    margin-bottom: 28px;
+    margin-top: -50px;
+  }
+
+  .addContactForm,
+  .editContactForm {
+    margin-top: 66px;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 384px) and (max-height: 740px) {
+  .addContactCreateBtn,
+  .editContactSaveBtn,
+  .editContactDeleteBtn {
+    font-size: 19px;
+    padding: 21px;
+  }
+
+  .addContactInputWrapper input {
+    padding: 12px 21px;
+  }
+
+  .addContactFormAvatarPosition {
+    margin-bottom: 41px;
+    margin-top: -50px;
+  }
+
+  .addContactForm,
+  .editContactForm {
+    margin-top: 40px;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 380px) and (max-height: 640px) {
+  .addContactCreateBtn,
+  .editContactSaveBtn,
+  .editContactDeleteBtn {
+    font-size: 17px;
+    padding: 12px;
+  }
+
+  .addContactModalLeft {
+    padding: 36px;
+  }
+
+  .addContactInputWrapper input {
+    padding: 8px 18px;
+  }
+
+  .addContactForm {
+    margin-top: 30px;
+  }
+
+  .addContactFormAvatarPosition {
+    margin-bottom: 1px;
+    margin-top: -50px;
+  }
+}
+
+@media (max-width: 375px) and (max-height: 667px) {
+  .addContactCreateBtn,
+  .editContactSaveBtn,
+  .editContactDeleteBtn {
+    font-size: 12px;
+    padding: 12px;
+  }
+
+  .addContactInputWrapper input {
+    padding: 4px 12px;
+  }
+
+  .addContactFormAvatarPosition {
+    margin-bottom: 1px;
+    margin-top: -36px;
+  }
+
+  .addContactAvatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .addContactModalLeft h2 {
+    font-size: 47px;
+  }
+  .addContactSubtitle {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 320px) and (max-height: 586px) {
+  .addContactCreateBtn,
+  .editContactSaveBtn,
+  .editContactDeleteBtn {
+    font-size: 12px;
+    padding: 12px;
+  }
+
+  .addContactInputWrapper input {
+    padding: 4px 12px;
+  }
+
+  .editContactTitle {
+    font-size: 40px;
+  }
+
+  .editContactForm {
+    gap: 8px;
+    margin-top: 37px;
+  }
+
+  .editContactClose {
+    height: 1px;
+    right: 8px;
+  }
+
+  .editContactBtnRow {
+    height: 42px;
+    gap: 12px;
+  }
+
+  .editContactAvatar {
+    width: 70px;
+    height: 70px;
+  }
+
+  .addContactFormAvatarPosition {
+    margin-bottom: 1px;
+    margin-top: -44px;
+  }
+
+  .addContactAvatar {
+    width: 70px;
+    height: 70px;
+  }
+
+  .addContactModalLeft h2 {
+    font-size: 41px;
+  }
+  .addContactSubtitle {
     font-size: 16px;
   }
 }
