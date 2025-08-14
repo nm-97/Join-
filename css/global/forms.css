@@ -102,7 +102,7 @@ textarea::placeholder {
   position: absolute;
   width: 20px;
   right: 12px;
-  height: 16px;
+  height: 20px;
   pointer-events: auto;
   filter: invert(1);
   cursor: pointer;

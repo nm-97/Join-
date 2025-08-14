@@ -234,7 +234,6 @@ input {
 .SignUpbtn:hover,
 .LogInbtn:hover {
   background-color: #2aabe2;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
   color: #e5e5e5;
   transition: filter 0.2s;
 }
@@ -242,7 +241,6 @@ input {
 .guestLogInButton:hover {
   color: #29abe2;
   border-color: #29abe2;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
   transition: filter 0.2s;
 }
 
@@ -284,6 +282,10 @@ input {
   justify-content: flex-start;
   align-items: center;
   padding: 20px 30px;
+}
+
+.navText {
+  color: #cdcdcd;
 }
 
 .LogInInput {
