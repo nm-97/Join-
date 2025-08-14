@@ -344,7 +344,8 @@ function getaddTaskMainContent() {
                <div id="editableDiv" class="subtaskDisplayContainer">
                </div>
              </div>
-
+             </form>
+             </div>
              <div class="formActions">
                <span class="requiredStarText">*This field is required</span>
                <div class="formButtons">
@@ -357,7 +358,5 @@ function getaddTaskMainContent() {
              <img src="../assets/icons/add task/check.svg" alt="check icon"/>
              </button>
                </div>
-             </div>
-           </form>
-           </div>`;
+             </div>`;
 }

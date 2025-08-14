@@ -152,16 +152,16 @@ label {
 
 .addTaskBtn,
 .cancelTaskBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 20px;
-  font-weight: 700;
-  padding: 16px 24px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    height: 56px;
 }
 
 .addTaskBtn {
@@ -180,41 +180,6 @@ label {
 .cancelTaskBtn img {
   width: 16px;
   height: auto;
-}
-
-.formActions {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 40px;
-  box-sizing: border-box;
-}
-
-.formButtons {
-  display: flex;
-  gap: 16px;
-  width: 100%;
-  justify-content: flex-end;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 40px;
-  box-sizing: border-box;
-}
-
-/* Für den Fall, dass formButtons innerhalb von formActions ist */
-.formActions .formButtons {
-  position: relative;
-  bottom: auto;
-  left: auto;
-  right: auto;
-  padding: 0;
 }
 
 .taskPriorityBtn.taskPriorityBtnUrgentSelected {
@@ -248,16 +213,6 @@ label {
   transition: all 0.3s ease;
 }
 
-/* @media (max-width: 1283px) {
-  .addTaskFormsWrapper {
-    flex-direction: column;
-  }
-
-  .addTaskFormsDivider {
-    display: none;
-  }
-} */
-
 @media (max-width: 1267px) {
   .mainContent {
     display: flex;
@@ -275,6 +230,14 @@ label {
   .addTaskFormsWrapper {
     margin: 0 !important;
     margin-top: 26px !important;
+  }
+
+  .requiredStarText{
+    display: none;
+  }
+
+  .formActions{
+    justify-content: center !important;
   }
 }
 
@@ -381,7 +344,7 @@ label {
   }
 
   .formGroup {
-    margin-bottom: 16px;
+    margin-bottom: 0 !important;
   }
 }
 
