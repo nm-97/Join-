@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="../css/global/style.css" />
     <link rel="stylesheet" href="../css/global/Login/LogIn.css" />
     <link rel="stylesheet" href="../css/global/validation/validation.css" />
+    <link rel="stylesheet" href="../css/global/validation/customcheckbox.css" />
     <link rel="stylesheet" href="../css/global/forms.css" />
+    <link rel="stylesheet" href="../css/pages/signUp/signUp.css" />
     <script src="../javascript/global/firebase.js"></script>
     <script src="../javascript/global/user.js"></script>
     <script src="../javascript/global/utils.js"></script>
@@ -57,14 +59,15 @@
         <div class="checkboxContainer">
           <div class="checkboxLabel">
             <input
-              class="checkbox customCheckbox"
+              class="customCheckbox"
               type="checkbox"
               id="termsCheckbox"
+              name="termsCheckbox"
             />
-            <label for="termsCheckbox"
-              >I accept the
-              <a href="../html/privacyPolicy.html">Privacy Policy</a></label
-            >
+            <label for="termsCheckbox">
+              I accept the
+              <a href="../html/privacyPolicy.html">Privacy Policy</a>
+            </label>
           </div>
         </div>
         <div class="btnPosition">
@@ -81,7 +84,9 @@
       <a href="#" onclick="redirectToPrivacyPolicy()" class="desktopOnly"
         >Privacy Policy</a
       >
-      <a href="#" onclick="redirectToLegalNotice()" class="desktopOnly">Legal Notice</a>
+      <a href="#" onclick="redirectToLegalNotice()" class="desktopOnly"
+        >Legal Notice</a
+      >
       <a href="../html/privacyPoliceResponisve.html" class="mobileOnly"
         >Privacy Policy</a
       >

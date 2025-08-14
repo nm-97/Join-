@@ -100,12 +100,13 @@ textarea::placeholder {
 
 .inputIcon img {
   position: absolute;
-  right: 16px;
   width: 20px;
-  height: 20px;
+  right: 12px;
+  height: 16px;
   pointer-events: auto;
   filter: invert(1);
   cursor: pointer;
+  object-fit: contain;
 }
 
 .editInputIcon {
@@ -527,6 +528,18 @@ textarea::placeholder {
 
   .addTaskFormsWrapper {
     margin: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .inputIcon img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .emailIcon {
+    height: 12px;
+    width: 12px;
   }
 }
 

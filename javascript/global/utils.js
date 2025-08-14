@@ -392,7 +392,7 @@ function redirectToPrivacyPolicy() {
   if (window.innerWidth <= 1024) {
     window.location.href = "../html/privacyPoliceResponisve.html";
   } else {
-    window.location.href = "../html/privacyPolicy.html";
+    window.location.href = "../html/privacyPoliceResponisve.html";
   }
 }
 
@@ -407,7 +407,7 @@ function redirectToLegalNotice() {
   if (window.innerWidth <= 1024) {
     window.location.href = "../html/legalNoticeResponsive.html";
   } else {
-    window.location.href = "../html/legalNotice.html";
+    window.location.href = "../html/legalNoticeResponsive.html";
   }
 }
 
