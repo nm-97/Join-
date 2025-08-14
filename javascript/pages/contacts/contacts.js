@@ -201,11 +201,11 @@ function setupContactMenuEventListeners() {
 function setupMenuButtonListeners(overlayElement) {
   const editBtn = overlayElement.querySelector(".floatingEditBtn");
   const deleteBtn = overlayElement.querySelector(".floatingDeleteBtn");
-  
+
   if (editBtn) {
     setupEditButtonListener(editBtn);
   }
-  
+
   if (deleteBtn) {
     setupDeleteButtonListener(deleteBtn);
   }
@@ -218,7 +218,7 @@ function setupMenuButtonListeners(overlayElement) {
  * @returns {void} No return value, attaches click listener to edit button
  */
 function setupEditButtonListener(editBtn) {
-  editBtn.addEventListener("click", function(e) {
+  editBtn.addEventListener("click", function (e) {
     e.stopPropagation();
     const contactId = editBtn.getAttribute("data-contact-id");
     showEditContactOverlay(contactId);
@@ -233,7 +233,7 @@ function setupEditButtonListener(editBtn) {
  * @returns {void} No return value, attaches click listener to delete button
  */
 function setupDeleteButtonListener(deleteBtn) {
-  deleteBtn.addEventListener("click", function(e) {
+  deleteBtn.addEventListener("click", function (e) {
     e.stopPropagation();
     const contactId = deleteBtn.getAttribute("data-contact-id");
     deleteContact(contactId);
@@ -251,14 +251,14 @@ function setupMenuOutsideClickHandler() {
   const closeMenuHandler = function (e) {
     const overlay = document.querySelector(".contact-menu-overlay");
     const menuContent = document.querySelector(".contact-menu-content");
-    
+
     if (overlay && menuContent && !menuContent.contains(e.target)) {
       closeContactMenu();
       document.removeEventListener("touchstart", closeMenuHandler, true);
       document.removeEventListener("click", closeMenuHandler, true);
     }
   };
-  
+
   document.addEventListener("touchstart", closeMenuHandler, true);
   document.addEventListener("click", closeMenuHandler, true);
 }
@@ -681,6 +681,17 @@ async function updateContactsUI() {
   const contacts = await fetchContactsByIdAndUser();
   loadedContacts = contacts;
   renderContactsList(contacts);
+  // Stelle sicher, dass die Kontaktliste im responsiven Design sichtbar ist
+  const contactsList = document.getElementById("contactsList");
+  if (contactsList) {
+    contactsList.style.display = "block";
+  }
+  // Aktiviere den Add Contact Button wieder
+  const addContactButton = document.getElementById("addContactButton");
+  if (addContactButton) {
+    addContactButton.style.display = "flex";
+    addContactButton.classList.remove("floating-hidden");
+  }
 }
 
 /**
