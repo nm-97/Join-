@@ -213,16 +213,16 @@ textarea::placeholder {
 /* ===== BUTTON STYLES ===== */
 .addTaskBtn,
 .cancelTaskBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 20px;
-  font-weight: 700;
-  padding: 16px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    height: 56px;
 }
 
 .addTaskBtn {
@@ -269,22 +269,16 @@ textarea::placeholder {
 
 /* ===== FORM LAYOUT STYLES ===== */
 .formActions {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  padding: 0 40px 40px 40px;
-  box-sizing: border-box;
+max-width: 893px;
+display: flex;
+justify-content: space-between;
+margin-bottom: 80px;
+align-items: center;
 }
 
 .formButtons {
   display: flex;
   gap: 16px;
-  width: 100%;
-  justify-content: flex-end;
 }
 
 .editButtonContainer {
@@ -446,6 +440,10 @@ textarea::placeholder {
   .taskPriorityBtn img {
     width: 15px;
     height: 15px;
+  }
+
+  .requiredStarText{
+    display: none;
   }
 }
 
