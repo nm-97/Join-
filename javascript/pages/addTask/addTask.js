@@ -478,6 +478,30 @@ window.deleteAllSubtasks = function () {
 };
 
 /**
+ * Resets priority selection to "Medium" after clearing the form
+ * @function setDefaultPriority
+ * @returns {void}
+ */
+window.setDefaultPriority = function () {
+  const prioBtns = document.querySelectorAll(".taskPriorityBtn, .taskPriorityBtnOrange");
+
+  prioBtns.forEach((btn) => {
+    btn.classList.remove(
+      "taskPriorityBtnUrgentSelected",
+      "taskPriorityBtnLowSelected",
+      "taskPriorityBtnMediumSelected"
+    );
+    btn.classList.add("taskPriorityBtn"); // sorgt für konsistenten Zustand
+  });
+
+  const mediumBtn = document.getElementById("mediumBtn");
+  if (mediumBtn) {
+    mediumBtn.classList.remove("taskPriorityBtn");
+    mediumBtn.classList.add("taskPriorityBtnMediumSelected");
+  }
+};
+
+/**
  * Clears all input fields and resets state for the Add Task form to initial conditions
  * Resets form fields, priority selection, category selection, and subtask state
  * Provides comprehensive form reset functionality for new task creation or form clearing
@@ -495,6 +519,10 @@ function clearForm() {
   }
 
   clearPriorityStyles();
+
+  if (typeof window.setDefaultPriority === "function") {
+  window.setDefaultPriority();
+}
 }
 
 /**
