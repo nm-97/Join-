@@ -328,7 +328,7 @@ body.noScroll {
 
   .mainContent {
     padding: 0;
-
+    margin-bottom: 82px;
     justify-content: center;
   }
 
