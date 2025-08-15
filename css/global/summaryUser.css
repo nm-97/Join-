@@ -8,7 +8,6 @@ body.noScroll {
   padding: 62px;
   overflow-y: auto;
   display: flex;
-  margin-bottom: 82px;
 }
 
 .pageHeader {
@@ -329,7 +328,7 @@ body.noScroll {
 
   .mainContent {
     padding: 0;
-
+    margin-bottom: 82px;
     justify-content: center;
   }
 
