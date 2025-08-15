@@ -22,11 +22,10 @@ function initializeAddTask() {
   initializeDateInput();
   setupPriorityButtons();
   setupSubtaskEvents();
-  setupFormSubmission(); 
+  setupFormSubmission();
   initializePageState();
   loadPageData();
 }
-
 
 /**
  * Initializes core form components for task creation functionality
@@ -255,6 +254,8 @@ function setupFormSubmission() {
     if (typeof window.deleteAllSubtasks === "function") {
       window.deleteAllSubtasks();
     }
+    // Medium-Button nach dem Clearing wieder setzen
+    setDefaultPriority();
   };
 }
 
@@ -489,12 +490,10 @@ function clearForm() {
   resetFormSelections();
   resetFormState();
   clearExternalSelections();
-
   if (typeof window.deleteAllSubtasks === "function") {
     window.deleteAllSubtasks();
   }
-
-  clearPriorityStyles();
+  setDefaultPriority();
 }
 
 /**
