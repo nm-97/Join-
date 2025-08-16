@@ -326,6 +326,17 @@ function loadTaskDataIntoEditForm(task) {
   currentSubtasks = task.subtasks || [];
   window.currentSubtasks = currentSubtasks;
   window.originalSubtasks = task.subtasks || [];
+
+  // Speichere die ursprünglich zugewiesenen Contacts
+  window.originalAssignedTo = task.assignedTo || [];
+  window.selectedContacts = task.assignedTo || [];
+
+  if (task.assignedTo && task.assignedTo.length > 0) {
+    if (typeof setSelectedContacts === "function") {
+      setSelectedContacts(task.assignedTo);
+    }
+  }
+
   if (typeof renderSubtasks === "function") {
     renderSubtasks(window.currentSubtasks);
   }
@@ -401,15 +412,22 @@ function getSelectedCategory() {
 
 /**
  * Retrieves the currently selected assignees from the edit form with function delegation
- * Calls contact selection function if available, otherwise returns empty array
- * Provides safe assignee retrieval with complete array return for form data collection
+ * Calls contact selection function if available, otherwise returns originally assigned contacts
+ * Provides safe assignee retrieval with fallback to original assignment
  * @function getSelectedAssignedTo
- * @returns {Array} Array of contact IDs of selected assignees or empty array if function unavailable
+ * @returns {Array} Array of contact IDs of selected assignees or original assignees if none selected
  */
 function getSelectedAssignedTo() {
-  return typeof getSelectedContactIds === "function"
-    ? getSelectedContactIds()
-    : [];
+  if (typeof getSelectedContactIds === "function") {
+    const selectedIds = getSelectedContactIds();
+    // Wenn Contacts ausgewählt wurden, diese verwenden
+    if (selectedIds && selectedIds.length > 0) {
+      return selectedIds;
+    }
+  }
+
+  // Fallback: Verwende die ursprünglich zugewiesenen Contacts
+  return window.selectedContacts || window.originalAssignedTo || [];
 }
 
 /**
