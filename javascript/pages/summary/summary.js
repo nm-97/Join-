@@ -91,7 +91,7 @@ function calculateStatusCounts(allTasks) {
     inProgressCount: allTasks.filter((task) => task.Status === "inProgress")
       .length,
     awaitFeedbackCount: allTasks.filter(
-      (task) => task.Status === "awaitFeedback"
+      (task) => task.Status === "awaitingFeedback"
     ).length,
   };
 }
@@ -121,7 +121,7 @@ function calculateBoardCount(allTasks) {
       task.Status === "toDo" ||
       task.Status === "done" ||
       task.Status === "inProgress" ||
-      task.Status === "awaitFeedback"
+      task.Status === "awaitingFeedback"
   ).length;
 }
 
