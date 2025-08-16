@@ -694,6 +694,12 @@ async function createOverlayTask() {
  * @returns {void} No return value, sets status and opens overlay for column-specific task creation
  */
 function addTaskToColumn(status) {
+  if (typeof isMobileDevice === "function" && isMobileDevice()) {
+    window.location.href = "../html/addTask.html";
+    return;
+  }
+
+  // Desktop: Overlay öffnen
   selectedStatus = status;
   showAddTaskOverlay();
 }
@@ -710,7 +716,7 @@ function openDatePicker() {
   const input = document.getElementById("taskDueDate");
 
   // Setze das Minimum-Datum auf heute, um vergangene Daten zu deaktivieren
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split("T")[0];
   picker.min = today;
 
   picker.showPicker();

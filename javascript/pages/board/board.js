@@ -113,13 +113,12 @@ async function refreshBoard() {
  * @returns {void} No return value, opens Add Task overlay for new task creation
  */
 function addTaskToColumn(status) {
-  // Prüfe, ob die addTask.js addTaskToColumn Funktion verfügbar ist
-  if (typeof window.addTaskToColumn === "function") {
+  if (isMobileDevice()) {
+    window.location.href = "../html/addTask.html";
+  } else if (typeof window.addTaskToColumn === "function") {
     window.addTaskToColumn(status);
     return;
   }
-
-  // Fallback: Setze Status und zeige Overlay
   if (typeof window.selectedStatus !== "undefined") {
     window.selectedStatus = status;
   }

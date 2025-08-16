@@ -14,6 +14,7 @@
   align-items: center;
   justify-content: center;
   z-index: 999;
+  overflow: hidden;
 }
 
 .overlay.hidden {
@@ -28,11 +29,13 @@
   width: 90%;
   max-height: 90vh;
   overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   animation: overlayMoveFromRight 200ms ease-in-out forwards;
   transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
 }
 
 .taskDetailModal.closing {
@@ -182,11 +185,36 @@ hr {
   margin: 20px 0;
 }
 
-@media (max-width: 428px) {
+@media (max-width: 1024px) {
+  .overlay {
+    height: 95%;
+  }
+}
+
+@media (max-width: 786px) {
   .taskDetailModal {
-    width: 396px;
-    height: 640px;
-    padding: 25px;
+    padding: 27px;
+  }
+
+  .closeButton {
+    top: 32px;
+    right: 14px;
+  }
+}
+
+@media (max-height: 1101px) {
+  .taskDetailModal {
+    max-height: 82vh;
+  }
+}
+
+@media (max-width: 428px) {
+  .overlay {
+    height: 95%;
+  }
+
+  .overlayAddtask {
+    max-width: 552px;
   }
 
   .closeButton {
@@ -212,8 +240,11 @@ hr {
     font-size: 16px;
   }
 
-  .scroll {
-    overflow-y: scroll;
+  .scroll,
+  .taskDetailModal {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 448px;
   }
 
   .modalButton img {
