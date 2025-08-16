@@ -159,3 +159,9 @@
 .hidden {
   display: none !important;
 }
+
+@media (max-width: 1024px) {
+  .subtaskHoverActions {
+    visibility: visible;
+  }
+}

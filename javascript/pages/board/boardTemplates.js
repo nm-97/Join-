@@ -58,6 +58,9 @@ function getBoardTemplate(tasks = []) {
  * @returns {string} HTML string for the task detail overlay
  */
 function getTaskDetailOverlay(task) {
+  const isResponsive = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(max-width: 1024px)").matches;
+  const editIconName = isResponsive ? "edit hover.svg" : "edit.svg";
+  const deleteIconName = isResponsive ? "delete hover.svg" : "delete.svg";
   const priority = (task.taskPriority || "medium").toLowerCase();
   const categoryLabel = getCategoryLabel(task.Category);
   const categoryClass = getCategoryClass(task.Category);
@@ -119,13 +122,13 @@ function getTaskDetailOverlay(task) {
         </div>
         <div class="modalActions">
           <button class="modalButton" onclick="deleteTask('${task.id}')">
-            <img src="../assets/icons/shared/delete.svg" alt="delete">Delete
+            <img src="../assets/icons/shared/${deleteIconName}" alt="delete">Delete
           </button>
           <hr>
           <button class="modalButton editButton" onclick="editTask('${
             task.id
           }')">
-            <img src="../assets/icons/shared/edit.svg" alt="edit">Edit
+            <img src="../assets/icons/shared/${editIconName}" alt="edit">Edit
           </button>
         </div>
       </div>
@@ -216,6 +219,7 @@ function getTaskCardTemplate(task) {
   return `
     <div class="taskCard" data-task-id="${task.id}" draggable="true" 
          ondragstart="startDragging('${task.id}')" 
+         ontouchstart="handleTouchStartMobile(event, '${task.id}')"
          onclick="showTaskDetail('${task.id}')">
       <span class="taskLabel ${categoryClass}">${categoryLabel}</span>
       <h3 class="taskTitle">${task.title || "Untitled Task"}</h3>

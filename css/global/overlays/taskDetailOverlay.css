@@ -192,10 +192,6 @@ hr {
 }
 
 @media (max-width: 786px) {
-  .taskDetailModal {
-    padding: 27px;
-  }
-
   .closeButton {
     top: 32px;
     right: 14px;
