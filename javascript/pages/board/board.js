@@ -118,7 +118,7 @@ function addTaskToColumn(status) {
     window.addTaskToColumn(status);
     return;
   }
-  
+
   // Fallback: Setze Status und zeige Overlay
   if (typeof window.selectedStatus !== "undefined") {
     window.selectedStatus = status;
@@ -154,11 +154,14 @@ function closeTaskOverlay() {
  */
 function showAddTaskOverlay() {
   // Prüfe, ob die addTask.js showAddTaskOverlay Funktion verfügbar ist
-  if (typeof window.showAddTaskOverlay === "function" && window.showAddTaskOverlay !== showAddTaskOverlay) {
+  if (
+    typeof window.showAddTaskOverlay === "function" &&
+    window.showAddTaskOverlay !== showAddTaskOverlay
+  ) {
     window.showAddTaskOverlay();
     return;
   }
-  
+
   // Fallback für lokale Implementierung
   const overlay = document.getElementById("addTaskOverlay");
   if (overlay) {

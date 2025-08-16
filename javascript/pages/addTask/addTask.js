@@ -709,6 +709,10 @@ function openDatePicker() {
   const picker = document.getElementById("hiddenDatePicker");
   const input = document.getElementById("taskDueDate");
 
+  // Setze das Minimum-Datum auf heute, um vergangene Daten zu deaktivieren
+  const today = new Date().toISOString().split('T')[0];
+  picker.min = today;
+
   picker.showPicker();
   picker.onchange = () => {
     input.value = picker.value
