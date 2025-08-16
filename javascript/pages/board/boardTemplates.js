@@ -58,7 +58,10 @@ function getBoardTemplate(tasks = []) {
  * @returns {string} HTML string for the task detail overlay
  */
 function getTaskDetailOverlay(task) {
-  const isResponsive = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(max-width: 1024px)").matches;
+  const isResponsive =
+    typeof window !== "undefined" &&
+    window.matchMedia &&
+    window.matchMedia("(max-width: 1024px)").matches;
   const editIconName = isResponsive ? "edit hover.svg" : "edit.svg";
   const deleteIconName = isResponsive ? "delete hover.svg" : "delete.svg";
   const priority = (task.taskPriority || "medium").toLowerCase();

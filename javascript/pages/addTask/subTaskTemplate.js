@@ -11,7 +11,10 @@
  * @returns {string} HTML string for the subtasks container
  */
 function selectSubtask(subtasks = []) {
-  const isResponsive = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(max-width: 1024px)").matches;
+  const isResponsive =
+    typeof window !== "undefined" &&
+    window.matchMedia &&
+    window.matchMedia("(max-width: 1024px)").matches;
   const editIconName = isResponsive ? "edit hover.svg" : "edit.svg";
   const deleteIconName = isResponsive ? "delete hover.svg" : "delete.svg";
   if (!subtasks || subtasks.length === 0) {
