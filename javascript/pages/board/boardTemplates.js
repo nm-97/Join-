@@ -284,9 +284,12 @@ function renderTaskCardAssignees(assignedContacts) {
   if (!assignedContacts || assignedContacts.length === 0) {
     return '<div class="noAssignee" title="Not assigned">NA</div>';
   }
+
   let avatarsHtml = "";
-  const visibleContacts = assignedContacts.slice(0, 3);
-  const remainingCount = assignedContacts.length - 3;
+  const maxDisplay = 5; // Gleiche Mechanik wie Add Task - 5 Kontakte anzeigen
+  const visibleContacts = assignedContacts.slice(0, maxDisplay);
+  const remainingCount = assignedContacts.length - maxDisplay;
+
   visibleContacts.forEach((contact) => {
     const initials = getInitials(contact.name);
     const color = getAvatarColor(contact.name);
@@ -298,7 +301,7 @@ function renderTaskCardAssignees(assignedContacts) {
   });
 
   if (remainingCount > 0) {
-    avatarsHtml += `<div class="assignee"title="${remainingCount} more contacts">+${remainingCount}</div>`;
+    avatarsHtml += `<div class="assignee remainingCount" style="background-color: #cccccc; color: #666666;" title="${remainingCount} more contacts">+${remainingCount}</div>`;
   }
 
   return avatarsHtml;
