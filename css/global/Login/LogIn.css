@@ -343,7 +343,8 @@ input {
 }
 
 /* ===== MEDIA QUERIES ===== */
-/* Tablet and Small Desktop */
+
+/* General styles for tablets and smaller devices */
 @media (max-width: 1024px) {
   .desktopOnly {
     display: none;
@@ -364,9 +365,13 @@ input {
     gap: 35px;
   }
 
+  .checkboxContainer a {
+    margin-left: 8px;
+  }
+
   .headerSignUp img {
-    width: 64px;
-    height: 78.03px;
+    width: 70px;
+    height: 90px;
     margin-top: 37px;
     margin-left: 38px;
   }
@@ -384,20 +389,26 @@ input {
     text-align: center;
   }
 
-  .LogInMainContainer {
+  .LogInMainContainer,
+  .signUpMainContainer {
     width: 396px;
-    height: 475px;
     padding: 32px;
   }
 
-  .LogInMainContainer h2 {
+  .LogInMainContainer {
+    height: 475px;
+  }
+
+  .signUpMainContainer {
+    height: 595px;
+  }
+
+  .LogInMainContainer h2,
+  .signUpMainContainer h2 {
     font-size: 47px;
   }
 
-  .LogInMainContainer h2::after {
-    width: 88px;
-  }
-
+  .LogInMainContainer h2::after,
   .signUpMainContainer h2::after {
     width: 88px;
   }
@@ -448,24 +459,14 @@ input {
     flex-direction: column;
   }
 
-  .signUpMainContainer {
-    width: 396px;
-    height: 595px;
-    padding: 32px;
-  }
-
   .backBtn {
-    position: absolute;
     left: 52px;
     width: 32px;
     height: 32px;
   }
 
-  .signUpMainContainer h2 {
-    font-size: 47px;
-  }
-
-  .checkboxLabel {
+  .checkboxLabel,
+  .label {
     font-size: 16px;
   }
 
@@ -483,10 +484,6 @@ input {
     border-radius: 3px;
   }
 
-  .label {
-    font-size: 16px;
-  }
-
   .SignUpbtn {
     max-width: 352px;
     height: 56px;
@@ -494,7 +491,9 @@ input {
     font-size: 16px;
   }
 }
-@media (max-width: 786px) {
+
+/* Smaller tablets */
+@media (max-width: 768px) {
   .SignUpbtnPosition {
     position: absolute;
     bottom: 10%;
@@ -503,50 +502,47 @@ input {
     margin: 0 auto;
     z-index: 100;
   }
-}
 
-@media (max-width: 786px) and (min-height: 800px) {
-  .SignUpbtnPosition {
-    position: absolute;
-    bottom: 8%;
-    right: 10%;
-    left: 10%;
-    margin: 0 auto;
-    z-index: 100;
+  .backBtn {
+    left: 40px;
+    top: 35px;
   }
 }
 
-@media (max-width: 786px) and (min-height: 900px) {
-  .SignUpbtnPosition {
-    position: absolute;
-    bottom: 6%;
-    right: 10%;
-    left: 10%;
-    margin: 0 auto;
-    z-index: 100;
-  }
-}
-
-@media (max-width: 786px) and (min-height: 667px) {
-  .SignUpbtnPosition {
-    position: fixed;
-    bottom: 15%;
-    right: 5%;
-    left: 5%;
-    margin: 0 auto;
-    z-index: 100;
-  }
-}
-
+/* Mobile devices */
 @media (max-width: 480px) {
-  .LogInMainContainer {
+  .LogInMainContainer,
+  .signUpMainContainer {
     width: 90vw;
     min-width: 280px;
     padding: 24px 16px;
+    height: auto;
+    gap: 12px;
   }
 
-  .LogInMainContainer h2 {
-    font-size: 32px;
+  header img {
+    width: 70px;
+    height: 90px;
+  }
+
+  .headerSignUp {
+    margin-top: 0px;
+  }
+
+  .headerSignUp img {
+    margin-top: 0px;
+    margin-left: 0px;
+  }
+
+  .LogInMainContainer h2,
+  .signUpMainContainer h2 {
+    font-size: 36px;
+  }
+
+  .LogInMainContainer h2::after,
+  .signUpMainContainer h2::after {
+    width: 80px;
+    margin-top: 12px;
   }
 
   .LogInMainContainer input,
@@ -566,63 +562,23 @@ input {
   }
 
   .btnPosition button {
-    height: 48px;
+    height: 39px;
     font-size: 14px;
     padding: 12px 16px;
-  }
-
-  .signUpMainContainer {
-    width: 90vw;
-    min-width: 280px;
-    height: auto;
-    padding: 24px 16px;
-    margin: 20px auto;
+    width: 110px;
   }
 
   .SignUpbtnPosition {
-    position: absolute;
-    bottom: 10%;
-    right: 4%;
-    left: 4%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0;
-    z-index: 100;
     gap: 10px;
   }
 
   #signUpButton {
     padding: 2px 8px;
   }
-}
 
-@media (max-width: 428px) and (max-height: 926px) {
-  #signUpButton {
-    padding: 2px 8px;
-  }
-
-  .btnPosition button {
-    width: 130px;
-  }
-
-  .LogInMainContainer {
-    padding: 8px 8px;
-    gap: 16px;
-    height: 350px;
-  }
-
-  #loadingScreen {
-    margin-top: 9px;
-    margin-left: 10px;
-  }
-
-  .LogInMainContainer h2 {
-    font-size: 36px;
-  }
-
-  .LogInMainContainer h2::after {
-    width: 80px;
-    margin-top: 12px;
+  .backBtn {
+    top: 28px;
+    left: 28px;
   }
 
   form {
@@ -632,163 +588,44 @@ input {
   .checkboxContainer {
     margin-top: 10px;
   }
-
-  #signUpButton {
-    padding: 0px;
-  }
-
-  .SignUpbtnPosition {
-    position: absolute;
-    top: 520px;
-    bottom: 10%;
-    right: 4%;
-    left: 4%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0;
-    z-index: 100;
-    gap: 10px;
-  }
-
-  footer {
-    margin-bottom: 8px;
-  }
-  .backBtn {
-    top: 28px;
-    left: 28px;
-  }
 }
 
-@media (max-width: 414px) and (max-height: 740px) {
-  #loadingScreen {
-    width: 48px !important;
-    height: 58px !important;
-  }
-  .headerSignUp {
-    padding: 0px;
-    margin-top: 2px;
-  }
-  .backBtn {
-    top: 28px;
-    left: 28px;
-  }
-  .signUpMainContainer h2::after {
-    margin-top: 8px !important;
-  }
-
-  .signUpMainContainer {
-    gap: 8px;
-  }
-
-  .signUpMainContainer h2 {
-    font-size: 40px;
-  }
-}
-
-@media (max-width: 407px) and (max-height: 570px) {
-  #signUpButton {
-    padding: 2px 8px;
-  }
-
-  .btnPosition button {
-    width: 130px;
-  }
-
-  .LogInMainContainer,
-  .signUpMainContainer {
-    padding: 8px 8px;
-    gap: 16px;
-    height: 350px;
-  }
-
-  #loadingScreen {
-    width: 48px !important;
-    height: 58px !important;
-    margin-top: 6px !important;
-    margin-left: 8px !important;
-    max-width: 48px !important;
-    max-height: 58px !important;
-    transform: scale(1) !important;
-    animation: none !important;
-  }
-
-  .LogInMainContainer h2,
-  .signUpMainContainer h2 {
-    font-size: 36px;
-  }
-
-  .LogInMainContainer h2::after,
-  .signUpMainContainer h2::after {
-    width: 80px;
-    margin-top: 12px;
-  }
-
-  form {
-    gap: 8px;
-  }
-
-  .checkboxContainer {
-    margin-top: 10px;
-  }
-
-  #signUpButton {
-    padding: 0px;
-  }
-
-  .SignUpbtnPosition {
-    position: absolute;
-    top: 460px;
-    bottom: 10%;
-    right: 4%;
-    left: 4%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0;
-    z-index: 100;
-    gap: 10px;
-  }
-
-  footer {
-    margin-bottom: 8px;
-  }
-}
-
-@media (max-width: 490px) {
-  .backBtn {
-    left: 40px;
-    top: 35px;
-  }
-}
-
+/* Small mobile devices */
 @media (max-width: 360px) {
   .backBtn {
     left: 25px;
     top: 15px;
-  }
-}
-
-@media (max-width: 320px) and (max-width: 586px) {
-  .headerSignUp img {
-    width: 48px !important;
-    height: 55px !important;
-    margin-top: 14px !important;
-    margin-left: 14px !important;
   }
 
   .LogInInput input {
     height: 35px;
   }
 
-  .backBtn {
-    top: 12px;
-  }
-
-  .signUpMainContainer {
-    gap: 8px;
-  }
-
   .SignUpbtn {
     width: 100px !important;
     height: 40px !important;
+  }
+}
+
+/* Special cases for short screens (landscape mode on phones) */
+@media (max-height: 450px) {
+  .LogInMainContainer,
+  .signUpMainContainer {
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .LogInMainContainer h2,
+  .signUpMainContainer h2 {
+    font-size: 28px;
+  }
+
+  .LogInMainContainer h2::after,
+  .signUpMainContainer h2::after {
+    margin-top: 8px;
+  }
+
+  footer {
+    display: none; /* Hide footer on very short screens */
   }
 }
