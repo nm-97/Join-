@@ -160,6 +160,7 @@
     top: 0;
     left: 0;
     width: 100vw;
+    height: calc(100vh - 72px);
     z-index: 1000;
     overflow: auto;
     margin-top: 0;
@@ -323,7 +324,6 @@
     background-color: #f8f9fa;
     cursor: pointer;
     border: none;
-    z-index: 9999;
   }
 
   .floatingContactCloseBtn:not(.mobileContactHeader .floatingContactCloseBtn)
@@ -412,9 +412,5 @@
   .contact-menu-content button img {
     width: 16px;
     height: 16px;
-  }
-
-  .floatingContactName span {
-    font-size: 38px;
   }
 }
