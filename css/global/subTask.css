@@ -1,6 +1,15 @@
+/* ABSOLUTE SIMPLE LÖSUNG - Fixer Abstand für den Container */
+.subtaskDisplayContainer,
+#editableDiv {
+  height: 90px;
+  min-height: 90px;
+  overflow: hidden;
+}
+
 .subtasksContainer {
-  max-height: 200px;
   overflow-y: auto;
+  height: 100%;
+  width: 100%;
 }
 
 .subtaskItem {
@@ -149,4 +158,10 @@
 
 .hidden {
   display: none !important;
+}
+
+@media (max-width: 1024px) {
+  .subtaskHoverActions {
+    visibility: visible;
+  }
 }

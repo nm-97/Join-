@@ -11,6 +11,12 @@
  * @returns {string} HTML string for the subtasks container
  */
 function selectSubtask(subtasks = []) {
+  const isResponsive =
+    typeof window !== "undefined" &&
+    window.matchMedia &&
+    window.matchMedia("(max-width: 1024px)").matches;
+  const editIconName = isResponsive ? "edit hover.svg" : "edit.svg";
+  const deleteIconName = isResponsive ? "delete hover.svg" : "delete.svg";
   if (!subtasks || subtasks.length === 0) {
     return `<div class="noSubtasks">
     </div>`;
@@ -24,12 +30,12 @@ function selectSubtask(subtasks = []) {
           <div class="subtaskTextWrapper">
             <span class="subtaskText" contenteditable="false">${subtask.text}</span>
             <div class="subtaskHoverActions">
-              <img src="../assets/icons/shared/edit.svg" 
+              <img src="../assets/icons/shared/${editIconName}" 
                    alt="Edit" 
                    class="actionImg hoverEditImg" 
                    title="Bearbeiten"
                    onclick="startEditingSubtask(${index})">
-              <img src="../assets/icons/shared/delete.svg" 
+              <img src="../assets/icons/shared/${deleteIconName}" 
                    alt="Delete" 
                    class="actionImg hoverDeleteImg" 
                    title="Löschen"

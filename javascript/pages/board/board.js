@@ -113,15 +113,14 @@ async function refreshBoard() {
  * @returns {void} No return value, opens Add Task overlay for new task creation
  */
 function addTaskToColumn(status) {
-  // Prüfe, ob die addTask.js addTaskToColumn Funktion verfügbar ist
-  if (typeof window.addTaskToColumn === "function") {
-    window.addTaskToColumn(status);
-    return;
-  }
-  
-  // Fallback: Setze Status und zeige Overlay
   if (typeof window.selectedStatus !== "undefined") {
     window.selectedStatus = status;
+  } else {
+    window.selectedStatus = status;
+  }
+  if (typeof window.showAddTaskOverlay === "function") {
+    window.showAddTaskOverlay();
+    return;
   }
   showAddTaskOverlay();
 }
@@ -154,11 +153,14 @@ function closeTaskOverlay() {
  */
 function showAddTaskOverlay() {
   // Prüfe, ob die addTask.js showAddTaskOverlay Funktion verfügbar ist
-  if (typeof window.showAddTaskOverlay === "function" && window.showAddTaskOverlay !== showAddTaskOverlay) {
+  if (
+    typeof window.showAddTaskOverlay === "function" &&
+    window.showAddTaskOverlay !== showAddTaskOverlay
+  ) {
     window.showAddTaskOverlay();
     return;
   }
-  
+
   // Fallback für lokale Implementierung
   const overlay = document.getElementById("addTaskOverlay");
   if (overlay) {
@@ -324,6 +326,17 @@ function loadTaskDataIntoEditForm(task) {
   currentSubtasks = task.subtasks || [];
   window.currentSubtasks = currentSubtasks;
   window.originalSubtasks = task.subtasks || [];
+
+  // Speichere die ursprünglich zugewiesenen Contacts
+  window.originalAssignedTo = task.assignedTo || [];
+  window.selectedContacts = task.assignedTo || [];
+
+  if (task.assignedTo && task.assignedTo.length > 0) {
+    if (typeof setSelectedContacts === "function") {
+      setSelectedContacts(task.assignedTo);
+    }
+  }
+
   if (typeof renderSubtasks === "function") {
     renderSubtasks(window.currentSubtasks);
   }
@@ -399,15 +412,22 @@ function getSelectedCategory() {
 
 /**
  * Retrieves the currently selected assignees from the edit form with function delegation
- * Calls contact selection function if available, otherwise returns empty array
- * Provides safe assignee retrieval with complete array return for form data collection
+ * Calls contact selection function if available, otherwise returns originally assigned contacts
+ * Provides safe assignee retrieval with fallback to original assignment
  * @function getSelectedAssignedTo
- * @returns {Array} Array of contact IDs of selected assignees or empty array if function unavailable
+ * @returns {Array} Array of contact IDs of selected assignees or original assignees if none selected
  */
 function getSelectedAssignedTo() {
-  return typeof getSelectedContactIds === "function"
-    ? getSelectedContactIds()
-    : [];
+  if (typeof getSelectedContactIds === "function") {
+    const selectedIds = getSelectedContactIds();
+    // Wenn Contacts ausgewählt wurden, diese verwenden
+    if (selectedIds && selectedIds.length > 0) {
+      return selectedIds;
+    }
+  }
+
+  // Fallback: Verwende die ursprünglich zugewiesenen Contacts
+  return window.selectedContacts || window.originalAssignedTo || [];
 }
 
 /**

@@ -58,6 +58,12 @@ function getBoardTemplate(tasks = []) {
  * @returns {string} HTML string for the task detail overlay
  */
 function getTaskDetailOverlay(task) {
+  const isResponsive =
+    typeof window !== "undefined" &&
+    window.matchMedia &&
+    window.matchMedia("(max-width: 1024px)").matches;
+  const editIconName = isResponsive ? "edit hover.svg" : "edit.svg";
+  const deleteIconName = isResponsive ? "delete hover.svg" : "delete.svg";
   const priority = (task.taskPriority || "medium").toLowerCase();
   const categoryLabel = getCategoryLabel(task.Category);
   const categoryClass = getCategoryClass(task.Category);
@@ -119,13 +125,13 @@ function getTaskDetailOverlay(task) {
         </div>
         <div class="modalActions">
           <button class="modalButton" onclick="deleteTask('${task.id}')">
-            <img src="../assets/icons/shared/delete.svg" alt="delete">Delete
+            <img src="../assets/icons/shared/${deleteIconName}" alt="delete">Delete
           </button>
           <hr>
           <button class="modalButton editButton" onclick="editTask('${
             task.id
           }')">
-            <img src="../assets/icons/shared/edit.svg" alt="edit">Edit
+            <img src="../assets/icons/shared/${editIconName}" alt="edit">Edit
           </button>
         </div>
       </div>
@@ -214,9 +220,9 @@ function getTaskCardTemplate(task) {
     subtasks.length > 0 ? (completedSubtasks / subtasks.length) * 100 : 0;
   const hasSubtasks = subtasks.length > 0;
   return `
-    <div class="taskCard" data-task-id="${task.id}" draggable="true" 
-         ondragstart="startDragging('${task.id}')" 
-         onclick="showTaskDetail('${task.id}')">
+  <div class="taskCard" data-task-id="${task.id}" draggable="true" 
+     ondragstart="startDragging('${task.id}')" 
+     onclick="showTaskDetail('${task.id}')">
       <span class="taskLabel ${categoryClass}">${categoryLabel}</span>
       <h3 class="taskTitle">${task.title || "Untitled Task"}</h3>
       <p class="taskDescription">${
@@ -284,9 +290,12 @@ function renderTaskCardAssignees(assignedContacts) {
   if (!assignedContacts || assignedContacts.length === 0) {
     return '<div class="noAssignee" title="Not assigned">NA</div>';
   }
+
   let avatarsHtml = "";
-  const visibleContacts = assignedContacts.slice(0, 3);
-  const remainingCount = assignedContacts.length - 3;
+  const maxDisplay = 5; // Gleiche Mechanik wie Add Task - 5 Kontakte anzeigen
+  const visibleContacts = assignedContacts.slice(0, maxDisplay);
+  const remainingCount = assignedContacts.length - maxDisplay;
+
   visibleContacts.forEach((contact) => {
     const initials = getInitials(contact.name);
     const color = getAvatarColor(contact.name);
@@ -298,7 +307,7 @@ function renderTaskCardAssignees(assignedContacts) {
   });
 
   if (remainingCount > 0) {
-    avatarsHtml += `<div class="assignee"title="${remainingCount} more contacts">+${remainingCount}</div>`;
+    avatarsHtml += `<div class="assignee remainingCount" style="background-color: #cccccc; color: #666666;" title="${remainingCount} more contacts">+${remainingCount}</div>`;
   }
 
   return avatarsHtml;
