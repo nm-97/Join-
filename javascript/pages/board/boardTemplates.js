@@ -220,10 +220,9 @@ function getTaskCardTemplate(task) {
     subtasks.length > 0 ? (completedSubtasks / subtasks.length) * 100 : 0;
   const hasSubtasks = subtasks.length > 0;
   return `
-    <div class="taskCard" data-task-id="${task.id}" draggable="true" 
-         ondragstart="startDragging('${task.id}')" 
-         ontouchstart="handleTouchStartMobile(event, '${task.id}')"
-         onclick="showTaskDetail('${task.id}')">
+  <div class="taskCard" data-task-id="${task.id}" draggable="true" 
+     ondragstart="startDragging('${task.id}')" 
+     onclick="showTaskDetail('${task.id}')">
       <span class="taskLabel ${categoryClass}">${categoryLabel}</span>
       <h3 class="taskTitle">${task.title || "Untitled Task"}</h3>
       <p class="taskDescription">${
