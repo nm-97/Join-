@@ -64,6 +64,11 @@
   .addTaskFormsWrapper {
     margin: 32px;
   }
+
+  .addTaskH1 {
+    font-size: 50px;
+    margin-bottom: 25px;
+  }
 }
 
 @media (max-width: 428px) {

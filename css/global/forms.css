@@ -543,9 +543,15 @@ textarea::placeholder {
     padding: 9px !important;
   }
 
+  input::placeholder,
+  textarea::placeholder {
+    font-size: 16px;
+  }
   .addTaskFormsWrapper {
     margin: 32px;
     padding: 16px;
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -570,5 +576,13 @@ textarea::placeholder {
   .addTaskFormsWrapper {
     display: block;
     justify-content: flex-start;
+    padding: 0px;
+    gap: 0;
+  }
+}
+
+@media (max-width: 330px) {
+  .addTaskH1 {
+    font-size: 45px;
   }
 }

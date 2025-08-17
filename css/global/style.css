@@ -498,7 +498,6 @@ body {
 @media (max-width: 428px) {
   .mainContainer {
     max-width: 428px;
-    height: 100vh;
     overflow-y: auto;
   }
 

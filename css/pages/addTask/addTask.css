@@ -152,16 +152,16 @@ label {
 
 .addTaskBtn,
 .cancelTaskBtn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 20px;
-    font-weight: 700;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  height: 56px;
 }
 
 .addTaskBtn {
@@ -232,11 +232,11 @@ label {
     margin-top: 26px !important;
   }
 
-  .requiredStarText{
+  .requiredStarText {
     display: none;
   }
 
-  .formActions{
+  .formActions {
     justify-content: center !important;
   }
 }

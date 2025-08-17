@@ -58,6 +58,11 @@ async function fetchAndEnrichTasks() {
 function renderBoard(tasks) {
   const boardContainer = document.getElementById("boardContainer");
   boardContainer.innerHTML = getBoardTemplate(tasks);
+
+  // Initialize drop zones after rendering
+  if (typeof initializeDropZones === "function") {
+    initializeDropZones();
+  }
 }
 
 /**

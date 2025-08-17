@@ -18,7 +18,7 @@ function getBoardTemplate(tasks = []) {
           <h2 class="columnTitle">To do</h2>
           <img src="../assets/icons/board/plus.svg" alt="addTaskIcon" onclick="addTaskToColumn('toDo')">
         </div>
-        <div id="toDoColumn" class="columnContent" ondrop="dropToAnotherColumn(event)" ondragover="moveToAnotherColumn(event)">
+        <div id="toDoColumn" class="columnContent">
           ${renderTasksForColumn(tasks, "toDo")}
         </div>
       </div>
@@ -27,7 +27,7 @@ function getBoardTemplate(tasks = []) {
           <h2 class="columnTitle">In progress</h2>
           <img src="../assets/icons/board/plus.svg" alt="addTaskIcon" onclick="addTaskToColumn('inProgress')">
         </div>
-        <div id="inProgressColumn" class="columnContent" ondrop="dropToAnotherColumn(event)" ondragover="moveToAnotherColumn(event)">
+        <div id="inProgressColumn" class="columnContent">
           ${renderTasksForColumn(tasks, "inProgress")}
         </div>
       </div>
@@ -36,7 +36,7 @@ function getBoardTemplate(tasks = []) {
           <h2 class="columnTitle">Await feedback</h2>
           <img src="../assets/icons/board/plus.svg" alt="addTaskIcon" onclick="addTaskToColumn('awaitingFeedback')">
         </div>
-        <div id="awaitingFeedbackColumn" class="columnContent" ondrop="dropToAnotherColumn(event)" ondragover="moveToAnotherColumn(event)">
+        <div id="awaitingFeedbackColumn" class="columnContent">
           ${renderTasksForColumn(tasks, "awaitingFeedback")}
         </div>
       </div>
@@ -45,7 +45,7 @@ function getBoardTemplate(tasks = []) {
           <h2 class="columnTitle">Done</h2>
           <img src="../assets/icons/board/plus.svg" onclick="addTaskToColumn('done')" alt="addTaskIcon">
         </div>
-        <div id="doneColumn" class="columnContent" ondrop="dropToAnotherColumn(event)" ondragover="moveToAnotherColumn(event)">
+        <div id="doneColumn" class="columnContent">
           ${renderTasksForColumn(tasks, "done")}
         </div>
       </div>
@@ -220,9 +220,9 @@ function getTaskCardTemplate(task) {
     subtasks.length > 0 ? (completedSubtasks / subtasks.length) * 100 : 0;
   const hasSubtasks = subtasks.length > 0;
   return `
-  <div class="taskCard" data-task-id="${task.id}" draggable="true" 
-     ondragstart="startDragging('${task.id}')" 
-     onclick="showTaskDetail('${task.id}')">
+  <div class="taskCard" data-task-id="${task.id}" 
+     onpointerdown="startPointerDrag('${task.id}', event)"
+     onclick="handleTaskCardClick('${task.id}', event)">
       <span class="taskLabel ${categoryClass}">${categoryLabel}</span>
       <h3 class="taskTitle">${task.title || "Untitled Task"}</h3>
       <p class="taskDescription">${
