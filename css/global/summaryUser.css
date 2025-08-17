@@ -320,7 +320,6 @@ body.noScroll {
   }
 }
 
-
 @media (max-width: 600px) {
   .welcomeSection {
     display: none;

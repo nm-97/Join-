@@ -29,6 +29,8 @@
   transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
+  max-height: 90vh;
+  margin-bottom: 94px;
 }
 
 .overlayContent.closing {

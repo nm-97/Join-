@@ -287,7 +287,6 @@ textarea::placeholder {
   max-width: 893px;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 80px;
   align-items: center;
 }
 
