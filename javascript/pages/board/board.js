@@ -113,14 +113,14 @@ async function refreshBoard() {
  * @returns {void} No return value, opens Add Task overlay for new task creation
  */
 function addTaskToColumn(status) {
-  if (isMobileDevice()) {
-    window.location.href = "../html/addTask.html";
-  } else if (typeof window.addTaskToColumn === "function") {
-    window.addTaskToColumn(status);
-    return;
-  }
   if (typeof window.selectedStatus !== "undefined") {
     window.selectedStatus = status;
+  } else {
+    window.selectedStatus = status;
+  }
+  if (typeof window.showAddTaskOverlay === "function") {
+    window.showAddTaskOverlay();
+    return;
   }
   showAddTaskOverlay();
 }

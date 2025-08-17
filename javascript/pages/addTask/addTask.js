@@ -694,12 +694,6 @@ async function createOverlayTask() {
  * @returns {void} No return value, sets status and opens overlay for column-specific task creation
  */
 function addTaskToColumn(status) {
-  if (typeof isMobileDevice === "function" && isMobileDevice()) {
-    window.location.href = "../html/addTask.html";
-    return;
-  }
-
-  // Desktop: Overlay öffnen
   selectedStatus = status;
   showAddTaskOverlay();
 }

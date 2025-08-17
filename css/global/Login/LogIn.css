@@ -341,10 +341,16 @@ input {
   transform: translateY(20px);
   pointer-events: none;
 }
+@media (max-width: 2000px) {
+  .SignUpbtn {
+    margin-right: 16px;
+  }
 
-/* ===== MEDIA QUERIES ===== */
+  #loadingScreen {
+    margin-left: 16px;
+  }
+}
 
-/* General styles for tablets and smaller devices */
 @media (max-width: 1024px) {
   .desktopOnly {
     display: none;
@@ -388,6 +394,7 @@ input {
     font-size: 16px;
     font-weight: 700;
     text-align: center;
+    margin-right: 16px;
   }
 
   .LogInMainContainer,
@@ -458,6 +465,7 @@ input {
   body {
     display: flex;
     flex-direction: column;
+    overflow: scroll;
   }
 
   .backBtn {
@@ -495,14 +503,6 @@ input {
 
 /* Smaller tablets */
 @media (max-width: 768px) {
-  .backBtn {
-    left: 40px;
-    top: 35px;
-  }
-}
-
-/* Move Sign Up button down only from 511px and below */
-@media (max-width: 511px) {
   .SignUpbtnPosition {
     position: absolute;
     bottom: 10%;
@@ -510,6 +510,11 @@ input {
     left: 10%;
     margin: 0 auto;
     z-index: 100;
+  }
+
+  .backBtn {
+    left: 40px;
+    top: 35px;
   }
 }
 
