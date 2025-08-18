@@ -52,7 +52,6 @@ h3 {
   color: #444;
 }
 
-/* Paragraphen */
 .pageParagraph,
 p {
   font-size: 16px;
@@ -62,7 +61,6 @@ p {
   color: #555;
 }
 
-/* Listen */
 .pageList,
 ul {
   padding-left: 28px;

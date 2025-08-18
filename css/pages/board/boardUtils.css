@@ -1,4 +1,3 @@
-/* ===== UTILITY CLASSES ===== */
 .hidden {
   display: none !important;
 }
@@ -9,7 +8,6 @@
   align-items: center;
 }
 
-/* ===== CURSOR STYLES ===== */
 .closeButton,
 .closeBtn,
 .addIcon {

@@ -188,7 +188,6 @@
     transform: translateX(-50%);
   }
 
-  /* Show mobile header for both mobile-fullscreen and regular responsive view */
   #floatingContactOverlay:not(.mobile-fullscreen) .mobileContactHeader {
     display: flex;
   }

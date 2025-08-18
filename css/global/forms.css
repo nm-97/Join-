@@ -27,7 +27,6 @@ label {
   text-align: center;
 }
 
-/* ===== INPUT STYLES ===== */
 input,
 textarea,
 select {
@@ -84,7 +83,6 @@ textarea::placeholder {
   font-size: 20px;
 }
 
-/* ===== INPUT ICON STYLES ===== */
 .inputIcon {
   position: relative;
   display: flex;
@@ -122,7 +120,6 @@ textarea::placeholder {
   height: 20px;
 }
 
-/* ===== TASK PRIORITY STYLES ===== */
 .taskPriorityGroup {
   display: flex;
   gap: 8px;
@@ -147,7 +144,6 @@ textarea::placeholder {
   transition: all 0.2s ease;
 }
 
-/* Specific styles for urgent priority */
 .taskPriorityBtnUrgentSelected {
   background: #ff3d00;
   color: white;
@@ -158,7 +154,6 @@ textarea::placeholder {
   filter: brightness(0) invert(1);
 }
 
-/* Specific styles for medium priority */
 .taskPriorityBtnMediumSelected {
   background: #ffa800;
   color: white;
@@ -169,7 +164,6 @@ textarea::placeholder {
   filter: brightness(0) invert(1);
 }
 
-/* Specific styles for low priority */
 .taskPriorityBtnLowSelected {
   background: #7ae229;
   color: white;
@@ -225,7 +219,6 @@ textarea::placeholder {
   height: 16px;
 }
 
-/* ===== BUTTON STYLES ===== */
 .addTaskBtn,
 .cancelTaskBtn {
   display: flex;
@@ -282,7 +275,6 @@ textarea::placeholder {
   filter: brightness(0) invert(1);
 }
 
-/* ===== FORM LAYOUT STYLES ===== */
 .formActions {
   max-width: 893px;
   display: flex;
@@ -315,7 +307,6 @@ textarea::placeholder {
   display: block;
 }
 
-/* ===== AVATAR STYLES ===== */
 .editAvatarGroup {
   display: flex;
   gap: 8px;
@@ -382,7 +373,6 @@ textarea::placeholder {
   border-radius: 50%;
 }
 
-/* ===== TASK CARD STYLES ===== */
 .taskCard.hidden {
   display: none !important;
 }

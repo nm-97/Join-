@@ -1,8 +1,3 @@
-/**
- * Task Detail Overlay Styles
- * Handles styling for task detail modal overlay
- */
-
 .overlay {
   position: fixed;
   top: 0;
