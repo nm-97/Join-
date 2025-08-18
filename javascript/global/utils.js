@@ -170,7 +170,6 @@ function getAllContactNamesFromAssigned(assignedTo) {
  */
 function toggleUserMenu() {
   const dropdown = document.getElementById("usermenu");
-
   if (dropdown.classList.contains("show")) {
     dropdown.classList.remove("show");
     dropdown.classList.add("hide");
@@ -338,7 +337,6 @@ function performNavigation(url) {
  */
 function navigateTo(page) {
   if (!isMobileDevice()) return;
-
   updateNavigationSelection(event.target);
   const url = getPageUrl(page);
   if (url) {

@@ -70,7 +70,6 @@ function countEveryTaskLength(allTasks) {
   const statusCounts = calculateStatusCounts(allTasks);
   const priorityCounts = calculatePriorityCounts(allTasks);
   const boardCount = calculateBoardCount(allTasks);
-
   return {
     ...statusCounts,
     ...priorityCounts,

@@ -1,20 +1,20 @@
 /**
- * @fileoverview HTML templates for the Contacts page
- * Contains template functions for rendering contact items, overlays, and forms
+ * @fileoverview Pure HTML templates for the Contacts page
+ * Contains only template functions for rendering - NO LOGIC
  * @author Join Project Team
  * @version 1.0.0
  */
 
 /**
  * Generates contact template with optional alphabetical separator
- * @param {Object} contact - The contact object to render
+ * @param {Object} contact - The contact object with enhanced render data
  * @param {boolean} showSeparator - Whether to show alphabetical separator
+ * @param {string} letter - The alphabetical letter for separator
  * @returns {string} HTML string for contact with optional separator
  */
-function getContactWithSeparator(contact, showSeparator = false) {
+function getContactWithSeparator(contact, showSeparator = false, letter = "") {
   let separatorHTML = "";
-  if (showSeparator) {
-    const letter = contact.name.charAt(0).toUpperCase();
+  if (showSeparator && letter) {
     separatorHTML = `
     <div class="alphabetSeparator">
       <div class="alphabetLetter">${letter}</div>
@@ -26,14 +26,12 @@ function getContactWithSeparator(contact, showSeparator = false) {
 
 /**
  * Generates HTML template for a single contact item
- * @param {Object} contact - The contact object to render
+ * @param {Object} contact - The contact object with initials and color
  * @returns {string} HTML string for the contact item
  */
 function getContactTemplate(contact) {
-  const initials = getInitials(contact.name);
-  const color = getAvatarColor(contact.name);
   return `<div class="contactItem" onclick="handleContactClick('${contact.id}'); selectContactItem('${contact.id}');" id="${contact.id}" data-id="${contact.id}">
-    <div class="contactAvatar" style="background-color: ${color};">${initials}</div>
+    <div class="contactAvatar" style="background-color: ${contact.color};">${contact.initials}</div>
     <div class="contactInfo">
       <div class="contactName">${contact.name}</div>
       <div class="contactEmail">${contact.email}</div>
@@ -134,13 +132,19 @@ function getEditContactOverlay(contact) {
                 </div>`;
 }
 
-function getFloatingContact(contact, isMobile = false) {
-  const initials = getInitials(contact.name);
-  const color = getAvatarColor(contact.name);
-
-  const shouldShowMobileHeader = isMobile || window.innerWidth <= 1024;
-
-  const mobileHeader = shouldShowMobileHeader
+/**
+ * Generates HTML for the floating contact display
+ * @param {Object} contact - The contact object with initials and color
+ * @param {boolean} showMobileHeader - Whether to show mobile header
+ * @param {boolean} showMobileMenuButton - Whether to show mobile menu button
+ * @returns {string} HTML string for the floating contact
+ */
+function getFloatingContact(
+  contact,
+  showMobileHeader = false,
+  showMobileMenuButton = false
+) {
+  const mobileHeader = showMobileHeader
     ? `
     <div class="mobileContactHeader">
       <h1>Contacts</h1>
@@ -152,6 +156,10 @@ function getFloatingContact(contact, isMobile = false) {
   `
     : "";
 
+  const mobileMenuButton = showMobileMenuButton
+    ? `<button class="floating-menu-button" onclick="showContactMenu('${contact.id}')">⋮</button>`
+    : "";
+
   return `
 ${mobileHeader}
 <button class="floatingContactCloseBtn" onclick="closeFloatingContactOverlayResponsive()">
@@ -159,13 +167,11 @@ ${mobileHeader}
 </button>
 <div class="floatingContactCard">
   <div class="floatingContactHeader">
-    <div class="floatingContactAvatar" style="background-color: ${color};">${initials}</div>
+    <div class="floatingContactAvatar" style="background-color: ${contact.color};">${contact.initials}</div>
     <div class="floatingContactName">
       <span>${contact.name}</span>
       <div class="floatingContactActions">
-        <button onclick="showEditContactOverlay('${
-          contact.id
-        }')" class="editBtn">
+        <button onclick="showEditContactOverlay('${contact.id}')" class="editBtn">
           <img src="../assets/icons/shared/edit.svg" alt="editIcon">
           Edit
         </button>
@@ -188,21 +194,8 @@ ${mobileHeader}
     </div>
   </div>
 </div>
-${getMobileMenuButton(contact.id)}
+${mobileMenuButton}
   `;
-}
-
-/**
- * Generates HTML for mobile menu button if in mobile view
- * @param {string} contactId - The contact ID for the menu actions
- * @returns {string} HTML string for mobile menu button or empty string
- */
-function getMobileMenuButton(contactId) {
-  const isMobile = window.innerWidth <= 1024;
-
-  return isMobile
-    ? `<button class="floating-menu-button" onclick="showContactMenu('${contactId}')">⋮</button>`
-    : "";
 }
 
 /**

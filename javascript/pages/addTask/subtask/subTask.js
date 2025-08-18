@@ -312,3 +312,45 @@ function renderSubtasks(subtasks = []) {
     editableDiv.innerHTML = subtaskData;
   }
 }
+
+/**
+ * Generates HTML template for displaying subtasks with edit and delete options
+ * Contains the main logic for determining responsive icons and building the complete HTML structure
+ * @param {Array} subtasks - Array of subtask objects to render
+ * @returns {string} HTML string for the subtasks container
+ */
+function selectSubtask(subtasks = []) {
+  if (!subtasks || subtasks.length === 0) {
+    return getEmptySubtasksTemplate();
+  }
+
+  const { editIconName, deleteIconName } = getResponsiveIconNames();
+  let subtaskHTML = "";
+
+  subtasks.forEach((subtask, index) => {
+    subtaskHTML += getSubtaskItemTemplate(
+      subtask,
+      index,
+      editIconName,
+      deleteIconName
+    );
+  });
+
+  return getSubtasksContainerTemplate(subtaskHTML);
+}
+
+/**
+ * Determines the appropriate icon names based on responsive design
+ * @returns {Object} Object containing editIconName and deleteIconName
+ */
+function getResponsiveIconNames() {
+  const isResponsive =
+    typeof window !== "undefined" &&
+    window.matchMedia &&
+    window.matchMedia("(max-width: 1024px)").matches;
+
+  return {
+    editIconName: isResponsive ? "edit hover.svg" : "edit.svg",
+    deleteIconName: isResponsive ? "delete hover.svg" : "delete.svg",
+  };
+}

@@ -134,109 +134,163 @@ function getAddTaskOverlay(params = {}) {
 }
 
 /**
- * Generates HTML template for the Edit Task overlay
- * @param {Object} task - Task object containing task data for editing
- * @returns {string} HTML string for the Edit Task overlay
+ * Generates HTML template for the Edit Task overlay header
+ * @returns {string} HTML string for the modal header
  */
-function getEditTaskOverlay(task) {
-  const assignedContacts = task.assignedContacts || [];
-  let assignedInfoHtml = "";
-  if (assignedContacts.length === 0) {
-    assignedInfoHtml = '<div class="assignedInfo">Not assigned</div>';
-  } else {
-    assignedContacts.forEach((contact) => {
-      const initials = getInitials(contact.name);
-      const color = getAvatarColor(contact.name);
-      assignedInfoHtml += `
-        <div class="assignedInfo">
-          <div class="userAvatar" style="background-color: ${color};">${initials}</div>
-          <span>${contact.name}</span>
+function getEditTaskModalHeader() {
+  return `
+    <div class="modalHeader">
+      <button class="closeButton" onclick="closeEditTaskOverlay()">
+        <img src="../assets/icons/shared/close.svg" alt="close">
+      </button>
+    </div>`;
+}
+
+/**
+ * Generates HTML template for edit form input group
+ * @param {string} labelText - Label text for the input
+ * @param {string} inputId - ID for the input element
+ * @param {string} placeholder - Placeholder text
+ * @param {string} value - Current value
+ * @param {string} inputType - Type of input ('input' or 'textarea')
+ * @returns {string} HTML string for form group
+ */
+function getEditFormGroup(
+  labelText,
+  inputId,
+  placeholder,
+  value,
+  inputType = "input"
+) {
+  const inputElement =
+    inputType === "textarea"
+      ? `<textarea id="${inputId}" placeholder="${placeholder}" class="editTextarea">${
+          value || ""
+        }</textarea>`
+      : `<input type="text" id="${inputId}" placeholder="${placeholder}" class="editInput" value="${
+          value || ""
+        }">`;
+
+  return `
+    <div class="editFormGroup">
+      <label class="editLabel">${labelText}</label>
+      ${inputElement}
+    </div>`;
+}
+
+/**
+ * Generates HTML template for edit task date input group
+ * @param {string} value - Current date value
+ * @returns {string} HTML string for date form group
+ */
+function getEditDateFormGroup(value) {
+  return `
+    <div class="editFormGroup">
+      <label class="editLabel">Due date</label>
+      <div class="editInputIcon">
+        <input type="text" id="editTaskDueDate" placeholder="Due Date" class="editInput" value="${
+          value || ""
+        }">
+        <input type="date" id="hiddenEditDatePicker" style="position: absolute; opacity: 0; pointer-events: none;"/>
+        <img src="../assets/icons/add task/event.svg" class="editDateIcon" alt="calendarIcon" onclick="openEditDatePicker()">
+      </div>
+    </div>`;
+}
+
+/**
+ * Generates HTML template for task priority section
+ * @returns {string} HTML string for priority buttons
+ */
+function getEditPrioritySection() {
+  return `
+    <div class="formGroup">
+      <label class="taskPriorityLabel">Task Priority</label>
+        <div class="taskPriorityGroup">
+            <button type="button" class="taskPriorityBtn" id="urgentBtn">
+            <img src="../assets/icons/shared/urgent.svg" alt="urgentIcon">
+            <span>Urgent</span>
+            </button>
+          <button type="button" class="taskPriorityBtn" id="mediumBtn">
+            <img src="../assets/icons/shared/medium.svg" alt="mediumIcon">
+            <span>Medium</span>
+          </button>
+          <button type="button" class="taskPriorityBtn" id="lowBtn">
+            <img src="../assets/icons/shared/low.svg" alt="lowIcon">
+            <span>Low</span>
+          </button>
         </div>
-      `;
-    });
-  }
+    </div>`;
+}
+
+/**
+ * Generates HTML template for assigned contacts section
+ * @returns {string} HTML string for contacts dropdown
+ */
+function getEditAssignedContactsSection() {
+  return `
+    <div class="editFormGroup">
+     <label for="dropdownInput">Assigned to <span class="requiredStar">*</span></label>
+           <div class="customDropdownContainer">
+             <div class="customDropdown" id="customDropdown">
+               <div class="dropdownHeader">
+                 <input type="text" class="dropdownInput" id="dropdownInput" name="taskAssignee" placeholder="Select contacts to assign" readonly/>
+                 <button type="button" class="dropdownArrow" id="dropdownArrow"></button>
+               </div>
+               <div class="dropdownContent" id="dropdownContent">
+                 <div class="contactsList" id="contactsDropdownList">
+                   <!-- Contacts werden hier dynamisch eingefügt -->
+                 </div>
+               </div>
+             </div>
+             <div class="selectedContactsDisplay" id="selectedContactsDisplay">
+               <!-- Ausgewählte Kontakte werden hier angezeigt -->
+             </div>
+           </div>
+           <div class="errorMessage hide"></div>
+    </div>`;
+}
+
+/**
+ * Generates HTML template for subtask section
+ * @returns {string} HTML string for subtask input and display
+ */
+function getEditSubtaskSection() {
+  return `
+    <div class="editFormGroup editFormGroupLast">
+       <label for="taskSubtask">Subtask</label>
+           <div class="inputIcon">
+             <input type="text" placeholder="Add new subtask" id="taskSubtask" name="taskSubtask" multiple/>
+             <img src="../assets/icons/board/addtask.svg" alt="addSubtask" id="createSubtaskButton"/>
+           </div>
+           <div id="editableDiv" class="subtaskDisplayContainer">
+           </div>
+    </div>`;
+}
+
+/**
+ * Generates HTML template for edit task buttons
+ * @returns {string} HTML string for button container
+ */
+function getEditTaskButtons() {
+  return `
+    <div class="editButtonContainer">
+      <button class="editOkBtn" id="editSaveBtn">
+        Ok
+        <img src="../assets/icons/add task/check.svg" alt="checkIcon">
+      </button>
+    </div>`;
+}
+
+/**
+ * Generates HTML template for overlay wrapper
+ * @param {string} content - Content to wrap in overlay
+ * @returns {string} HTML string for overlay wrapper
+ */
+function getOverlayWrapper(content) {
   return `
     <div class="overlay">
       <div class="taskDetailModal scroll">
-        <div class="modalHeader">
-          <button class="closeButton" onclick="closeEditTaskOverlay()">
-            <img src="../assets/icons/shared/close.svg" alt="close">
-          </button>
-        </div>
-        <div class="editFormGroup">
-          <label class="editLabel">Title</label>
-          <input type="text" id="editTaskTitle" placeholder="Title" class="editInput" value="${
-            task.title || ""
-          }">
-        </div>
-        <div class="editFormGroup">
-          <label class="editLabel">Description</label>
-          <textarea id="editTaskDescription" placeholder="Description" class="editTextarea">${
-            task.description || ""
-          }</textarea>
-        </div>
-        <div class="editFormGroup">
-          <label class="editLabel">Due date</label>
-          <div class="editInputIcon">
-            <input type="text" id="editTaskDueDate" placeholder="Due Date" class="editInput" value="${
-              task.dueDate || ""
-            }">
-            <input type="date" id="hiddenEditDatePicker" style="position: absolute; opacity: 0; pointer-events: none;"/>
-            <img src="../assets/icons/add task/event.svg" class="editDateIcon" alt="calendarIcon" onclick="openEditDatePicker()">
-          </div>
-        </div>
-        <div class="formGroup">
-          <label class="taskPriorityLabel">Task Priority</label>
-            <div class="taskPriorityGroup">
-                <button type="button" class="taskPriorityBtn" id="urgentBtn">
-                <img src="../assets/icons/shared/urgent.svg" alt="urgentIcon">
-                <span>Urgent</span>
-                </button>
-              <button type="button" class="taskPriorityBtn" id="mediumBtn">
-                <img src="../assets/icons/shared/medium.svg" alt="mediumIcon">
-                <span>Medium</span>
-              </button>
-              <button type="button" class="taskPriorityBtn" id="lowBtn">
-                <img src="../assets/icons/shared/low.svg" alt="lowIcon">
-                <span>Low</span>
-              </button>
-            </div>
-        </div>
-        <div class="editFormGroup">
-         <label for="dropdownInput">Assigned to <span class="requiredStar">*</span></label>
-               <div class="customDropdownContainer">
-                 <div class="customDropdown" id="customDropdown">
-                   <div class="dropdownHeader">
-                     <input type="text" class="dropdownInput" id="dropdownInput" name="taskAssignee" placeholder="Select contacts to assign" readonly/>
-                     <button type="button" class="dropdownArrow" id="dropdownArrow"></button>
-                   </div>
-                   <div class="dropdownContent" id="dropdownContent">
-                     <div class="contactsList" id="contactsDropdownList">
-                       <!-- Contacts werden hier dynamisch eingefügt -->
-                     </div>
-                   </div>
-                 </div>
-                 <div class="selectedContactsDisplay" id="selectedContactsDisplay">
-                   <!-- Ausgewählte Kontakte werden hier angezeigt -->
-                 </div>
-               </div>
-               <div class="errorMessage hide"></div>
-        </div>
-        <div class="editFormGroup editFormGroupLast">
-           <label for="taskSubtask">Subtask</label>
-               <div class="inputIcon">
-                 <input type="text" placeholder="Add new subtask" id="taskSubtask" name="taskSubtask" multiple/>
-                 <img src="../assets/icons/board/addtask.svg" alt="addSubtask" id="createSubtaskButton"/>
-               </div>
-               <div id="editableDiv" class="subtaskDisplayContainer">
-               </div>
-        </div>
-        <div class="editButtonContainer">
-          <button class="editOkBtn" id="editSaveBtn">
-            Ok
-            <img src="../assets/icons/add task/check.svg" alt="checkIcon">
-          </button>
-        </div>
+        ${content}
       </div>
     </div>`;
 }
