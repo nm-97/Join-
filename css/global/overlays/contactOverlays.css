@@ -10,14 +10,6 @@
   display: none;
 }
 
-.addContactOverlay {
-  z-index: 1050;
-}
-
-.editContactOverlay {
-  z-index: 1060;
-}
-
 .addContactOverlay::before,
 .editContactOverlay::before {
   content: "";

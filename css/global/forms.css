@@ -294,6 +294,7 @@ textarea::placeholder {
 
 .editFormGroup {
   margin-bottom: 25px;
+  max-width: 423px;
 }
 
 .editFormGroupLast {
