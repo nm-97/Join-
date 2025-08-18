@@ -30,7 +30,7 @@
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
   max-height: 90vh;
-  margin-bottom: 94px;
+  margin-bottom: 65px;
 }
 
 .overlayContent.closing {
@@ -74,5 +74,6 @@
 @media (max-width: 428px) {
   .overlayContent {
     width: 95%;
+    height: 83%;
   }
 }
