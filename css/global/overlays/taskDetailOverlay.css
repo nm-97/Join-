@@ -24,7 +24,7 @@
 .taskDetailModal {
   background-color: white;
   border-radius: 30px;
-  padding: 50px;
+  padding: 26px;
   max-width: 525px;
   width: 90%;
   max-height: 90vh;
@@ -50,7 +50,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .modalLabel {
@@ -70,13 +70,8 @@
   justify-content: center;
   background-color: transparent;
   border: none;
-  font-size: 24px;
   cursor: pointer;
-  padding: 0;
   color: #2a3f5f;
-  position: absolute;
-  top: 48px;
-  right: 36px;
 }
 
 .modalTitle {
@@ -162,7 +157,7 @@
 
 .modalActions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 15px;
   padding-top: 30px;
 }
@@ -187,7 +182,7 @@ hr {
 
 @media (max-width: 1024px) {
   .overlay {
-    height: 95%;
+    height: 90%;
   }
 }
 
@@ -203,11 +198,6 @@ hr {
     max-height: 82vh;
   }
 }
-
-@media (max-width: 428px) {
-  .overlay {
-    height: 95%;
-  }
 
   .overlayAddtask {
     max-width: 552px;
@@ -240,7 +230,6 @@ hr {
   .taskDetailModal {
     overflow-y: auto;
     overflow-x: hidden;
-    height: 448px;
   }
 
   .modalButton img {
@@ -251,4 +240,3 @@ hr {
   .modalActions {
     padding-top: 0;
   }
-}
