@@ -24,7 +24,6 @@ function loadCategories() {
       console.warn("categoriesDropdownList element not found, retrying...");
       return;
     }
-
     renderCategoriesDropdown(categories);
     setupDropdownEvents(
       "customCategoryDropdown",
