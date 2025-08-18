@@ -290,6 +290,7 @@
 @media (max-width: 1200px) {
   .mainContainer {
     width: 100%;
+    overflow: scroll;
   }
   .mainContent {
     padding: 16px;
