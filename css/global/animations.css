@@ -6,10 +6,13 @@
 
 /* ===== FADE ANIMATIONS ===== */
 @keyframes fadeIn {
-  from {
+  0% {
     opacity: 0;
   }
-  to {
+  55% {
+    opacity: 0;
+  }
+  100% {
     opacity: 1;
   }
 }
@@ -191,39 +194,34 @@
 /* ===== LOGIN/LOADING ANIMATIONS ===== */
 @keyframes logoFly {
   0% {
-    width: 274px;
-    height: 334.07px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(calc(50vw - 50%), calc(55vh - 46%)) scale(2.7);
     opacity: 1;
   }
   100% {
-    width: 100.03px;
-    height: 121.97px;
-    transform: translate(0, 0);
+    transform: translate(0, 0) scale(1);
     opacity: 1;
   }
 }
 
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   @keyframes logoFly {
     0% {
       width: 180px;
       height: 220px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(calc(50vw - 50%), calc(50vh - 50%)) scale(1);
       opacity: 1;
     }
     100% {
+      transform: scale(1) translate(0, 0);
+      position: relative;
+      top: auto;
+      left: auto;
       width: 80px;
       height: 96px;
-      transform: translate(0, 0);
       opacity: 1;
     }
   }
-}
+} */
 
 @keyframes backgroundFadeOut {
   0% {

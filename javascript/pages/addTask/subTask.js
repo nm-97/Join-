@@ -236,7 +236,11 @@ function editSubtaskText(index, newText) {
     typeof window.currentSubtasks !== "undefined" &&
     window.currentSubtasks[index]
   ) {
-    window.currentSubtasks[index].text = newText;
+    if (newText.trim() === "") {
+      deleteSubtask(index);
+    } else {
+      window.currentSubtasks[index].text = newText;
+    }
   }
 }
 
