@@ -10,7 +10,6 @@
   }
 }
 
-
 @keyframes fadeOut {
   from {
     opacity: 1;
@@ -204,7 +203,6 @@
     }
   }
 }
-}
 
 @media (max-width: 2500px) {
   @keyframes logoFly {
@@ -217,7 +215,6 @@
       opacity: 1;
     }
   }
-}
 }
 
 @media (max-width: 2200px) {
@@ -232,7 +229,6 @@
     }
   }
 }
-}
 
 @media (max-width: 2050px) {
   @keyframes logoFly {
@@ -245,7 +241,6 @@
       opacity: 1;
     }
   }
-}
 }
 
 @media (max-width: 1920px) {
@@ -260,8 +255,6 @@
     }
   }
 }
-}
-
 
 @media (max-width: 1024px) {
   body {

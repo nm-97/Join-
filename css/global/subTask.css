@@ -27,7 +27,6 @@
 }
 
 .subtaskBullet {
-  margin-right: 8px;
   color: #666;
   transition: opacity 0.2s ease;
 }
@@ -55,6 +54,9 @@
   border: none;
   outline: none;
   background: transparent;
+  max-width: calc(100% - 40px);
+  word-wrap: break-word;
+  overflow: hidden;
 }
 
 .subtaskText[contenteditable="true"] {
@@ -73,13 +75,16 @@
 
 .subtaskHoverActions {
   position: absolute;
-  right: 8px;
   top: 50%;
+  right: 1px;
   transform: translateY(-50%);
   display: flex;
-  gap: 8px;
+  gap: 2px;
   align-items: center;
   visibility: hidden;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
+  z-index: 10;
 }
 
 .subtaskTextWrapper:hover .subtaskHoverActions {
@@ -114,6 +119,10 @@
   display: none;
   align-items: center;
   gap: 4px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2px 4px;
+  border-radius: 4px;
+  z-index: 10;
 }
 
 .subtaskText[contenteditable="true"] .subtaskActions {
