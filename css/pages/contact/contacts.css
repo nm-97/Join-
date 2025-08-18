@@ -235,10 +235,6 @@
     justify-content: center;
   }
 
-  .contactsList {
-    max-width: 310px;
-  }
-
   .contactEmail {
     font-size: 13px;
   }
@@ -350,6 +346,7 @@
 @media (max-width: 786px) {
   .contactsList {
     padding: 40px 26px;
+    overflow-x: hidden;
   }
 
   .alphabetSeparator {
