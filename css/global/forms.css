@@ -443,6 +443,7 @@ textarea::placeholder {
     right: auto;
     justify-content: center;
     width: 100%;
+    margin-bottom: 84px;
   }
 
   input::placeholder,
@@ -473,6 +474,7 @@ textarea::placeholder {
 
   .taskPriorityLabel {
     font-size: 16px !important;
+    margin-top: 16px;
   }
 
   .editLabel {
