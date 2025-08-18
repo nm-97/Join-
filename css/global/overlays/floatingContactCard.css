@@ -124,6 +124,10 @@
     margin-top: 180px;
   }
 
+  .floatingContactCloseBtn {
+    z-index: 999999;
+  }
+
   .floatingContactMainContent {
     margin-left: 20px;
   }
@@ -216,6 +220,7 @@
     padding: clamp(6px, 1.5vw, 8px);
     border-radius: 50%;
     transition: background-color 0.2s ease;
+    z-index: 99999;
   }
 
   .mobileContactHeader .floatingContactCloseBtn:hover {
@@ -226,6 +231,7 @@
     width: clamp(20px, 5vw, 24px);
     height: clamp(20px, 5vw, 24px);
     display: block;
+    z-index: 9999;
   }
 
   #floatingContactOverlay.mobile-fullscreen .floatingContactMainContent {
@@ -312,7 +318,7 @@
   visibility: hidden !important;
   opacity: 0 !important;
   position: absolute !important;
-  left: -9999px !important;
+  left: 9999px !important;
 }
 
 @media (max-width: 1024px) {
@@ -324,6 +330,7 @@
     background-color: #f8f9fa;
     cursor: pointer;
     border: none;
+    z-index: 9999;
   }
 
   .floatingContactCloseBtn:not(.mobileContactHeader .floatingContactCloseBtn)
@@ -332,6 +339,7 @@
     height: clamp(24px, 6vw, 32px);
     display: block;
     filter: invert(0);
+    z-index: 99999;
   }
 
   .floatingContactCard::after {
