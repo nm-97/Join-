@@ -16,22 +16,20 @@ const categories = [
  * @returns {void}
  */
 function loadCategories() {
-  setTimeout(() => {
-    const categoriesDropdownList = document.getElementById(
-      "categoriesDropdownList"
-    );
-    if (!categoriesDropdownList) {
-      console.warn("categoriesDropdownList element not found, retrying...");
-      return;
-    }
-    renderCategoriesDropdown(categories);
-    setupDropdownEvents(
-      "customCategoryDropdown",
-      "categoryDropdownInput",
-      "categoryDropdownArrow"
-    );
-    setupCategorySelection();
-  }, 100);
+  const categoriesDropdownList = document.getElementById(
+    "categoriesDropdownList"
+  );
+  if (!categoriesDropdownList) {
+    // Element nicht gefunden - wird wahrscheinlich später dynamisch geladen
+    return;
+  }
+  renderCategoriesDropdown(categories);
+  setupDropdownEvents(
+    "customCategoryDropdown",
+    "categoryDropdownInput",
+    "categoryDropdownArrow"
+  );
+  setupCategorySelection();
 }
 
 /**
