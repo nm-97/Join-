@@ -21,6 +21,7 @@ async function showTaskDetail(taskId) {
   overlay.innerHTML = await getTaskDetailOverlay(task);
   overlay.classList.remove("hidden");
   overlay.style.display = "flex";
+  document.body.classList.add("no-scroll");
 }
 
 /**

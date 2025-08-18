@@ -152,6 +152,7 @@ function closeTaskOverlay() {
   const overlay = document.getElementById("taskOverlay");
   if (overlay) {
     overlay.classList.add("closing");
+    document.body.classList.remove("no-scroll");
     setTimeout(() => {
       overlay.style.display = "none";
       overlay.classList.add("hidden");

@@ -121,8 +121,6 @@ function updateCounter(elementId, value) {
   }
 }
 
-// Ersetze die getAllContactsFromAssigned Funktion (ab Zeile ~105):
-
 /**
  * Handles assignedTo array and returns all contact objects with Firebase data fetching
  * Processes assigned contact IDs by fetching complete contact data from Firebase database

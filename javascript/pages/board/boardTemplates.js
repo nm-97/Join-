@@ -292,7 +292,7 @@ function renderTaskCardAssignees(assignedContacts) {
   }
 
   let avatarsHtml = "";
-  const maxDisplay = 5; // Gleiche Mechanik wie Add Task - 5 Kontakte anzeigen
+  const maxDisplay = 5;
   const visibleContacts = assignedContacts.slice(0, maxDisplay);
   const remainingCount = assignedContacts.length - maxDisplay;
 
