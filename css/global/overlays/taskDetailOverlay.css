@@ -182,7 +182,7 @@ hr {
 
 @media (max-width: 1024px) {
   .overlay {
-    height: 90%;
+    height: 100%;
   }
 }
 
@@ -199,43 +199,43 @@ hr {
   }
 }
 
-  .overlayAddtask {
-    max-width: 552px;
-  }
+.overlayAddtask {
+  max-width: 552px;
+}
 
-  .closeButton {
-    justify-content: flex-end;
-  }
+.closeButton {
+  justify-content: flex-end;
+}
 
-  .modalLabel {
-    display: flex;
-    align-items: center;
-    padding: 4px 16px;
-    font-size: 16px;
-  }
+.modalLabel {
+  display: flex;
+  align-items: center;
+  padding: 4px 16px;
+  font-size: 16px;
+}
 
-  .modalTitle {
-    font-size: 36px;
-  }
+.modalTitle {
+  font-size: 36px;
+}
 
-  .modalDescription,
-  .detailRow,
-  .assignedUser,
-  .subtasksTitle,
-  .subtaskItem {
-    font-size: 16px;
-  }
+.modalDescription,
+.detailRow,
+.assignedUser,
+.subtasksTitle,
+.subtaskItem {
+  font-size: 16px;
+}
 
-  .scroll,
-  .taskDetailModal {
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
+.scroll,
+.taskDetailModal {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 
-  .modalButton img {
-    height: 24px;
-    width: 24px;
-  }
+.modalButton img {
+  height: 24px;
+  width: 24px;
+}
 
   .modalActions {
     padding-top: 0;
