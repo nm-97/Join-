@@ -336,8 +336,6 @@ input {
   transform-origin: top left;
   display: block;
   position: relative;
-  width: 274px;
-  height: 334.07px;
 }
 
 #loadingScreen.hidden {

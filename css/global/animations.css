@@ -202,26 +202,165 @@
     opacity: 1;
   }
 }
+@media (max-width: 1024px) {
+  body {
+    animation: bodyBackgroundChange 1.5s ease-in-out forwards;
+  }
 
-/* @media (max-width: 1024px) {
-  @keyframes logoFly {
+  @keyframes bodyBackgroundChange {
     0% {
-      width: 180px;
-      height: 220px;
-      transform: translate(calc(50vw - 50%), calc(50vh - 50%)) scale(1);
-      opacity: 1;
+      background-color: #2a3647;
+    }
+    50% {
+      background-color: #2a3647;
     }
     100% {
-      transform: scale(1) translate(0, 0);
-      position: relative;
-      top: auto;
-      left: auto;
-      width: 80px;
-      height: 96px;
-      opacity: 1;
+      background-color: #f6f7f8;
     }
   }
-} */
+
+  @keyframes logoFly {
+    0% {
+      transform: translate(calc(50vw - 50%), calc(45vh - 50%)) scale(2.2);
+      content: url("../../assets/icons/login/Capa 1.png");
+    }
+    75% {
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    animation: bodyBackgroundChange 1.5s ease-in-out forwards;
+  }
+
+  @keyframes bodyBackgroundChange {
+    0% {
+      background-color: #2a3647;
+    }
+    50% {
+      background-color: #2a3647;
+    }
+    100% {
+      background-color: #f6f7f8;
+    }
+  }
+
+  @keyframes logoFly {
+    0% {
+      transform: translate(calc(50vw - 50%), calc(40vh - 50%)) scale(1.8);
+      content: url("../../assets/icons/login/Capa 1.png");
+    }
+    75% {
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    animation: bodyBackgroundChange 1.5s ease-in-out forwards;
+  }
+
+  @keyframes bodyBackgroundChange {
+    0% {
+      background-color: #2a3647;
+    }
+    50% {
+      background-color: #2a3647;
+    }
+    100% {
+      background-color: #f6f7f8;
+    }
+  }
+
+  @keyframes logoFly {
+    0% {
+      transform: translate(calc(50vw - 50%), calc(35vh - 50%)) scale(1.5);
+      content: url("../../assets/icons/login/Capa 1.png");
+    }
+    75% {
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  body {
+    animation: bodyBackgroundChange 1.5s ease-in-out forwards;
+  }
+
+  @keyframes bodyBackgroundChange {
+    0% {
+      background-color: #2a3647;
+    }
+    50% {
+      background-color: #2a3647;
+    }
+    100% {
+      background-color: #f6f7f8;
+    }
+  }
+
+  @keyframes logoFly {
+    0% {
+      transform: translate(calc(50vw - 50%), calc(30vh - 50%)) scale(1.3);
+      content: url("../../assets/icons/login/Capa 1.png");
+    }
+    75% {
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+  }
+}
+
+@media (max-height: 450px) {
+  body {
+    animation: bodyBackgroundChange 1.5s ease-in-out forwards;
+  }
+
+  @keyframes bodyBackgroundChange {
+    0% {
+      background-color: #2a3647;
+    }
+    50% {
+      background-color: #2a3647;
+    }
+    100% {
+      background-color: #f6f7f8;
+    }
+  }
+
+  @keyframes logoFly {
+    0% {
+      transform: translate(calc(50vw - 50%), calc(25vh - 50%)) scale(1.2);
+      content: url("../../assets/icons/login/Capa 1.png");
+    }
+    75% {
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+  }
+}
 
 @keyframes backgroundFadeOut {
   0% {
