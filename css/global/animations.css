@@ -194,7 +194,7 @@
 /* ===== LOGIN/LOADING ANIMATIONS ===== */
 @keyframes logoFly {
   0% {
-    transform: translate(calc(50vw - 50%), calc(55vh - 46%)) scale(2.7);
+    transform: translate(calc(29.5vw - 50%), calc(40vh - 50%)) scale(2.7);
     opacity: 1;
   }
   100% {
