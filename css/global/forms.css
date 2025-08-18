@@ -568,7 +568,7 @@ textarea::placeholder {
 
   input::placeholder,
   texteara::placeholder {
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 
