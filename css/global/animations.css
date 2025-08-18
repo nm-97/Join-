@@ -204,7 +204,7 @@
     }
   }
 }
-}
+
 
 @media (max-width: 2500px) {
   @keyframes logoFly {
@@ -218,7 +218,7 @@
     }
   }
 }
-}
+
 
 @media (max-width: 2200px) {
   @keyframes logoFly {
@@ -232,7 +232,7 @@
     }
   }
 }
-}
+
 
 @media (max-width: 2050px) {
   @keyframes logoFly {
@@ -246,7 +246,7 @@
     }
   }
 }
-}
+
 
 @media (max-width: 1920px) {
   @keyframes logoFly {
@@ -260,7 +260,7 @@
     }
   }
 }
-}
+
 
 
 @media (max-width: 1024px) {
