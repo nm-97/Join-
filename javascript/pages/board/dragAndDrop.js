@@ -25,11 +25,26 @@ function addScrollPrevention() {
   document.body.style.setProperty("--scroll-offset", `-${scrollY}px`);
   document.body.dataset.scrollY = scrollY;
   document.body.dataset.scrollX = scrollX;
+
+  // Optimierte Touch-Event Behandlung für Chrome Kompatibilität
   document.addEventListener("touchmove", preventTouchScroll, {
     passive: false,
+    capture: true,
   });
-  document.addEventListener("wheel", preventWheelScroll, { passive: false });
-  window.addEventListener("scroll", preventWindowScroll, { passive: false });
+  document.addEventListener("touchstart", preventTouchScroll, {
+    passive: false,
+    capture: true,
+  });
+  // Zusätzliche touch-action CSS wird über CSS Klasse gesetzt
+  document.body.style.touchAction = "none";
+  document.addEventListener("wheel", preventWheelScroll, {
+    passive: false,
+    capture: true,
+  });
+  window.addEventListener("scroll", preventWindowScroll, {
+    passive: false,
+    capture: true,
+  });
 }
 
 /**
@@ -40,7 +55,11 @@ function addScrollPrevention() {
  */
 function preventTouchScroll(event) {
   if (isDragging) {
-    event.preventDefault();
+    // Nur versuchen zu verhindern, wenn das Event cancelable ist
+    if (event.cancelable) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
     return false;
   }
 }
@@ -79,11 +98,17 @@ function preventWindowScroll(event) {
 function removeScrollPrevention() {
   const scrollY = parseInt(document.body.dataset.scrollY || "0");
   const scrollX = parseInt(document.body.dataset.scrollX || "0");
-  document.removeEventListener("touchmove", preventTouchScroll);
-  document.removeEventListener("wheel", preventWheelScroll);
-  window.removeEventListener("scroll", preventWindowScroll);
-  document.removeEventListener("touchstart", preventTouchScroll);
-  document.removeEventListener("touchend", preventTouchScroll);
+
+  // Event Listener mit capture: true entfernen
+  document.removeEventListener("touchmove", preventTouchScroll, true);
+  document.removeEventListener("touchstart", preventTouchScroll, true);
+  document.removeEventListener("wheel", preventWheelScroll, true);
+  window.removeEventListener("scroll", preventWindowScroll, true);
+  
+  // Touch-action zurücksetzen
+  document.body.style.touchAction = "";
+  window.removeEventListener("scroll", preventWindowScroll, true);
+
   document.body.classList.remove(
     "dragScrollingPrevention",
     "dragTouchDisabled"
@@ -115,6 +140,12 @@ window.startPointerDrag = function (taskId, event) {
     time: Date.now(),
   };
   isDragging = false;
+
+  // Sofort Scroll-Prevention aktivieren für Touch-Geräte
+  if (event.pointerType === "touch" || isResponsiveMode()) {
+    addScrollPrevention();
+  }
+
   taskCard.addEventListener("pointermove", onPointerMove);
   taskCard.addEventListener("pointerup", onPointerUp);
   taskCard.addEventListener("pointercancel", onPointerUp);
@@ -170,6 +201,26 @@ function onPointerMove(event) {
     startDragMode(event);
   }
   if (isDragging && draggedElement) {
+    const clone = document.getElementById("drag-clone");
+    if (clone) {
+      const offsetX = clone.offsetWidth / 2;
+      const offsetY = clone.offsetHeight / 2;
+      const newLeft = event.clientX - offsetX;
+      const newTop = event.clientY - offsetY;
+
+      document.documentElement.style.setProperty(
+        "--drag-clone-left",
+        `${newLeft}px`
+      );
+      document.documentElement.style.setProperty(
+        "--drag-clone-top",
+        `${newTop}px`
+      );
+
+      clone.style.left = `var(--drag-clone-left)`;
+      clone.style.top = `var(--drag-clone-top)`;
+    }
+
     if (animationFrame) {
       cancelAnimationFrame(animationFrame);
     }
@@ -201,7 +252,40 @@ function startDragMode(event) {
   }
   document.body.classList.add("dragScrollingPrevention");
   setBodyScrollState("disabled");
-  draggedElement.classList.add("dragElementActive");
+
+  // Erstelle eine Kopie der Karte für visuelles Feedback
+  const rect = draggedElement.getBoundingClientRect();
+  const clone = draggedElement.cloneNode(true);
+  clone.id = "drag-clone";
+  clone.className += " dragClone";
+
+  // Setze nur die Position per CSS Custom Properties
+  document.documentElement.style.setProperty(
+    "--drag-clone-left",
+    `${rect.left}px`
+  );
+  document.documentElement.style.setProperty(
+    "--drag-clone-top",
+    `${rect.top}px`
+  );
+  document.documentElement.style.setProperty(
+    "--drag-clone-width",
+    `${rect.width}px`
+  );
+  document.documentElement.style.setProperty(
+    "--drag-clone-height",
+    `${rect.height}px`
+  );
+
+  clone.style.left = `var(--drag-clone-left)`;
+  clone.style.top = `var(--drag-clone-top)`;
+  clone.style.width = `var(--drag-clone-width)`;
+  clone.style.height = `var(--drag-clone-height)`;
+
+  document.body.appendChild(clone);
+
+  // Verstecke Original mit CSS-Klasse
+  draggedElement.classList.add("dragElementActive", "dragOriginalHidden");
   const parentColumnId = draggedElement.parentElement.id;
   activateAllDropZones(parentColumnId);
 }
@@ -221,6 +305,7 @@ function onPointerUp(event) {
   const wasQuickClick = timeDiff < 200 && distance < 5;
   event.preventDefault();
   event.stopImmediatePropagation();
+
   if (isDragging) {
     try {
       draggedElement.releasePointerCapture(event.pointerId);
@@ -337,6 +422,23 @@ function handleDropZoneDetection(event) {
 function cleanupDragState() {
   const tempDraggedElement = draggedElement;
   const tempIsDragging = isDragging;
+
+  // Entferne Klon sicher
+  const clone = document.getElementById("drag-clone");
+  if (clone) {
+    clone.remove();
+  }
+
+  // Entferne alle möglichen Klone (falls mehrere existieren)
+  const allClones = document.querySelectorAll('[id="drag-clone"]');
+  allClones.forEach((c) => c.remove());
+
+  // Entferne CSS Custom Properties
+  document.documentElement.style.removeProperty("--drag-clone-left");
+  document.documentElement.style.removeProperty("--drag-clone-top");
+  document.documentElement.style.removeProperty("--drag-clone-width");
+  document.documentElement.style.removeProperty("--drag-clone-height");
+
   currentDraggedTaskId = null;
   draggedElement = null;
   pointerStart = null;
@@ -351,8 +453,23 @@ function cleanupDragState() {
     "dragTouchDisabled"
   );
   if (tempDraggedElement) {
-    tempDraggedElement.classList.remove("dragOver", "dragElementActive");
+    // Stelle Original komplett wieder her nur mit CSS-Klassen
+    tempDraggedElement.classList.remove(
+      "dragOver",
+      "dragElementActive",
+      "dragOriginalHidden"
+    );
     tempDraggedElement.classList.add("dragElementReset");
+
+    // Event Listener wieder hinzufügen falls verloren
+    setTimeout(() => {
+      tempDraggedElement.classList.remove("dragElementReset");
+      // Re-initialisiere Event Listener
+      if (typeof initializeDropZones === "function") {
+        initializeDropZones();
+      }
+    }, 300);
+
     tempDraggedElement.offsetHeight;
   }
   clearAllDragOverEffects();
