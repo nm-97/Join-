@@ -101,7 +101,7 @@
   cursor: pointer;
 }
 .columnHeader img:hover {
-  content: url(/assets/icons/board/plus\ hover.svg);
+  content: url(../../../assets/icons/board/plus\ hover.svg);
 }
 .columnTitle {
   font-size: 20px;

@@ -1,11 +1,4 @@
 /**
- * @fileoverview HTML templates for the Add Task functionality
- * Contains all template functions for rendering Add Task forms and overlays
- * @author Join Project Team
- * @version 1.0.0
- */
-
-/**
  * Generates HTML template for the Add Task overlay
  * @             <div class="formGroup">
                <label for="taskDueDate" >Due Date <span class="requiredStar">*</span></label>
@@ -139,7 +132,7 @@ function getAddTaskOverlay(params = {}) {
  */
 function getEditTaskModalHeader() {
   return `
-    <div class="modalHeader">
+    <div class="modalHeaderEdit">
       <button class="closeButton" onclick="closeEditTaskOverlay()">
         <img src="../assets/icons/shared/close.svg" alt="close">
       </button>

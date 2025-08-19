@@ -50,6 +50,7 @@ textarea {
   width: 100%;
   max-width: 423px;
   flex: 1;
+  padding: 12px 21px;
 }
 
 .editInput {
@@ -433,7 +434,6 @@ textarea::placeholder {
     right: auto;
     justify-content: center;
     width: 100%;
-    margin-bottom: 84px;
   }
 
   input::placeholder,
@@ -533,6 +533,7 @@ textarea::placeholder {
   .cancelTaskBtn,
   .addTaskBtn {
     padding: 9px !important;
+    white-space: nowrap;
   }
 
   input::placeholder,
