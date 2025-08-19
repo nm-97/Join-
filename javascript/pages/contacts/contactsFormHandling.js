@@ -36,7 +36,6 @@ function setupPhoneInputFilter() {
   const phoneInput = document.getElementById("contactPhone");
   if (phoneInput) {
     phoneInput.addEventListener("input", function (e) {
-      // Allow only numbers, spaces, +, -, (, ), and common phone formatting characters
       this.value = this.value.replace(/[^\d\s\+\-\(\)]/g, "");
     });
   }

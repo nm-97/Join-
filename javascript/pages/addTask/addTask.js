@@ -5,7 +5,6 @@
  * @version 1.0.0
  */
 
-// Global state variables
 let selectedPriority = "Medium";
 let selectedCategory = "";
 let selectedStatus = "toDo";
@@ -111,7 +110,6 @@ window.deleteAllSubtasks = function () {
   }
 };
 
-// Page initialization
 document.addEventListener("DOMContentLoaded", function () {
   if (window.location.pathname.includes("addTask.html")) {
     setTimeout(() => {

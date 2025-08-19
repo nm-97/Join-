@@ -148,7 +148,6 @@ function collectEditedTaskData() {
     title: document.getElementById("editTaskTitle")?.value || "",
     description: document.getElementById("editTaskDescription")?.value || "",
     dueDate: document.getElementById("editTaskDueDate")?.value || "",
-    // Additional fields can be added here as needed
   };
 }
 
@@ -158,7 +157,5 @@ function collectEditedTaskData() {
  * @returns {void} No return value, saves task changes
  */
 function saveEditedTask(taskData) {
-  // This function would typically interact with Firebase or other storage
   console.log("Saving edited task:", taskData);
-  // Implementation for actual saving would go here
 }

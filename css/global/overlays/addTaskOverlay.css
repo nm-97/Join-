@@ -24,8 +24,6 @@
   transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
-  max-height: 90vh;
-  margin-bottom: 65px;
 }
 
 .overlayContent.closing {
@@ -59,16 +57,10 @@
   .addTaskFormsWrapper {
     margin: 32px;
   }
-
-  .addTaskH1 {
-    font-size: 50px;
-    margin-bottom: 25px;
-  }
 }
 
 @media (max-width: 428px) {
   .overlayContent {
     width: 95%;
-    height: 83%;
   }
 }

@@ -51,6 +51,7 @@ function showAddContactOverlay() {
   if (overlay) {
     overlay.innerHTML = getAddContactOverlay();
     overlay.style.display = "flex";
+    document.body.classList.add("no-scroll");
     setupPhoneInputFilter();
     setupAddContactOverlayEventListeners();
   }
@@ -67,6 +68,7 @@ function closeAddContactOverlay() {
   const overlay = document.getElementById("addContactOverlay");
   if (overlay) {
     overlay.classList.add("closing");
+    document.body.classList.remove("no-scroll");
     setTimeout(() => {
       overlay.style.display = "none";
       overlay.innerHTML = "";
@@ -119,6 +121,7 @@ async function showEditContactOverlay(contactId) {
     if (overlay) {
       overlay.innerHTML = getEditContactOverlay(contact);
       overlay.style.display = "flex";
+      document.body.classList.add("no-scroll");
       setupPhoneInputFilter();
       setupEditContactOverlayEventListeners();
     }
@@ -138,6 +141,7 @@ function closeEditContactOverlay() {
   const overlay = document.getElementById("editContactOverlay");
   if (overlay) {
     overlay.classList.add("closing");
+    document.body.classList.remove("no-scroll");
     setTimeout(() => {
       overlay.style.display = "none";
       overlay.innerHTML = "";

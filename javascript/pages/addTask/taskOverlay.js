@@ -18,6 +18,7 @@ function showAddTaskOverlay() {
     overlay.classList.remove("hidden");
     overlay.innerHTML = getAddTaskOverlay();
     overlay.style.display = "flex";
+    document.body.classList.add("no-scroll");
     initializeOverlayAddTask();
   }
 }
@@ -33,6 +34,7 @@ function closeAddTaskOverlay() {
   const overlay = document.getElementById("addTaskOverlay");
   if (overlay) {
     overlay.classList.add("closing");
+    document.body.classList.remove("no-scroll");
     setTimeout(() => {
       overlay.style.display = "none";
       overlay.classList.add("hidden");
