@@ -2,7 +2,13 @@
  * @fileoverview Pure HTML templates for the Contacts page
  * Contains only template functions for rendering - NO LOGIC
  * @author Join Project Team
- * @version 1.0.0
+ * @v  return `
+${mobileHeader}
+<button class="floatingContactCloseBtn" onclick="closeFloatingContactOverlayResponsive()">
+  <img src="../assets/icons/shared/backarrow.svg" alt="closeIcon">
+</button>
+${mobileMenuButton}
+<div class="floatingContactCard">` 1.0.0
  */
 
 /**

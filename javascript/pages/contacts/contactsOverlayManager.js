@@ -119,8 +119,12 @@ async function showEditContactOverlay(contactId) {
     }
     const overlay = document.getElementById("editContactOverlay");
     if (overlay) {
-      overlay.innerHTML = getEditContactOverlay(contact);
+      const overlayContent = getEditContactOverlay(contact);
+      overlay.innerHTML = overlayContent;
       overlay.style.display = "flex";
+      overlay.style.zIndex = "9999";
+      overlay.style.visibility = "visible";
+      overlay.style.opacity = "1";
       document.body.classList.add("no-scroll");
       setupPhoneInputFilter();
       setupEditContactOverlayEventListeners();
