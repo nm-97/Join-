@@ -197,7 +197,7 @@ function getEditDateFormGroup(value) {
  */
 function getEditPrioritySection() {
   return `
-    <div class="formGroup">
+    <div class="editformGroup">
       <label class="taskPriorityLabel">Task Priority</label>
         <div class="taskPriorityGroup">
             <button type="button" class="taskPriorityBtn" id="urgentBtn">

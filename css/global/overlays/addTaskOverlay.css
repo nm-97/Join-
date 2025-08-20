@@ -8,8 +8,10 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  overflow: scroll;
+  overflow-y: auto;
   z-index: 1001;
+  padding: 16px; 
+  box-sizing: border-box;
 }
 
 .overlayContent {
@@ -18,12 +20,12 @@
   width: 100%;
   max-width: 1100px;
   position: relative;
-  margin: 16px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   animation: overlayMoveFromRight 200ms ease-in-out forwards;
   transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
+  margin: 0;
 }
 
 .overlayContent.closing {
@@ -62,5 +64,28 @@
 @media (max-width: 428px) {
   .overlayContent {
     width: 95%;
+  }
+}
+
+@media (min-width: 769px) {
+  .overlayAddTask {
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .overlayContent {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .overlayAddTask {
+    align-items: flex-start;
+    padding: 16px;
+  }
+  
+  .overlayContent {
+    min-height: auto;
   }
 }

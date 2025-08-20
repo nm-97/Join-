@@ -449,7 +449,7 @@ textarea::placeholder {
 }
 
 @media (max-width: 786px) {
-  .formGroup {
+  .editformGroup {
     padding: 0 20px;
   }
 
