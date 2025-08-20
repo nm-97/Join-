@@ -19,11 +19,11 @@
 .taskDetailModal {
   background-color: white;
   border-radius: 30px;
-  padding: 26px;
+  padding: 0; /* Padding wird auf die einzelnen Bereiche verteilt */
   max-width: 525px;
   width: 90%;
   max-height: 90vh;
-  overflow-y: auto;
+  overflow: hidden; /* Änderung: overflow-y auto entfernt */
   overflow-x: hidden;
   position: relative;
   animation: overlayMoveFromRight 200ms ease-in-out forwards;
@@ -31,6 +31,8 @@
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  display: flex; /* Neu: Flexbox Layout */
+  flex-direction: column; /* Neu: Spalten-Layout */
 }
 
 .taskDetailModal.closing {
@@ -45,14 +47,35 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 20px;
+  margin-bottom: 0; /* Statt 20px margin */
+  padding: 26px 26px 20px 26px; /* Padding hinzugefügt */
+  background-color: white;
+  border-radius: 30px 30px 0 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex-shrink: 0;
 }
 
 .modalHeaderEdit {
   display: flex;
   justify-content: end;
   align-items: flex-start;
-  margin-bottom: 20px;
+  margin-bottom: 0; /* Statt 20px margin */
+  padding: 26px 26px 20px 26px; /* Padding hinzugefügt */
+  background-color: white;
+  border-radius: 30px 30px 0 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.modalContent {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 26px; /* Seitliches Padding wie vorher */
 }
 
 .modalLabel {
@@ -159,9 +182,15 @@
 
 .modalActions {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 15px;
-  padding-top: 30px;
+  padding: 20px 26px 26px 26px; /* Statt padding-top: 30px */
+  background-color: white;
+  border-radius: 0 0 30px 30px;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  flex-shrink: 0;
 }
 
 .modalButton {
@@ -192,6 +221,18 @@ hr {
   .closeButton {
     top: 32px;
     right: 14px;
+  }
+    .modalHeader,
+  .modalHeaderEdit {
+    padding: 20px 14px 15px 20px;
+  }
+  
+  .modalContent {
+    padding: 0 20px;
+  }
+  
+  .modalActions {
+    padding: 15px 20px 20px 20px;
   }
 }
 

@@ -5,6 +5,10 @@
   margin-bottom: 25px;
 }
 
+.centerMainContent {
+  margin: 0 auto;
+}
+
 .formContent {
   display: flex;
 }
@@ -291,6 +295,7 @@ textarea::placeholder {
 .editButtonContainer {
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 22px;
 }
 
 .editFormGroup {
@@ -440,6 +445,21 @@ textarea::placeholder {
   input::placeholder,
   textarea::placeholder {
     font-size: 21px;
+  }
+}
+
+@media (max-width: 786px) {
+  .formGroup {
+    padding: 0 20px;
+  }
+
+  .editFormGroup {
+    padding: 0 20px;
+  }
+
+  .editButtonContainer {
+    padding: 0 20px;
+    margin-bottom: 12px;
   }
 }
 

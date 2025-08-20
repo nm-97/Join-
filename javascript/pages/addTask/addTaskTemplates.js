@@ -16,7 +16,7 @@ function getAddTaskOverlay(params = {}) {
        <div class="overlayContent">
            <button class="closeBtn" onclick="closeAddTaskOverlay()">&times;</button>
            <div class="addTaskFormsWrapper">
-           <div class="testMal">
+           <div class="centeraddTak">
            <h1 class="addTaskH1">Add Task</h1>
             <div class="formContent">
                <form>
@@ -136,7 +136,8 @@ function getEditTaskModalHeader() {
       <button class="closeButton" onclick="closeEditTaskOverlay()">
         <img src="../assets/icons/shared/close.svg" alt="close">
       </button>
-    </div>`;
+    </div>
+    <div class="centerMainContent">`;
 }
 
 /**
@@ -271,6 +272,7 @@ function getEditTaskButtons() {
         Ok
         <img src="../assets/icons/add task/check.svg" alt="checkIcon">
       </button>
+    </div>
     </div>`;
 }
 

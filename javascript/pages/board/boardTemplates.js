@@ -85,7 +85,7 @@ function getTaskDetailOverlay(task) {
   }
 
   return `
-    <div class="overlay" id="taskOverlay">
+<div class="overlay" id="taskOverlay">
       <div class="taskDetailModal">
         <div class="modalHeader">
           <span class="modalLabel ${categoryClass}">${categoryLabel}</span>
@@ -93,36 +93,40 @@ function getTaskDetailOverlay(task) {
             <img src="../assets/icons/shared/close.svg" alt="close">
           </button>
         </div>
-        <h2 class="modalTitle">${task.title || "Untitled Task"}</h2>
-        <p class="modalDescription">${
-          task.description || "No description available"
-        }</p>
-        <div class="detailRow">
-          <span class="detailLabel">Due date:</span>
-          <span class="detailValue">${
-            formatDate(task.dueDate) || "No due date"
-          }</span>
-        </div>
-        <div class="detailRow">
-          <span class="detailLabel">Priority:</span>
-          <span class="detailValue">
-            ${
-              task.taskPriority || "Medium"
-            } <img src="../assets/icons/shared/${priority}.svg" alt="${priority}">
-          </span>
-        </div>
-        <div class="detailRow">
-          <span class="detailLabel">Assigned To:</span>
-        </div>
-        <div class="assignedUsers">
-          ${assignedUsersHtml}
-        </div>
-        <div class="subtasksSection">
-          <h3 class="subtasksTitle">Subtasks</h3>
-          <div class="subtasksList">
-            ${renderTaskDetailSubtasks(task.subtasks || [], task.id)}
+        
+        <div class="modalContent">
+          <h2 class="modalTitle">${task.title || "Untitled Task"}</h2>
+          <p class="modalDescription">${
+            task.description || "No description available"
+          }</p>
+          <div class="detailRow">
+            <span class="detailLabel">Due date:</span>
+            <span class="detailValue">${
+              formatDate(task.dueDate) || "No due date"
+            }</span>
+          </div>
+          <div class="detailRow">
+            <span class="detailLabel">Priority:</span>
+            <span class="detailValue">
+              ${
+                task.taskPriority || "Medium"
+              } <img src="../assets/icons/shared/${priority}.svg" alt="${priority}">
+            </span>
+          </div>
+          <div class="detailRow">
+            <span class="detailLabel">Assigned To:</span>
+          </div>
+          <div class="assignedUsers">
+            ${assignedUsersHtml}
+          </div>
+          <div class="subtasksSection">
+            <h3 class="subtasksTitle">Subtasks</h3>
+            <div class="subtasksList">
+              ${renderTaskDetailSubtasks(task.subtasks || [], task.id)}
+            </div>
           </div>
         </div>
+        
         <div class="modalActions">
           <button class="modalButton" onclick="deleteTask('${task.id}')">
             <img src="../assets/icons/shared/${deleteIconName}" alt="delete">Delete
