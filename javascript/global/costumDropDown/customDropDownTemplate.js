@@ -59,8 +59,7 @@ function generateSelectedContactAvatarTemplate(contact, initials, avatarColor) {
  */
 function generateOverflowIndicatorTemplate(remainingCount) {
   return `
-    <div class="selectedContactAvatar" 
-         style="background-color: #cccccc; color: #666666;"
+    <div class="overflowIndicator" 
          title="${remainingCount} more contacts selected">
       +${remainingCount}
     </div>

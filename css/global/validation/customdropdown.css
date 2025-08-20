@@ -25,12 +25,12 @@
   position: relative;
 }
 
-.selectedContactAvatar:hover {
+.selectedContactAvatar[onclick]:hover {
   transform: scale(1.1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.selectedContactAvatar:hover::after {
+.selectedContactAvatar[onclick]:hover::after {
   content: "";
   position: absolute;
   top: -5px;
@@ -47,6 +47,21 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.overflowIndicator {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666666;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: #cccccc;
+  cursor: default;
+  position: relative;
 }
 
 .customDropdown {
