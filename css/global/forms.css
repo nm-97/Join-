@@ -344,7 +344,6 @@ textarea::placeholder {
   background-color: #0038ff;
 }
 
-/* ===== SUBTASK STYLES ===== */
 .editSubtaskInput {
   position: relative;
   margin-bottom: 15px;
