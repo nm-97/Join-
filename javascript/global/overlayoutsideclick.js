@@ -27,7 +27,6 @@ class UniversalOverlayHandler {
    */
   init() {
     this.startListening();
-    console.log("Universal Overlay Handler initialized");
   }
 
   /**
@@ -163,12 +162,8 @@ class UniversalOverlayHandler {
     const functionName = closeFunctions[overlayId];
 
     if (functionName && typeof window[functionName] === "function") {
-      console.log(`Closing overlay: ${overlayId} via ${functionName}`);
       window[functionName]();
     } else {
-      console.log(
-        `No specific close function found for ${overlayId}, trying generic close`
-      );
       this.genericCloseOverlay(overlay);
     }
   }
@@ -242,8 +237,8 @@ function disableOverlayOutsideClickHandling() {
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
-    console.log("Universal Overlay Handler ready!");
+    // Universal Overlay Handler ready
   });
 } else {
-  console.log("Universal Overlay Handler ready!");
+  // Universal Overlay Handler ready
 }

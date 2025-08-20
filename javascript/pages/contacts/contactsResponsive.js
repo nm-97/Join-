@@ -4,6 +4,8 @@
  * @author Join Project Team
  * @version 1.0.0
  * @requires contactsResponsiveEvents.js for event handling functionality
+ * @requires contactsUIHelpers.js for contact data enhancement and mobile configuration
+ * @requires contactsTemplates.js for HTML template generation
  */
 
 /**
@@ -265,7 +267,14 @@ function prepareResponsiveOverlaySetup(contact) {
     "floatingContactOverlay"
   );
 
-  floatingContactContainer.innerHTML = getFloatingContact(contact, isMobile);
+  const enhancedContact = getContactRenderData(contact);
+  const mobileConfig = getMobileHeaderConfig();
+
+  floatingContactContainer.innerHTML = getFloatingContact(
+    enhancedContact,
+    mobileConfig.shouldShow,
+    mobileConfig.isTabletOrMobile
+  );
   trackOverlayMode();
 
   return {

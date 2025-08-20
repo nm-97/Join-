@@ -421,3 +421,13 @@
     height: 16px;
   }
 }
+
+@media (max-width: 430px) {
+  .floatingContactName {
+    font-size: clamp(20px, 5vw, 28px);
+  }
+
+  .floatingContactName span {
+    font-size: clamp(20px, 5vw, 28px);
+  }
+}
