@@ -207,4 +207,8 @@ div > strong {
   .navBtn a {
     font-size: 12px;
   }
+
+  .contentWrapper{
+    padding: 20px;
+  }
 }
