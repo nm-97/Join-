@@ -69,6 +69,9 @@ function initializeEditTaskFunctionality(taskId, task) {
     setTimeout(() => {
       loadTaskDataIntoEditForm(task);
       setupEditTaskSaveButton(taskId);
+      setTimeout(() => {
+        preselectAssignedContacts(task.assignedTo);
+      }, 150);
     }, 100);
   }, 100);
 }
@@ -87,6 +90,24 @@ function initializeEditTaskOverlayFunctions() {
 }
 
 /**
+ * Pre-selects assigned contacts in the custom dropdown when editing a task
+ * Uses the setSelectedContacts function to mark previously assigned contacts as selected
+ * Provides visual feedback for already assigned contacts in the edit overlay
+ * @function preselectAssignedContacts
+ * @param {string[]} assignedContactIds - Array of contact IDs that are currently assigned to the task
+ * @returns {void} No return value, updates UI to show pre-selected contacts
+ */
+function preselectAssignedContacts(assignedContactIds) {
+  if (
+    typeof setSelectedContacts === "function" &&
+    assignedContactIds &&
+    assignedContactIds.length > 0
+  ) {
+    setSelectedContacts(assignedContactIds);
+  }
+}
+
+/**
  * Loads task data into the edit form fields with subtask management and global state setup
  * Populates form with existing task data, sets up current and original subtasks arrays
  * Provides comprehensive form data loading with subtask rendering and state initialization
@@ -100,11 +121,7 @@ function loadTaskDataIntoEditForm(task) {
   window.originalSubtasks = task.subtasks || [];
   window.originalAssignedTo = task.assignedTo || [];
   window.selectedContacts = task.assignedTo || [];
-  if (task.assignedTo && task.assignedTo.length > 0) {
-    if (typeof setSelectedContacts === "function") {
-      setSelectedContacts(task.assignedTo);
-    }
-  }
+
   if (typeof renderSubtasks === "function") {
     renderSubtasks(window.currentSubtasks);
   }

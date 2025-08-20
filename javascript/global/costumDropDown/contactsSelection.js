@@ -144,3 +144,32 @@ function clearContactSelections() {
   });
   updateDropdownInput();
 }
+
+/**
+ * Sets the selected contacts based on an array of contact IDs
+ * Pre-selects contacts in the dropdown based on already assigned contacts (e.g., when editing a task)
+ * Checks corresponding checkboxes and updates the selection state and display
+ * @function setSelectedContacts
+ * @param {string[]} contactIds - Array of contact IDs to pre-select
+ * @returns {void}
+ */
+function setSelectedContacts(contactIds) {
+  clearContactSelections();
+  if (!contactIds || !Array.isArray(contactIds) || contactIds.length === 0) {
+    return;
+  }
+  selectedContacts = [];
+  contactIds.forEach((contactId) => {
+    const contact = allContacts.find((c) => c.id === contactId);
+    if (contact) {
+      selectedContacts.push(contact);
+    }
+  });
+  contactIds.forEach((contactId) => {
+    const checkbox = document.getElementById(`contact-${contactId}`);
+    if (checkbox) {
+      checkbox.checked = true;
+    }
+  });
+  updateDropdownInput();
+}

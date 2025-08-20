@@ -80,6 +80,9 @@ function initializeOverlayState() {
   currentSubtasks = [];
   window.currentSubtasks = currentSubtasks;
   setDefaultPriority();
+  if (typeof clearContactSelections === "function") {
+    clearContactSelections();
+  }
 }
 
 /**
