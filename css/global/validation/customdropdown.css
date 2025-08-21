@@ -190,6 +190,9 @@
   font-size: 16px;
   color: #000000;
   font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .contactItem .customCheckbox {
