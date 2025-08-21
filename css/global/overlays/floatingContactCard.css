@@ -41,6 +41,11 @@
   color: #000000;
   display: block;
   gap: 5px;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  max-width: 20ch;
+  line-height: 1.2;
 }
 
 .floatingContactName {
@@ -147,6 +152,14 @@
 
   .floatingContactName {
     font-size: 32px;
+  }
+
+  .floatingContactName span {
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    max-width: 20ch;
+    line-height: 1.2;
   }
 }
 
@@ -283,6 +296,14 @@
 
   .floatingContactName {
     font-size: clamp(28px, 7vw, 38px);
+  }
+
+  .floatingContactName span {
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    max-width: 20ch;
+    line-height: 1.2;
   }
 
   .floatingContactHeader {
@@ -422,6 +443,12 @@
   }
 }
 
+@media (max-width: 570px) {
+  .floatingContactName span {
+    font-size: clamp(25px, 5vw, 28px);
+  }
+}
+
 @media (max-width: 430px) {
   .floatingContactName {
     font-size: clamp(20px, 5vw, 28px);
@@ -429,5 +456,10 @@
 
   .floatingContactName span {
     font-size: clamp(20px, 5vw, 28px);
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    max-width: 20ch;
+    line-height: 1.2;
   }
 }

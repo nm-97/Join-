@@ -169,6 +169,10 @@
   color: #000000;
   line-height: 1.2;
   margin-bottom: 2px;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  max-width: 20ch;
 }
 
 .contactEmail {
@@ -258,6 +262,10 @@
 }
 
 @media (max-width: 1024px) {
+  .add-contact-overlay-open .addContactButton {
+    display: none !important;
+  }
+
   .contactsMainContent {
     overflow-y: scroll;
     margin: auto;

@@ -52,6 +52,7 @@ function showAddContactOverlay() {
     overlay.innerHTML = getAddContactOverlay();
     overlay.style.display = "flex";
     document.body.classList.add("no-scroll");
+    document.body.classList.add("add-contact-overlay-open");
     setupPhoneInputFilter();
     setupAddContactOverlayEventListeners();
   }
@@ -69,6 +70,7 @@ function closeAddContactOverlay() {
   if (overlay) {
     overlay.classList.add("closing");
     document.body.classList.remove("no-scroll");
+    document.body.classList.remove("add-contact-overlay-open");
     setTimeout(() => {
       overlay.style.display = "none";
       overlay.innerHTML = "";

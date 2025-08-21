@@ -68,7 +68,7 @@ function getAddContactOverlay() {
                                 </div>
                                 <form class="addContactForm" onsubmit="createContact(event)">
                                     <div class="addContactInputWrapper">
-                                        <input type="text" name="name" placeholder="Name">
+                                        <input type="text" name="name" placeholder="Name" maxlength="18">
                                         <img src="../assets/icons/contacts/person.svg" class="inputIcon" alt="personIcon">
                                     </div>
                                     <div class="addContactInputWrapper">
@@ -114,7 +114,7 @@ function getEditContactOverlay(contact) {
                             </div>
                             <form class="editContactForm" onsubmit="updateContact(event, '${contact.id}')">
                                 <div class="editContactInputWrapper">
-                                    <input type="text" name="name" placeholder="Name" value="${contact.name}">
+                                    <input type="text" name="name" placeholder="Name" value="${contact.name}" maxlength="18">
                                     <img src="../assets/icons/contacts/person.svg" class="inputIcon" alt="personIcon">
                                 </div>
                                 <div class="editContactInputWrapper">
