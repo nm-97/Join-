@@ -52,7 +52,7 @@ function showAddContactOverlay() {
     overlay.innerHTML = getAddContactOverlay();
     overlay.style.display = "flex";
     document.body.classList.add("no-scroll");
-    document.body.classList.add("add-contact-overlay-open");
+    document.body.classList.add("contact-overlay-open");
     setupPhoneInputFilter();
     setupAddContactOverlayEventListeners();
   }
@@ -128,6 +128,7 @@ async function showEditContactOverlay(contactId) {
       overlay.style.visibility = "visible";
       overlay.style.opacity = "1";
       document.body.classList.add("no-scroll");
+      document.body.classList.add("contact-overlay-open");
       setupPhoneInputFilter();
       setupEditContactOverlayEventListeners();
     }

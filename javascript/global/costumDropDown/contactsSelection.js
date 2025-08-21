@@ -155,31 +155,9 @@ function clearContactSelections() {
  */
 function setSelectedContacts(contactIds) {
   clearContactSelections();
-  if (!isValidContactIds(contactIds)) {
+  if (!contactIds || !Array.isArray(contactIds) || contactIds.length === 0) {
     return;
   }
-  populateSelectedContactsFromIds(contactIds);
-  checkContactCheckboxes(contactIds);
-  updateDropdownInput();
-}
-
-/**
- * Validates if the contact IDs array is valid and not empty
- * @function isValidContactIds
- * @param {string[]} contactIds - Array of contact IDs to validate
- * @returns {boolean} True if array is valid and not empty
- */
-function isValidContactIds(contactIds) {
-  return contactIds && Array.isArray(contactIds) && contactIds.length > 0;
-}
-
-/**
- * Populates the selectedContacts array based on contact IDs
- * @function populateSelectedContactsFromIds
- * @param {string[]} contactIds - Array of contact IDs to find and add
- * @returns {void}
- */
-function populateSelectedContactsFromIds(contactIds) {
   selectedContacts = [];
   contactIds.forEach((contactId) => {
     const contact = allContacts.find((c) => c.id === contactId);
@@ -187,19 +165,11 @@ function populateSelectedContactsFromIds(contactIds) {
       selectedContacts.push(contact);
     }
   });
-}
-
-/**
- * Checks the checkboxes for the specified contact IDs
- * @function checkContactCheckboxes
- * @param {string[]} contactIds - Array of contact IDs to check
- * @returns {void}
- */
-function checkContactCheckboxes(contactIds) {
   contactIds.forEach((contactId) => {
     const checkbox = document.getElementById(`contact-${contactId}`);
     if (checkbox) {
       checkbox.checked = true;
     }
   });
+  updateDropdownInput();
 }
