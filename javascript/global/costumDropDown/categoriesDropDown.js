@@ -20,7 +20,6 @@ function loadCategories() {
     "categoriesDropdownList"
   );
   if (!categoriesDropdownList) {
-    // Element nicht gefunden - wird wahrscheinlich später dynamisch geladen
     return;
   }
   renderCategoriesDropdown(categories);

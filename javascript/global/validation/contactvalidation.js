@@ -8,21 +8,68 @@
  * @returns {boolean} True if all form validations pass successfully, false if any validation fails
  */
 function validateContactForm() {
+  const formElements = getContactFormElements();
+  if (!formElements.isValid) return false;
+
+  const formValues = extractFormValues(formElements);
+  clearContactErrors();
+
+  return processValidationResult(formValues);
+}
+
+/**
+ * Gets all required form elements for contact validation
+ * @function getContactFormElements
+ * @returns {Object} Object containing form elements and validity flag
+ */
+function getContactFormElements() {
   const nameInput = document.querySelector('input[name="name"]');
   const emailInput = document.querySelector('input[name="email"]');
   const phoneInput = document.querySelector('input[name="phone"]');
   const errorMessage = document.getElementsByClassName("errorMessage")[0];
-  if (!nameInput || !emailInput || !phoneInput || !errorMessage) return false;
-  const name = nameInput.value;
-  const email = emailInput.value;
-  const phone = phoneInput.value;
-  clearContactErrors();
-  const validationResult = checkAllContactFields(name, email, phone);
+
+  return {
+    nameInput,
+    emailInput,
+    phoneInput,
+    errorMessage,
+    isValid: !!(nameInput && emailInput && phoneInput && errorMessage),
+  };
+}
+
+/**
+ * Extracts values from form elements
+ * @function extractFormValues
+ * @param {Object} elements - Form elements object
+ * @returns {Object} Object containing form values
+ */
+function extractFormValues(elements) {
+  return {
+    name: elements.nameInput.value,
+    email: elements.emailInput.value,
+    phone: elements.phoneInput.value,
+  };
+}
+
+/**
+ * Processes validation result and handles errors
+ * @function processValidationResult
+ * @param {Object} values - Form values to validate
+ * @returns {boolean} True if validation passes, false otherwise
+ */
+function processValidationResult(values) {
+  const validationResult = checkAllContactFields(
+    values.name,
+    values.email,
+    values.phone
+  );
+
   if (!validationResult.isValid) {
-    markContactErrorInputs(name, email, phone);
+    markContactErrorInputs(values.name, values.email, values.phone);
     showContactError(validationResult.errorText);
     return false;
   }
+
   return true;
 }
 
@@ -37,33 +84,97 @@ function validateContactForm() {
  * @returns {Object} Validation result object containing isValid boolean and errorText string for user feedback
  */
 function checkAllContactFields(name, email, phone) {
+  const fieldErrors = collectFieldErrors(name, email, phone);
+  return generateValidationResult(fieldErrors);
+}
+
+/**
+ * Collects validation errors for all contact fields
+ * @function collectFieldErrors
+ * @param {string} name - The contact name to validate
+ * @param {string} email - The email address to validate
+ * @param {string} phone - The phone number to validate
+ * @returns {Object} Object containing arrays of missing and invalid fields
+ */
+function collectFieldErrors(name, email, phone) {
   const missingFields = [];
   const invalidFields = [];
-  
+
+  validateNameField(name, missingFields);
+  validateEmailField(email, missingFields, invalidFields);
+  validatePhoneField(phone, missingFields, invalidFields);
+
+  return { missingFields, invalidFields };
+}
+
+/**
+ * Validates name field and adds to missing fields if invalid
+ * @function validateNameField
+ * @param {string} name - The name to validate
+ * @param {Array} missingFields - Array to add missing field names to
+ * @returns {void}
+ */
+function validateNameField(name, missingFields) {
   if (!validateRequired(name)) {
     missingFields.push("name");
   }
-  
+}
+
+/**
+ * Validates email field and adds to appropriate error arrays
+ * @function validateEmailField
+ * @param {string} email - The email to validate
+ * @param {Array} missingFields - Array to add missing field names to
+ * @param {Array} invalidFields - Array to add invalid field names to
+ * @returns {void}
+ */
+function validateEmailField(email, missingFields, invalidFields) {
   if (!validateRequired(email)) {
     missingFields.push("email address");
   } else if (!validateEmail(email)) {
     invalidFields.push("email address");
   }
-  
+}
+
+/**
+ * Validates phone field and adds to appropriate error arrays
+ * @function validatePhoneField
+ * @param {string} phone - The phone to validate
+ * @param {Array} missingFields - Array to add missing field names to
+ * @param {Array} invalidFields - Array to add invalid field names to
+ * @returns {void}
+ */
+function validatePhoneField(phone, missingFields, invalidFields) {
   if (!validateRequired(phone)) {
     missingFields.push("phone number");
   } else if (!validatePhone(phone)) {
     invalidFields.push("phone number");
   }
-  
+}
+
+/**
+ * Generates validation result based on field errors
+ * @function generateValidationResult
+ * @param {Object} fieldErrors - Object containing missing and invalid field arrays
+ * @returns {Object} Validation result with isValid flag and error text
+ */
+function generateValidationResult(fieldErrors) {
+  const { missingFields, invalidFields } = fieldErrors;
+
   if (missingFields.length > 0) {
-    return { isValid: false, errorText: createMissingFieldsMessage(missingFields) };
+    return {
+      isValid: false,
+      errorText: createMissingFieldsMessage(missingFields),
+    };
   }
-  
+
   if (invalidFields.length > 0) {
-    return { isValid: false, errorText: createInvalidFieldsMessage(invalidFields) };
+    return {
+      isValid: false,
+      errorText: createInvalidFieldsMessage(invalidFields),
+    };
   }
-  
+
   return { isValid: true };
 }
 
@@ -148,15 +259,15 @@ function markContactErrorInputs(name, email, phone) {
   const nameInput = document.querySelector('input[name="name"]');
   const emailInput = document.querySelector('input[name="email"]');
   const phoneInput = document.querySelector('input[name="phone"]');
-  
+
   if (!validateRequired(name)) {
     nameInput.classList.add("errorInput");
   }
-  
+
   if (!validateRequired(email) || !validateEmail(email)) {
     emailInput.classList.add("errorInput");
   }
-  
+
   if (!validateRequired(phone) || !validatePhone(phone)) {
     phoneInput.classList.add("errorInput");
   }
@@ -205,24 +316,55 @@ function showContactError(text) {
  */
 function setupPhoneInputFilter() {
   const phoneInputs = document.querySelectorAll('input[name="phone"]');
-  for (let i = 0; i < phoneInputs.length; i++) {
-    const phoneInput = phoneInputs[i];
-    phoneInput.addEventListener("input", function (e) {
-      let value = e.target.value;
-      let filteredValue = "";
-      
-      for (let j = 0; j < value.length && filteredValue.length < 15; j++) {
-        const char = value.charAt(j);
-        if (j === 0 && char === '+') {
-          filteredValue += char;
-        } else if (char >= '0' && char <= '9') {
-          filteredValue += char;
-        }
-      }
-      
-      if (value !== filteredValue) {
-        e.target.value = filteredValue;
-      }
-    });
+  phoneInputs.forEach((phoneInput) => {
+    phoneInput.addEventListener("input", handlePhoneInputEvent);
+  });
+}
+
+/**
+ * Handles input events for phone number fields
+ * @function handlePhoneInputEvent
+ * @param {Event} e - The input event
+ * @returns {void}
+ */
+function handlePhoneInputEvent(e) {
+  const originalValue = e.target.value;
+  const filteredValue = filterPhoneNumber(originalValue);
+
+  if (originalValue !== filteredValue) {
+    e.target.value = filteredValue;
   }
+}
+
+/**
+ * Filters phone number input to allow only valid characters
+ * @function filterPhoneNumber
+ * @param {string} value - The input value to filter
+ * @returns {string} The filtered phone number string
+ */
+function filterPhoneNumber(value) {
+  let filteredValue = "";
+
+  for (let i = 0; i < value.length && filteredValue.length < 15; i++) {
+    const char = value.charAt(i);
+    if (isValidPhoneCharacter(char, i)) {
+      filteredValue += char;
+    }
+  }
+
+  return filteredValue;
+}
+
+/**
+ * Checks if a character is valid for phone number at given position
+ * @function isValidPhoneCharacter
+ * @param {string} char - The character to check
+ * @param {number} position - The position in the string
+ * @returns {boolean} True if character is valid at this position
+ */
+function isValidPhoneCharacter(char, position) {
+  if (position === 0 && char === "+") {
+    return true;
+  }
+  return char >= "0" && char <= "9";
 }
