@@ -10,6 +10,15 @@
   display: none;
 }
 
+/* Hide bottom nav and add contact button when overlay is open (responsive) */
+@media (max-width: 1024px) {
+  body.contact-overlay-open .bottomNav,
+  body.contact-overlay-open .addContactButton,
+  body.contact-overlay-open #addContactButton {
+    display: none !important;
+  }
+}
+
 .addContactOverlay::before,
 .editContactOverlay::before {
   content: "";
@@ -273,6 +282,7 @@
     margin: 10px;
     margin-right: 16px;
     margin-left: 16px;
+    overflow: scroll;
   }
 
   .addContactLogo,
@@ -303,7 +313,7 @@
 
   .addContactTitle,
   .editContactTitle {
-    font-size: 47px;
+    font-size: 41px;
   }
 
   .addContactSubtitle {
@@ -690,8 +700,9 @@
     padding: 4px 12px;
   }
 
-  .editContactTitle {
-    font-size: 40px;
+  .editContactTitle,
+  .addContactTitle {
+    font-size: 37px;
   }
 
   .editContactForm {
@@ -725,7 +736,7 @@
   }
 
   .addContactModalLeft h2 {
-    font-size: 41px;
+    font-size: 37px;
   }
   .addContactSubtitle {
     font-size: 16px;

@@ -70,7 +70,7 @@ function closeAddContactOverlay() {
   if (overlay) {
     overlay.classList.add("closing");
     document.body.classList.remove("no-scroll");
-    document.body.classList.remove("add-contact-overlay-open");
+    document.body.classList.remove("contact-overlay-open");
     setTimeout(() => {
       overlay.style.display = "none";
       overlay.innerHTML = "";
@@ -149,6 +149,7 @@ function closeEditContactOverlay() {
   if (overlay) {
     overlay.classList.add("closing");
     document.body.classList.remove("no-scroll");
+    document.body.classList.remove("contact-overlay-open");
     setTimeout(() => {
       overlay.style.display = "none";
       overlay.innerHTML = "";
