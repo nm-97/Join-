@@ -1,0 +1,175 @@
+.subtaskDisplayContainer,
+#editableDiv {
+  height: 90px;
+  min-height: 90px;
+  overflow: hidden;
+}
+
+.subtasksContainer {
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+}
+
+.subtaskItem {
+  display: flex;
+  align-items: center;
+  padding: 4px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.subtaskContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.subtaskBullet {
+  color: #666;
+  transition: opacity 0.2s ease;
+}
+
+.subtaskItem.editing .subtaskBullet {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.subtaskTextWrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.subtaskText {
+  flex: 1;
+  padding: 4px 16px;
+  display: block;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  min-height: 20px;
+  text-align: left;
+  border: none;
+  outline: none;
+  background: transparent;
+  max-width: calc(100% - 40px);
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.subtaskText[contenteditable="true"] {
+  border-bottom: 1px solid #005dff;
+  outline: none;
+  background: white;
+  border-radius: 4px;
+  padding: 8px 16px;
+}
+
+.subtaskText[contenteditable="true"] ~ .subtaskBullet,
+.subtaskItem:has(.subtaskText[contenteditable="true"]) .subtaskBullet {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.subtaskHoverActions {
+  position: absolute;
+  top: 50%;
+  right: 1px;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  visibility: hidden;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
+  z-index: 10;
+}
+
+.subtaskTextWrapper:hover .subtaskHoverActions {
+  opacity: 1;
+  visibility: visible;
+}
+
+.subtaskHoverActions:hover {
+  opacity: 1;
+  visibility: visible;
+}
+
+.subtaskText[contenteditable="true"] + .subtaskHoverActions {
+  display: none;
+}
+
+.actionImg {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.actionImg:hover {
+  transform: scale(1.1);
+}
+
+.subtaskActions {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2px 4px;
+  border-radius: 4px;
+  z-index: 10;
+}
+
+.subtaskText[contenteditable="true"] .subtaskActions {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.subtaskText[contenteditable="true"] ~ .subtaskActions {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.deleteBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.checkBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.checkBtn img {
+  filter: invert(1);
+  border: none;
+}
+
+.subTaskDevider {
+  width: 1px;
+  height: 24px;
+  background: #a8a8a8;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 1024px) {
+  .subtaskHoverActions {
+    visibility: visible;
+  }
+}

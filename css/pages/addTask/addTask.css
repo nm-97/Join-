@@ -1,0 +1,503 @@
+.mainContainer {
+  flex: 1;
+  flex-direction: column;
+  position: relative;
+}
+
+.addTaskFormsWrapper {
+  gap: 32px;
+  margin: 60px;
+}
+
+.addTaskH1 {
+  font-size: 61px;
+  margin-bottom: 52px;
+}
+
+.formContent {
+  display: flex;
+}
+
+.addTaskFormsWrapper form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.addTaskFormsDivider {
+  width: 1px;
+  height: 424px;
+  background: #d1d1d1;
+  margin: 0 24px;
+  align-self: stretch;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.taskPriorityGroup {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.requiredStar {
+  color: #ff0000;
+  font-size: 18px;
+}
+
+.requiredStarText {
+  font-size: 14px;
+  text-align: center;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  max-width: 423px;
+  padding: 12px 21px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #d1d1d1;
+  font-size: 20px;
+}
+
+label {
+  font-size: 20px;
+}
+
+.taskPriorityLabel {
+  font-size: 20px;
+}
+
+.inputIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.inputIcon input {
+  width: 100%;
+  padding-right: 44px;
+}
+
+.inputIcon img {
+  position: absolute;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+#taskDescription {
+  height: 120px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  padding: 10px 16px;
+  font-size: 16px;
+  resize: none;
+  margin-bottom: 10px;
+}
+
+.taskPriorityBtn,
+.taskPriorityBtnOrange {
+  width: 136px;
+  height: 56px;
+  border-radius: 10px;
+  padding: 16px 10px;
+  gap: 8px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-direction: row-reverse;
+  box-shadow: 0px 0px 4px 0px #0000001a;
+  font-size: 20px;
+}
+
+.taskPriorityBtnOrange {
+  background: #ffffff;
+}
+
+.taskPriorityBtn {
+  background: #ffffff;
+}
+
+.taskPriorityBtnOrange img {
+  filter: hue-rotate(20deg) saturate(2) brightness(0.8);
+}
+
+.taskPriorityBtn img,
+.taskPriorityBtnOrange img {
+  width: 20px;
+  height: auto;
+}
+
+.taskPriorityBtn span,
+.taskPriorityBtnOrange span {
+  margin-right: 8px;
+}
+
+.addTaskBtn,
+.cancelTaskBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  height: 56px;
+}
+
+.addTaskBtn {
+  background: #2a3647;
+  color: #ffffff;
+}
+
+.cancelTaskBtn {
+  background: #f6f7f8;
+  color: #2a3647;
+  border: 1px solid #2a3647;
+  width: 110px;
+}
+
+.addTaskBtn img,
+.cancelTaskBtn img {
+  width: 16px;
+  height: auto;
+}
+
+.taskPriorityBtn.taskPriorityBtnUrgentSelected {
+  background-color: #ff3d00 !important;
+  color: white !important;
+  border: 2px solid #ff3d00 !important;
+}
+
+.taskPriorityBtn.taskPriorityBtnMediumSelected,
+.taskPriorityBtnOrange.taskPriorityBtnMediumSelected {
+  background-color: #ff9500 !important;
+  color: white !important;
+  border: 2px solid #ff9500 !important;
+}
+
+.taskPriorityBtn.taskPriorityBtnLowSelected {
+  background-color: #7ae229 !important;
+  color: white !important;
+  border: 2px solid #7ae229 !important;
+}
+
+.taskPriorityBtn.taskPriorityBtnUrgentSelected img,
+.taskPriorityBtn.taskPriorityBtnMediumSelected img,
+.taskPriorityBtnOrange.taskPriorityBtnMediumSelected img,
+.taskPriorityBtn.taskPriorityBtnLowSelected img {
+  filter: brightness(0) invert(1) !important;
+}
+
+.taskPriorityBtn,
+.taskPriorityBtnOrange {
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 1267px) {
+  .mainContent {
+    display: flex;
+    justify-content: center;
+  }
+
+  .formContent {
+    flex-direction: column;
+  }
+
+  .addTaskFormsDivider {
+    display: none;
+  }
+
+  .addTaskFormsWrapper {
+    margin: 0 !important;
+    margin-top: 26px !important;
+  }
+
+  .requiredStarText {
+    display: none;
+  }
+
+  .formActions {
+    justify-content: center !important;
+    margin-bottom: 82px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .addTaskH1 {
+    margin-left: 0;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 545px) {
+  .pageHeader {
+    margin-left: 0;
+  }
+
+  input,
+  textarea,
+  select {
+    height: 36px;
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  textarea {
+    height: 80px;
+  }
+
+  label,
+  .taskPriorityLabel {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  .customDropdown {
+    width: 100%;
+    max-width: 100%;
+    gap: 0px;
+  }
+
+  .dropdownInput {
+    width: 100%;
+    max-width: 100%;
+    height: 36px;
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .categoryDropdown {
+    width: 100%;
+    max-width: 100%;
+    height: 36px;
+  }
+
+  .taskPriorityBtn {
+    width: 100%;
+    padding: 10px 6px;
+    font-size: 14px;
+    gap: 3px;
+  }
+
+  .taskPriorityBtn img {
+    width: 14px;
+    height: 14px;
+  }
+
+  .taskPriorityBtn span {
+    margin-right: 3px;
+  }
+
+  .mediumBtn {
+    height: 36px;
+    padding: 10px 15px;
+    font-size: 14px;
+    gap: 3px;
+  }
+
+  .mediumBtn img {
+    width: 14px;
+    height: 14px;
+  }
+
+  .inputIcon {
+    max-width: 100%;
+  }
+
+  .inputIcon input {
+    padding-right: 35px;
+    height: 36px;
+  }
+
+  .inputIcon img {
+    right: 15px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .formButtons {
+    gap: 12px;
+  }
+
+  .formButtons button {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .formGroup {
+    margin-bottom: 0 !important;
+  }
+}
+
+@media (max-width: 470px) {
+  .mainContainer {
+    overflow-y: auto;
+  }
+
+  .customDropdown {
+    width: 100%;
+    max-width: 396px;
+    gap: 0px;
+  }
+
+  .addTaskFormsDivider {
+    display: none;
+  }
+
+  #taskDescription {
+    max-width: 100%;
+    width: 100%;
+    height: 88px;
+  }
+
+  #taskDueDate {
+    max-width: 100%;
+    width: 100%;
+    height: 40px;
+  }
+
+  label {
+    font-size: 18px;
+  }
+
+  .taskPriorityLabel {
+    font-size: 18px;
+  }
+
+  .requiredStarText {
+    display: none;
+  }
+
+  .formButtons {
+    display: flex;
+    flex-direction: row;
+    position: static !important;
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    margin-top: 16px;
+  }
+
+  .dropdownInput {
+    width: 100%;
+    max-width: 396px;
+    height: 40px;
+    padding: 12px 17px;
+    font-size: 15px;
+  }
+
+  .categoryDropdown {
+    width: 100%;
+    max-width: 396px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 360px) {
+  .addTaskFormsWrapper {
+    margin: 16px;
+    gap: 16px;
+  }
+
+  #taskDescription {
+    max-width: 100%;
+    width: 100%;
+    height: 80px;
+  }
+
+  #taskDueDate {
+    max-width: 100%;
+    width: 100%;
+    height: 40px;
+  }
+
+  label {
+    font-size: 16px;
+  }
+
+  .taskPriorityLabel {
+    font-size: 16px;
+  }
+
+  .taskPriorityBtn {
+    width: 100%;
+    padding: 8px 4px;
+    font-size: 12px;
+    height: 40px;
+    flex: 1;
+  }
+
+  .taskPriorityGroup {
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .dropdownInput {
+    width: 100%;
+    max-width: none;
+    height: 40px;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  .inputIcon {
+    max-width: 100%;
+  }
+
+  .inputIcon input {
+    padding-right: 42px;
+  }
+
+  .inputIcon img {
+    width: 20px;
+    height: 20px;
+    right: 20px;
+  }
+
+  .customDropdown {
+    width: 100%;
+    max-width: none;
+  }
+
+  .customDropdownContainer {
+    width: 100%;
+  }
+
+  .categoryDropdown {
+    width: 100%;
+    max-width: none;
+    height: 40px;
+  }
+
+  .formButtons {
+    position: static;
+    width: 100%;
+    justify-content: center;
+    padding: 0;
+    margin-top: 16px;
+  }
+}

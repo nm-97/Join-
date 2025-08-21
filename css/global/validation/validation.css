@@ -1,0 +1,47 @@
+.errorInput {
+  border: 2px solid #ff8190 !important;
+  outline: none;
+}
+
+.errorMessage {
+  color: #ff8190;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(41, 171, 226, 0.2);
+}
+
+.errorInput:focus {
+  border-color: #ff8190 !important;
+  box-shadow: 0 0 0 2px rgba(255, 129, 144, 0.2);
+}
+
+.inputIcon {
+  position: relative;
+}
+
+.inputIcon img {
+  transition: all 0.2s ease;
+  user-select: none;
+  pointer-events: auto !important;
+  z-index: 10;
+}
+
+.inputIcon img[src*="visibility"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer !important;
+}
+
+.inputIcon img:hover {
+  opacity: 0.7;
+}

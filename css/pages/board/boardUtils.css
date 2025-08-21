@@ -1,0 +1,15 @@
+.hidden {
+  display: none !important;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeButton,
+.closeBtn,
+.addIcon {
+  cursor: pointer;
+}

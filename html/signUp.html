@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico" />
+    <link rel="stylesheet" href="../css/global/style.css" />
+    <link rel="stylesheet" href="../css/global/Login/LogIn.css" />
+    <link rel="stylesheet" href="../css/global/validation/validation.css" />
+    <link rel="stylesheet" href="../css/global/validation/customcheckbox.css" />
+    <link rel="stylesheet" href="../css/global/forms.css" />
+    <link rel="stylesheet" href="../css/pages/signUp/signUp.css" />
+    <script src="../javascript/global/firebase.js"></script>
+    <script src="../javascript/global/user.js"></script>
+    <script src="../javascript/global/utils.js"></script>
+    <script src="../javascript/global/loadingscreen.js"></script>
+    <script src="../javascript/global/validation/validation.js"></script>
+    <script src="../javascript/global/validation/signupvalidation.js"></script>
+    <script src="../javascript/pages/signUp.js/signUpTemplate.js"></script>
+
+    <title>Join</title>
+  </head>
+
+  <body class="fontStyle">
+    <header class="headerSignUp">
+      <a href="../html/index.html"
+        ><img src="../assets/icons/joinlogo_black.png" alt="join_logo"
+      /></a>
+    </header>
+
+    <main>
+      <form class="signUpMainContainer" onsubmit="signupUser(event)">
+        <h2>Sign Up</h2>
+        <button class="backBtn" type="button" onclick="history.back()">
+          <a href="../html/index.html"></a
+          ><img src="../assets/icons/login/Vector.svg" alt="backArrow" />
+        </button>
+        <div class="LogInInput inputIcon">
+          <input id="name" name="name" placeholder="Name" />
+          <img src="../assets/icons/contacts/person.svg" alt="user" />
+        </div>
+        <div class="LogInInput inputIcon">
+          <input id="email" name="email" placeholder="Email" />
+          <img src="../assets/icons/login/mail.png" alt="mail" />
+        </div>
+        <div class="LogInInput inputIcon">
+          <input id="password" name="password" placeholder="Password" />
+          <img src="../assets/icons/login/lock.png" alt="lock" />
+        </div>
+        <div class="LogInInput inputIcon">
+          <input
+            id="confirmPassword"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+          />
+          <img src="../assets/icons/login/lock.png" alt="lock" />
+        </div>
+        <div class="errorMessage hide"></div>
+        <div class="checkboxContainer">
+          <div class="checkboxLabel">
+            <input
+              class="customCheckbox"
+              type="checkbox"
+              id="termsCheckbox"
+              name="termsCheckbox"
+            />
+            <label for="termsCheckbox">
+              I accept the
+              <a href="../html/privacyPoliceResponisve.html">Privacy Policy</a>
+            </label>
+          </div>
+        </div>
+        <div class="btnPosition">
+          <button type="submit" class="SignUpbtn" id="SignUpButton">
+            Sign Up
+          </button>
+        </div>
+      </form>
+    </main>
+
+    <div class="signUpToast" id="signUpToastMessage"></div>
+
+    <footer>
+      <a href="#" onclick="redirectToPrivacyPolicy()" class="desktopOnly"
+        >Privacy Policy</a
+      >
+      <a href="#" onclick="redirectToLegalNotice()" class="desktopOnly"
+        >Legal Notice</a
+      >
+      <a href="../html/privacyPoliceResponisve.html" class="mobileOnly"
+        >Privacy Policy</a
+      >
+      <a href="../html/legalNoticeResponsive.html" class="mobileOnly"
+        >Legal Notice</a
+      >
+    </footer>
+  </body>
+</html>

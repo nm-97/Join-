@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico" />
+    <link rel="stylesheet" href="../css/global/style.css" />
+    <link rel="stylesheet" href="../css/global/Login/LogIn.css" />
+    <link rel="stylesheet" href="../css/global/validation/validation.css" />
+    <link rel="stylesheet" href="../css/global/forms.css" />
+    <script src="../javascript/global/firebase.js"></script>
+    <script src="../javascript/global/user.js"></script>
+    <script src="../javascript/global/utils.js"></script>
+    <script src="../javascript/global/validation/validation.js"></script>
+    <script src="../javascript/global/validation/loginvadlidation.js"></script>
+    <title>Join</title>
+  </head>
+
+  <body class="fontStyle">
+    <header>
+      <div>
+        <a id="loadingScreen" href="../html/index.html">
+          <img src="../assets/icons/joinlogo_black.png" alt="join_logo" />
+        </a>
+      </div>
+      <div class="SignUpbtnPosition">
+        <p>Not a Join user?</p>
+        <button
+          class="SignUpbtn"
+          id="signUpButton"
+          type="button"
+          onclick="window.location.href='../html/signUp.html'"
+        >
+          Sign Up
+        </button>
+      </div>
+    </header>
+
+    <main id="LogInMain">
+      <form class="LogInMainContainer hide" onsubmit="loginUser(event)">
+        <h2>Log in</h2>
+        <div class="LogInInput inputIcon">
+          <input id="email" name="email" placeholder="Email" />
+          <img src="../assets/icons/login/mail.png" alt="mail" />
+        </div>
+        <div class="LogInInput inputIcon">
+          <input id="password" name="password" placeholder="Password" />
+          <img src="../assets/icons/login/lock.png" alt="lock" />
+        </div>
+        <div class="errorMessage hide"></div>
+        <div class="btnPosition">
+          <button class="LogInbtn" #logInButton id="loginButton">Log In</button>
+          <button
+            class="guestLogInButton"
+            type="button"
+            onclick="setGuestLogin()"
+            #guestLogInButton
+            id="guestLoginButton"
+          >
+            Guest Log in
+          </button>
+        </div>
+      </form>
+    </main>
+
+    <footer class="hide">
+      <a href="#" onclick="redirectToPrivacyPolicy()" class="desktopOnly"
+        >Privacy Policy</a
+      >
+      <a href="#" onclick="redirectToLegalNotice()" class="desktopOnly"
+        >Legal Notice</a
+      >
+      <a href="../html/privacyPoliceResponisve.html" class="mobileOnly"
+        >Privacy Policy</a
+      >
+      <a href="../html/legalNoticeResponsive.html" class="mobileOnly"
+        >Legal Notice</a
+      >
+    </footer>
+  </body>
+</html>

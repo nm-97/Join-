@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico" />
+  <link rel="stylesheet" href="../css/global/style.css">
+  <link rel="stylesheet" href="../css/pages/board/boardLayout.css">
+  <link rel="stylesheet" href="../css/pages/board/boardUtils.css">
+  <link rel="stylesheet" href="../css/global/subTask.css">
+  <link rel="stylesheet" href="../css/global/overlays/overlays.css">
+  <link rel="stylesheet" href="../css/pages/board/boardAnimation.css">
+  <link rel="stylesheet" href="../css/global/validation/validation.css">
+  <link rel="stylesheet" href="../css/global/forms.css">
+  <link rel="stylesheet" href="../css/global/validation/customdropdown.css">
+  <script src="../javascript/global/firebase.js"></script>
+  <script src="../javascript/global/user.js"></script>
+  <script src="../javascript/global/utils.js"></script>
+  <!-- Contacts Modules -->
+  <script src="../javascript/pages/contacts/contactsTemplates.js"></script>
+  <script src="../javascript/pages/contacts/contactsDataHandling.js"></script>
+  <script src="../javascript/pages/contacts/contactsListManager.js"></script>
+  <script src="../javascript/pages/contacts/contactsFormHandling.js"></script>
+  <script src="../javascript/pages/contacts/contactsOverlayManager.js"></script>
+  <script src="../javascript/pages/contacts/contactsMenuManager.js"></script>
+  <script src="../javascript/pages/contacts/contactsUIHelpers.js"></script>
+  <script src="../javascript/pages/contacts/contacts.js"></script>
+  <script src="../javascript/global/validation/validation.js"></script>
+  <script src="../javascript/pages/board/boardTemplates.js"></script>
+  <script src="../javascript/pages/board/boardDataHandling.js"></script>
+  <script src="../javascript/pages/board/boardUIHelpers.js"></script>
+  <script src="../javascript/pages/board/boardOverlayManager.js"></script>
+  <script src="../javascript/pages/board/boardSubtaskManager.js"></script>
+  <script src="../javascript/pages/board/boardTaskManagement.js"></script>
+  <script src="../javascript/pages/board/board.js"></script>
+  <script src="../javascript/pages/board/searchbar.js"></script>
+  <script src="../javascript/global/costumDropDown/dropDownCore.js"></script>
+  <script src="../javascript/global/costumDropDown/customDropDownTemplate.js"></script>
+  <script src="../javascript/global/costumDropDown/contactsDropDown.js"></script>
+  <script src="../javascript/global/costumDropDown/contactsRenderer.js"></script>
+  <script src="../javascript/global/costumDropDown/contactsSelection.js"></script>
+  <script src="../javascript/global/costumDropDown/contactsDisplay.js"></script>
+  <script src="../javascript/global/costumDropDown/categoriesDropDown.js"></script>
+  <script src="../javascript/pages/addTask/addTaskTemplates.js"></script>
+  <script src="../javascript/pages/addTask/subtask/subTask.js"></script>
+  <script src="../javascript/pages/addTask/subtask/subTaskTemplate.js"></script>
+  <script src="../javascript/pages/addTask/taskPriority.js"></script>
+  <script src="../javascript/pages/addTask/taskFormSubmission.js"></script>
+  <script src="../javascript/pages/addTask/taskCreation.js"></script>
+  <script src="../javascript/pages/addTask/taskDataManagement.js"></script>
+  <script src="../javascript/pages/addTask/taskOverlay.js"></script>
+  <script src="../javascript/pages/addTask/taskEdit.js"></script>
+  <script src="../javascript/pages/addTask/taskDatePicker.js"></script>
+  <script src="../javascript/pages/addTask/addTask.js"></script>
+  <script src="../javascript/global/validation/dateValidation.js"></script>
+  <script src="../javascript/global/validation/taskFieldValidation.js"></script>
+  <script src="../javascript/global/validation/taskFormData.js"></script>
+  <script src="../javascript/global/validation/taskFormReset.js"></script>
+  <script src="../javascript/global/validation/addtaskvalidation.js"></script>
+  <script src="../javascript/pages/board/dragAndDrop/dragUtils.js"></script>
+  <script src="../javascript/pages/board/dragAndDrop/dragVisualEffects.js"></script>
+  <script src="../javascript/pages/board/dragAndDrop/dragScrollManagement.js"></script>
+  <script src="../javascript/pages/board/dragAndDrop/dragDropZones.js"></script>
+  <script src="../javascript/pages/board/dragAndDrop/dragTaskManagement.js"></script>
+  <script src="../javascript/pages/board/dragAndDrop/dragState.js"></script>
+  <script src="../javascript/pages/board/dragAndDrop/dragClone.js"></script>
+  <script src="../javascript/pages/board/dragAndDrop/dragUtilities.js"></script>
+  <script src="../javascript/pages/board/dragAndDrop/dragEvents.js"></script>
+  <script src="../javascript/pages/board/dragAndDrop/dragCore.js"></script>
+  <script src="../javascript/global/overlayoutsideclick.js"></script>
+  <title>Board</title>
+</head>
+
+<body>
+  <div class="pageWrapper">
+    <div class="sidebar">
+      <div class="logo">
+        <img class="joinLogo" src="../assets/icons/joinlogo.svg" alt="joinLogo" />
+      </div>
+
+        <div class="navigation">
+          <div class="navi">
+            <div
+              onclick="location.href='../html/summaryUser.html'"
+              class="navItem"
+            >
+              <span class="navIcon iconDashboard"></span>
+              <img
+                src="../assets/icons/summary and sideboard/summary.svg"
+                alt=""
+              />
+              <span>Summary</span>
+            </div>
+           <div
+              onclick="location.href='../html/addTask.html'"
+              class="navItem"
+            >
+              <span class="navIcon iconTask"></span>
+              <img
+                src="../assets/icons/summary and sideboard/addtask.svg"
+                alt=""
+              />
+              <span>Add Task</span>
+            </div>
+            <div onclick="location.href='../html/board.html'" class="navItem active">
+              <span class="navIcon iconBoard"></span>
+              <img src="../assets/icons/shared/board.svg" alt="" />
+              <span>Board</span>
+            </div>
+            <div
+              onclick="location.href='../html/contacts.html'"
+              class="navItem"
+            >
+              <span class="navIcon iconContacts"></span>
+              <img
+                src="../assets/icons/summary and sideboard/contact.svg"
+                alt=""
+              />
+              <span>Contacts</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footerLinks">
+            <a class="footerLink" href="./privacyPolicy.html">Privacy Policy</a>
+            <a class="footerLink" href="./legalNotice.html">Legal notice</a>
+        </div>
+      </div>
+
+      <div class="mainContainer">
+        <div class="header">
+          <div class="headerTitle">Kanban Project Management Tool</div>
+          <div class="mobileLogo">
+            <img src="../assets/icons/joinlogo_black.png" alt="Join" />
+          </div>
+          <div class="headerActions">
+            <div>
+              <button class="helpBtn" onclick="location.href='../html/help.html'" aria-label="Help">
+                <img src="../assets/icons/summary and sideboard/help.svg" alt="help icon"/>
+              </button>
+            </div>
+                    <div class="userAvatar" id="userAvatar" onclick="toggleUserMenu()"></div>
+                        <div class="dropdown none" id="usermenu">
+                        <a class="menuItem hideHref" href="../html/help.html">Help</a>
+                        <a class="menuItem" href="../html/legalNotice.html">Legal Notice</a>
+                        <a class="menuItem" href="../html/privacyPolicy.html">Privacy Policy</a>
+                      <a class="menuItem" onclick="logoutUserDirectly()" href="#">Log out</a>
+                    </div>
+          </div>
+        </div>
+
+        <div class="mainContent">
+        <div class="boardTopBar">
+          <div class="boardHeader">
+            <h1 class="boardTitle">Board</h1>
+            <a href="#" onclick="showAddTaskOverlay(); return false;" aria-label="Add new task">
+              <img class="hideOnMobile" src="../assets/icons/board/mobileaddtask.svg" alt="add task icon">
+            </a>
+            </div>
+            <div class="boardActions">
+              <div class="searchContainer">
+                <label for="searchInput" class="sr-only">Search tasks</label>
+                <input type="text" class="searchInput" placeholder="Find Task" id="searchInput"/>
+                <div class="searchDivider"></div>
+                <button class="searchButton" id="searchButton" aria-label="Search tasks">
+                  <img class="iconHover" src="../assets/icons/board/search.svg" alt="searchIcon">
+                </button>
+              </div>
+              <button class="addTaskButton" type="button" id="addTaskButton" onclick="showAddTaskOverlay()">Add Task
+                <img src="../assets/icons/board/addtask.svg" alt="add task">
+              </button>
+            </div>
+        </div>
+          
+
+            <div class="boardContainer" id="boardContainer"></div>
+
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="overlay hidden" id="taskOverlay"></div>
+
+  <div class="overlayAddTask" id="addTaskOverlay" style="display: none;"></div>
+
+  <div class="overlayAddTask" id="editTaskOverlay" style="display: none;"></div>
+
+      </div>
+    </div>
+</div>
+    <div id="bottomNav sticky" class="bottomNav">
+      <div class="navBtn" onclick="navigateTo('summary')">
+        <img src="../assets/icons/summary and sideboard/summary.svg" alt="Summary"/>
+        <span>Summary</span>
+      </div>
+  <div class="navBtn" onclick="location.href='../html/addTask.html'">
+        <img src="../assets/icons/summary and sideboard/addtask.svg" alt="Add Task"/>
+        <span>Add Task</span>
+      </div>
+      <div class="navBtn" onclick="navigateTo('board')">
+        <img src="../assets/icons/summary and sideboard/board.svg" alt="Board"/>
+        <span>Board</span>
+      </div>
+      <div class="navBtn" onclick="navigateTo('contacts')">
+        <img src="../assets/icons/summary and sideboard/contact.svg" alt="Contacts"/>
+        <span>Contacts</span>
+      </div>
+    </div>
+</body>
+</html>

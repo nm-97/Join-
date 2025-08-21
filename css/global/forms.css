@@ -1,0 +1,600 @@
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 25px;
+}
+
+.centerMainContent {
+  margin: 0 auto;
+}
+
+.formContent {
+  display: flex;
+}
+
+label {
+  font-size: 20px;
+}
+
+.taskPriorityLabel {
+  font-size: 20px;
+}
+
+.requiredStar {
+  color: #ff0000;
+  font-size: 18px;
+}
+
+.requiredStarText {
+  font-size: 14px;
+  text-align: center;
+}
+
+input,
+textarea,
+select {
+  padding: 12px 21px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 120px;
+  padding: 0;
+  resize: vertical;
+  min-height: 120px;
+}
+
+.addTaskFormsWrapper input,
+.addTaskFormsWrapper textarea,
+.addTaskFormsWrapper select {
+  width: 100%;
+  max-width: 423px;
+  flex: 1;
+  padding: 12px 21px;
+}
+
+.editInput {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.editTextarea {
+  width: 100%;
+  height: 80px;
+  padding: 12px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  font-size: 16px;
+  resize: none;
+  box-sizing: border-box;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #d1d1d1;
+  font-size: 20px;
+}
+
+.dropdownInput::placeholder {
+  color: #d1d1d1;
+  font-size: 20px;
+}
+
+.inputIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 423px;
+}
+
+.inputIcon input {
+  width: 100%;
+  padding-right: 44px;
+}
+
+.inputIcon img {
+  position: absolute;
+  width: 20px;
+  right: 12px;
+  height: 20px;
+  pointer-events: auto;
+  filter: invert(1);
+  cursor: pointer;
+  object-fit: contain;
+}
+
+.editInputIcon {
+  position: relative;
+}
+
+.editDateIcon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+}
+
+.taskPriorityGroup {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.taskPriorityBtn {
+  width: 136px;
+  height: 56px;
+  border-radius: 10px;
+  padding: 16px 10px;
+  border: 1px solid #d1d1d1;
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-direction: row-reverse;
+  box-shadow: 0px 0px 4px 0px #0000001a;
+  font-size: 20px;
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.taskPriorityBtnUrgentSelected {
+  background: #ff3d00;
+  color: white;
+  border: none;
+}
+
+.taskPriorityBtnUrgentSelected img {
+  filter: brightness(0) invert(1);
+}
+
+.taskPriorityBtnMediumSelected {
+  background: #ffa800;
+  color: white;
+  border: none;
+}
+
+.taskPriorityBtnMediumSelected img {
+  filter: brightness(0) invert(1);
+}
+
+.taskPriorityBtnLowSelected {
+  background: #7ae229;
+  color: white;
+  border: none;
+}
+
+.taskPriorityBtnLowSelected img {
+  filter: brightness(0) invert(1);
+}
+
+.taskPriorityBtn img,
+.taskPriorityBtnOrange img {
+  width: 20px;
+  height: auto;
+}
+
+.taskPriorityBtn span,
+.taskPriorityBtnOrange span {
+  margin-right: 8px;
+}
+
+.editPriorityGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.editPriorityBtn {
+  width: 120px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #d1d1d1;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.editPrioritySelected {
+  background: #ffa800;
+  color: white;
+  border: none;
+}
+
+.editPrioritySelected img {
+  filter: brightness(0) invert(1);
+}
+
+.editPriorityBtn img {
+  width: 16px;
+  height: 16px;
+}
+
+.addTaskBtn,
+.cancelTaskBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  height: 56px;
+}
+
+.addTaskBtn {
+  background: #2a3647;
+  color: #ffffff;
+}
+
+.cancelTaskBtn {
+  background: #f6f7f8;
+  color: #2a3647;
+  border: 1px solid #2a3647;
+  width: 110px;
+}
+
+.addTaskBtn img,
+.cancelTaskBtn img {
+  width: 16px;
+  height: auto;
+}
+
+.addTaskFormsWrapper .addTaskBtn {
+  padding: 16px 24px;
+}
+
+.editOkBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #2a3647;
+  color: #ffffff;
+}
+
+.editOkBtn img {
+  width: 16px;
+  height: auto;
+  filter: brightness(0) invert(1);
+}
+
+.formActions {
+  max-width: 893px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formButtons {
+  display: flex;
+  gap: 16px;
+}
+
+.editButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 22px;
+}
+
+.editFormGroup {
+  margin-bottom: 25px;
+  max-width: 423px;
+}
+
+.editFormGroupLast {
+  margin-bottom: 40px;
+}
+
+.editLabel {
+  font-size: 21px;
+  color: #42526e;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.editAvatarGroup {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.editAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.editAvatar1 {
+  background-color: #1fd7c1;
+}
+
+.editAvatar2 {
+  background-color: #9327ff;
+}
+
+.editAvatar3 {
+  background-color: #0038ff;
+}
+
+.editSubtaskInput {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.editSubtaskAdd {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #42526e;
+  cursor: pointer;
+}
+
+.editSubtaskList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.editSubtaskItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+}
+
+.editSubtaskBullet {
+  width: 4px;
+  height: 4px;
+  background-color: #42526e;
+  border-radius: 50%;
+}
+
+.taskCard.hidden {
+  display: none !important;
+}
+
+.taskCard.highlight {
+  background-color: #fff3cd;
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+  animation: taskHighlight 0.5s ease-in-out;
+}
+
+.contactsList {
+  padding: 8px 0;
+}
+
+.selectedContactsDisplay {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.errorMessage {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.errorMessage.hide {
+  display: none;
+}
+
+.addTaskFormsWrapper {
+  gap: 32px;
+  margin: 60px;
+}
+
+.addTaskFormsWrapper form {
+  display: flex;
+  flex-direction: column;
+  max-width: 423px;
+  width: 100%;
+  gap: 16px;
+}
+
+.addTaskFormsDivider {
+  width: 1px;
+  height: 424px;
+  background: #d1d1d1;
+  margin: 0 24px;
+  align-self: stretch;
+}
+
+@media (max-width: 1024px) {
+  .formActions {
+    position: static;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    justify-content: center;
+    width: 100%;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    font-size: 21px;
+  }
+}
+
+@media (max-width: 786px) {
+  .editformGroup {
+    padding: 0 20px;
+  }
+
+  .editFormGroup {
+    padding: 0 20px;
+  }
+
+  .editButtonContainer {
+    padding: 0 20px;
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .taskPriorityGroup {
+    gap: 6px;
+  }
+
+  .taskPriorityBtn img {
+    width: 15px;
+    height: 15px;
+  }
+
+  .requiredStarText {
+    display: none;
+  }
+}
+
+@media (max-width: 890px) {
+  label {
+    font-size: 16px;
+  }
+
+  .taskPriorityLabel {
+    font-size: 16px !important;
+    margin-top: 16px;
+  }
+
+  .editLabel {
+    font-size: 16px !important;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    font-size: 21px;
+  }
+
+  .dropdownInput::placeholder {
+    font-size: 16px;
+  }
+
+  .taskPriorityBtn span {
+    margin: 0;
+  }
+
+  .taskPriorityGroup {
+    gap: 4px;
+    justify-content: space-between;
+    max-width: 423px;
+  }
+
+  .taskPriorityBtn,
+  .taskPriorityBtnOrange {
+    width: auto;
+    max-width: 104px;
+    height: 41px;
+    padding: 12px 8px;
+    font-size: 14px;
+    gap: 4px;
+    flex: 1;
+  }
+
+  .taskPriorityBtnOrange img {
+    width: 13px;
+  }
+
+  .taskPriorityBtn img {
+    width: 12px;
+    height: 12px;
+  }
+
+  .taskPriorityBtn span {
+    margin-right: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .customDropdown {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 765px) {
+  .formContent {
+    flex-direction: column;
+  }
+
+  .addTaskFormsDivider {
+    display: none;
+  }
+
+  .cancelTaskBtn,
+  .addTaskBtn {
+    padding: 9px !important;
+    white-space: nowrap;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    font-size: 16px;
+  }
+  .addTaskFormsWrapper {
+    margin: 32px;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .inputIcon img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .emailIcon {
+    height: 12px;
+    width: 12px;
+  }
+
+  input::placeholder,
+  texteara::placeholder {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 428px) {
+  .addTaskFormsWrapper {
+    display: block;
+    justify-content: flex-start;
+    padding: 0px;
+    gap: 0;
+  }
+}
+
+@media (max-width: 330px) {
+  .addTaskH1 {
+    font-size: 45px;
+  }
+}

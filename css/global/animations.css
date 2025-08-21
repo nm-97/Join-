@@ -1,0 +1,443 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  55% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-50px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInFromRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(50px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(250px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(250px);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+
+@keyframes overlayMoveFromRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(250px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes overlayMoveToRight {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(250px, 0, 0);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes taskGrab {
+  0% {
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes taskDrop {
+  0% {
+    transform: scale(1.05);
+  }
+  30% {
+    transform: scale(0.9);
+  }
+  70% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes taskHighlight {
+  0% {
+    box-shadow: 0 0 0 0 rgba(41, 171, 226, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(41, 171, 226, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(41, 171, 226, 0);
+  }
+}
+
+@keyframes dropZoneActivate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes logoFly {
+  0% {
+    transform: translate(calc(29.5vw - 50%), calc(40vh - 50%)) scale(2.4);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 2700px) {
+  @keyframes logoFly {
+    0% {
+      transform: translate(calc(31vw - 50%), calc(40vh - 50%)) scale(2.2);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 2500px) {
+  @keyframes logoFly {
+    0% {
+      transform: translate(calc(34vw - 50%), calc(40vh - 50%)) scale(2.1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 2200px) {
+  @keyframes logoFly {
+    0% {
+      transform: translate(calc(37vw - 50%), calc(40vh - 50%)) scale(1.9);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 2050px) {
+  @keyframes logoFly {
+    0% {
+      transform: translate(calc(40vw - 50%), calc(40vh - 50%)) scale(1.7);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 1920px) {
+  @keyframes logoFly {
+    0% {
+      transform: translate(calc(50vw - 50%), calc(40vh - 50%)) scale(1.6);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  body {
+    animation: bodyBackgroundChange 1.5s ease-in-out forwards;
+  }
+
+  @keyframes bodyBackgroundChange {
+    0% {
+      background-color: #2a3647;
+    }
+    50% {
+      background-color: #2a3647;
+    }
+    100% {
+      background-color: #f6f7f8;
+    }
+  }
+
+  @keyframes logoFly {
+    0% {
+      transform: translate(calc(50vw - 50%), calc(45vh - 50%)) scale(2.2);
+      content: url("../../assets/icons/login/Capa 1.png");
+    }
+    75% {
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    animation: bodyBackgroundChange 1.5s ease-in-out forwards;
+  }
+
+  @keyframes bodyBackgroundChange {
+    0% {
+      background-color: #2a3647;
+    }
+    50% {
+      background-color: #2a3647;
+    }
+    100% {
+      background-color: #f6f7f8;
+    }
+  }
+
+  @keyframes logoFly {
+    0% {
+      transform: translate(calc(50vw - 50%), calc(40vh - 50%)) scale(1.8);
+      content: url("../../assets/icons/login/Capa 1.png");
+    }
+    75% {
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    animation: bodyBackgroundChange 1.5s ease-in-out forwards;
+  }
+
+  @keyframes bodyBackgroundChange {
+    0% {
+      background-color: #2a3647;
+    }
+    50% {
+      background-color: #2a3647;
+    }
+    100% {
+      background-color: #f6f7f8;
+    }
+  }
+
+  @keyframes logoFly {
+    0% {
+      transform: translate(calc(50vw - 50%), calc(35vh - 50%)) scale(1.5);
+      content: url("../../assets/icons/login/Capa 1.png");
+    }
+    75% {
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  body {
+    animation: bodyBackgroundChange 1.5s ease-in-out forwards;
+  }
+
+  @keyframes bodyBackgroundChange {
+    0% {
+      background-color: #2a3647;
+    }
+    50% {
+      background-color: #2a3647;
+    }
+    100% {
+      background-color: #f6f7f8;
+    }
+  }
+
+  @keyframes logoFly {
+    0% {
+      transform: translate(calc(50vw - 50%), calc(30vh - 50%)) scale(1.3);
+      content: url("../../assets/icons/login/Capa 1.png");
+    }
+    75% {
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+  }
+}
+
+@media (max-height: 450px) {
+  body {
+    animation: bodyBackgroundChange 1.5s ease-in-out forwards;
+  }
+
+  @keyframes bodyBackgroundChange {
+    0% {
+      background-color: #2a3647;
+    }
+    50% {
+      background-color: #2a3647;
+    }
+    100% {
+      background-color: #f6f7f8;
+    }
+  }
+
+  @keyframes logoFly {
+    0% {
+      transform: translate(calc(50vw - 50%), calc(25vh - 50%)) scale(1.2);
+      content: url("../../assets/icons/login/Capa 1.png");
+    }
+    75% {
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+      content: url("../../assets/icons/login/Capa 2.png");
+    }
+  }
+}
+
+@keyframes backgroundFadeOut {
+  0% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0px);
+  }
+}

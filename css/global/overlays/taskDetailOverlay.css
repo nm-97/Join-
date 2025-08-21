@@ -1,0 +1,285 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  overflow: hidden;
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.taskDetailModal {
+  background-color: white;
+  border-radius: 30px;
+  padding: 0;
+  max-width: 525px;
+  width: 90%;
+  max-height: 90vh;
+  overflow: hidden;
+  overflow-x: hidden;
+  position: relative;
+  animation: overlayMoveFromRight 200ms ease-in-out forwards;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.taskDetailModal.closing {
+  animation: overlayMoveToRight 200ms ease-in-out forwards;
+}
+
+.overlay.closing .taskDetailModal {
+  animation: overlayMoveToRight 200ms ease-in-out forwards;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0;
+  padding: 26px 26px 20px 26px;
+  background-color: white;
+  border-radius: 30px 30px 0 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.modalHeaderEdit {
+  display: flex;
+  justify-content: end;
+  align-items: flex-start;
+  margin-bottom: 0; 
+  padding: 26px 26px 20px 26px;
+  background-color: white;
+  border-radius: 30px 30px 0 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.modalContent {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 26px; 
+}
+
+.modalLabel {
+  display: inline-block;
+  padding: 8px 27px;
+  border-radius: 10px;
+  font-size: 23px;
+  font-weight: 400;
+  color: white;
+}
+
+.closeButton {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #2a3f5f;
+}
+
+.modalTitle {
+  font-size: 61px;
+  font-weight: 700;
+  margin: 0 0 30px 0;
+  line-height: 1.1;
+}
+
+.modalDescription {
+  font-size: 21px;
+  color: #000000;
+  margin-bottom: 40px;
+  line-height: 1.4;
+}
+
+.detailRow {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 25px;
+  font-size: 21px;
+}
+
+.detailLabel {
+  min-width: 140px;
+  color: #42526e;
+}
+
+.detailValue {
+  color: #000000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.assignedUsers {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.assignedUser {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.userAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #3498db;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border: 1px solid black;
+}
+
+.subtasksSection {
+  margin-top: 40px;
+}
+
+.subtasksTitle {
+  font-size: 21px;
+  color: #42526e;
+  margin-bottom: 15px;
+}
+
+.subtasksList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.subtaskItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 16px;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  padding: 20px 26px 26px 26px;
+  background-color: white;
+  border-radius: 0 0 30px 30px;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.modalButton {
+  padding: 10px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  box-shadow: none;
+}
+
+hr {
+  height: 22px;
+  background-color: #000;
+  margin: 20px 0;
+}
+
+@media (max-width: 1024px) {
+  .overlay {
+    height: 100%;
+  }
+}
+
+@media (max-width: 786px) {
+  .closeButton {
+    top: 32px;
+    right: 14px;
+  }
+    .modalHeader,
+  .modalHeaderEdit {
+    padding: 20px 14px 15px 20px;
+  }
+  
+  .modalContent {
+    padding: 0 20px;
+  }
+  
+  .modalActions {
+    padding: 15px 20px 20px 20px;
+  }
+}
+
+@media (max-height: 1101px) {
+  .taskDetailModal {
+    max-height: 82vh;
+  }
+}
+
+.overlayAddtask {
+  max-width: 552px;
+}
+
+.closeButton {
+  justify-content: flex-end;
+}
+
+.modalLabel {
+  display: flex;
+  align-items: center;
+  padding: 4px 16px;
+  font-size: 16px;
+}
+
+.modalTitle {
+  font-size: 36px;
+}
+
+.modalDescription,
+.detailRow,
+.assignedUser,
+.subtasksTitle,
+.subtaskItem {
+  font-size: 16px;
+}
+
+.scroll,
+.taskDetailModal {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.modalButton img {
+  height: 24px;
+  width: 24px;
+}
+
+  .modalActions {
+    padding-top: 0;
+  }
