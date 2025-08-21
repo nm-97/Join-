@@ -90,21 +90,11 @@ function validatePriority() {
  * @returns {void} No return value, updates DOM to show error state
  */
 function showCustomDropdownError(message) {
-  const customDropdownContainer = document.querySelector(
-    ".customDropdownContainer"
-  );
-  if (!customDropdownContainer) return;
+  const elements = getCustomDropdownElements();
+  if (!elements.container) return;
 
-  const errorDiv = customDropdownContainer.querySelector(".errorMessage");
-  if (errorDiv) {
-    errorDiv.textContent = message;
-    errorDiv.classList.remove("hide");
-  }
-
-  const dropdownHeader = document.querySelector(".dropdownHeader");
-  if (dropdownHeader) {
-    dropdownHeader.style.borderColor = "#ff0000";
-  }
+  updateErrorMessage(elements.errorDiv, message, false);
+  updateDropdownBorder(elements.header, "#ff0000");
 }
 
 /**
@@ -115,21 +105,25 @@ function showCustomDropdownError(message) {
  * @returns {void} No return value, updates DOM to clear error state
  */
 function clearCustomDropdownError() {
-  const customDropdownContainer = document.querySelector(
-    ".customDropdownContainer"
-  );
-  if (!customDropdownContainer) return;
+  const elements = getCustomDropdownElements();
+  if (!elements.container) return;
 
-  const errorDiv = customDropdownContainer.querySelector(".errorMessage");
-  if (errorDiv) {
-    errorDiv.textContent = "";
-    errorDiv.classList.add("hide");
-  }
+  updateErrorMessage(elements.errorDiv, "", true);
+  updateDropdownBorder(elements.header, "#d1d1d1");
+}
 
-  const dropdownHeader = document.querySelector(".dropdownHeader");
-  if (dropdownHeader) {
-    dropdownHeader.style.borderColor = "#d1d1d1";
-  }
+/**
+ * Gets custom dropdown DOM elements
+ * @function getCustomDropdownElements
+ * @returns {Object} Object containing container, errorDiv, and header elements
+ */
+function getCustomDropdownElements() {
+  const container = document.querySelector(".customDropdownContainer");
+  return {
+    container,
+    errorDiv: container?.querySelector(".errorMessage"),
+    header: document.querySelector(".dropdownHeader"),
+  };
 }
 
 /**
@@ -141,19 +135,11 @@ function clearCustomDropdownError() {
  * @returns {void} No return value, updates DOM elements to show category error state
  */
 function showCategoryError(message) {
-  const categoryDropdown = document.getElementById("customCategoryDropdown");
-  if (!categoryDropdown) return;
+  const elements = getCategoryDropdownElements();
+  if (!elements.dropdown) return;
 
-  const errorDiv = categoryDropdown.parentNode.querySelector(".errorMessage");
-  if (errorDiv) {
-    errorDiv.textContent = message;
-    errorDiv.classList.remove("hide");
-  }
-
-  const dropdownHeader = categoryDropdown.querySelector(".dropdownHeader");
-  if (dropdownHeader) {
-    dropdownHeader.style.borderColor = "#ff0000";
-  }
+  updateErrorMessage(elements.errorDiv, message, false);
+  updateDropdownBorder(elements.header, "#ff0000");
 }
 
 /**
@@ -164,18 +150,56 @@ function showCategoryError(message) {
  * @returns {void} No return value, updates DOM elements to remove category error state
  */
 function clearCategoryError() {
-  const categoryDropdown = document.getElementById("customCategoryDropdown");
-  if (!categoryDropdown) return;
+  const elements = getCategoryDropdownElements();
+  if (!elements.dropdown) return;
 
-  const errorDiv = categoryDropdown.parentNode.querySelector(".errorMessage");
-  if (errorDiv) {
-    errorDiv.textContent = "";
+  updateErrorMessage(elements.errorDiv, "", true);
+  updateDropdownBorder(elements.header, "#d1d1d1");
+}
+
+/**
+ * Gets category dropdown DOM elements
+ * @function getCategoryDropdownElements
+ * @returns {Object} Object containing dropdown, errorDiv, and header elements
+ */
+function getCategoryDropdownElements() {
+  const dropdown = document.getElementById("customCategoryDropdown");
+  return {
+    dropdown,
+    errorDiv: dropdown?.parentNode.querySelector(".errorMessage"),
+    header: dropdown?.querySelector(".dropdownHeader"),
+  };
+}
+
+/**
+ * Updates error message element with text and visibility
+ * @function updateErrorMessage
+ * @param {HTMLElement} errorDiv - The error message element
+ * @param {string} message - The message to display
+ * @param {boolean} hide - Whether to hide the message
+ * @returns {void}
+ */
+function updateErrorMessage(errorDiv, message, hide) {
+  if (!errorDiv) return;
+
+  errorDiv.textContent = message;
+  if (hide) {
     errorDiv.classList.add("hide");
+  } else {
+    errorDiv.classList.remove("hide");
   }
+}
 
-  const dropdownHeader = categoryDropdown.querySelector(".dropdownHeader");
-  if (dropdownHeader) {
-    dropdownHeader.style.borderColor = "#d1d1d1";
+/**
+ * Updates dropdown header border color
+ * @function updateDropdownBorder
+ * @param {HTMLElement} header - The dropdown header element
+ * @param {string} color - The border color to apply
+ * @returns {void}
+ */
+function updateDropdownBorder(header, color) {
+  if (header) {
+    header.style.borderColor = color;
   }
 }
 

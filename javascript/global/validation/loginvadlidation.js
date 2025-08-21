@@ -137,20 +137,26 @@ document.addEventListener("DOMContentLoaded", function () {
  * @returns {void} No return value, updates button states to disabled with appropriate CSS styling
  */
 function disableAllButtons() {
-  const loginButton = document.getElementById("loginButton");
-  const guestLoginButton = document.getElementById("guestLoginButton");
-  const signUpButton = document.getElementById("signUpButton");
-  if (loginButton) {
-    loginButton.disabled = true;
-    loginButton.classList.add("buttonDisabled");
-  }
-  if (guestLoginButton) {
-    guestLoginButton.disabled = true;
-    guestLoginButton.classList.add("buttonDisabled");
-  }
-  if (signUpButton) {
-    signUpButton.disabled = true;
-    signUpButton.classList.add("buttonDisabled");
+  const buttonIds = ["loginButton", "guestLoginButton", "signUpButton"];
+  buttonIds.forEach((buttonId) => toggleButtonState(buttonId, true));
+}
+
+/**
+ * Toggles button state between enabled and disabled
+ * @function toggleButtonState
+ * @param {string} buttonId - The ID of the button to toggle
+ * @param {boolean} disable - True to disable, false to enable
+ * @returns {void}
+ */
+function toggleButtonState(buttonId, disable) {
+  const button = document.getElementById(buttonId);
+  if (button) {
+    button.disabled = disable;
+    if (disable) {
+      button.classList.add("buttonDisabled");
+    } else {
+      button.classList.remove("buttonDisabled");
+    }
   }
 }
 
@@ -162,19 +168,6 @@ function disableAllButtons() {
  * @returns {void} No return value, updates button states to enabled with normal CSS styling restored
  */
 function enableAllButtons() {
-  const loginButton = document.getElementById("loginButton");
-  const guestLoginButton = document.getElementById("guestLoginButton");
-  const signUpButton = document.getElementById("signUpButton");
-  if (loginButton) {
-    loginButton.disabled = false;
-    loginButton.classList.remove("buttonDisabled");
-  }
-  if (guestLoginButton) {
-    guestLoginButton.disabled = false;
-    guestLoginButton.classList.remove("buttonDisabled");
-  }
-  if (signUpButton) {
-    signUpButton.disabled = false;
-    signUpButton.classList.remove("buttonDisabled");
-  }
+  const buttonIds = ["loginButton", "guestLoginButton", "signUpButton"];
+  buttonIds.forEach((buttonId) => toggleButtonState(buttonId, false));
 }

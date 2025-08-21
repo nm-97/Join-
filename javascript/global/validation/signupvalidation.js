@@ -17,8 +17,20 @@
 function validateSignupForm() {
   const formElements = getSignupFormElements();
   if (!formElements.isValid) return false;
+
   const formValues = extractSignupFormValues(formElements);
   clearSignupErrors();
+
+  return processSignupValidation(formValues);
+}
+
+/**
+ * Processes the signup validation and handles errors
+ * @function processSignupValidation
+ * @param {Object} formValues - Object containing form values to validate
+ * @returns {boolean} True if validation passes, false otherwise
+ */
+function processSignupValidation(formValues) {
   const validationResult = checkAllSignupFields(
     formValues.name,
     formValues.email,
@@ -26,17 +38,30 @@ function validateSignupForm() {
     formValues.confirmPassword,
     formValues.termsAccepted
   );
+
   if (!validationResult.isValid) {
-    markErrorInputs(
-      formValues.name,
-      formValues.email,
-      formValues.password,
-      formValues.confirmPassword
-    );
-    showSignupError(validationResult.errorText);
+    handleSignupValidationError(formValues, validationResult.errorText);
     return false;
   }
+
   return true;
+}
+
+/**
+ * Handles signup validation errors by marking inputs and showing error
+ * @function handleSignupValidationError
+ * @param {Object} formValues - Object containing form values
+ * @param {string} errorText - Error message to display
+ * @returns {void}
+ */
+function handleSignupValidationError(formValues, errorText) {
+  markErrorInputs(
+    formValues.name,
+    formValues.email,
+    formValues.password,
+    formValues.confirmPassword
+  );
+  showSignupError(errorText);
 }
 
 /**
@@ -104,19 +129,19 @@ function checkAllSignupFields(
   confirmPassword,
   termsAccepted
 ) {
-  const nameValidation = validateNameField(name);
-  if (!nameValidation.isValid) return nameValidation;
-  const emailValidation = validateEmailField(email);
-  if (!emailValidation.isValid) return emailValidation;
-  const passwordValidation = validatePasswordField(password);
-  if (!passwordValidation.isValid) return passwordValidation;
-  const confirmPasswordValidation = validateConfirmPasswordField(
-    confirmPassword,
-    password
-  );
-  if (!confirmPasswordValidation.isValid) return confirmPasswordValidation;
-  const termsValidation = validateTermsField(termsAccepted);
-  if (!termsValidation.isValid) return termsValidation;
+  const validations = [
+    () => validateNameField(name),
+    () => validateEmailField(email),
+    () => validatePasswordField(password),
+    () => validateConfirmPasswordField(confirmPassword, password),
+    () => validateTermsField(termsAccepted),
+  ];
+
+  for (const validation of validations) {
+    const result = validation();
+    if (!result.isValid) return result;
+  }
+
   return { isValid: true };
 }
 
@@ -210,22 +235,25 @@ function validateTermsField(termsAccepted) {
  * @returns {void} No return value, applies CSS error classes to invalid input elements
  */
 function markErrorInputs(name, email, password, confirmPassword) {
-  const nameInput = document.getElementById("name");
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("password");
-  const confirmPasswordInput = document.getElementById("confirmPassword");
-  if (!validateRequired(name)) {
-    nameInput.classList.add("errorInput");
-  }
-  if (!validateRequired(email) || !validateEmail(email)) {
-    emailInput.classList.add("errorInput");
-  }
-  if (!validateRequired(password) || !validatePassword(password, 6)) {
-    passwordInput.classList.add("errorInput");
-  }
-  if (!validateRequired(confirmPassword) || password !== confirmPassword) {
-    confirmPasswordInput.classList.add("errorInput");
-  }
+  const errorFields = [
+    { id: "name", isValid: validateRequired(name) },
+    { id: "email", isValid: validateRequired(email) && validateEmail(email) },
+    {
+      id: "password",
+      isValid: validateRequired(password) && validatePassword(password, 6),
+    },
+    {
+      id: "confirmPassword",
+      isValid:
+        validateRequired(confirmPassword) && password === confirmPassword,
+    },
+  ];
+
+  errorFields.forEach((field) => {
+    if (!field.isValid) {
+      document.getElementById(field.id).classList.add("errorInput");
+    }
+  });
 }
 
 /**
@@ -236,15 +264,12 @@ function markErrorInputs(name, email, password, confirmPassword) {
  * @returns {void} No return value, removes error styling and hides error messages from signup form
  */
 function clearSignupErrors() {
-  const nameInput = document.getElementById("name");
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("password");
-  const confirmPasswordInput = document.getElementById("confirmPassword");
+  const inputIds = ["name", "email", "password", "confirmPassword"];
+  inputIds.forEach((id) => {
+    document.getElementById(id).classList.remove("errorInput");
+  });
+
   const errorMessage = document.getElementsByClassName("errorMessage")[0];
-  nameInput.classList.remove("errorInput");
-  emailInput.classList.remove("errorInput");
-  passwordInput.classList.remove("errorInput");
-  confirmPasswordInput.classList.remove("errorInput");
   errorMessage.classList.add("hide");
 }
 
@@ -274,15 +299,29 @@ function showSignupError(text) {
 async function signupUser(event) {
   event.preventDefault();
   disableSignUpButton();
+
   if (!validateSignupForm()) {
     enableSignUpButton();
     return;
   }
-  const formData = new FormData(event.target);
-  const name = formData.get("name");
-  const email = formData.get("email");
-  const password = formData.get("password");
-  await processSignup(name, email, password);
+
+  const userData = extractUserDataFromForm(event.target);
+  await processSignup(userData.name, userData.email, userData.password);
+}
+
+/**
+ * Extracts user data from form submission
+ * @function extractUserDataFromForm
+ * @param {HTMLFormElement} form - The form element
+ * @returns {Object} Object containing name, email, and password
+ */
+function extractUserDataFromForm(form) {
+  const formData = new FormData(form);
+  return {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    password: formData.get("password"),
+  };
 }
 
 /**

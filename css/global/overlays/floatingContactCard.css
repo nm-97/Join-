@@ -41,6 +41,442 @@
   color: #000000;
   display: block;
   gap: 5px;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.floatingContactName {
+  gap: 8px;
+}
+
+.floatingContactActions {
+  display: flex;
+  gap: 20px;
+  width: 150px;
+  margin-top: 10px;
+}
+
+.editBtn,
+.deleteBtn {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.editBtn img,
+.deleteBtn img {
+  width: 24px;
+  height: 24px;
+}
+
+.floatingContactInfo {
+  gap: 59px;
+  margin-top: 59px;
+}
+
+.floatingContactInfoLabel {
+  font-size: 20px;
+  font-weight: 400;
+  gap: 22px;
+  margin-bottom: 59px;
+}
+
+.floatingContactInfo > div {
+  margin-bottom: 16px;
+}
+
+.floatingContactInfoDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.floatingContactInfoDetails a {
+  font-size: 16px;
+  text-decoration: none;
+  color: #007cee;
+}
+
+.floatingContactInfoDetails span {
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.floatingContactInfoDetails p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+  margin-top: 8px;
+}
+
+.floatingContactCloseBtn {
+  display: none;
+}
+@media (max-width: 1350px) and (min-width: 1025px) {
+  #floatingContactOverlay.desktop-mode {
+    position: static;
+    margin-top: 180px;
+    border-radius: 24px;
+  }
+  #floatingContactOverlay {
+    margin-top: 180px;
+  }
+
+  .floatingContactCloseBtn {
+    z-index: 999999;
+  }
+
+  .floatingContactMainContent {
+    margin-left: 20px;
+  }
+
+  .floatingContactHeader {
+    gap: 24px;
+  }
+
+  .floatingContactInfo {
+    margin-top: 40px;
+  }
+
+  .floatingContactAvatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .floatingContactName {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --mobile-header-height: clamp(120px, 15vh, 160px);
+    --close-btn-top: clamp(140px, 17vh, 180px);
+    --close-btn-right: clamp(20px, 5vw, 40px);
+    --card-margin-top: clamp(140px, 18vh, 200px);
+    --card-margin-left: clamp(0px, 2vw, 20px);
+  }
+
+  #floatingContactOverlay.mobile-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 72px);
+    z-index: 1000;
+    overflow: auto;
+    margin-top: 0;
+    border-radius: 0;
+  }
+
+  .mobileContactHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: clamp(140px, 31vh, 423px);
+    z-index: 1001;
+    padding: clamp(16px, 4vw, 24px) clamp(12px, 3vw, 20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: clamp(280px, 90vw, 673px);
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #floatingContactOverlay:not(.mobile-fullscreen) .mobileContactHeader {
+    display: flex;
+  }
+
+  .mobileContactHeader h1 {
+    font-size: clamp(32px, 8vw, 47px);
+    font-weight: 700;
+    color: #2a3647;
+    margin: 0 0 clamp(4px, 1vw, 8px) 0;
+  }
+
+  .mobileContactSubtitle {
+    font-size: clamp(16px, 4vw, 20px);
+    color: #2a3647;
+    padding-bottom: clamp(4px, 1vw, 8px);
+    border-bottom: 3px solid #29abe2;
+    display: inline-block;
+    max-width: fit-content;
+  }
+
+  .mobileContactHeader .floatingContactCloseBtn {
+    position: absolute;
+    top: 50%;
+    right: clamp(20px, 5vw, 40px);
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: clamp(6px, 1.5vw, 8px);
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+    z-index: 99999;
+  }
+
+  .mobileContactHeader .floatingContactCloseBtn:hover {
+    background-color: #f0f0f0;
+  }
+
+  .mobileContactHeader .floatingContactCloseBtn img {
+    width: clamp(20px, 5vw, 24px);
+    height: clamp(20px, 5vw, 24px);
+    display: block;
+    z-index: 9999;
+  }
+
+  #floatingContactOverlay.mobile-fullscreen .floatingContactMainContent {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0 clamp(12px, 3vw, 20px);
+    margin-top: 0;
+  }
+
+  #floatingContactOverlay.mobile-fullscreen .floatingContactCard {
+    margin-top: clamp(140px, 24vh, 330px);
+    max-width: clamp(280px, 90vw, 673px);
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding: clamp(16px, 4vw, 24px);
+  }
+
+  #floatingContactOverlay:not(.mobile-fullscreen) {
+    position: sticky;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  #floatingContactOverlay:not(.mobile-fullscreen) .floatingContactMainContent {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  #floatingContactOverlay:not(.mobile-fullscreen) .floatingContactCard {
+    margin-top: clamp(40px, 8vh, 60px);
+    background-color: #ffffff;
+    padding: clamp(16px, 4vw, 24px);
+    border-radius: 24px;
+    box-shadow: 0 4px 16px 0 rgba(42, 54, 71, 0.08),
+      0 1.5px 4px 0 rgba(42, 54, 71, 0.04);
+    width: 100%;
+    max-width: clamp(280px, 90vw, 500px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .floatingContactInfo {
+    margin: 0;
+  }
+
+  .floatingContactName {
+    font-size: clamp(28px, 7vw, 38px);
+  }
+
+  .floatingContactHeader {
+    gap: clamp(12px, 3vw, 20px);
+  }
+
+  .floatingContactAvatar {
+    font-size: clamp(20px, 5vw, 27px);
+    width: clamp(60px, 15vw, 80px);
+    height: clamp(60px, 15vw, 80px);
+  }
+
+  .floatingContactInfoDetails span {
+    margin-top: clamp(16px, 4vw, 22px);
+    margin-bottom: clamp(16px, 4vw, 22px);
+  }
+
+  .floating .floatingContactInfoLabel p {
+    font-size: clamp(16px, 4vw, 20px);
+  }
+
+  .floatingContactActions {
+    display: none;
+  }
+}
+
+.addContactButton.floating-hidden,
+#addContactButton.floating-hidden,
+.floating-overlay-open .addContactButton,
+.floating-overlay-open #addContactButton {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: 9999px !important;
+}
+
+@media (max-width: 1024px) {
+  .floatingContactCloseBtn:not(.mobileContactHeader .floatingContactCloseBtn) {
+    display: block;
+    position: fixed;
+    top: clamp(140px, 17vh, 180px);
+    right: clamp(20px, 5vw, 40px);
+    background-color: #f8f9fa;
+    cursor: pointer;
+    border: none;
+    z-index: 9999;
+  }
+
+  .floatingContactCloseBtn:not(.mobileContactHeader .floatingContactCloseBtn)
+    img {
+    width: clamp(24px, 6vw, 32px);
+    height: clamp(24px, 6vw, 32px);
+    display: block;
+    filter: invert(0);
+    z-index: 99999;
+  }
+
+  .floatingContactCard::after {
+    display: none;
+  }
+
+  .floating-menu-button {
+    position: fixed;
+    bottom: 100px;
+    right: 32px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #2a3647;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+  }
+
+  .contact-menu-overlay {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 10000;
+    margin-bottom: 87px;
+    margin-right: 10px;
+  }
+
+  .contact-menu-content {
+    background: white;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.15);
+    width: 116px;
+    height: 100px;
+    animation: slideIn 600ms ease 0s 1 normal forwards;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .contact-menu-content.closing {
+    animation: overlayMoveToRight 200ms ease-in-out forwards;
+  }
+
+  .contact-menu-content button {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    background: #f6f7f8;
+    cursor: pointer;
+    font-size: 16px;
+    color: #2a3647;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: background-color 0.2s ease;
+  }
+
+  .floatingEditBtn {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+  }
+
+  .floatingDeleteBtn {
+    border-bottom-left-radius: 20px;
+  }
+
+  .contact-menu-content button img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 430px) {
+  .floatingContactName {
+    font-size: clamp(20px, 5vw, 28px);
+  }
+
+  .floatingContactName span {
+    font-size: clamp(20px, 5vw, 28px);
+  }
+}
+
+#floatingContactOverlay {
+  position: static;
+  display: block;
+  margin-top: 136px;
+}
+
+.floatingContactMainContent {
+  margin-top: 70px;
+  background-color: #f8f9fa;
+}
+
+.floatingContactCard {
+  border-radius: 10px;
+  max-width: 700px;
+  animation: fadeInFromLeft 300ms ease 0s 1 normal forwards;
+}
+
+.floatingContactHeader {
+  display: flex;
+  align-items: center;
+  gap: 54px;
+  margin-bottom: 24px;
+}
+
+.floatingContactAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border: 3px solid #ffffff;
+  font-size: 47px;
+  font-weight: 500;
+  border-radius: 70px;
+  width: 120px;
+  height: 120px;
+}
+
+.floatingContactName span {
+  font-size: 47px;
+  font-weight: 500;
+  color: #000000;
+  display: block;
+  gap: 5px;
 }
 
 .floatingContactName {

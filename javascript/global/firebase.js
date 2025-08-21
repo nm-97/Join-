@@ -134,24 +134,42 @@ const getUserFormData = (event) => ({
  * @returns {Promise<Object>} Success status and user ID if successful
  */
 async function createUser(userData) {
-  const existingUsers = await fetchAllRegisteredUsers();
-  for (let i = 0; i < existingUsers.length; i++) {
-    if (existingUsers[i].email === userData.email) {
-      return {
-        success: false,
-      };
-    }
+  const emailExists = await checkEmailExists(userData.email);
+  if (emailExists) {
+    return { success: false };
   }
+  
+  return await processUserCreation(userData);
+}
+
+/**
+ * Checks if email already exists in registered users
+ * @function checkEmailExists
+ * @param {string} email - Email to check for existence
+ * @returns {Promise<boolean>} True if email exists, false otherwise
+ */
+async function checkEmailExists(email) {
+  const existingUsers = await fetchAllRegisteredUsers();
+  return existingUsers.some(user => user.email === email);
+}
+
+/**
+ * Processes user creation and login setup
+ * @function processUserCreation
+ * @param {Object} userData - User data object containing name, email, password
+ * @returns {Promise<Object>} Success status and user ID
+ */
+async function processUserCreation(userData) {
   const userId = await addUserToFirebase(userData);
-  setUserLogin(
-    {
-      id: userId,
-      name: userData.name,
-      email: userData.email,
-    },
-    false
-  );
+  
+  setUserLogin({
+    id: userId,
+    name: userData.name,
+    email: userData.email,
+  }, false);
+  
   renderSignUpSuccessMessage();
+  
   return {
     success: true,
     userId: userId,
